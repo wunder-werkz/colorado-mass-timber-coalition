@@ -56,3 +56,61 @@ $white: #ffffff;
     @content;
   }
 }
+
+// GRID
+$one-twelfth: calc(100vw / 12);
+$two-twelfths: calc(100vw * 2 / 12);
+$three-twelfths: calc(100vw * 3 / 12);
+$four-twelfths: calc(100vw * 4 / 12);
+$five-twelfths: calc(100vw * 5 / 12);
+$six-twelfths: calc(100vw * 6 / 12);
+$seven-twelfths: calc(100vw * 7 / 12);
+$eight-twelfths: calc(100vw * 8 / 12);
+$nine-twelfths: calc(100vw * 9 / 12);
+$ten-twelfths: calc(100vw * 10 / 12);
+$eleven-twelfths: calc(100vw * 11 / 12);
+$full: 100%;
+
+@mixin grid-wrap {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-column-gap: 0;
+  grid-row-gap: 0;
+}
+
+@mixin one-twelfth {
+  grid-column: span 1;
+}
+@mixin two-twelfths {
+  grid-column: span 2;
+}
+@mixin three-twelfths {
+  grid-column: span 3;
+}
+@mixin four-twelfths {
+  grid-column: span 4;
+}
+@mixin five-twelfths {
+  grid-column: span 5;
+}
+@mixin six-twelfths {
+  grid-column: span 6;
+}
+@mixin seven-twelfths {
+  grid-column: span 7;
+}
+@mixin eight-twelfths {
+  grid-column: span 8;
+}
+@mixin nine-twelfths {
+  grid-column: span 9;
+}
+@mixin ten-twelfths {
+  grid-column: span 10;
+}
+@mixin eleven-twelfths {
+  grid-column: span 11;
+}
+@mixin full {
+  grid-column: span 12;
+}

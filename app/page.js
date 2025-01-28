@@ -3,6 +3,8 @@ import { EVENTS_QUERY } from "@/sanity/lib/queries";
 import { PARTNERS_QUERY } from "@/sanity/lib/queries";
 import { client } from "@/sanity/lib/client";
 
+import SplitTextBg from "@/components/SplitTextBg";
+
 export default async function Home() {
   const general = await client.fetch(GENERAL_QUERY);
   const events = await client.fetch(EVENTS_QUERY);
@@ -10,7 +12,12 @@ export default async function Home() {
 
   return (
     <div>
-      <h1>CMTC</h1>
+      <div style={{ maxWidth: "400px" }}>
+        <SplitTextBg color="forest" inline>
+          a bunch of text a bunch of texta bunch of text a bunch of text a bunch
+          of text a bunch of text
+        </SplitTextBg>
+      </div>
       <h2>{general.contactEmail}</h2>
 
       <h3>Events</h3>

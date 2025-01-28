@@ -1,0 +1,61 @@
+@use "@/styles/vars" as *;
+
+.orange {
+  --bg-color: #{$orange};
+  color: $white;
+}
+
+.cream {
+  --bg-color: #{$cream};
+  color: $black;
+}
+
+.forest {
+  --bg-color: #{$forest};
+  color: $white;
+}
+
+.container {
+  display: inline-block;
+  * {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.text {
+  position: relative;
+  display: block;
+  font-size: inherit;
+  line-height: 1;
+  color: $cream;
+}
+
+.lineWrapper {
+  overflow: hidden;
+  position: relative;
+  display: block;
+  font-size: inherit;
+  line-height: 1.2;
+
+  &.inline {
+    display: inline-block;
+    vertical-align: top;
+  }
+}
+
+.lineBackground {
+  position: absolute;
+  inset: 0;
+  background-color: var(--bg-color, #000);
+  transform-origin: bottom;
+}
+
+.line {
+  position: relative;
+  z-index: 1;
+  display: block;
+  font-size: inherit;
+  line-height: inherit;
+  padding: 0.5em 1em;
+}
