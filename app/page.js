@@ -2,6 +2,7 @@ import { GENERAL_QUERY } from "@/sanity/lib/queries";
 import { EVENTS_QUERY } from "@/sanity/lib/queries";
 import { PARTNERS_QUERY } from "@/sanity/lib/queries";
 import { client } from "@/sanity/lib/client";
+import Button from "@/components/Button";
 
 import SplitTextBg from "@/components/SplitTextBg";
 
@@ -33,6 +34,35 @@ export default async function Home() {
           <li key={partner._id}>{partner.name}</li>
         ))}
       </ul>
+
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "20px",
+          padding: "20px",
+        }}
+      >
+        <Button href="/about">Forest Filled</Button>
+        <Button href="/contact" fill={false}>
+          Forest Outline
+        </Button>
+
+        <Button href="https://example.com" color="orange">
+          Orange Filled
+        </Button>
+        <Button href="https://example.com" color="orange" fill={false}>
+          Orange Outline
+        </Button>
+
+        {/* Click Handlers
+        <Button onClick={() => alert("Clicked!")} color="cream">
+          Cream Filled
+        </Button>
+        <Button onClick={() => alert("Clicked!")} color="cream" fill={false}>
+          Cream Outline
+        </Button> */}
+      </div>
     </div>
   );
 }
