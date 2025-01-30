@@ -12,7 +12,7 @@ export default async function Home() {
   const partners = await client.fetch(PARTNERS_QUERY);
 
   return (
-    <div>
+    <div style={{ height: "300vh" }}>
       <div style={{ maxWidth: "400px" }}>
         <SplitTextBg color="forest" inline>
           a bunch of text a bunch of texta bunch of text a bunch of text a bunch

@@ -16,8 +16,14 @@ export default function ScrollSmoother({ children }) {
       effects: true,
     });
 
+    // Store the instance globally
+    window._smoothScroll = smoother.current;
+
     return () => {
-      smoother.current && smoother.current.kill();
+      if (smoother.current) {
+        smoother.current.kill();
+        window._smoothScroll = null;
+      }
     };
   }, []);
 
