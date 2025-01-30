@@ -4,6 +4,8 @@ import { PARTNERS_QUERY } from "@/sanity/lib/queries";
 import { client } from "@/sanity/lib/client";
 import Button from "@/components/Button";
 
+import Eyeballs from "@/components/Eyeballs";
+
 import SplitTextBg from "@/components/SplitTextBg";
 
 export default async function Home() {
@@ -43,6 +45,10 @@ export default async function Home() {
           padding: "20px",
         }}
       >
+        <Eyeballs />
+        <Eyeballs />
+        <Eyeballs />
+
         <Button href="/about">Forest Filled</Button>
         <Button href="/contact" fill={false}>
           Forest Outline
