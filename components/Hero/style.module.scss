@@ -1,0 +1,79 @@
+@use "@/styles/vars" as *;
+
+.hero {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  @include grid-wrap;
+  @include full;
+}
+
+.logoWrapper,
+.taglineWrapper {
+  opacity: 0;
+  transform: translateY(50px);
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 2;
+
+  svg {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.content {
+  @include full;
+}
+
+.taglineWrapper {
+  margin-top: 2rem;
+}
+
+.splitTextWrapper {
+  // position: absolute;
+  // top: 50%;
+  // left: 50%;
+  // transform: translate(-50%, -50%);
+  // z-index: 2;
+  @include h2;
+}
+
+.maskContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  clip-path: circle(25% at 50% 100%);
+}
+
+.mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("/img/hero.jpeg");
+  background-size: cover;
+  background-position: center;
+}
+
+// .bgImage {
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 100%;
+//   background-image: url("/hero.jpeg");
+//   background-size: cover;
+//   background-position: center;
+//   z-index: 1;
+// }
+
+// .headerSpacer {
+//   height: 400vh;
+// }

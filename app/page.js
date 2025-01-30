@@ -4,8 +4,8 @@ import { PARTNERS_QUERY } from "@/sanity/lib/queries";
 import { client } from "@/sanity/lib/client";
 import Button from "@/components/Button";
 
+import Hero from "@/components/Hero";
 import Eyeballs from "@/components/Eyeballs";
-
 import SplitTextBg from "@/components/SplitTextBg";
 
 export default async function Home() {
@@ -14,7 +14,8 @@ export default async function Home() {
   const partners = await client.fetch(PARTNERS_QUERY);
 
   return (
-    <div style={{ height: "300vh" }}>
+    <>
+      <Hero />
       <div style={{ maxWidth: "400px" }}>
         <SplitTextBg color="forest" inline>
           a bunch of text a bunch of texta bunch of text a bunch of text a bunch
@@ -69,6 +70,6 @@ export default async function Home() {
           Cream Outline
         </Button> */}
       </div>
-    </div>
+    </>
   );
 }

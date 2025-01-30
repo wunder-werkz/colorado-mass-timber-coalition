@@ -1,7 +1,10 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { ScrollSmoother as GSAPScrollSmoother } from "@/lib/gsapConfig";
+import {
+  ScrollSmoother as GSAPScrollSmoother,
+  ScrollTrigger,
+} from "@/lib/gsapConfig";
 
 export default function ScrollSmoother({ children }) {
   const smoother = useRef(null);
@@ -18,6 +21,10 @@ export default function ScrollSmoother({ children }) {
 
     // Store the instance globally
     window._smoothScroll = smoother.current;
+
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 100);
 
     return () => {
       if (smoother.current) {
