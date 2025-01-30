@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsapConfig";
 import styles from "./style.module.scss";
+import LogoSm from "@/components/SVG/LogoSm";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -77,7 +78,9 @@ const Header = () => {
       className={`${styles.header} ${isMenuOpen ? styles.open : ""}`}
       ref={headerRef}
     >
-      <div className={styles.logo}>Your Logo</div>
+      <div className={styles.logo}>
+        <LogoSm />
+      </div>
 
       <button
         className={`${styles.hamburger} ${isMenuOpen ? styles.open : ""}`}
