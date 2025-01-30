@@ -6,6 +6,7 @@
   width: 100%;
   @include grid-wrap;
   @include full;
+  padding-top: 80px;
 }
 
 .logoWrapper,
@@ -33,22 +34,23 @@
 }
 
 .splitTextWrapper {
-  // position: absolute;
-  // top: 50%;
-  // left: 50%;
-  // transform: translate(-50%, -50%);
-  // z-index: 2;
   @include h2;
+  max-width: 75%;
+  margin: 0 auto;
+  text-align: center;
+  color: $forest;
 }
 
 .maskContainer {
   position: absolute;
-  top: 0;
+  top: 80px;
   left: 0;
-  width: 100%;
+  width: calc(100% - 100px);
+  transform: translate(50px, 50px);
   height: 100%;
   z-index: 1;
   clip-path: circle(25% at 50% 100%);
+  opacity: 0;
 }
 
 .mask {
@@ -61,19 +63,3 @@
   background-size: cover;
   background-position: center;
 }
-
-// .bgImage {
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-//   width: 100%;
-//   height: 100%;
-//   background-image: url("/hero.jpeg");
-//   background-size: cover;
-//   background-position: center;
-//   z-index: 1;
-// }
-
-// .headerSpacer {
-//   height: 400vh;
-// }

@@ -76,6 +76,7 @@ $full: 100%;
   grid-template-columns: repeat(12, 1fr);
   grid-column-gap: 0;
   grid-row-gap: 0;
+  padding: 0 50px;
 }
 
 @mixin one-twelfth {

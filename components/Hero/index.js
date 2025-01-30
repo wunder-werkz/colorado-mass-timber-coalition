@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
+import useIsomorphicLayoutEffect from "@/hooks/useIsomorphicLayoutEffect";
 import LogoLg from "@/components/SVG/LogoLg";
 import Tagline from "@/components/SVG/Tagline";
 import SplitTextBg from "@/components/SplitTextBg";
@@ -14,17 +15,16 @@ const Hero = () => {
   const splitTextRef = useRef(null);
   const maskRef = useRef(null);
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const section = sectionRef.current;
     const logo = logoRef.current;
     const tagline = taglineRef.current;
     const splitText = splitTextRef.current;
     const mask = maskRef.current;
 
-    // Initial animation timeline
     const initialTl = gsap.timeline();
 
-    initialTl.to([logo, tagline], {
+    initialTl.to([logo, tagline, mask], {
       y: 0,
       opacity: 1,
       duration: 1,
@@ -34,7 +34,6 @@ const Hero = () => {
       toggleActions: "play reverse play reverse",
     });
 
-    // Scroll-based timeline
     const scrollTl = gsap.timeline({
       scrollTrigger: {
         trigger: section,
@@ -46,34 +45,10 @@ const Hero = () => {
       },
     });
 
-    scrollTl.to(
-      mask,
-      {
-        clipPath: "circle(150% at 50% 100%)",
-        duration: 2,
-        ease: "power2.inOut",
-      },
-      "+=.5"
-    );
-    //     .to(tagline, {
-    //   opacity: 0,
-    //   duration: 1,
-    //   ease: "none",
-    // })
-    // .from(
-    //   splitText,
-    //   {
-    //     opacity: 0,
-    //     y: 50,
-    //     duration: 1,
-    //   },
-    //   "+=0.5"
-    // )
-    // .to([logo, splitText], {
-    //   y: -100,
-    //   opacity: 0,
-    //   duration: 1,
-    // });
+    scrollTl.to(mask, {
+      clipPath: "circle(150% at 50% 100%)",
+      ease: "power2.inOut",
+    });
 
     return () => {
       scrollTl.kill();

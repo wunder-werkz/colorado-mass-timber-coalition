@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
+import useIsomorphicLayoutEffect from "@/hooks/useIsomorphicLayoutEffect";
 import { gsap, ScrollTrigger } from "@/lib/gsapConfig";
 import styles from "./style.module.scss";
 import LogoSm from "@/components/SVG/LogoSm";
@@ -12,7 +13,7 @@ const Header = () => {
   const timeline = useRef(null);
   const menuItemsRef = useRef([]);
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (!headerRef.current) return;
     const anim = gsap.to(headerRef.current, {
       y: 0,

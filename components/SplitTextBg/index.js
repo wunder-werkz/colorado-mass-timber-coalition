@@ -1,6 +1,8 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
+import useIsomorphicLayoutEffect from "@/hooks/useIsomorphicLayoutEffect";
+
 import { gsap, SplitText } from "@/lib/gsapConfig";
 
 import styles from "./style.module.scss";
@@ -10,7 +12,7 @@ export default function SplitTextBg({ children, color, inline = false }) {
   const backgroundsRef = useRef([]);
   const linesRef = useRef([]);
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const padding = "0.5em 1em";
       textRef.current.style.padding = padding;
