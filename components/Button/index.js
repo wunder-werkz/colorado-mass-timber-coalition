@@ -16,6 +16,7 @@ export default function Button({
 }) {
   const buttonClasses = [
     styles.button,
+    styles[variant],
     styles[color],
     fill ? styles.fill : "",
     className,
@@ -26,11 +27,11 @@ export default function Button({
   const content = (
     <>
       <span className={styles.text}>{children}</span>
-      <span className={styles.circle}>
-        <Arrow
-          color={fill ? (color === "cream" ? "#343516" : "#FFFFFF") : "#FFFFFF"}
-        />
-      </span>
+      {variant === "primary" && (
+        <span className={styles.circle}>
+          <Arrow />
+        </span>
+      )}
     </>
   );
 

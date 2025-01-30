@@ -4,7 +4,6 @@
   position: relative;
   display: inline-flex;
   align-items: center;
-  justify-content: flex-start;
   padding: 0px 30px 0px 30px;
   border-radius: 30px;
   font-family: var(--font-greed-standard);
@@ -21,7 +20,7 @@
     content: "";
     position: absolute;
     inset: 0;
-    background-color: var(--border-color);
+    background-color: var(--hover-bg-color, transparent);
     transform: scaleX(0);
     transform-origin: right;
     transition: transform 0.3s ease;
@@ -30,135 +29,143 @@
   .text {
     position: relative;
     z-index: 1;
-    mix-blend-mode: difference;
+    transition: color 0.3s ease;
   }
+}
+
+// Primary styles
+.primary {
+  justify-content: flex-start;
 
   .circle {
     position: absolute;
-    right: -4px;
+    right: 0;
     top: 50%;
     transform: translateY(-50%);
-    width: 50px;
-    height: 50px;
+    width: 46px;
+    height: 46px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--circle-color);
+    background-color: var(--circle-bg);
     transition: background-color 0.3s ease;
   }
 
-  &:hover::before {
-    transform: scaleX(1);
+  &.forest {
+    &:not(.fill) {
+      border-color: $forest;
+      color: $forest;
+      --hover-bg-color: #{$forest};
+
+      &:hover .text {
+        color: $cream;
+      }
+
+      .circle {
+        --circle-bg: #{$forest};
+      }
+
+      svg path {
+        fill: $cream;
+      }
+    }
+
+    &.fill {
+      background-color: $cream;
+      border-color: $forest;
+      color: $forest;
+      --hover-bg-color: #{$forest};
+
+      &:hover .text {
+        color: $cream;
+      }
+
+      .circle {
+        --circle-bg: #{$forest};
+      }
+
+      svg path {
+        fill: $cream;
+      }
+    }
   }
-}
 
-.forest {
-  --border-color: #{$forest};
-  --circle-color: #{$forest};
-  --text-color: #{$forest};
-  background-color: transparent;
-  border-color: var(--border-color);
-  color: var(--text-color);
+  &.orange {
+    &:not(.fill) {
+      border-color: $orange;
+      color: $cream;
+      --hover-bg-color: #{$orange};
 
-  .circle {
-    background-color: var(--circle-color);
-    color: $white;
-  }
+      &:hover .text {
+        color: $forest;
+      }
 
-  &.fill {
-    background-color: var(--border-color);
-    color: $white;
+      .circle {
+        --circle-bg: #{$orange};
+      }
 
-    .circle {
-      background-color: $white;
-      color: var(--border-color);
+      svg path {
+        fill: $forest;
+      }
+    }
+
+    &.fill {
+      background-color: $cream;
+      border-color: $orange;
+      color: $cream;
+      --hover-bg-color: #{$orange};
+
+      &:hover .text {
+        color: $forest;
+      }
+
+      .circle {
+        --circle-bg: #{$orange};
+      }
+
+      svg path {
+        fill: $forest;
+      }
     }
   }
 }
 
-.orange {
-  --border-color: #{$orange};
-  --circle-color: #{$orange};
-  --text-color: #{$orange};
-  background-color: transparent;
-  border-color: var(--border-color);
-  color: var(--text-color);
-
-  .circle {
-    background-color: var(--circle-color);
-    color: $white;
-  }
-
-  &.fill {
-    background-color: var(--border-color);
-    color: $white;
-
-    .circle {
-      background-color: $white;
-      color: var(--border-color);
-    }
-  }
-}
-
-.cream {
-  --border-color: #{$cream};
-  --circle-color: #{$cream};
-  --text-color: #{$cream};
-  background-color: transparent;
-  border-color: var(--border-color);
-  color: var(--text-color);
-
-  .circle {
-    background-color: var(--circle-color);
-    color: $forest;
-  }
-
-  &.fill {
-    background-color: var(--border-color);
-    color: $forest;
-
-    .circle {
-      background-color: $forest;
-      color: var(--border-color);
-    }
-  }
-}
-
-// Color variants with outline
-.forest.outline {
-  border-color: $forest;
-  color: $forest;
-  &:hover:not(:disabled) {
-    background-color: rgba($forest, 0.1);
-  }
-}
-
-.orange.outline {
-  border-color: $orange;
-  color: $orange;
-  &:hover:not(:disabled) {
-    background-color: rgba($orange, 0.1);
-  }
-}
-
-.cream.outline {
-  border-color: $cream;
-  color: $cream;
-  &:hover:not(:disabled) {
-    background-color: rgba($cream, 0.1);
-  }
-}
-
-// Secondary variant modifications
+// Secondary styles
 .secondary {
-  &.fill {
-    opacity: 0.8;
+  justify-content: center;
+  padding: 0px 30px;
+
+  &.forest {
+    &:not(.fill) {
+      border-color: $forest;
+      color: $forest;
+    }
+
+    &.fill {
+      background-color: $forest;
+      border-color: $forest;
+      color: $orange;
+    }
   }
 
-  &.outline {
-    border-width: 1px;
+  &.orange {
+    &:not(.fill) {
+      border-color: $orange;
+      color: $forest;
+    }
+
+    &.fill {
+      background-color: $orange;
+      border-color: $orange;
+      color: $forest;
+    }
   }
+}
+
+// Hover effect
+.button:hover::before {
+  transform: scaleX(1);
 }
 
 .arrow {
