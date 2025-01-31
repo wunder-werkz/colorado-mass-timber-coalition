@@ -39,6 +39,9 @@ const Hero = () => {
           <ST.Waypoint
             at={8}
             onCall={() => splitTextAnimationRef.current?.restart()}
+          />
+          <ST.Waypoint
+            at={20}
             onReverseCall={() => splitTextAnimationRef.current?.reverse()}
           />
 
