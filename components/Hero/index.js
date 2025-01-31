@@ -91,7 +91,7 @@ const Hero = () => {
 
           <ST.Animation
             tween={{
-              start: 20,
+              start: 25,
               end: 100,
               to: { clipPath: "circle(150% at 50% 100%)" },
             }}
@@ -137,6 +137,17 @@ const Hero = () => {
                   </div>
                 </ST.Stagger>
               </div>
+            </div>
+          </ST.Animation>
+          <ST.Animation
+            tween={{
+              start: 60,
+              end: 100,
+              to: { y: "80px" },
+            }}
+          >
+            <div className={styles.fireTrim}>
+              <img src="/img/Fire_Trim.gif" alt="fire trim" />
             </div>
           </ST.Animation>
         </section>

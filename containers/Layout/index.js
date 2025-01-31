@@ -24,7 +24,7 @@ const Header = () => {
 
     ScrollTrigger.create({
       trigger: "#hero-section",
-      start: "100vh top",
+      start: "top+=120% top",
       end: "+=1",
       onEnter: () => anim.play(),
       onLeaveBack: () => anim.reverse(),

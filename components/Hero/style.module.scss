@@ -76,7 +76,6 @@
   position: relative;
   width: 100%;
   height: 100%;
-  z-index: 2;
 }
 
 .splitTextWrapper2 {
@@ -131,4 +130,19 @@
   height: 100px;
   transform: translateY(-50%);
   opacity: 0;
+}
+
+.fireTrim {
+  z-index: 2;
+  position: absolute;
+  top: 80px;
+  left: 0;
+  width: calc(100% - 100px);
+  transform: translate(50px, 100%);
+  height: calc(100% - 80px);
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
