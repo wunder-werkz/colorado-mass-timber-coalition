@@ -9,7 +9,6 @@ import styles from "./style.module.scss";
 import { gsap } from "@/lib/gsapConfig";
 
 const Hero = () => {
-  const [showSplitText, setShowSplitText] = useState(false);
   const sectionRef = useRef(null);
   const logoRef = useRef(null);
   const taglineRef = useRef(null);
@@ -17,7 +16,9 @@ const Hero = () => {
   const maskRef = useRef(null);
   const initialAnimationComplete = useRef(false);
 
-  // ✅ Initial fade-in/move-up animation
+  const [showSplitText, setShowSplitText] = useState(false);
+
+  // ✅ Initial animation (runs once)
   useIsomorphicLayoutEffect(() => {
     if (initialAnimationComplete.current) return;
 
@@ -35,59 +36,60 @@ const Hero = () => {
     });
   }, []);
 
-  // ✅ Scroll animation (without resetting the initial animation)
+  // ✅ Scroll-triggered animation
   useIsomorphicLayoutEffect(() => {
-    const section = sectionRef.current;
-    const logo = logoRef.current;
-    const tagline = taglineRef.current;
-    const splitText = splitTextRef.current;
-    const mask = maskRef.current;
+    if (!sectionRef.current) return;
 
-    const ctx = gsap.context(() => {
-      const scrollTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: "top top",
-          end: "+=400%",
-          pin: true,
-          scrub: 1,
-          scroller: "#smooth-wrapper",
-          id: "heroScroll",
-        },
-      });
-
-      scrollTl
-        .to(tagline, {
-          y: 100,
-          opacity: 0,
-          duration: 1,
-          ease: "power2.out",
-          overwrite: "auto",
-        })
-        .add(() => setShowSplitText(true))
-        .to(
-          [logo, splitText],
-          {
-            y: "-150vh",
-            duration: 2,
-            stagger: 0.25,
-            ease: "power2.out",
-          },
-          "start+=.5"
-        )
-        .to(
-          mask,
-          {
-            clipPath: "circle(150% at 50% 100%)",
-            ease: "power2.inOut",
-            duration: 1,
-          },
-          "start+=.75"
-        );
+    const scrollTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top top",
+        end: "+=400%",
+        pin: true,
+        scrub: 1,
+        scroller: "#smooth-wrapper",
+        id: "heroScroll",
+        toggleActions: "play none none reverse",
+      },
     });
 
-    return () => ctx.revert();
-  }, [showSplitText]);
+    scrollTl
+      .to(taglineRef.current, {
+        y: 80,
+        opacity: 0,
+        duration: 1,
+        ease: "power2.out",
+        overwrite: "auto",
+      })
+      .call(
+        () => {
+          setShowSplitText(true);
+        },
+        null,
+        "-=0.5"
+      )
+      .to(
+        logoRef.current,
+        {
+          y: "-150vh",
+          duration: 2,
+          ease: "power2.out",
+          overwrite: "auto",
+        },
+        "-=1"
+      )
+      .to(
+        maskRef.current,
+        {
+          clipPath: "circle(150% at 50% 100%)",
+          ease: "power2.inOut",
+          duration: 1.5,
+        },
+        "-=1"
+      );
+
+    return () => scrollTl.scrollTrigger?.kill();
+  }, []);
 
   return (
     <section ref={sectionRef} className={styles.hero}>
@@ -95,19 +97,17 @@ const Hero = () => {
         <div ref={logoRef} className={styles.logoWrapper}>
           <LogoLg />
         </div>
-        <div ref={taglineRef} className={styles.taglineWrapper}>
-          <Tagline />
-        </div>
-        {showSplitText && (
+        {/* ✅ Conditionally render SplitTextBg instead of just hiding it */}
+        {showSplitText ? (
           <div ref={splitTextRef} className={styles.splitTextWrapper}>
-            <SplitTextBg
-              key={showSplitText ? "visible" : "hidden"}
-              color="orange"
-              inline
-            >
+            <SplitTextBg color="orange" inline>
               a bunch of text a bunch of text a bunch of text a bunch of text a
               bunch of text a bunch of text
             </SplitTextBg>
+          </div>
+        ) : (
+          <div ref={taglineRef} className={styles.taglineWrapper}>
+            <Tagline />
           </div>
         )}
       </div>

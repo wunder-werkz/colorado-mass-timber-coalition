@@ -44,6 +44,8 @@ export default async function Home() {
           flexDirection: "column",
           gap: "20px",
           padding: "20px",
+          width: "60%",
+          margin: "0 auto",
         }}
       >
         <Eyeballs />
