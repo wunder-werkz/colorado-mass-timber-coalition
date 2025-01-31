@@ -14,7 +14,7 @@ export default async function Home() {
   const partners = await client.fetch(PARTNERS_QUERY);
 
   return (
-    <>
+    <div style={{ position: "relative" }}>
       <Hero />
       <div style={{ maxWidth: "400px" }}>
         <SplitTextBg color="forest" inline>
@@ -72,6 +72,6 @@ export default async function Home() {
           Cream Outline
         </Button> */}
       </div>
-    </>
+    </div>
   );
 }

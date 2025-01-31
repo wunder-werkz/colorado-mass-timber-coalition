@@ -11,7 +11,6 @@
 
 .logoWrapper,
 .taglineWrapper {
-  opacity: 0;
   position: relative;
   width: 100%;
   display: flex;
@@ -28,8 +27,15 @@
   @include full;
 }
 
+.logoWrapper {
+  opacity: 0;
+  transform: translateY(-100%);
+}
+
 .taglineWrapper {
+  opacity: 0;
   margin-top: 2rem;
+  transform: translateY(80px);
 }
 
 .splitTextWrapper {
@@ -48,7 +54,7 @@
   transform: translate(50px, 50px);
   height: calc(100% - 80px);
   z-index: 1;
-  clip-path: circle(25% at 50% 100%);
+  clip-path: circle(0% at 50% 100%);
   opacity: 0;
 }
 
@@ -61,4 +67,68 @@
   background-image: url("/img/hero.jpeg");
   background-size: cover;
   background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.eyeballs {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.splitTextWrapper2 {
+  text-align: left;
+}
+
+.eyeball1 {
+  left: 10%;
+  top: 15%;
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  transform: translateY(-50%);
+  opacity: 0;
+}
+
+.eyeball2 {
+  right: 10%;
+  top: 10%;
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  transform: translateY(-50%);
+  opacity: 0;
+}
+
+.eyeball3 {
+  left: 15%;
+  bottom: 10%;
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  transform: translateY(-50%);
+  opacity: 0;
+}
+
+.eyeball4 {
+  right: 15%;
+  bottom: 18%;
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  transform: translateY(-50%);
+  opacity: 0;
+}
+
+.eyeball5 {
+  left: 75%;
+  top: 35%;
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  transform: translateY(-50%);
+  opacity: 0;
 }

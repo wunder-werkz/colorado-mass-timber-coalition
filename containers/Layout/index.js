@@ -23,10 +23,9 @@ const Header = () => {
     });
 
     ScrollTrigger.create({
-      trigger: "#smooth-content",
+      trigger: "#hero-section",
       start: "100vh top",
       end: "+=1",
-      scroller: "#smooth-wrapper",
       onEnter: () => anim.play(),
       onLeaveBack: () => anim.reverse(),
     });

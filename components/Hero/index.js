@@ -1,121 +1,147 @@
 "use client";
 
-import { useRef, useState } from "react";
-import useIsomorphicLayoutEffect from "@/hooks/useIsomorphicLayoutEffect";
+import { useRef, useEffect } from "react";
 import LogoLg from "@/components/SVG/LogoLg";
 import Tagline from "@/components/SVG/Tagline";
 import SplitTextBg from "@/components/SplitTextBg";
 import styles from "./style.module.scss";
-import { gsap } from "@/lib/gsapConfig";
+import * as ST from "@bsmnt/scrollytelling";
+
+import Eyeballs from "@/components/Eyeballs";
 
 const Hero = () => {
-  const sectionRef = useRef(null);
-  const logoRef = useRef(null);
-  const taglineRef = useRef(null);
-  const splitTextRef = useRef(null);
-  const maskRef = useRef(null);
-  const initialAnimationComplete = useRef(false);
-
-  const [showSplitText, setShowSplitText] = useState(false);
-
-  // ✅ Initial animation (runs once)
-  useIsomorphicLayoutEffect(() => {
-    if (initialAnimationComplete.current) return;
-
-    gsap.to([logoRef.current, taglineRef.current, maskRef.current], {
-      y: 0,
-      opacity: 1,
-      duration: 1,
-      ease: "power3.out",
-      delay: 0.5,
-      stagger: 0.2,
-      overwrite: "auto",
-      onComplete: () => {
-        initialAnimationComplete.current = true;
-      },
-    });
-  }, []);
-
-  // ✅ Scroll-triggered animation
-  useIsomorphicLayoutEffect(() => {
-    if (!sectionRef.current) return;
-
-    const scrollTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top top",
-        end: "+=400%",
-        pin: true,
-        scrub: 1,
-        scroller: "#smooth-wrapper",
-        id: "heroScroll",
-        toggleActions: "play none none reverse",
-      },
-    });
-
-    scrollTl
-      .to(taglineRef.current, {
-        y: 80,
-        opacity: 0,
-        duration: 1,
-        ease: "power2.out",
-        overwrite: "auto",
-      })
-      .call(
-        () => {
-          setShowSplitText(true);
-        },
-        null,
-        "-=0.5"
-      )
-      .to(
-        logoRef.current,
-        {
-          y: "-150vh",
-          duration: 2,
-          ease: "power2.out",
-          overwrite: "auto",
-        },
-        "-=1"
-      )
-      .to(
-        maskRef.current,
-        {
-          clipPath: "circle(150% at 50% 100%)",
-          ease: "power2.inOut",
-          duration: 1.5,
-        },
-        "-=1"
-      );
-
-    return () => scrollTl.scrollTrigger?.kill();
-  }, []);
+  const splitTextAnimationRef = useRef(null);
+  const splitTextAnimationRef2 = useRef(null);
 
   return (
-    <section ref={sectionRef} className={styles.hero}>
-      <div className={styles.content}>
-        <div ref={logoRef} className={styles.logoWrapper}>
-          <LogoLg />
-        </div>
-        {/* ✅ Conditionally render SplitTextBg instead of just hiding it */}
-        {showSplitText ? (
-          <div ref={splitTextRef} className={styles.splitTextWrapper}>
-            <SplitTextBg color="orange" inline>
-              a bunch of text a bunch of text a bunch of text a bunch of text a
-              bunch of text a bunch of text
-            </SplitTextBg>
-          </div>
-        ) : (
-          <div ref={taglineRef} className={styles.taglineWrapper}>
-            <Tagline />
-          </div>
-        )}
-      </div>
+    <ST.Root scrub="true" start="top top" end="bottom bottom">
+      <ST.Pin childHeight={"100vh"} pinSpacerHeight={"400vh"} top={0}>
+        <section className={styles.hero} id="hero-section">
+          <ST.Waypoint
+            at={0}
+            tween={{
+              target: ".animate-refs",
+              to: { y: 0, opacity: 1 },
+              duration: 0.55,
+              stagger: 0.1,
+            }}
+          />
+          <ST.Waypoint
+            at={0}
+            tween={{
+              target: ".mask-container",
+              to: { clipPath: "circle(25% at 50% 100%)", opacity: 1, y: 0 },
+              duration: 0.35,
+              delay: 0.6,
+            }}
+          />
 
-      <div className={styles.maskContainer} ref={maskRef}>
-        <div className={styles.mask}></div>
-      </div>
-    </section>
+          <ST.Waypoint
+            at={17}
+            onCall={() => splitTextAnimationRef.current?.restart()}
+            onReverseCall={() => splitTextAnimationRef.current?.reverse()}
+          />
+
+          <ST.Waypoint
+            at={70}
+            onCall={() => splitTextAnimationRef2.current?.restart()}
+            onReverseCall={() => splitTextAnimationRef2.current?.reverse()}
+          />
+
+          <div className={styles.content}>
+            <ST.Animation
+              tween={{
+                start: 30,
+                end: 75,
+                to: { y: "-150vh" },
+              }}
+            >
+              <div className={`${styles.logoWrapper} animate-refs`}>
+                <LogoLg />
+              </div>
+            </ST.Animation>
+
+            <ST.Animation
+              tween={{
+                start: 5,
+                end: 15,
+                to: { y: 80, opacity: 0 },
+              }}
+            >
+              <div className={`${styles.taglineWrapper} animate-refs`}>
+                <Tagline />
+              </div>
+            </ST.Animation>
+
+            <ST.Animation
+              tween={{
+                start: 30,
+                end: 75,
+                to: { y: "-150vh" },
+              }}
+            >
+              <div className={`${styles.splitTextWrapper}`}>
+                <SplitTextBg ref={splitTextAnimationRef} color="orange" inline>
+                  lots of text lots of text lost of textlots of text lots of
+                  text lost of textlots of text lots of text lost of text
+                </SplitTextBg>
+              </div>
+            </ST.Animation>
+          </div>
+
+          <ST.Animation
+            tween={{
+              start: 20,
+              end: 100,
+              to: { clipPath: "circle(150% at 50% 100%)" },
+            }}
+          >
+            <div className={`${styles.maskContainer} mask-container`}>
+              <div className={styles.mask}>
+                <div
+                  className={`${styles.splitTextWrapper} ${styles.splitTextWrapper2}`}
+                >
+                  <SplitTextBg
+                    ref={splitTextAnimationRef2}
+                    color="orange"
+                    inline
+                  >
+                    lots of text lots of text lost of textlots of text lots of
+                    text lost of textlots of text lots of text lost of text
+                  </SplitTextBg>
+                </div>
+              </div>
+              <div className={styles.eyeballs}>
+                <ST.Stagger
+                  overlap={0.2}
+                  tween={{
+                    start: 50,
+                    end: 60,
+                    to: { opacity: 1, y: 0 },
+                  }}
+                >
+                  <div className={styles.eyeball1}>
+                    <Eyeballs />
+                  </div>
+                  <div className={styles.eyeball2}>
+                    <Eyeballs />
+                  </div>
+                  <div className={styles.eyeball3}>
+                    <Eyeballs />
+                  </div>
+                  <div className={styles.eyeball4}>
+                    <Eyeballs />
+                  </div>
+                  <div className={styles.eyeball5}>
+                    <Eyeballs />
+                  </div>
+                </ST.Stagger>
+              </div>
+            </div>
+          </ST.Animation>
+        </section>
+      </ST.Pin>
+    </ST.Root>
   );
 };
 
