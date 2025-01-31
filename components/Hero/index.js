@@ -15,7 +15,7 @@ const Hero = () => {
 
   return (
     <ST.Root scrub="true" start="top top" end="bottom bottom">
-      <ST.Pin childHeight={"100vh"} pinSpacerHeight={"400vh"} top={0}>
+      <ST.Pin childHeight={"100vh"} pinSpacerHeight={"600vh"} top={0}>
         <section className={styles.hero} id="hero-section">
           <ST.Waypoint
             at={0}
@@ -37,13 +37,13 @@ const Hero = () => {
           />
 
           <ST.Waypoint
-            at={17}
+            at={8}
             onCall={() => splitTextAnimationRef.current?.restart()}
             onReverseCall={() => splitTextAnimationRef.current?.reverse()}
           />
 
           <ST.Waypoint
-            at={70}
+            at={60}
             onCall={() => splitTextAnimationRef2.current?.restart()}
             onReverseCall={() => splitTextAnimationRef2.current?.reverse()}
           />
@@ -51,9 +51,9 @@ const Hero = () => {
           <div className={styles.content}>
             <ST.Animation
               tween={{
-                start: 30,
-                end: 75,
-                to: { y: "-150vh" },
+                start: 26,
+                end: 50,
+                to: { y: "-90vh" },
               }}
             >
               <div className={`${styles.logoWrapper} animate-refs`}>
@@ -64,7 +64,7 @@ const Hero = () => {
             <ST.Animation
               tween={{
                 start: 5,
-                end: 15,
+                end: 8,
                 to: { y: 80, opacity: 0 },
               }}
             >
@@ -75,9 +75,9 @@ const Hero = () => {
 
             <ST.Animation
               tween={{
-                start: 30,
-                end: 75,
-                to: { y: "-150vh" },
+                start: 26,
+                end: 50,
+                to: { y: "-110vh" },
               }}
             >
               <div className={`${styles.splitTextWrapper}`}>
@@ -92,7 +92,7 @@ const Hero = () => {
           <ST.Animation
             tween={{
               start: 25,
-              end: 100,
+              end: 80,
               to: { clipPath: "circle(150% at 50% 100%)" },
             }}
           >
@@ -141,9 +141,9 @@ const Hero = () => {
           </ST.Animation>
           <ST.Animation
             tween={{
-              start: 60,
-              end: 100,
-              to: { y: "80px" },
+              start: 75,
+              end: 90,
+              to: { y: 0 },
             }}
           >
             <div className={styles.fireTrim}>
