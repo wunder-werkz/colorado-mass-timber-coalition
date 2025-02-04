@@ -8,6 +8,11 @@
     min-width: calc((100% - 1rem) / 2);
     max-width: calc((100% - 1rem) / 2);
   }
+
+  &.secondary {
+    min-width: 100%;
+    max-width: 100%;
+  }
 }
 
 .eventDate {

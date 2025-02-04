@@ -80,6 +80,7 @@ export default function EventsClient({ events, general }) {
             key={event._id}
             event={event}
             ref={(el) => (eventsRef.current[index] = el)}
+            secondary={true}
           />
         ))}
       </div>

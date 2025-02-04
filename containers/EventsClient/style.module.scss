@@ -11,7 +11,7 @@
   margin-bottom: 60px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 30px;
 }
 
@@ -51,7 +51,6 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 40px;
   width: 100%;
-  max-width: 1400px;
   margin: 0 auto;
 
   @include lap-smaller {

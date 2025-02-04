@@ -3,7 +3,7 @@ import Button from "@/components/Button";
 
 import { forwardRef } from "react";
 
-const Event = forwardRef(({ event }, ref) => {
+const Event = forwardRef(({ event, secondary }, ref) => {
   const renderDate = () => {
     if (!event.endDate) {
       return new Date(event.startDate).toLocaleDateString("en-US", {
@@ -29,7 +29,10 @@ const Event = forwardRef(({ event }, ref) => {
   const selfHosted = event?.selfHosted;
 
   return (
-    <div className={styles.eventWrap} ref={ref}>
+    <div
+      className={`${styles.eventWrap} ${secondary ? styles.secondary : ""}`}
+      ref={ref}
+    >
       <div
         className={`${styles.eventDate} ${selfHosted ? styles.selfHosted : ""}`}
       >

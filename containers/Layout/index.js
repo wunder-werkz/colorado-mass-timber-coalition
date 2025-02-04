@@ -5,6 +5,7 @@ import useIsomorphicLayoutEffect from "@/hooks/useIsomorphicLayoutEffect";
 import { gsap, ScrollTrigger } from "@/lib/gsapConfig";
 import styles from "./style.module.scss";
 import LogoSm from "@/components/SVG/LogoSm";
+import { usePathname } from "next/navigation";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -12,28 +13,33 @@ const Header = () => {
   const menuRef = useRef(null);
   const timeline = useRef(null);
   const menuItemsRef = useRef([]);
+  const pathname = usePathname();
+  const isHomePage = pathname === "/" || pathname === "/home";
 
   useIsomorphicLayoutEffect(() => {
     if (!headerRef.current) return;
+
     const anim = gsap.to(headerRef.current, {
       y: 0,
       duration: 0.6,
       ease: "power2.out",
-      paused: true,
+      paused: isHomePage,
     });
 
-    ScrollTrigger.create({
-      trigger: "#hero-section",
-      start: "top+=180% top",
-      end: "+=1",
-      onEnter: () => anim.play(),
-      onLeaveBack: () => anim.reverse(),
-    });
+    if (isHomePage) {
+      ScrollTrigger.create({
+        trigger: "#hero-section",
+        start: "top+=180% top",
+        end: "+=1",
+        onEnter: () => anim.play(),
+        onLeaveBack: () => anim.reverse(),
+      });
+    }
 
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
-  }, []);
+  }, [isHomePage]);
 
   const toggleMenu = () => {
     if (!timeline.current) {
