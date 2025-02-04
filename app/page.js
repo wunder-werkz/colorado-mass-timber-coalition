@@ -7,7 +7,7 @@ import Button from "@/components/Button";
 import Hero from "@/components/Hero";
 import Eyeballs from "@/components/Eyeballs";
 import SplitTextBg from "@/components/SplitTextBg";
-
+import EventSlider from "@/components/EventSlider";
 export default async function Home() {
   const general = await client.fetch(GENERAL_QUERY);
   const events = await client.fetch(EVENTS_QUERY);
@@ -22,6 +22,8 @@ export default async function Home() {
           of text a bunch of text
         </SplitTextBg>
       </div>
+
+      <EventSlider events={[...events, ...events, ...events]} />
       <h2>{general.contactEmail}</h2>
 
       <h3>Events</h3>
@@ -48,10 +50,6 @@ export default async function Home() {
           margin: "0 auto",
         }}
       >
-        <Eyeballs />
-        <Eyeballs />
-        <Eyeballs />
-
         <Button href="/about">Forest Filled</Button>
         <Button href="/contact" fill={false}>
           Forest Outline

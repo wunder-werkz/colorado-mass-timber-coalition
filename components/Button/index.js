@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import styles from "./style.module.scss";
-import Arrow from "./Arrow";
+import Arrow from "@/components/SVG/Arrow";
 
 export default function Button({
   children,

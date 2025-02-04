@@ -24,7 +24,7 @@ const SplitTextBg = forwardRef(
         const padding = "0.5em 1em";
         textRef.current.style.padding = padding;
 
-        const splitText = new SplitText(textRef.current, {
+        const splitText = new SplitText(textRef.current.children[0], {
           types: "lines",
           linesClass: styles.line,
         });

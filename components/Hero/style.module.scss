@@ -39,11 +39,18 @@
 }
 
 .splitTextWrapper {
-  @include h2;
-  max-width: 75%;
+  max-width: 1230px;
   margin: 0 auto;
   text-align: center;
   color: $forest;
+  i {
+    font-family: "font-greed-narrow", sans-serif;
+    font-size: 55px;
+    font-weight: 600;
+  }
+  p {
+    font-size: 50px;
+  }
 }
 
 .maskContainer {
@@ -80,6 +87,10 @@
 
 .splitTextWrapper2 {
   text-align: left;
+  max-width: 890px;
+  p {
+    font-size: 64px;
+  }
 }
 
 .eyeball1 {
