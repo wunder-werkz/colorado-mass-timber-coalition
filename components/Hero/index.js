@@ -1,13 +1,15 @@
 "use client";
 
 import { useRef, useEffect } from "react";
-import LogoLg from "@/components/SVG/LogoLg";
-import Tagline from "@/components/SVG/Tagline";
-import SplitTextBg from "@/components/SplitTextBg";
-import styles from "./style.module.scss";
 import * as ST from "@bsmnt/scrollytelling";
 
 import Eyeballs from "@/components/Eyeballs";
+import LogoLg from "@/components/SVG/LogoLg";
+import { MediaWCaption } from "@/components/MediaWCaption";
+import SplitTextBg from "@/components/SplitTextBg";
+import Tagline from "@/components/SVG/Tagline";
+
+import styles from "./style.module.scss";
 
 const Hero = () => {
   const splitTextAnimationRef = useRef(null);
@@ -46,7 +48,7 @@ const Hero = () => {
           />
 
           <ST.Waypoint
-            at={60}
+            at={50}
             onCall={() => splitTextAnimationRef2.current?.restart()}
             onReverseCall={() => splitTextAnimationRef2.current?.reverse()}
           />
@@ -104,6 +106,22 @@ const Hero = () => {
           >
             <div className={`${styles.maskContainer} mask-container`}>
               <div className={styles.mask}>
+                <ST.Animation
+                  tween={{
+                    start: 25,
+                    end: 50,
+                    to: { top: 0 },
+                  }}
+                >
+                  <div className={styles.mediaWCaption}>
+                    <MediaWCaption
+                      url="/img/hero.jpeg"
+                      caption={
+                        "Building better starts with creating healthy forests"
+                      }
+                    />
+                  </div>
+                </ST.Animation>
                 <div
                   className={`${styles.splitTextWrapper} ${styles.splitTextWrapper2}`}
                 >
@@ -120,8 +138,8 @@ const Hero = () => {
                 <ST.Stagger
                   overlap={0.2}
                   tween={{
-                    start: 50,
-                    end: 60,
+                    start: 45,
+                    end: 50,
                     to: { opacity: 1, y: 0 },
                   }}
                 >
@@ -152,7 +170,10 @@ const Hero = () => {
             }}
           >
             <div className={styles.fireTrim}>
-              <img src="/img/Fire_Trim.gif" alt="fire trim" />
+              <MediaWCaption
+                url="/img/Fire_Trim.gif"
+                caption={"Building better starts with creating healthy forests"}
+              />
             </div>
           </ST.Animation>
         </section>

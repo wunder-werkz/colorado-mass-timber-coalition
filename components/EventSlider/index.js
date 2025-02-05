@@ -32,7 +32,7 @@ const EventSlider = ({ events }) => {
 
   useEffect(() => {
     gsap.to(slideRefs.current, {
-      x: `${-currentIndex * (100 + 4)}%`,
+      x: `${-currentIndex * 100}%`,
       duration: 0.5,
       ease: "power2.out",
     });

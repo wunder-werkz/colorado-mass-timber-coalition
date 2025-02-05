@@ -1,0 +1,28 @@
+@use "@/styles/vars" as *;
+
+.mediaWCaption {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.media {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.caption {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 10px 20px;
+  background-color: $forest;
+  color: $orange;
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-radius: 5px;
+}
