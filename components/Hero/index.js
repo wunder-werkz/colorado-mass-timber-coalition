@@ -176,7 +176,7 @@ const Hero = () => {
             tween={{
               start: 65,
               end: 90,
-              to: { y: 0 },
+              to: { y: -40 },
               ease: "power2.inOut",
             }}
           >
