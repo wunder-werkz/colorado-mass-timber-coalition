@@ -98,19 +98,29 @@ const Hero = () => {
           </div>
 
           <ST.Animation
-            tween={{
-              start: 25,
-              end: 80,
-              to: { clipPath: "circle(150% at 50% 100%)" },
-            }}
+            tween={[
+              {
+                start: 5,
+                end: 20,
+                to: { top: 80 },
+              },
+              {
+                start: 19.5,
+                end: 75,
+                to: {
+                  clipPath: "circle(110% at 50% 100%)",
+                  height: "calc(100% - 120px)",
+                },
+              },
+            ]}
           >
             <div className={`${styles.maskContainer} mask-container`}>
               <div className={styles.mask}>
                 <ST.Animation
                   tween={{
-                    start: 25,
-                    end: 50,
-                    to: { top: 0 },
+                    start: 25.5,
+                    end: 60,
+                    to: { top: 0, scale: 1 },
                   }}
                 >
                   <div className={styles.mediaWCaption}>
@@ -164,9 +174,10 @@ const Hero = () => {
           </ST.Animation>
           <ST.Animation
             tween={{
-              start: 75,
+              start: 65,
               end: 90,
               to: { y: 0 },
+              ease: "power2.inOut",
             }}
           >
             <div className={styles.fireTrim}>
