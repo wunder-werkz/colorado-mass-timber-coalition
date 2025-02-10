@@ -60,7 +60,7 @@ const EventSlider = ({ events }) => {
       gsap.from(buttonRef.current, {
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "top 60%",
+          start: "top 80%",
           toggleActions: "play reverse play reverse",
         },
         opacity: 0,
@@ -73,7 +73,7 @@ const EventSlider = ({ events }) => {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top 80%",
-          end: "bottom 80%",
+          end: "bottom bottom",
           toggleActions: "play reverse play reverse",
           scrub: true,
         },
@@ -82,7 +82,7 @@ const EventSlider = ({ events }) => {
       tl.from(slideRefs.current, {
         opacity: 0,
         y: 100,
-        duration: 0.2,
+        duration: 0.4,
         stagger: {
           each: 0.2,
           ease: "power2.out",

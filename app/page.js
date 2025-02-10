@@ -5,7 +5,7 @@ import { client } from "@/sanity/lib/client";
 
 import Hero from "@/components/Hero";
 import EventSlider from "@/components/EventSlider";
-import PinnedTabHolder from "@/containers/PinnedTabHolder";
+import FireInfoSection from "@/containers/FireInfoSection";
 
 export default async function Home() {
   const general = await client.fetch(GENERAL_QUERY);
@@ -14,8 +14,8 @@ export default async function Home() {
 
   return (
     <div style={{ position: "relative" }}>
-      <Hero />
-      <PinnedTabHolder />
+      {/* <Hero /> */}
+      <FireInfoSection />
       <EventSlider events={[...events, ...events, ...events]} />
 
       {/* <div style={{ position: "relative", height: "100vh" }}></div>

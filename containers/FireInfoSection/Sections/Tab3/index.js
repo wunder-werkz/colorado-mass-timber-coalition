@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import * as ST from "@bsmnt/scrollytelling";
 import styles from "./style.module.scss";
 
@@ -13,7 +13,7 @@ const mapToGlobalProgress = (tabIndex, localProgress) => {
   return Math.min(100, start + (localProgress * SECTION_PERCENTAGE) / 100);
 };
 
-const TabPanel = ({ index, currentTab }) => {
+export default function Tab3({ index, currentTab }) {
   const panelRef = useRef(null);
 
   return (
@@ -57,7 +57,7 @@ const TabPanel = ({ index, currentTab }) => {
       <ST.Animation
         tween={{
           start: mapToGlobalProgress(index, 66),
-          end: mapToGlobalProgress(index, 100),
+          end: mapToGlobalProgress(index, 95),
           fromTo: [
             { opacity: 0, scale: 0.5, rotation: -15 },
             { opacity: 1, scale: 1, rotation: 0 },
@@ -70,45 +70,4 @@ const TabPanel = ({ index, currentTab }) => {
       </ST.Animation>
     </div>
   );
-};
-
-const PinnedTabHolder = () => {
-  const [currentTab, setCurrentTab] = useState(0);
-
-  return (
-    <ST.Root scrub="true" start="top top" end="bottom bottom">
-      <ST.Pin childHeight={"90vh"} pinSpacerHeight={"1200vh"} top={0}>
-        <div className={styles.container}>
-          <nav className={styles.tabNav}>
-            {Array.from({ length: TAB_COUNT }).map((_, i) => (
-              <button
-                key={i}
-                className={currentTab === i ? styles.active : ""}
-                onClick={() => setCurrentTab(i)}
-              >
-                Tab {i + 1}
-              </button>
-            ))}
-          </nav>
-          <div className={styles.tabContent}>
-            {Array.from({ length: TAB_COUNT }).map((_, i) => (
-              <TabPanel key={i} index={i} currentTab={currentTab} />
-            ))}
-          </div>
-
-          <ST.Waypoint at={0} onCall={() => setCurrentTab(0)} />
-          {Array.from({ length: TAB_COUNT - 1 }).map((_, i) => (
-            <ST.Waypoint
-              key={i}
-              at={(i + 1) * SECTION_PERCENTAGE}
-              onCall={() => setCurrentTab(i + 1)}
-              onReverseCall={() => setCurrentTab(i)}
-            />
-          ))}
-        </div>
-      </ST.Pin>
-    </ST.Root>
-  );
-};
-
-export default PinnedTabHolder;
+}
