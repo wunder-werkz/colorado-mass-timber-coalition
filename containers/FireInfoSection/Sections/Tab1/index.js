@@ -4,58 +4,55 @@ import { useRef } from "react";
 import * as ST from "@bsmnt/scrollytelling";
 import styles from "./style.module.scss";
 
+import SplitTextBg from "@/components/SplitTextBg";
+import { MediaWCaption } from "@/components/MediaWCaption";
+
 import { mapToGlobalProgress } from "../../utils";
 
 export default function Tab1({ index, currentTab }) {
+  const titleRef = useRef(null);
+
   return (
     <div className={`${styles.tabPanel}`}>
-      {/* First animation: Title (0-33%) */}
-      <ST.Animation
-        tween={{
-          start: mapToGlobalProgress(index, 0),
-          end: mapToGlobalProgress(index, 33),
-          fromTo: [
-            { opacity: 0, y: 50 },
-            { opacity: 1, y: 0 },
-          ],
-          ease: "power2.out",
-          reverse: true,
-        }}
-      >
-        <h2 className={styles.title}>tab {index + 1}</h2>
-      </ST.Animation>
+      <ST.Waypoint
+        at={mapToGlobalProgress(index, 0)}
+        onCall={() => titleRef.current?.restart()}
+        onReverseCall={() => titleRef.current?.reverse()}
+      />
 
-      {/* Second animation: Description text (33-66%) */}
-      <ST.Animation
-        tween={{
-          start: mapToGlobalProgress(index, 33),
-          end: mapToGlobalProgress(index, 66),
-          fromTo: [
-            { opacity: 0, y: 30 },
-            { opacity: 1, y: 0 },
-          ],
-          ease: "power2.out",
-          reverse: true,
-        }}
-      >
-        <p className={styles.description}>animation 1 for tab {index + 1}</p>
-      </ST.Animation>
+      <div className={`${styles.title}`}>
+        <SplitTextBg ref={titleRef} color="cream" inline>
+          <h2 className={styles.title}>{CONTENT.title}</h2>
+        </SplitTextBg>
+      </div>
 
-      {/* Third animation: Final message (66-100%) */}
       <ST.Animation
         tween={{
-          start: mapToGlobalProgress(index, 66),
-          end: mapToGlobalProgress(index, 95),
+          start: mapToGlobalProgress(index, 15),
+          end: mapToGlobalProgress(index, 25),
           fromTo: [
-            { opacity: 0, scale: 0.5, rotation: -15 },
-            { opacity: 1, scale: 1, rotation: 0 },
+            { scale: 1.1, filter: "blur(10px)" },
+            { scale: 1, filter: "blur(0px)" },
           ],
           ease: "power2.out",
-          reverse: true,
         }}
       >
-        <div className={styles.finalMessage}>anim 2 for tab {index + 1}!</div>
+        <div className={styles.mediaWCaption}>
+          <MediaWCaption
+            url="/img/hero.jpeg"
+            caption={"Building better starts with creating healthy forests"}
+          />
+        </div>
       </ST.Animation>
     </div>
   );
 }
+
+const CONTENT = {
+  title:
+    "But right now, many of our forests exhibit declining health and resilience",
+  image: {
+    src: "/images/fire-info-section/tab1.jpg",
+    alt: "Pine Gulch Fire, Kyle Miller Photography",
+  },
+};
