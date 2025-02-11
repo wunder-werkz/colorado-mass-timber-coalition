@@ -4,15 +4,7 @@ import { useRef } from "react";
 import * as ST from "@bsmnt/scrollytelling";
 import styles from "./style.module.scss";
 
-const TAB_COUNT = 6;
-const SECTION_PERCENTAGE = 100 / TAB_COUNT; // Each section is ~16.67%
-
-// Helper function to map tab-local progress (0-100) to global progress
-const mapToGlobalProgress = (tabIndex, localProgress) => {
-  const start = tabIndex * SECTION_PERCENTAGE;
-  return Math.min(100, start + (localProgress * SECTION_PERCENTAGE) / 100);
-};
-
+import { mapToGlobalProgress } from "../../utils";
 export default function Tab2({ index, currentTab }) {
   const panelRef = useRef(null);
 

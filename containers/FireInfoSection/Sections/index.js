@@ -1,7 +1,18 @@
 "use client";
 
 import * as ST from "@bsmnt/scrollytelling";
+import { useEffect, useRef } from "react";
+import { gsap } from "@/lib/gsapConfig";
 import styles from "./style.module.scss";
+import {
+  TAB_COUNT,
+  SECTION_HEIGHTS,
+  SECTION_BUFFER,
+  TOTAL_SCROLL_HEIGHT,
+  getSectionStartPosition,
+  getTabTriggerPoint,
+  mapToGlobalProgress,
+} from "../utils";
 
 import Tab1 from "./Tab1";
 import Tab2 from "./Tab2";
@@ -19,15 +30,25 @@ const TABS_MAP = {
   5: Tab6,
 };
 
-const TAB_COUNT = 6;
-const SECTION_PERCENTAGE = 100 / TAB_COUNT;
-const BUFFER = 1;
-
-export default function TabPanel({ index, currentTab }) {
+export default function TabPanel({ index }) {
+  const tabRef = useRef(null);
   const TabComponent = TABS_MAP[index];
 
-  const start = index * SECTION_PERCENTAGE;
-  const end = (index + 1) * SECTION_PERCENTAGE - BUFFER;
+  useEffect(() => {
+    if (tabRef.current) {
+      gsap.set(tabRef.current, { x: "100%", opacity: 0 });
+    }
+  }, []);
+
+  const initialAnimation = {
+    start: mapToGlobalProgress(index, 0),
+    end: mapToGlobalProgress(index, 20),
+  };
+
+  const exitAnimation = {
+    start: mapToGlobalProgress(index, 80),
+    end: mapToGlobalProgress(index, 100),
+  };
 
   if (!TabComponent) {
     console.error(`No component found for index: ${index}`);
@@ -39,13 +60,14 @@ export default function TabPanel({ index, currentTab }) {
       <ST.Animation
         tween={[
           {
-            start: index === 0 ? start : start - BUFFER,
-            end: start,
+            start: initialAnimation.start,
+            end: initialAnimation.end,
             fromTo: [
               {
-                x: index === 0 ? 0 : "100%",
+                x: "100%",
                 opacity: 0,
                 zIndex: 1,
+                pointerEvents: "none",
               },
               {
                 x: 0,
@@ -57,13 +79,14 @@ export default function TabPanel({ index, currentTab }) {
             ease: "expo.inOut",
           },
           {
-            start: end,
-            end: end + BUFFER,
+            start: exitAnimation.start,
+            end: exitAnimation.end,
             fromTo: [
               {
                 x: 0,
                 opacity: 1,
                 zIndex: 1,
+                pointerEvents: "auto",
               },
               {
                 x: "-100%",
@@ -76,8 +99,8 @@ export default function TabPanel({ index, currentTab }) {
           },
         ]}
       >
-        <div className={styles.tabPanel}>
-          <TabComponent index={index} currentTab={currentTab} />{" "}
+        <div ref={tabRef} className={styles.tabPanel}>
+          <TabComponent index={index} />
         </div>
       </ST.Animation>
     </>
