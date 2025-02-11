@@ -4,24 +4,22 @@ import { useRef } from "react";
 import * as ST from "@bsmnt/scrollytelling";
 import styles from "./style.module.scss";
 
-import SplitTextBg from "@/components/SplitTextBg";
 import { MediaWCaption } from "@/components/MediaWCaption";
 
 import { mapToGlobalProgress } from "../../utils";
 export default function Tab2({ index }) {
   const panelRef = useRef(null);
-  const titleRefs = useRef([]);
 
   return (
     <div ref={panelRef} className={`${styles.tabPanel}`}>
       <div className={styles.chartContainer}>
         {CONTENT.acresBurned.map((item, i) => (
-          <>
-            <div className={styles.chartBarItem} key={item.year}>
+          <div key={item.year} className={styles.chartBarItemWrapper}>
+            <div className={styles.chartBarItem}>
               <div className={styles.chartBarItemYear}>{item.year}</div>
             </div>
             {i !== CONTENT.acresBurned.length - 1 && <SVGDivider />}
-          </>
+          </div>
         ))}
       </div>
 

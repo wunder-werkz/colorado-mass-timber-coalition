@@ -2,8 +2,8 @@ export const TAB_COUNT = 6;
 export const SECTION_PERCENTAGE = 100 / TAB_COUNT;
 
 export const SECTION_HEIGHTS = {
-  0: 200, // Section 1: 200vh
-  1: 300, // Section 2: 300vh
+  0: 70, // Section 1: 200vh
+  1: 500, // Section 2: 300vh
   2: 400, // Section 3: 400vh
   3: 200, // Section 4: 200vh
   4: 600, // Section 5: 600vh
