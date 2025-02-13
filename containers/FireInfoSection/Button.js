@@ -1,6 +1,7 @@
 import * as ST from "@bsmnt/scrollytelling";
 import styles from "./style.module.scss";
 import { mapToGlobalProgress } from "./utils";
+import { useRef } from "react";
 
 const buttonTexts = [
   "The State Of Our Forests",
@@ -12,6 +13,9 @@ const buttonTexts = [
 ];
 
 export default function Button({ index }) {
+  const buttonRef = useRef(null);
+  const spanRef = useRef(null);
+
   const { scrollTo } = ST.useScrollToLabel();
 
   const handleClick = () => {
@@ -23,46 +27,50 @@ export default function Button({ index }) {
 
   return (
     <>
-      <ST.Animation
-        tween={[
-          {
-            start: mapToGlobalProgress(index, 0),
-            end: mapToGlobalProgress(index, 5),
-            to: {
-              background: "#ff752a",
-            },
+      <ST.Waypoint
+        at={mapToGlobalProgress(index, 0)}
+        tween={{
+          target: buttonRef.current,
+          to: {
+            background: "#ff752a",
           },
-          {
-            start: mapToGlobalProgress(index, 95),
-            end: mapToGlobalProgress(index + 1, 0),
-            to: { background: "transparent" },
+        }}
+      />
+      <ST.Waypoint
+        at={mapToGlobalProgress(index, 0)}
+        tween={{
+          target: spanRef.current,
+          to: {
+            display: "block",
           },
-        ]}
-      >
-        <button className={styles.button} onClick={handleClick}>
-          <span>0{index + 1}</span>
-          <>
-            <ST.Animation
-              tween={[
-                {
-                  start: mapToGlobalProgress(index, 5),
-                  end: mapToGlobalProgress(index + 1, 0),
-                  to: {
-                    display: "block",
-                  },
-                },
-                {
-                  start: mapToGlobalProgress(index, 95),
-                  end: mapToGlobalProgress(index + 1, 0),
-                  to: { display: "none" },
-                },
-              ]}
-            >
-              <span className={styles.buttonText}>: {buttonTexts[index]}</span>
-            </ST.Animation>
-          </>
-        </button>
-      </ST.Animation>
+        }}
+      />
+
+      <ST.Waypoint
+        at={mapToGlobalProgress(index, 100)}
+        tween={{
+          target: buttonRef.current,
+          to: {
+            background: "transparent",
+          },
+        }}
+      />
+      <ST.Waypoint
+        at={mapToGlobalProgress(index, 100)}
+        tween={{
+          target: spanRef.current,
+          to: {
+            display: "none",
+          },
+        }}
+      />
+      <button className={styles.button} onClick={handleClick} ref={buttonRef}>
+        <span>0{index + 1}</span>
+
+        <span className={styles.buttonText} ref={spanRef}>
+          : {buttonTexts[index]}
+        </span>
+      </button>
     </>
   );
 }

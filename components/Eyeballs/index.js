@@ -4,7 +4,7 @@ import React, { useEffect, useRef } from "react";
 import { gsap } from "@/lib/gsapConfig";
 import EyesSvg from "./EyesSvg";
 
-const Eyeballs = () => {
+const Eyeballs = ({ color = "black" }) => {
   const svgRef = useRef(null);
 
   useEffect(() => {
@@ -51,7 +51,7 @@ const Eyeballs = () => {
 
   return (
     <div style={{ position: "relative" }}>
-      <EyesSvg ref={svgRef} />
+      <EyesSvg ref={svgRef} color={color} />
     </div>
   );
 };

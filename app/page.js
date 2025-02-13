@@ -14,7 +14,7 @@ export default async function Home() {
 
   return (
     <div style={{ position: "relative" }}>
-      {/* <Hero /> */}
+      <Hero />
       <FireInfoSection />
       <EventSlider events={[...events, ...events, ...events]} />
 

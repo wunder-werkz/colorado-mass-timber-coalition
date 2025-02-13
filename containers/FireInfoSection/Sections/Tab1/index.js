@@ -9,7 +9,7 @@ import { MediaWCaption } from "@/components/MediaWCaption";
 
 import { mapToGlobalProgress } from "../../utils";
 
-export default function Tab1({ index, currentTab }) {
+export default function Tab1({ index }) {
   const titleRef = useRef(null);
 
   return (

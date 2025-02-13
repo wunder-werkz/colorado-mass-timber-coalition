@@ -4,63 +4,100 @@ import { useRef } from "react";
 import * as ST from "@bsmnt/scrollytelling";
 import styles from "./style.module.scss";
 
+import SplitTextBg from "@/components/SplitTextBg";
+import { MediaWCaption } from "@/components/MediaWCaption";
+import Stumpy from "@/components/Stumpy";
+
 import { mapToGlobalProgress } from "../../utils";
 
-export default function Tab5({ index, currentTab }) {
-  const panelRef = useRef(null);
+export default function Tab5({ index }) {
+  const headlineRef = useRef(null);
+  const copyRef = useRef(null);
+  const stumpTextRef = useRef(null);
 
   return (
-    <div
-      ref={panelRef}
-      className={`${styles.tabPanel} ${currentTab === index ? styles.active : ""}`}
-    >
-      {/* First animation: Title (0-33%) */}
-      <ST.Animation
-        tween={{
-          start: mapToGlobalProgress(index, 0),
-          end: mapToGlobalProgress(index, 33),
-          fromTo: [
-            { opacity: 0, y: 50 },
-            { opacity: 1, y: 0 },
-          ],
-          ease: "power2.out",
-          reverse: true,
-        }}
-      >
-        <h2 className={styles.title}>tab {index + 1}</h2>
-      </ST.Animation>
+    <div className={`${styles.tabPanel}`}>
+      <div className={styles.scaleWrap}>
+        <ST.Animation
+          tween={{
+            start: mapToGlobalProgress(index, 1),
+            end: mapToGlobalProgress(index, 5),
+            fromTo: [
+              { scale: 1.1, filter: "blur(10px)" },
+              { scale: 1, filter: "blur(0px)" },
+            ],
+            ease: "power2.out",
+          }}
+        >
+          <div className={styles.mediaWCaption}>
+            <MediaWCaption
+              url="/img/hero.jpeg"
+              caption={"Building better starts with creating healthy forests"}
+            />
+          </div>
+        </ST.Animation>
+      </div>
 
-      {/* Second animation: Description text (33-66%) */}
-      <ST.Animation
-        tween={{
-          start: mapToGlobalProgress(index, 33),
-          end: mapToGlobalProgress(index, 66),
-          fromTo: [
-            { opacity: 0, y: 30 },
-            { opacity: 1, y: 0 },
-          ],
-          ease: "power2.out",
-          reverse: true,
-        }}
-      >
-        <p className={styles.description}>animation 1 for tab {index + 1}</p>
-      </ST.Animation>
+      <ST.Waypoint
+        at={mapToGlobalProgress(index, 1)}
+        onCall={() => headlineRef.current?.restart()}
+        onReverseCall={() => headlineRef.current?.reverse()}
+      />
+      <div className={`${styles.headline}`}>
+        <SplitTextBg ref={headlineRef} color="cream" inline>
+          <h2>{CONTENT.headline}</h2>
+        </SplitTextBg>
+      </div>
 
-      {/* Third animation: Final message (66-100%) */}
-      <ST.Animation
-        tween={{
-          start: mapToGlobalProgress(index, 66),
-          end: mapToGlobalProgress(index, 95),
-          fromTo: [
-            { opacity: 0, scale: 0.5, rotation: -15 },
-            { opacity: 1, scale: 1, rotation: 0 },
-          ],
-          ease: "power2.out",
-          reverse: true,
-        }}
-      >
-        <div className={styles.finalMessage}>anim 2 for tab {index + 1}!</div>
-      </ST.Animation>
+      <ST.Waypoint
+        at={mapToGlobalProgress(index, 8)}
+        onCall={() => copyRef.current?.restart()}
+        onReverseCall={() => copyRef.current?.reverse()}
+      />
+      <div className={`${styles.copy}`}>
+        <SplitTextBg ref={copyRef} color="orange">
+          <p>{CONTENT.copy} </p>
+        </SplitTextBg>
+      </div>
+
+      <div className={styles.stumpyWrap}>
+        <ST.Animation
+          tween={{
+            start: mapToGlobalProgress(index, 50),
+            end: mapToGlobalProgress(index, 60),
+            fromTo: [
+              { opacity: 0, scale: 0.2 },
+              { opacity: 1, scale: 1 },
+            ],
+            ease: "power2.out",
+          }}
+        >
+          <div className={styles.stumpy}>
+            <Stumpy type="tree" />
+          </div>
+        </ST.Animation>
+        <ST.Waypoint
+          at={mapToGlobalProgress(index, 60)}
+          onCall={() => stumpTextRef.current?.restart()}
+          onReverseCall={() => stumpTextRef.current?.reverse()}
+        />
+        <div className={`${styles.stumpyText}`}>
+          <SplitTextBg ref={stumpTextRef} color="cream">
+            <p>{CONTENT.stumpText} </p>
+          </SplitTextBg>
+        </div>
+      </div>
     </div>
   );
 }
+
+const CONTENT = {
+  headline: "We need to be proactive, not reactive",
+  copy: "In addition to climate change, centuries of fire suppression activity have led to unhealthy and unbalanced forests.8 Active stewardship will help our forests endure naturally occurring wildfires, be less susceptible to disease and insect infestation, support a broad range of biodiversity, and contribute to healthy watersheds.9,10",
+  image: {
+    src: "/images/fire-info-section/tab1.jpg",
+    alt: "Monarch Pass, <br/>Arkansas River Watershed Collaborative and Miller Timber Services",
+  },
+  stumpText:
+    "The health of certain forests could improve through management practices like prescribed burns or mechanical thinning (shown here).",
+};
