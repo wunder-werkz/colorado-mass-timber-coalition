@@ -4,12 +4,7 @@ import styles from "./style.module.scss";
 
 import Button from "./Button";
 
-import {
-  TAB_COUNT,
-  TOTAL_SCROLL_HEIGHT,
-  getSectionStartPosition,
-  getTabTriggerPoint,
-} from "./utils";
+import { TAB_COUNT, TOTAL_SCROLL_HEIGHT } from "./utils";
 
 import TabPanel from "./Sections";
 

@@ -2,68 +2,71 @@ export const TAB_COUNT = 6;
 export const SECTION_PERCENTAGE = 100 / TAB_COUNT;
 
 export const SECTION_HEIGHTS = {
-  0: 70, // Section 1: 200vh
-  1: 500, // Section 2: 300vh
-  2: 400, // Section 3: 400vh
-  3: 200, // Section 4: 200vh
-  4: 600, // Section 5: 600vh
-  5: 300, // Section 6: 300vh
+  0: 70, // Section heights in vh units
+  1: 500,
+  2: 400,
+  3: 200,
+  4: 600,
+  5: 300,
 };
 
-// Buffer height for each section (in vh)
-export const SECTION_BUFFER = 20;
+// Buffer height for transitions (in vh)
+export const TRANSITION_BUFFER = 100;
 
-// Calculate total scroll height including buffers
+// Calculate total scroll height including transition buffers
 export const TOTAL_SCROLL_HEIGHT = Object.values(SECTION_HEIGHTS).reduce(
-  (sum, height) => sum + height + SECTION_BUFFER * 2, // multiply buffer by 2 for enter/exit
-  0
+  (sum, height) => sum + height + TRANSITION_BUFFER,
+  TRANSITION_BUFFER
 );
 
 // Helper to convert vh to percentage of total scroll height
-const vhToProgress = (vh) => (vh / TOTAL_SCROLL_HEIGHT) * 100;
+const vhToProgress = (vh) =>
+  Math.min(100, Math.max(0, (vh / TOTAL_SCROLL_HEIGHT) * 100));
 
 // Helper to get section start position in the total scroll
 export const getSectionStartPosition = (tabIndex) => {
-  // Add buffer to the start position
-  const startWithBuffer = Object.entries(SECTION_HEIGHTS).reduce(
-    (sum, [index, height]) => {
-      if (parseInt(index) < tabIndex) {
-        return sum + height + SECTION_BUFFER * 2;
-      }
-      return sum;
-    },
-    0
-  );
-
-  // Add entry buffer for current section
-  return vhToProgress(startWithBuffer + SECTION_BUFFER);
+  let position = TRANSITION_BUFFER;
+  for (let i = 0; i < tabIndex; i++) {
+    position += SECTION_HEIGHTS[i] + TRANSITION_BUFFER;
+  }
+  return vhToProgress(position);
 };
 
-// Update mapToGlobalProgress to handle vh units
+// Map local section progress (0-100) to global scroll progress
 export const mapToGlobalProgress = (tabIndex, localProgress) => {
   const sectionStart = getSectionStartPosition(tabIndex);
-  const sectionHeight = SECTION_HEIGHTS[tabIndex];
+  // Start content after the transition buffer
+  const contentStart = sectionStart + vhToProgress(TRANSITION_BUFFER);
+  const contentHeight = vhToProgress(
+    SECTION_HEIGHTS[tabIndex] - TRANSITION_BUFFER * 2
+  );
+  return contentStart + (contentHeight * localProgress) / 100;
+};
 
-  // Convert section height to progress percentage
-  const sectionProgress = (localProgress / 100) * vhToProgress(sectionHeight);
+// Map transition progress (0-100) to the buffer period
+export const mapToTransitionProgress = (tabIndex, localProgress) => {
+  // For the first tab
+  if (tabIndex === 0) {
+    return vhToProgress((localProgress / 100) * TRANSITION_BUFFER);
+  }
 
-  return Math.min(100, sectionStart + sectionProgress);
+  // For other tabs, calculate from the end of the previous section's content
+  const currentStart = getSectionStartPosition(tabIndex);
+  // The transition happens in the buffer space before the current section
+  return (
+    currentStart -
+    vhToProgress(TRANSITION_BUFFER) +
+    (vhToProgress(TRANSITION_BUFFER) * localProgress) / 100
+  );
 };
 
 // Calculate the trigger point for tab changes
 export const getTabTriggerPoint = (tabIndex) => {
-  // For the first tab, trigger at the start
   if (tabIndex === 0) return 0;
 
-  // For other tabs, trigger at the end of the previous section
   const previousIndex = tabIndex - 1;
-  const previousSectionStart = getSectionStartPosition(previousIndex);
-  const previousSectionHeight = vhToProgress(SECTION_HEIGHTS[previousIndex]);
-  const bufferProgress = vhToProgress(SECTION_BUFFER);
+  const previousStart = getSectionStartPosition(previousIndex);
+  const previousHeight = vhToProgress(SECTION_HEIGHTS[previousIndex]);
 
-  // Calculate trigger point at the end of the previous section plus buffer
-  return Math.min(
-    100,
-    previousSectionStart + previousSectionHeight + bufferProgress
-  );
+  return previousStart + previousHeight;
 };

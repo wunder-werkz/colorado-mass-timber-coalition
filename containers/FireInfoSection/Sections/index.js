@@ -3,7 +3,7 @@
 import * as ST from "@bsmnt/scrollytelling";
 import { useRef } from "react";
 import styles from "./style.module.scss";
-import { mapToGlobalProgress } from "../utils";
+import { mapToTransitionProgress } from "../utils";
 
 import Tab1 from "./Tab1";
 import Tab2 from "./Tab2";
@@ -25,22 +25,6 @@ export default function TabPanel({ index }) {
   const tabRef = useRef(null);
   const TabComponent = TABS_MAP[index];
 
-  const initialAnimation = {
-    start: mapToGlobalProgress(
-      index === 0 ? 0 : index - 1,
-      index === 0 ? 0 : 90
-    ),
-    end: mapToGlobalProgress(
-      index === 0 ? 0 : index - 1,
-      index === 0 ? 20 : 100
-    ),
-  };
-
-  const exitAnimation = {
-    start: mapToGlobalProgress(index, 90),
-    end: mapToGlobalProgress(index, 100),
-  };
-
   if (!TabComponent) {
     console.error(`No component found for index: ${index}`);
     return null;
@@ -51,47 +35,26 @@ export default function TabPanel({ index }) {
       <ST.Animation
         tween={[
           {
-            start: initialAnimation.start,
-            end: initialAnimation.end,
+            start: mapToTransitionProgress(index, 0),
+            end: mapToTransitionProgress(index, 100),
             fromTo: [
               {
                 x: "100%",
+                filter: "blur(10px)",
                 pointerEvents: "none",
               },
               {
-                x: 0,
+                x: "0%",
+                filter: "blur(0px)",
                 pointerEvents: "auto",
               },
             ],
-            ease: "expo.inOut",
+            ease: "power2.inOut",
           },
         ]}
       >
         <div ref={tabRef} className={styles.tabPanel}>
-          <ST.Animation
-            tween={[
-              {
-                start: exitAnimation.start,
-                end: exitAnimation.end,
-                fromTo: [
-                  {
-                    opacity: 1,
-                    pointerEvents: "auto",
-                  },
-                  {
-                    opacity: 0.8,
-                    filter: "blur(10px)",
-                    pointerEvents: "none",
-                  },
-                ],
-                ease: "expo.inOut",
-              },
-            ]}
-          >
-            <div className={styles.tabContent}>
-              <TabComponent index={index} />
-            </div>
-          </ST.Animation>
+          <TabComponent index={index} />
         </div>
       </ST.Animation>
     </>
