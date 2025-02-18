@@ -1,5 +1,13 @@
 @use "@/styles/vars" as *;
 
+.padWrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 100px 60px 50px 60px;
+  margin-top: 150px;
+}
+
 .container {
   width: 100%;
   height: 100%;
@@ -117,6 +125,7 @@
   font-size: 20px;
   text-transform: uppercase;
   overflow: hidden;
+  color: $cream;
 }
 
 .headline {

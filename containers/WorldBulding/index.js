@@ -16,192 +16,194 @@ const WorldBuildingSection = () => {
 
   return (
     <ST.Root scrub="true" start="top top" end="bottom bottom">
-      <ST.Pin childHeight={"90vh"} pinSpacerHeight={`400vh`} top={0}>
-        <div className={styles.container}>
-          <div className={styles.mediaWCaption}>
-            <MediaWCaption
-              url={CONTENT.image.src}
-              caption={CONTENT.image.alt}
-            />
-            <ST.Animation
-              tween={{
-                start: 25,
-                end: 70,
-                fromTo: [{ bottom: "0%" }, { bottom: "100%" }],
-                ease: "power2.out",
-              }}
-            >
-              <div className={styles.mediaWCaptionInner}></div>
-            </ST.Animation>
-          </div>
-          <div ref={panelRef} className={`${styles.tabPanel}`}>
-            <div className={styles.chartContainer}>
-              {CONTENT.sqFt.map((item, i) => (
-                <div key={item.year} className={styles.chartBarItemWrapper}>
-                  <div className={styles.chartBarItem}>
-                    <div className={styles.chartBarItemYear}>{item.year}</div>
-                  </div>
-                  {i !== CONTENT.sqFt.length - 1 && <SVGDivider />}
-                </div>
-              ))}
-            </div>
-
-            <div className={styles.contentContainer}>
-              <div className={styles.eyebrow}>
-                <ST.Animation
-                  tween={[
-                    {
-                      start: 0,
-                      end: 5,
-                      fromTo: [{ y: "200%" }, { y: "0" }],
-                      ease: "power2.out",
-                    },
-                    {
-                      start: 15,
-                      end: 20,
-                      fromTo: [{ y: "0" }, { y: "200%" }],
-                    },
-                  ]}
-                >
-                  <h2>{CONTENT.eyebrow}</h2>
-                </ST.Animation>
-              </div>
-
-              <ST.Waypoint
-                at={2}
-                onCall={() => headline.current?.restart()}
-                onReverseCall={() => headline.current?.reverse()}
+      <ST.Pin childHeight={"100vh"} pinSpacerHeight={`400vh`} top={0}>
+        <div className={styles.padWrap}>
+          <div className={styles.container}>
+            <div className={styles.mediaWCaption}>
+              <MediaWCaption
+                url={CONTENT.image.src}
+                caption={CONTENT.image.alt}
               />
-              <ST.Waypoint
-                at={15}
-                onCall={() => headline.current?.reverse()}
-                onReverseCall={() => headline.current?.restart()}
-              />
-              <div className={`${styles.headline}`}>
-                <SplitTextBg ref={headline} color="cream" inline>
-                  <h3>{CONTENT.headline}</h3>
-                </SplitTextBg>
-              </div>
-
-              <ST.Waypoint
-                at={2}
-                onCall={() => copyRef.current?.restart()}
-                onReverseCall={() => copyRef.current?.reverse()}
-              />
-              <ST.Waypoint
-                at={15}
-                onCall={() => copyRef.current?.reverse()}
-                onReverseCall={() => copyRef.current?.restart()}
-              />
-              <div className={`${styles.copy}`}>
-                <SplitTextBg ref={copyRef} color="cream" inline>
-                  <h3>{CONTENT.copy}</h3>
-                </SplitTextBg>
-              </div>
-
               <ST.Animation
-                tween={[
-                  {
-                    start: 20,
-                    end: 25,
-                    fromTo: [
-                      { opacity: 0, height: 0 },
-                      { opacity: 1, height: "120px" },
-                    ],
-                    ease: "power2.out",
-                  },
-                  {
-                    start: 70,
-                    end: 80,
-                    to: { opacity: 0, height: 0 },
-                    ease: "power2.out",
-                  },
-                ]}
+                tween={{
+                  start: 25,
+                  end: 70,
+                  fromTo: [{ bottom: "0%" }, { bottom: "100%" }],
+                  ease: "power2.out",
+                }}
               >
-                <div className={styles.sqFtContainer}>
-                  <ST.Animation
-                    tween={{
-                      start: 25,
-                      end: 70,
-                      ease: "power2.out",
-                      to: {
-                        yPercent: -300,
-                      },
-                    }}
-                  >
-                    <div className={styles.sqFtContainerInner}>
-                      {[...CONTENT.sqFt].reverse().map((item, i) => (
-                        <div
-                          className={styles.sqFtItem}
-                          key={`${item.sqFt}-${i}`}
-                        >
-                          {item.sqFt}
-                        </div>
-                      ))}
-                    </div>
-                  </ST.Animation>
-                  <p className={styles.sqFtBurnedText}>Trillion sq ft.</p>
-                </div>
+                <div className={styles.mediaWCaptionInner}></div>
               </ST.Animation>
-
-              <div className={styles.stumpyWrap}>
-                <ST.Animation
-                  tween={[
-                    {
-                      start: 40,
-                      end: 50,
-                      fromTo: [
-                        { opacity: 0, scale: 0 },
-                        { opacity: 1, scale: 1 },
-                      ],
-                      ease: "power2.out",
-                    },
-                    {
-                      start: 60,
-                      end: 70,
-                      fromTo: [
-                        { opacity: 1, scale: 1 },
-                        { opacity: 0, scale: 0 },
-                      ],
-                      ease: "power2.out",
-                    },
-                  ]}
-                >
-                  <div className={styles.stumpy}>
-                    <Stumpy type="plank" />
+            </div>
+            <div ref={panelRef} className={`${styles.tabPanel}`}>
+              <div className={styles.chartContainer}>
+                {CONTENT.sqFt.map((item, i) => (
+                  <div key={item.year} className={styles.chartBarItemWrapper}>
+                    <div className={styles.chartBarItem}>
+                      <div className={styles.chartBarItemYear}>{item.year}</div>
+                    </div>
+                    {i !== CONTENT.sqFt.length - 1 && <SVGDivider />}
                   </div>
-                </ST.Animation>
+                ))}
+              </div>
+
+              <div className={styles.contentContainer}>
+                <div className={styles.eyebrow}>
+                  <ST.Animation
+                    tween={[
+                      {
+                        start: 0,
+                        end: 5,
+                        fromTo: [{ y: "200%" }, { y: "0" }],
+                        ease: "power2.out",
+                      },
+                      {
+                        start: 15,
+                        end: 20,
+                        fromTo: [{ y: "0" }, { y: "200%" }],
+                      },
+                    ]}
+                  >
+                    <h2>{CONTENT.eyebrow}</h2>
+                  </ST.Animation>
+                </div>
+
                 <ST.Waypoint
-                  at={40}
-                  onCall={() => stumpTextRef.current?.restart()}
-                  onReverseCall={() => stumpTextRef.current?.reverse()}
+                  at={2}
+                  onCall={() => headline.current?.restart()}
+                  onReverseCall={() => headline.current?.reverse()}
                 />
                 <ST.Waypoint
-                  at={60}
-                  onCall={() => stumpTextRef.current?.reverse()}
-                  onReverseCall={() => stumpTextRef.current?.restart()}
+                  at={15}
+                  onCall={() => headline.current?.reverse()}
+                  onReverseCall={() => headline.current?.restart()}
                 />
-                <div className={`${styles.stumpyText}`}>
-                  <SplitTextBg ref={stumpTextRef} color="cream">
-                    <p>{CONTENT.stumpy} </p>
+                <div className={`${styles.headline}`}>
+                  <SplitTextBg ref={headline} color="cream" inline>
+                    <h3>{CONTENT.headline}</h3>
                   </SplitTextBg>
                 </div>
-              </div>
 
-              <ST.Waypoint
-                at={70}
-                onCall={() => endCopyRef.current?.restart()}
-                onReverseCall={() => endCopyRef.current?.reverse()}
-              />
-              <ST.Waypoint
-                at={95}
-                onCall={() => endCopyRef.current?.reverse()}
-                onReverseCall={() => endCopyRef.current?.restart()}
-              />
-              <div className={`${styles.endCopy}`}>
-                <SplitTextBg ref={endCopyRef} color="cream" inline>
-                  <h2>{CONTENT.endCopy}</h2>
-                </SplitTextBg>
+                <ST.Waypoint
+                  at={2}
+                  onCall={() => copyRef.current?.restart()}
+                  onReverseCall={() => copyRef.current?.reverse()}
+                />
+                <ST.Waypoint
+                  at={15}
+                  onCall={() => copyRef.current?.reverse()}
+                  onReverseCall={() => copyRef.current?.restart()}
+                />
+                <div className={`${styles.copy}`}>
+                  <SplitTextBg ref={copyRef} color="cream" inline>
+                    <h3>{CONTENT.copy}</h3>
+                  </SplitTextBg>
+                </div>
+
+                <ST.Animation
+                  tween={[
+                    {
+                      start: 20,
+                      end: 25,
+                      fromTo: [
+                        { opacity: 0, height: 0 },
+                        { opacity: 1, height: "120px" },
+                      ],
+                      ease: "power2.out",
+                    },
+                    {
+                      start: 70,
+                      end: 80,
+                      to: { opacity: 0, height: 0 },
+                      ease: "power2.out",
+                    },
+                  ]}
+                >
+                  <div className={styles.sqFtContainer}>
+                    <ST.Animation
+                      tween={{
+                        start: 25,
+                        end: 70,
+                        ease: "power2.out",
+                        to: {
+                          yPercent: -300,
+                        },
+                      }}
+                    >
+                      <div className={styles.sqFtContainerInner}>
+                        {[...CONTENT.sqFt].reverse().map((item, i) => (
+                          <div
+                            className={styles.sqFtItem}
+                            key={`${item.sqFt}-${i}`}
+                          >
+                            {item.sqFt}
+                          </div>
+                        ))}
+                      </div>
+                    </ST.Animation>
+                    <p className={styles.sqFtBurnedText}>Trillion sq ft.</p>
+                  </div>
+                </ST.Animation>
+
+                <div className={styles.stumpyWrap}>
+                  <ST.Animation
+                    tween={[
+                      {
+                        start: 40,
+                        end: 50,
+                        fromTo: [
+                          { opacity: 0, scale: 0 },
+                          { opacity: 1, scale: 1 },
+                        ],
+                        ease: "power2.out",
+                      },
+                      {
+                        start: 60,
+                        end: 70,
+                        fromTo: [
+                          { opacity: 1, scale: 1 },
+                          { opacity: 0, scale: 0 },
+                        ],
+                        ease: "power2.out",
+                      },
+                    ]}
+                  >
+                    <div className={styles.stumpy}>
+                      <Stumpy type="plank" color="forest" />
+                    </div>
+                  </ST.Animation>
+                  <ST.Waypoint
+                    at={40}
+                    onCall={() => stumpTextRef.current?.restart()}
+                    onReverseCall={() => stumpTextRef.current?.reverse()}
+                  />
+                  <ST.Waypoint
+                    at={60}
+                    onCall={() => stumpTextRef.current?.reverse()}
+                    onReverseCall={() => stumpTextRef.current?.restart()}
+                  />
+                  <div className={`${styles.stumpyText}`}>
+                    <SplitTextBg ref={stumpTextRef} color="forest">
+                      <p>{CONTENT.stumpy} </p>
+                    </SplitTextBg>
+                  </div>
+                </div>
+
+                <ST.Waypoint
+                  at={70}
+                  onCall={() => endCopyRef.current?.restart()}
+                  onReverseCall={() => endCopyRef.current?.reverse()}
+                />
+                <ST.Waypoint
+                  at={95}
+                  onCall={() => endCopyRef.current?.reverse()}
+                  onReverseCall={() => endCopyRef.current?.restart()}
+                />
+                <div className={`${styles.endCopy}`}>
+                  <SplitTextBg ref={endCopyRef} color="cream" inline>
+                    <h2>{CONTENT.endCopy}</h2>
+                  </SplitTextBg>
+                </div>
               </div>
             </div>
           </div>
