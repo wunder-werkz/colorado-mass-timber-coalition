@@ -25,7 +25,7 @@ const WorldBuildingSection = () => {
             />
             <ST.Animation
               tween={{
-                start: 0,
+                start: 25,
                 end: 70,
                 fromTo: [{ bottom: "0%" }, { bottom: "100%" }],
                 ease: "power2.out",
@@ -102,8 +102,8 @@ const WorldBuildingSection = () => {
               <ST.Animation
                 tween={[
                   {
-                    start: 5,
-                    end: 10,
+                    start: 20,
+                    end: 25,
                     fromTo: [
                       { opacity: 0, height: 0 },
                       { opacity: 1, height: "120px" },
@@ -121,7 +121,7 @@ const WorldBuildingSection = () => {
                 <div className={styles.sqFtContainer}>
                   <ST.Animation
                     tween={{
-                      start: 10,
+                      start: 25,
                       end: 70,
                       ease: "power2.out",
                       to: {
@@ -148,8 +148,8 @@ const WorldBuildingSection = () => {
                 <ST.Animation
                   tween={[
                     {
-                      start: 30,
-                      end: 40,
+                      start: 40,
+                      end: 50,
                       fromTo: [
                         { opacity: 0, scale: 0 },
                         { opacity: 1, scale: 1 },
@@ -157,8 +157,8 @@ const WorldBuildingSection = () => {
                       ease: "power2.out",
                     },
                     {
-                      start: 70,
-                      end: 80,
+                      start: 60,
+                      end: 70,
                       fromTo: [
                         { opacity: 1, scale: 1 },
                         { opacity: 0, scale: 0 },
@@ -194,7 +194,7 @@ const WorldBuildingSection = () => {
                 onReverseCall={() => endCopyRef.current?.reverse()}
               />
               <ST.Waypoint
-                at={90}
+                at={95}
                 onCall={() => endCopyRef.current?.reverse()}
                 onReverseCall={() => endCopyRef.current?.restart()}
               />
