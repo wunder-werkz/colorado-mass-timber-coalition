@@ -15,7 +15,7 @@ export default function Tab1({ index }) {
   return (
     <div className={`${styles.tabPanel}`}>
       <ST.Waypoint
-        at={mapToGlobalProgress(index, 0)}
+        at={1}
         onCall={() => titleRef.current?.restart()}
         onReverseCall={() => titleRef.current?.reverse()}
       />
@@ -26,24 +26,24 @@ export default function Tab1({ index }) {
         </SplitTextBg>
       </div>
 
-      <ST.Animation
+      {/* <ST.Animation
         tween={{
-          start: mapToGlobalProgress(index, 15),
-          end: mapToGlobalProgress(index, 25),
+          start: mapToGlobalProgress(index, 1),
+          end: mapToGlobalProgress(index, 5),
           fromTo: [
             { scale: 1.1, filter: "blur(10px)" },
             { scale: 1, filter: "blur(0px)" },
           ],
           ease: "power2.out",
         }}
-      >
-        <div className={styles.mediaWCaption}>
-          <MediaWCaption
-            url="/img/hero.jpeg"
-            caption={"Building better starts with creating healthy forests"}
-          />
-        </div>
-      </ST.Animation>
+      > */}
+      <div className={styles.mediaWCaption}>
+        <MediaWCaption
+          url="/img/hero.jpeg"
+          caption={"Building better starts with creating healthy forests"}
+        />
+      </div>
+      {/* </ST.Animation> */}
     </div>
   );
 }

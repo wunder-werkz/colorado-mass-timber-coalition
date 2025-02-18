@@ -6,6 +6,7 @@ import { client } from "@/sanity/lib/client";
 import Hero from "@/components/Hero";
 import EventSlider from "@/components/EventSlider";
 import FireInfoSection from "@/containers/FireInfoSection";
+import WorldBuildingSection from "@/containers/WorldBulding";
 
 export default async function Home() {
   const general = await client.fetch(GENERAL_QUERY);
@@ -16,17 +17,14 @@ export default async function Home() {
     <div style={{ position: "relative" }}>
       <Hero />
       <FireInfoSection />
+      <WorldBuildingSection />
       <EventSlider events={[...events, ...events, ...events]} />
-
-      {/* <div style={{ position: "relative", height: "100vh" }}></div>
-      <PinnedTabHolder />
-      <div style={{ position: "relative", height: "100vh" }}></div> */}
-      {/* <h3>Partners</h3>
+      <h3>Partners</h3>
       <ul>
         {partners.map((partner) => (
           <li key={partner._id}>{partner.name}</li>
         ))}
-      </ul> */}
+      </ul>
     </div>
   );
 }
