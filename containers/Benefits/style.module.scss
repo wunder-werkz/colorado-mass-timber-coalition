@@ -1,0 +1,101 @@
+@use "@/styles/vars" as *;
+
+.container {
+  position: relative;
+  min-height: 100vh;
+  padding: 80px 60px;
+  overflow: hidden;
+}
+
+.eyebrow {
+  font-size: 2rem;
+  color: $forest;
+  margin-bottom: 4rem;
+  text-transform: uppercase;
+}
+
+.content {
+  position: relative;
+}
+
+.section {
+  position: relative;
+  margin-bottom: 300px;
+  min-height: 200px;
+}
+
+.textBlock {
+  position: relative;
+  z-index: 2;
+  width: 60%;
+  font-size: 50px;
+  line-height: 1.4;
+}
+
+.imageBlock {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40%;
+  z-index: 1;
+  opacity: 0.8;
+
+  img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+}
+
+.stumpyBlock {
+  position: absolute;
+  right: 10%;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  opacity: 0;
+  scale: 0;
+
+  .stumpyText {
+    width: 200px;
+  }
+}
+
+.mediaWCaption {
+  width: 100%;
+  height: auto;
+
+  img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+}
+
+.stumpyContainer {
+  position: relative;
+  z-index: 2;
+  margin-top: 4rem;
+}
+
+.stumpyWrap {
+  margin-bottom: 4rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.stumpyContent {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.stumpyText {
+  flex: 1;
+  font-size: 1.25rem;
+}

@@ -8,6 +8,7 @@ import EventSlider from "@/components/EventSlider";
 import FireInfoSection from "@/containers/FireInfoSection";
 import WorldBuildingSection from "@/containers/WorldBulding";
 import TheFuture from "@/containers/TheFuture";
+import Benefits from "@/containers/Benefits";
 
 export default async function Home() {
   const general = await client.fetch(GENERAL_QUERY);
@@ -16,17 +17,18 @@ export default async function Home() {
 
   return (
     <div style={{ position: "relative" }}>
-      {/* <Hero /> */}
-      {/* <FireInfoSection /> */}
-      {/* <WorldBuildingSection /> */}
+      <Hero />
+      <FireInfoSection />
+      <WorldBuildingSection />
       <TheFuture />
-      {/* <EventSlider events={[...events, ...events, ...events]} /> */}
-      <h3>Partners</h3>
+      <Benefits />
+      <EventSlider events={[...events, ...events, ...events]} />
+      {/* <h3>Partners</h3>
       <ul>
         {partners.map((partner) => (
           <li key={partner._id}>{partner.name}</li>
         ))}
-      </ul>
+      </ul> */}
     </div>
   );
 }

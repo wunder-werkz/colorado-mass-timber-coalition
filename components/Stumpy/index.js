@@ -2,10 +2,10 @@ import Eyeballs from "@/components/Eyeballs";
 
 import styles from "./style.module.scss";
 
-const Stump = () => {
+const Stump = ({ color = "cream" }) => {
   return (
     <div className={styles.stump}>
-      <StumpySVG />
+      <StumpySVG color={color} />
       <div className={styles.eyes}>
         <Eyeballs color={"forest"} />
       </div>
@@ -13,10 +13,10 @@ const Stump = () => {
   );
 };
 
-const Plank = () => {
+const Plank = ({ color = "cream" }) => {
   return (
     <div className={styles.plank}>
-      <PlankSVG />
+      <PlankSVG color={color} />
       <div className={styles.eyes}>
         <Eyeballs color={"forest"} />
       </div>
@@ -24,10 +24,10 @@ const Plank = () => {
   );
 };
 
-const Tree = () => {
+const Tree = ({ color = "cream" }) => {
   return (
     <div className={styles.tree}>
-      <TreeSVG />
+      <TreeSVG color={color} />
       <div className={styles.eyes}>
         <Eyeballs color={"forest"} />
       </div>
