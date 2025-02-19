@@ -13,9 +13,9 @@ export default function BuiltToLast() {
   const headline = useRef(null);
   const copy = useRef(null);
   const eyebrowRef = useRef(null);
-  const svgRefs = useRef([null, null, null]);
+  const secondStumpRef = useRef([null, null, null]);
   const stumpyTextRefs = useRef([null, null, null]);
-
+  const finalCopyRef = useRef(null);
   return (
     <ST.Root scrub="true" start="top top" end="bottom bottom">
       <ST.Pin childHeight={"100vh"} pinSpacerHeight={`400vh`} top={0}>
@@ -188,6 +188,54 @@ export default function BuiltToLast() {
                   </div>
                 </div>
               ))}
+
+              <ST.Waypoint
+                at={80}
+                onCall={() => finalCopyRef.current?.restart()}
+                onReverseCall={() => finalCopyRef.current?.reverse()}
+              />
+
+              <div className={styles.finalCopy}>
+                <SplitTextBg ref={finalCopyRef} color="orange" inline>
+                  <p>{CONTENT.finalCopy}</p>
+                </SplitTextBg>
+              </div>
+
+              <div className={styles.secondStumpWrapper}>
+                {CONTENT.svgText.map((content, index) => (
+                  <div
+                    key={index}
+                    className={`${styles.stumpyWrapper} ${styles[`stumpyWrapper-${index}`]}`}
+                  >
+                    <ST.Animation
+                      tween={[
+                        {
+                          start: 70,
+                          end: 80,
+                          fromTo: [
+                            { opacity: 0, scale: 0.2 },
+                            { opacity: 1, scale: 1 },
+                          ],
+                          ease: "power2.out",
+                        },
+                      ]}
+                    >
+                      <div className={styles.stumpy}>
+                        <Stumpy
+                          type={
+                            index === 0
+                              ? "stump"
+                              : index === 1
+                                ? "tree"
+                                : "plank"
+                          }
+                          color="orange"
+                        />
+                      </div>
+                    </ST.Animation>
+                  </div>
+                ))}
+              </div>
             </div>
           </ST.Animation>
         </div>
@@ -200,6 +248,8 @@ const CONTENT = {
   eyebrow: "Built to Last",
   headline: "Creating a community committed to a sustainable future",
   copy: "We've engaged stakeholders and experts across the entire value chain to build our vision for Colorado's sustainable future, one where healthy forests benefit everyone.",
+  finalCopy:
+    "Mass timber is a triple win for forest and watershed health, local communities, and the built environment.",
   svgText: [
     "Sustainable Forest Management",
     "Forest Product Economy Benefits Local Communities",
