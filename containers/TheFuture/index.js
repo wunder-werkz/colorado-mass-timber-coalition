@@ -18,10 +18,10 @@ export default function TheFuture() {
   const dltRef = useRef(null);
 
   return (
-    <ST.Root scrub="true" start="top top" end="bottom bottom">
-      <ST.Pin childHeight={"100vh"} pinSpacerHeight={`120vh`} top={0}>
-        <div className={`${styles.tabPanel}`}>
-          <div className={styles.column}>
+    <ST.Root scrub="true" start="top 50%" end="top top">
+      <div className={`${styles.container}`}>
+        <div className={styles.column}>
+          <div>
             <div className={styles.eyebrow}>
               <ST.Animation
                 tween={[
@@ -48,87 +48,87 @@ export default function TheFuture() {
                 <h3>{CONTENT.headline}</h3>
               </SplitTextBg>
             </div>
-
-            <ST.Waypoint
-              at={8}
-              onCall={() => copy.current?.restart()}
-              onReverseCall={() => copy.current?.reverse()}
-            />
-            <div className={`${styles.copy}`}>
-              <SplitTextBg ref={copy} color="orange">
-                <p>{CONTENT.copy}</p>
-              </SplitTextBg>
-            </div>
           </div>
 
-          <div className={`${styles.column} ${styles.column2}`}>
-            <ST.Stagger
-              overlap={0.2}
-              tween={{
-                start: 20,
-                end: 70,
-                fromTo: [
-                  { opacity: 0, y: 100 },
-                  { opacity: 1, y: 0 },
-                ],
-              }}
-            >
-              <div className={styles.cltWrap}>
-                <CLTSvg />
-                <ST.Waypoint
-                  at={70}
-                  onCall={() => cltRef.current?.restart()}
-                  onReverseCall={() => cltRef.current?.reverse()}
-                />
-                <div className={`${styles.cltText}`}>
-                  <SplitTextBg ref={cltRef} color="forest">
-                    <p>Cross-Laminated Timber (CLT) </p>
-                  </SplitTextBg>
-                </div>
-              </div>
-              <div className={styles.gluWrap}>
-                <ST.Waypoint
-                  at={70}
-                  onCall={() => gluRef.current?.restart()}
-                  onReverseCall={() => gluRef.current?.reverse()}
-                />
-                <div className={`${styles.gluText}`}>
-                  <SplitTextBg ref={gluRef} color="forest">
-                    <p>Glue-Laminated Timber (glulam) </p>
-                  </SplitTextBg>
-                </div>
-                <GLUSvg />
-              </div>
-              <div className={styles.nltWrap}>
-                <ST.Waypoint
-                  at={70}
-                  onCall={() => nltRef.current?.restart()}
-                  onReverseCall={() => nltRef.current?.reverse()}
-                />
-                <div className={`${styles.nltText}`}>
-                  <SplitTextBg ref={nltRef} color="forest">
-                    <p>Nail-Laminated Timber (NLT) </p>
-                  </SplitTextBg>
-                </div>
-                <NLTSvg />
-              </div>
-              <div className={styles.dltWrap}>
-                <ST.Waypoint
-                  at={70}
-                  onCall={() => dltRef.current?.restart()}
-                  onReverseCall={() => dltRef.current?.reverse()}
-                />
-                <div className={`${styles.dltText}`}>
-                  <SplitTextBg ref={dltRef} color="forest">
-                    <p>Dowel-Laminated Timber (DLT) </p>
-                  </SplitTextBg>
-                </div>
-                <DLTSvg />
-              </div>
-            </ST.Stagger>
+          <ST.Waypoint
+            at={80}
+            onCall={() => copy.current?.restart()}
+            onReverseCall={() => copy.current?.reverse()}
+          />
+          <div className={`${styles.copy}`}>
+            <SplitTextBg ref={copy} color="orange">
+              <p>{CONTENT.copy}</p>
+            </SplitTextBg>
           </div>
         </div>
-      </ST.Pin>
+
+        <div className={`${styles.column} ${styles.column2}`}>
+          <ST.Stagger
+            overlap={0.2}
+            tween={{
+              start: 20,
+              end: 70,
+              fromTo: [
+                { opacity: 0, y: 100 },
+                { opacity: 1, y: 0 },
+              ],
+            }}
+          >
+            <div className={styles.cltWrap}>
+              <CLTSvg />
+              <ST.Waypoint
+                at={70}
+                onCall={() => cltRef.current?.restart()}
+                onReverseCall={() => cltRef.current?.reverse()}
+              />
+              <div className={`${styles.cltText}`}>
+                <SplitTextBg ref={cltRef} color="forest">
+                  <p>Cross-Laminated Timber (CLT) </p>
+                </SplitTextBg>
+              </div>
+            </div>
+            <div className={styles.gluWrap}>
+              <ST.Waypoint
+                at={70}
+                onCall={() => gluRef.current?.restart()}
+                onReverseCall={() => gluRef.current?.reverse()}
+              />
+              <div className={`${styles.gluText}`}>
+                <SplitTextBg ref={gluRef} color="forest">
+                  <p>Glue-Laminated Timber (glulam) </p>
+                </SplitTextBg>
+              </div>
+              <GLUSvg />
+            </div>
+            <div className={styles.nltWrap}>
+              <ST.Waypoint
+                at={70}
+                onCall={() => nltRef.current?.restart()}
+                onReverseCall={() => nltRef.current?.reverse()}
+              />
+              <div className={`${styles.nltText}`}>
+                <SplitTextBg ref={nltRef} color="forest">
+                  <p>Nail-Laminated Timber (NLT) </p>
+                </SplitTextBg>
+              </div>
+              <NLTSvg />
+            </div>
+            <div className={styles.dltWrap}>
+              <ST.Waypoint
+                at={70}
+                onCall={() => dltRef.current?.restart()}
+                onReverseCall={() => dltRef.current?.reverse()}
+              />
+              <div className={`${styles.dltText}`}>
+                <SplitTextBg ref={dltRef} color="forest">
+                  <p>Dowel-Laminated Timber (DLT) </p>
+                </SplitTextBg>
+              </div>
+              <DLTSvg />
+            </div>
+          </ST.Stagger>
+        </div>
+      </div>
     </ST.Root>
   );
 }

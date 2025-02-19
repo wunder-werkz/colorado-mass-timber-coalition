@@ -9,6 +9,7 @@ import FireInfoSection from "@/containers/FireInfoSection";
 import WorldBuildingSection from "@/containers/WorldBulding";
 import TheFuture from "@/containers/TheFuture";
 import Benefits from "@/containers/Benefits";
+import BuiltToLast from "@/containers/BuiltToLast";
 
 export default async function Home() {
   const general = await client.fetch(GENERAL_QUERY);
@@ -22,6 +23,7 @@ export default async function Home() {
       <WorldBuildingSection />
       <TheFuture />
       <Benefits />
+      <BuiltToLast />
       <EventSlider events={[...events, ...events, ...events]} />
       {/* <h3>Partners</h3>
       <ul>
