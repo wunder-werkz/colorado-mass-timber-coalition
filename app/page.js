@@ -18,13 +18,13 @@ export default async function Home() {
 
   return (
     <div style={{ position: "relative" }}>
-      <Hero />
+      {/* <Hero />
       <FireInfoSection />
       <WorldBuildingSection />
       <TheFuture />
       <Benefits />
+      <EventSlider events={[...events, ...events, ...events]} /> */}
       <BuiltToLast />
-      <EventSlider events={[...events, ...events, ...events]} />
       {/* <h3>Partners</h3>
       <ul>
         {partners.map((partner) => (

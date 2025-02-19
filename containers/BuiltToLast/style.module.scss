@@ -21,9 +21,9 @@
 
   &:last-of-type {
     width: 65%;
-    margin-left: -5%;
     height: 100%;
     position: relative;
+    background-color: $cream;
   }
 }
 
@@ -60,14 +60,12 @@
   position: relative;
   width: 100%;
   height: 100%;
-
-  max-width: 700px;
   display: flex;
   justify-content: center;
   align-items: center;
 
   svg {
-    width: 100%;
+    width: 90%;
     height: auto;
     g {
       opacity: 0;
@@ -91,6 +89,7 @@
   .stumpyText {
     flex: 1;
     font-size: 18px;
+    min-width: 400px;
   }
 }
 
@@ -108,6 +107,6 @@
 
 .stumpyWrapper-2 {
   bottom: 15%;
-  left: 100%;
+  left: 80%;
   transform: translateX(-50%);
 }

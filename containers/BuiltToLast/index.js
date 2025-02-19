@@ -20,116 +20,176 @@ export default function BuiltToLast() {
     <ST.Root scrub="true" start="top top" end="bottom bottom">
       <ST.Pin childHeight={"100vh"} pinSpacerHeight={`400vh`} top={0}>
         <div className={`${styles.tabPanel}`}>
-          <div className={styles.column}>
-            <div>
-              <ST.Waypoint
-                at={1}
-                onCall={() => eyebrowRef.current?.restart()}
-                onReverseCall={() => eyebrowRef.current?.reverse()}
-              />
+          <ST.Animation
+            tween={{
+              start: 60,
+              end: 70,
+              to: { xPercent: -100 },
+            }}
+          >
+            <div className={styles.column}>
+              <div>
+                <ST.Waypoint
+                  at={1}
+                  onCall={() => eyebrowRef.current?.restart()}
+                  onReverseCall={() => eyebrowRef.current?.reverse()}
+                />
 
-              <div className={`${styles.eyebrow}`}>
-                <SplitTextBg ref={eyebrowRef} color="orange" inline>
-                  <h3>{CONTENT.eyebrow}</h3>
-                </SplitTextBg>
-              </div>
-
-              <ST.Waypoint
-                at={3}
-                onCall={() => headline.current?.restart()}
-                onReverseCall={() => headline.current?.reverse()}
-              />
-
-              <div className={`${styles.headline}`}>
-                <SplitTextBg ref={headline} color="orange" inline>
-                  <h3>{CONTENT.headline}</h3>
-                </SplitTextBg>
-              </div>
-            </div>
-
-            <ST.Waypoint
-              at={8}
-              onCall={() => copy.current?.restart()}
-              onReverseCall={() => copy.current?.reverse()}
-            />
-            <div className={`${styles.copy}`}>
-              <SplitTextBg ref={copy} color="orange">
-                <p>{CONTENT.copy}</p>
-              </SplitTextBg>
-            </div>
-          </div>
-
-          <div className={`${styles.column} ${styles.column2}`}>
-            <div className={styles.svgCircle}>
-              <ST.Waypoint
-                at={25}
-                tween={{
-                  target: ["#sustain"],
-                  to: { opacity: 1 },
-                  duration: 0.35,
-                }}
-              />
-              <ST.Waypoint
-                at={50}
-                tween={{
-                  target: ["#benefit"],
-                  to: { opacity: 1 },
-                  duration: 0.35,
-                }}
-              />
-              <ST.Waypoint
-                at={75}
-                tween={{
-                  target: ["#environment"],
-                  to: { opacity: 1 },
-                  duration: 0.35,
-                }}
-              />
-
-              <FullSvg />
-            </div>
-            {CONTENT.svgText.map((content, index) => (
-              <div
-                key={index}
-                className={`${styles.stumpyWrapper} ${styles[`stumpyWrapper-${index}`]}`}
-              >
-                <ST.Animation
-                  tween={{
-                    start: index * 25 + 25,
-                    end: index * 25 + 30,
-                    fromTo: [
-                      { opacity: 0, scale: 0.2 },
-                      { opacity: 1, scale: 1 },
-                    ],
-                    ease: "power2.out",
-                  }}
-                >
-                  <div className={styles.stumpy}>
-                    <Stumpy
-                      type={
-                        index === 0 ? "stump" : index === 1 ? "tree" : "plank"
-                      }
-                      color="forest"
-                    />
-                  </div>
-                </ST.Animation>
+                <div className={`${styles.eyebrow}`}>
+                  <SplitTextBg ref={eyebrowRef} color="orange" inline>
+                    <h3>{CONTENT.eyebrow}</h3>
+                  </SplitTextBg>
+                </div>
 
                 <ST.Waypoint
-                  at={index * 25 + 25}
-                  onCall={() => stumpyTextRefs.current[index]?.restart()}
-                  onReverseCall={() => stumpyTextRefs.current[index]?.reverse()}
+                  at={3}
+                  onCall={() => headline.current?.restart()}
+                  onReverseCall={() => headline.current?.reverse()}
                 />
-                <div className={styles.stumpyText}>
-                  <SplitTextBg
-                    ref={(el) => (stumpyTextRefs.current[index] = el)}
-                    color="cream"
-                  >
-                    <p>{content}</p>
+
+                <div className={`${styles.headline}`}>
+                  <SplitTextBg ref={headline} color="orange" inline>
+                    <h3>{CONTENT.headline}</h3>
                   </SplitTextBg>
                 </div>
               </div>
-            ))}
-          </div>
+
+              <ST.Waypoint
+                at={8}
+                onCall={() => copy.current?.restart()}
+                onReverseCall={() => copy.current?.reverse()}
+              />
+              <div className={`${styles.copy}`}>
+                <SplitTextBg ref={copy} color="orange">
+                  <p>{CONTENT.copy}</p>
+                </SplitTextBg>
+              </div>
+            </div>
+          </ST.Animation>
+
+          <ST.Animation
+            tween={{
+              start: 60,
+              end: 70,
+              to: { width: "100%", xPercent: -20 },
+            }}
+          >
+            <div className={`${styles.column} ${styles.column2}`}>
+              <ST.Animation
+                tween={[
+                  {
+                    start: 16.666,
+                    end: 33.332,
+                    to: { rotate: 120, transformOrigin: "center" },
+                  },
+                  {
+                    start: 33.332,
+                    end: 50,
+                    to: { rotate: 240, transformOrigin: "center" },
+                  },
+                  {
+                    start: 50,
+                    end: 60,
+                    to: { rotate: 360, transformOrigin: "center" },
+                  },
+                  {
+                    start: 60,
+                    end: 100,
+                    to: { rotate: 900, transformOrigin: "center" },
+                  },
+                ]}
+              >
+                <div className={styles.svgCircle}>
+                  <ST.Waypoint
+                    at={16.666}
+                    tween={{
+                      target: ["#sustain"],
+                      to: { opacity: 1 },
+                      duration: 0.35,
+                    }}
+                  />
+                  <ST.Waypoint
+                    at={33.332}
+                    tween={{
+                      target: ["#benefit"],
+                      to: { opacity: 1 },
+                      duration: 0.35,
+                    }}
+                  />
+                  <ST.Waypoint
+                    at={50}
+                    tween={{
+                      target: ["#environment"],
+                      to: { opacity: 1 },
+                      duration: 0.35,
+                    }}
+                  />
+
+                  <FullSvg />
+                </div>
+              </ST.Animation>
+              {CONTENT.svgText.map((content, index) => (
+                <div
+                  key={index}
+                  className={`${styles.stumpyWrapper} ${styles[`stumpyWrapper-${index}`]}`}
+                >
+                  <ST.Animation
+                    tween={[
+                      {
+                        start: (index + 1) * 16.666,
+                        end: (index + 1) * 16.666 + 5,
+                        fromTo: [
+                          { opacity: 0, scale: 0.2 },
+                          { opacity: 1, scale: 1 },
+                        ],
+                        ease: "power2.out",
+                      },
+                      {
+                        start: 60,
+                        end: 70,
+                        fromTo: [
+                          { opacity: 1, scale: 1 },
+                          { opacity: 0, scale: 0.2 },
+                        ],
+                        ease: "power2.out",
+                      },
+                    ]}
+                  >
+                    <div className={styles.stumpy}>
+                      <Stumpy
+                        type={
+                          index === 0 ? "stump" : index === 1 ? "tree" : "plank"
+                        }
+                        color="forest"
+                      />
+                    </div>
+                  </ST.Animation>
+                  <ST.Waypoint
+                    at={(index + 1) * 16.666}
+                    onCall={() => stumpyTextRefs.current[index]?.restart()}
+                    onReverseCall={() =>
+                      stumpyTextRefs.current[index]?.reverse()
+                    }
+                  />
+                  <ST.Waypoint
+                    at={60}
+                    onCall={() => stumpyTextRefs.current[index]?.reverse()}
+                    onReverseCall={() =>
+                      stumpyTextRefs.current[index]?.restart()
+                    }
+                  />
+                  <div className={styles.stumpyText}>
+                    <SplitTextBg
+                      ref={(el) => (stumpyTextRefs.current[index] = el)}
+                      color="cream"
+                    >
+                      <p>{content}</p>
+                    </SplitTextBg>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </ST.Animation>
         </div>
       </ST.Pin>
     </ST.Root>
