@@ -17,7 +17,7 @@ export default function BuiltToLast() {
   const stumpyTextRefs = useRef([null, null, null]);
   const finalCopyRef = useRef(null);
   return (
-    <ST.Root scrub="true" start="top top" end="bottom bottom">
+    <ST.Root scrub="true" start="top center" end="bottom bottom">
       <ST.Pin childHeight={"100vh"} pinSpacerHeight={`400vh`} top={0}>
         <div className={`${styles.tabPanel}`}>
           <ST.Animation
@@ -138,19 +138,14 @@ export default function BuiltToLast() {
                       {
                         start: (index + 1) * 16.666,
                         end: (index + 1) * 16.666 + 5,
-                        fromTo: [
-                          { opacity: 0, scale: 0.2 },
-                          { opacity: 1, scale: 1 },
-                        ],
+                        to: { opacity: 1, scale: 1 },
+
                         ease: "power2.out",
                       },
                       {
                         start: 60,
                         end: 70,
-                        fromTo: [
-                          { opacity: 1, scale: 1 },
-                          { opacity: 0, scale: 0.2 },
-                        ],
+                        to: { opacity: 0, scale: 0.2 },
                         ease: "power2.out",
                       },
                     ]}

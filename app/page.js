@@ -18,12 +18,12 @@ export default async function Home() {
 
   return (
     <div style={{ position: "relative" }}>
-      {/* <Hero />
+      <Hero />
       <FireInfoSection />
       <WorldBuildingSection />
       <TheFuture />
       <Benefits />
-      <EventSlider events={[...events, ...events, ...events]} /> */}
+      <EventSlider events={[...events, ...events, ...events]} />
       <BuiltToLast />
       {/* <h3>Partners</h3>
       <ul>
