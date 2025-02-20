@@ -23,8 +23,8 @@ export default async function Home() {
       <WorldBuildingSection />
       <TheFuture />
       <Benefits />
-      <EventSlider events={[...events, ...events, ...events]} />
       <BuiltToLast />
+      <EventSlider events={[...events, ...events, ...events]} />
       {/* <h3>Partners</h3>
       <ul>
         {partners.map((partner) => (

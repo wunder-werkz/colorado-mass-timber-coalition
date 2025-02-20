@@ -95,7 +95,7 @@ export default function BuiltToLast() {
                   {
                     start: 60,
                     end: 100,
-                    to: { rotate: 900, transformOrigin: "center" },
+                    to: { rotate: 540, transformOrigin: "center" },
                   },
                 ]}
               >
