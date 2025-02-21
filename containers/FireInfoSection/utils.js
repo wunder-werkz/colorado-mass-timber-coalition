@@ -2,7 +2,7 @@ export const TAB_COUNT = 6;
 
 // Section heights in vh units
 export const SECTION_HEIGHTS = {
-  0: 100,
+  0: 110,
   1: 500,
   2: 200,
   3: 200,

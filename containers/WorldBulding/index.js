@@ -55,7 +55,7 @@ const WorldBuildingSection = () => {
                   onReverseCall={() => eyebrowRef.current?.reverse()}
                 />
                 <ST.Waypoint
-                  at={15}
+                  at={25}
                   onCall={() => eyebrowRef.current?.reverse()}
                   onReverseCall={() => eyebrowRef.current?.restart()}
                 />
@@ -71,7 +71,7 @@ const WorldBuildingSection = () => {
                   onReverseCall={() => headline.current?.reverse()}
                 />
                 <ST.Waypoint
-                  at={15}
+                  at={25}
                   onCall={() => headline.current?.reverse()}
                   onReverseCall={() => headline.current?.restart()}
                 />
@@ -87,7 +87,7 @@ const WorldBuildingSection = () => {
                   onReverseCall={() => copyRef.current?.reverse()}
                 />
                 <ST.Waypoint
-                  at={15}
+                  at={25}
                   onCall={() => copyRef.current?.reverse()}
                   onReverseCall={() => copyRef.current?.restart()}
                 />
@@ -100,8 +100,8 @@ const WorldBuildingSection = () => {
                 <ST.Animation
                   tween={[
                     {
-                      start: 20,
-                      end: 25,
+                      start: 25,
+                      end: 30,
                       fromTo: [
                         { opacity: 0, height: 0 },
                         { opacity: 1, height: "120px" },
@@ -119,7 +119,7 @@ const WorldBuildingSection = () => {
                   <div className={styles.sqFtContainer}>
                     <ST.Animation
                       tween={{
-                        start: 25,
+                        start: 30,
                         end: 70,
                         ease: "power2.out",
                         to: {
@@ -146,7 +146,7 @@ const WorldBuildingSection = () => {
                   <ST.Animation
                     tween={[
                       {
-                        start: 40,
+                        start: 45,
                         end: 50,
                         fromTo: [
                           { opacity: 0, scale: 0 },
@@ -167,7 +167,7 @@ const WorldBuildingSection = () => {
                     </div>
                   </ST.Animation>
                   <ST.Waypoint
-                    at={40}
+                    at={45}
                     onCall={() => stumpTextRef.current?.restart()}
                     onReverseCall={() => stumpTextRef.current?.reverse()}
                   />
@@ -184,7 +184,7 @@ const WorldBuildingSection = () => {
                 </div>
 
                 <ST.Waypoint
-                  at={70}
+                  at={75}
                   onCall={() => endCopyRef.current?.restart()}
                   onReverseCall={() => endCopyRef.current?.reverse()}
                 />

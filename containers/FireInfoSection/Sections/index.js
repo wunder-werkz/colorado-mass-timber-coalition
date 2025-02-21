@@ -21,6 +21,8 @@ const TABS_MAP = {
   5: Tab6,
 };
 
+const SCROLLTO = [0.1, 5, 1, 1, 1, 1];
+
 export default function TabPanel({ index }) {
   const tabRef = useRef(null);
   const TabComponent = TABS_MAP[index];
@@ -31,6 +33,7 @@ export default function TabPanel({ index }) {
   }
 
   const start = getSectionStartPosition(index);
+
   return (
     <div
       key={`tab-${index}`}
@@ -56,6 +59,7 @@ export default function TabPanel({ index }) {
           ease: "power2.inOut",
         }}
       />
+      <ST.Waypoint at={start + SCROLLTO[index]} label={`tabPanel-${index}`} />
       <TabComponent index={index} />
     </div>
   );

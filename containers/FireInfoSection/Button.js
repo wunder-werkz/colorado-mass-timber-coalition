@@ -17,17 +17,13 @@ const buttonTexts = [
 export default function Button({ index }) {
   const buttonRef = useRef(null);
   const spanRef = useRef(null);
-  const { scrollTo } = ST.useScrollToLabel();
-
-  const handleClick = () => {
-    scrollTo(`tab-section-${index}`, {
-      behavior: "smooth",
-      offset: 0,
-    });
-  };
 
   return (
-    <button className={styles.button} onClick={handleClick} ref={buttonRef}>
+    <button
+      className={styles.button}
+      onClick={ST.useScrollToLabel(`tabPanel-${index}`)}
+      ref={buttonRef}
+    >
       <span>0{index + 1}</span>
 
       <ST.Waypoint
