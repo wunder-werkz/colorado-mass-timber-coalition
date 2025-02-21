@@ -1,6 +1,8 @@
+"use client";
+
 import * as ST from "@bsmnt/scrollytelling";
 import styles from "./style.module.scss";
-import { mapToTransitionProgress, mapToGlobalProgress } from "./utils";
+import { getSectionStartPosition } from "./utils";
 import { useRef } from "react";
 
 const buttonTexts = [
@@ -15,7 +17,6 @@ const buttonTexts = [
 export default function Button({ index }) {
   const buttonRef = useRef(null);
   const spanRef = useRef(null);
-
   const { scrollTo } = ST.useScrollToLabel();
 
   const handleClick = () => {
@@ -26,60 +27,52 @@ export default function Button({ index }) {
   };
 
   return (
-    <>
-      <ST.Animation
-        tween={[
-          {
-            start: mapToTransitionProgress(index, 0),
-            end: mapToTransitionProgress(index, 100),
-            fromTo: [
-              {
-                background: "transparent",
-              },
-              {
-                background: "#ff752a",
-              },
-            ],
-            ease: "power2.inOut",
-          },
-          {
-            start: mapToTransitionProgress(index + 1, 0),
-            end: mapToTransitionProgress(index + 1, 100),
-            to: {
-              background: "transparent",
-            },
-            ease: "power2.inOut",
-          },
-        ]}
-      >
-        <button className={styles.button} onClick={handleClick} ref={buttonRef}>
-          <span>0{index + 1}</span>
+    <button className={styles.button} onClick={handleClick} ref={buttonRef}>
+      <span>0{index + 1}</span>
 
-          <ST.Animation
-            tween={[
-              {
-                start: mapToTransitionProgress(index, 0),
-                end: mapToTransitionProgress(index, 50),
-                fromTo: [
-                  { opacity: 0, x: -10, display: "none" },
-                  { opacity: 1, x: 0, display: "block" },
-                ],
-                ease: "power2.inOut",
-              },
-              {
-                start: mapToTransitionProgress(index + 1, 0),
-                end: mapToTransitionProgress(index + 1, 50),
-                to: { opacity: 0, x: -10, display: "none" },
-                ease: "power2.inOut",
-              },
-            ]}
-          >
-            <span className={styles.buttonText} ref={spanRef}>
-              : {buttonTexts[index]}
-            </span>
-          </ST.Animation>
-        </button>
-      </ST.Animation>
-    </>
+      <ST.Waypoint
+        at={getSectionStartPosition(index)}
+        tween={{
+          target: buttonRef.current,
+          to: { background: "#ff752a" },
+          duration: 0.3,
+          ease: "power2.inOut",
+        }}
+      />
+
+      <ST.Waypoint
+        at={getSectionStartPosition(index)}
+        tween={{
+          target: spanRef.current,
+          to: { display: "inline", background: "transparent" },
+          duration: 0.3,
+          ease: "power2.inOut",
+        }}
+      />
+
+      <ST.Waypoint
+        at={getSectionStartPosition(index + 1)}
+        tween={{
+          target: buttonRef.current,
+          to: { background: "transparent" },
+          duration: 0.3,
+          ease: "power2.inOut",
+        }}
+      />
+
+      <ST.Waypoint
+        at={getSectionStartPosition(index + 1)}
+        tween={{
+          target: spanRef.current,
+          to: { display: "none", background: "transparent" },
+          duration: 0.3,
+          ease: "power2.inOut",
+        }}
+      />
+
+      <span ref={spanRef} className={styles.buttonText}>
+        : {buttonTexts[index]}
+      </span>
+    </button>
   );
 }

@@ -13,6 +13,7 @@ const WorldBuildingSection = () => {
   const copyRef = useRef(null);
   const endCopyRef = useRef(null);
   const stumpTextRef = useRef(null);
+  const eyebrowRef = useRef(null);
 
   return (
     <ST.Root scrub="true" start="top top" end="bottom bottom">
@@ -40,7 +41,7 @@ const WorldBuildingSection = () => {
                 {CONTENT.sqFt.map((item, i) => (
                   <div key={item.year} className={styles.chartBarItemWrapper}>
                     <div className={styles.chartBarItem}>
-                      <div className={styles.chartBarItemYear}>{item.year}</div>
+                      <div className={styles.chartLabel}>{item.year}</div>
                     </div>
                     {i !== CONTENT.sqFt.length - 1 && <SVGDivider />}
                   </div>
@@ -48,24 +49,20 @@ const WorldBuildingSection = () => {
               </div>
 
               <div className={styles.contentContainer}>
-                <div className={styles.eyebrow}>
-                  <ST.Animation
-                    tween={[
-                      {
-                        start: 0,
-                        end: 5,
-                        fromTo: [{ y: "200%" }, { y: "0" }],
-                        ease: "power2.out",
-                      },
-                      {
-                        start: 15,
-                        end: 20,
-                        fromTo: [{ y: "0" }, { y: "200%" }],
-                      },
-                    ]}
-                  >
+                <ST.Waypoint
+                  at={1}
+                  onCall={() => eyebrowRef.current?.restart()}
+                  onReverseCall={() => eyebrowRef.current?.reverse()}
+                />
+                <ST.Waypoint
+                  at={15}
+                  onCall={() => eyebrowRef.current?.reverse()}
+                  onReverseCall={() => eyebrowRef.current?.restart()}
+                />
+                <div className={`${styles.eyebrow}`}>
+                  <SplitTextBg ref={eyebrowRef} color="orange" inline>
                     <h2>{CONTENT.eyebrow}</h2>
-                  </ST.Animation>
+                  </SplitTextBg>
                 </div>
 
                 <ST.Waypoint
@@ -160,10 +157,7 @@ const WorldBuildingSection = () => {
                       {
                         start: 60,
                         end: 70,
-                        fromTo: [
-                          { opacity: 1, scale: 1 },
-                          { opacity: 0, scale: 0 },
-                        ],
+                        to: { opacity: 0, scale: 0 },
                         ease: "power2.out",
                       },
                     ]}

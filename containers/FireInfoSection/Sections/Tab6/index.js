@@ -16,7 +16,7 @@ export default function Tab6({ index }) {
   const stumpTextT6Ref = useRef(null);
 
   return (
-    <div className={`${styles.tabPanel}`}>
+    <div className={`${styles.container}`}>
       <div className={styles.column}>
         <ST.Waypoint
           at={mapToGlobalProgress(index, 1)}

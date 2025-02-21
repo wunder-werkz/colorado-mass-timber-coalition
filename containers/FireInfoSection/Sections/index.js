@@ -3,7 +3,7 @@
 import * as ST from "@bsmnt/scrollytelling";
 import { useRef } from "react";
 import styles from "./style.module.scss";
-import { mapToTransitionProgress } from "../utils";
+import { getSectionStartPosition } from "../utils";
 
 import Tab1 from "./Tab1";
 import Tab2 from "./Tab2";
@@ -30,33 +30,33 @@ export default function TabPanel({ index }) {
     return null;
   }
 
+  const start = getSectionStartPosition(index);
   return (
-    <>
-      <ST.Animation
-        tween={[
-          {
-            start: mapToTransitionProgress(index, 0),
-            end: mapToTransitionProgress(index, 100),
-            fromTo: [
-              {
-                x: "100%",
-                filter: "blur(10px)",
-                pointerEvents: "none",
-              },
-              {
-                x: "0%",
-                filter: "blur(0px)",
-                pointerEvents: "auto",
-              },
-            ],
-            ease: "power2.inOut",
+    <div
+      key={`tab-${index}`}
+      ref={tabRef}
+      className={`${styles.tabPanel} tab-${index}`}
+      style={{
+        transform: "translateX(100%)",
+        opacity: 0,
+      }}
+    >
+      <ST.Waypoint
+        at={start}
+        tween={{
+          target: `.tab-${index}`,
+          to: {
+            opacity: 1,
+            x: 0,
+            pointerEvents: "none",
+            zIndex: 1,
+            filter: "blur(0px)",
           },
-        ]}
-      >
-        <div ref={tabRef} className={styles.tabPanel}>
-          <TabComponent index={index} />
-        </div>
-      </ST.Animation>
-    </>
+          duration: 0.5,
+          ease: "power2.inOut",
+        }}
+      />
+      <TabComponent index={index} />
+    </div>
   );
 }

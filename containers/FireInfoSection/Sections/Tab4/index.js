@@ -16,7 +16,7 @@ export default function Tab4({ index }) {
   const stumpTextT4Ref = useRef(null);
 
   return (
-    <div className={`${styles.tabPanel}`}>
+    <div className={`${styles.container}`}>
       <div className={styles.scaleWrap}>
         <ST.Animation
           tween={{
@@ -70,10 +70,7 @@ export default function Tab4({ index }) {
           tween={{
             start: mapToGlobalProgress(index, 50),
             end: mapToGlobalProgress(index, 60),
-            fromTo: [
-              { opacity: 0, scale: 0.2 },
-              { opacity: 1, scale: 1 },
-            ],
+            to: { opacity: 1, scale: 1 },
             ease: "power2.out",
           }}
         >

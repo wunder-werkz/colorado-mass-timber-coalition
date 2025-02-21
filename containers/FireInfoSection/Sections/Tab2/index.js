@@ -12,7 +12,7 @@ export default function Tab2({ index }) {
   const panelRef = useRef(null);
   const textRef = useRef(null);
   return (
-    <div ref={panelRef} className={`${styles.tabPanel}`}>
+    <div ref={panelRef} className={`${styles.container}`}>
       <div className={styles.chartContainer}>
         {CONTENT.acresBurned.map((item, i) => (
           <div key={item.year} className={styles.chartBarItemWrapper}>
@@ -118,7 +118,7 @@ const CONTENT = {
   acresBurned: [
     {
       year: "Today",
-      acres: "820k",
+      acres: "910k",
     },
     {
       year: 2020,

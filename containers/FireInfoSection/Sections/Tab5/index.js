@@ -16,7 +16,7 @@ export default function Tab5({ index }) {
   const stumpTextRef = useRef(null);
 
   return (
-    <div className={`${styles.tabPanel}`}>
+    <div className={`${styles.container}`}>
       <div className={styles.scaleWrap}>
         <ST.Animation
           tween={{

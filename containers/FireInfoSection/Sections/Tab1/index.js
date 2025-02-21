@@ -13,7 +13,7 @@ export default function Tab1({ index }) {
   const titleRef = useRef(null);
 
   return (
-    <div className={`${styles.tabPanel}`}>
+    <div className={`${styles.container}`}>
       <ST.Waypoint
         at={mapToGlobalProgress(index, 1)}
         onCall={() => titleRef.current?.restart()}
