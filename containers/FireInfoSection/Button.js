@@ -35,11 +35,9 @@ export default function Button({ index }) {
             fromTo: [
               {
                 background: "transparent",
-                color: "#2B4B3A",
               },
               {
                 background: "#ff752a",
-                color: "#fff",
               },
             ],
             ease: "power2.inOut",
@@ -49,7 +47,6 @@ export default function Button({ index }) {
             end: mapToTransitionProgress(index + 1, 100),
             to: {
               background: "transparent",
-              color: "#2B4B3A",
             },
             ease: "power2.inOut",
           },

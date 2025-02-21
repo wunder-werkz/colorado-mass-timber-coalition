@@ -56,8 +56,8 @@ export default function Tab6({ index }) {
           >
             <div className={styles.mediaWCaption}>
               <MediaWCaption
-                url="/img/hero.jpeg"
-                caption={"Building better starts with creating healthy forests"}
+                url={CONTENT.image.src}
+                caption={CONTENT.image.alt}
               />
             </div>
           </ST.Animation>
@@ -76,7 +76,7 @@ export default function Tab6({ index }) {
             }}
           >
             <div className={styles.stumpy}>
-              <Stumpy type="stump" />
+              <Stumpy type="plank" />
             </div>
           </ST.Animation>
           <ST.Waypoint
@@ -85,7 +85,7 @@ export default function Tab6({ index }) {
             onReverseCall={() => stumpTextT6Ref.current?.reverse()}
           />
           <div className={`${styles.stumpyText}`}>
-            <SplitTextBg ref={stumpTextT6Ref} color="orange">
+            <SplitTextBg ref={stumpTextT6Ref} color="forest">
               <p>{CONTENT.stumpText} </p>
             </SplitTextBg>
           </div>
@@ -100,7 +100,7 @@ const CONTENT = {
     "A forests products economy can both incentivize proactive stewardship and reduce forest management costs",
   copy: "Finding ways to use the wood generated from forest stewardship leads to lower costs for everyone and is a win-win for the environment and community. Plus, products like mass timber which can be used to help address our housing crisis, extend the carbon storage life of a tree, and reduce the environmental impact of new construction.",
   image: {
-    src: "/images/fire-info-section/tab1.jpg",
+    src: "/img/tabs/timberage.jpeg",
     alt: "Timber Age Systems",
   },
   stumpText: "A local forest product economy helps benefit rural communities",

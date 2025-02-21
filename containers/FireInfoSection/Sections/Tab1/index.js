@@ -15,7 +15,7 @@ export default function Tab1({ index }) {
   return (
     <div className={`${styles.tabPanel}`}>
       <ST.Waypoint
-        at={1}
+        at={mapToGlobalProgress(index, 1)}
         onCall={() => titleRef.current?.restart()}
         onReverseCall={() => titleRef.current?.reverse()}
       />
@@ -25,25 +25,9 @@ export default function Tab1({ index }) {
           <h2 className={styles.title}>{CONTENT.title}</h2>
         </SplitTextBg>
       </div>
-
-      {/* <ST.Animation
-        tween={{
-          start: mapToGlobalProgress(index, 1),
-          end: mapToGlobalProgress(index, 5),
-          fromTo: [
-            { scale: 1.1, filter: "blur(10px)" },
-            { scale: 1, filter: "blur(0px)" },
-          ],
-          ease: "power2.out",
-        }}
-      > */}
       <div className={styles.mediaWCaption}>
-        <MediaWCaption
-          url="/img/hero.jpeg"
-          caption={"Building better starts with creating healthy forests"}
-        />
+        <MediaWCaption url={CONTENT.image.src} caption={CONTENT.image.alt} />
       </div>
-      {/* </ST.Animation> */}
     </div>
   );
 }
@@ -52,7 +36,7 @@ const CONTENT = {
   title:
     "But right now, many of our forests exhibit declining health and resilience",
   image: {
-    src: "/images/fire-info-section/tab1.jpg",
+    src: "/img/tabs/PineGulch.jpeg",
     alt: "Pine Gulch Fire, Kyle Miller Photography",
   },
 };

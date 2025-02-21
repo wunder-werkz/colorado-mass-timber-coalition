@@ -100,7 +100,7 @@
   text-align: left;
   max-width: 890px;
   p {
-    font-size: 64px;
+    @include h1;
   }
 }
 

@@ -8,7 +8,9 @@
 }
 
 .headline {
-  font-size: 4rem;
+  h2 {
+    @include h1;
+  }
   margin: 0;
   text-align: left;
 
@@ -33,6 +35,7 @@
   left: 0;
   width: 40%;
   height: auto;
+  @include body1;
 }
 
 .scaleWrap {
@@ -53,14 +56,14 @@
 
 .stumpyWrap {
   position: absolute;
-  top: 60%;
-  right: 15%;
-  width: 60%;
+  top: 70%;
+  right: 10%;
+  width: 40%;
   height: auto;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  gap: 60px;
+  gap: 20px;
 }
 
 .stumpy {
@@ -69,5 +72,6 @@
 }
 
 .stumpyText {
-  width: calc(100% - 300px);
+  width: calc(100% - 200px);
+  @include body2;
 }

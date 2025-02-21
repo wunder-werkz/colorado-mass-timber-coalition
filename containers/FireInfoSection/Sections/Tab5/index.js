@@ -31,8 +31,8 @@ export default function Tab5({ index }) {
         >
           <div className={styles.mediaWCaption}>
             <MediaWCaption
-              url="/img/hero.jpeg"
-              caption={"Building better starts with creating healthy forests"}
+              url={CONTENT.image.src}
+              caption={CONTENT.image.alt}
             />
           </div>
         </ST.Animation>
@@ -73,7 +73,7 @@ export default function Tab5({ index }) {
           }}
         >
           <div className={styles.stumpy}>
-            <Stumpy type="tree" />
+            <Stumpy type="stump" />
           </div>
         </ST.Animation>
         <ST.Waypoint
@@ -95,8 +95,8 @@ const CONTENT = {
   headline: "We need to be proactive, not reactive",
   copy: "In addition to climate change, centuries of fire suppression activity have led to unhealthy and unbalanced forests.8 Active stewardship will help our forests endure naturally occurring wildfires, be less susceptible to disease and insect infestation, support a broad range of biodiversity, and contribute to healthy watersheds.9,10",
   image: {
-    src: "/images/fire-info-section/tab1.jpg",
-    alt: "Monarch Pass, <br/>Arkansas River Watershed Collaborative and Miller Timber Services",
+    src: "/img/tabs/millertimber.jpeg",
+    alt: "Monarch Pass, <br/>Arkansas River Watershed Collaborative<br/> and Miller Timber Services",
   },
   stumpText:
     "The health of certain forests could improve through management practices like prescribed burns or mechanical thinning (shown here).",

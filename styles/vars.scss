@@ -58,7 +58,7 @@ $full: 100%;
 @mixin grid-wrap {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-column-gap: 0;
+  grid-column-gap: 10;
   grid-row-gap: 0;
   padding: 0 50px;
 }
@@ -100,26 +100,43 @@ $full: 100%;
   grid-column: span 12;
 }
 
-@mixin p {
-  font-size: 1rem;
-  line-height: 1.2;
+// TYPOGRAPHY
+
+$font-greed-narrow: "font-greed-narrow", sans-serif;
+$font-greed-standard: "font-greed-standard", sans-serif;
+
+@mixin h1 {
+  font-size: 64px;
+  line-height: 100%;
+  font-family: $font-greed-standard;
 }
 
 @mixin h2 {
-  font-size: 64px;
+  font-size: 40px;
+  line-height: 100%;
+  font-family: $font-greed-standard;
 }
 
 @mixin h3 {
-  font-size: 1.5rem;
-  line-height: 1.2;
+  font-size: 32px;
+  line-height: 100%;
+  font-family: $font-greed-standard;
 }
 
-@mixin h4 {
-  font-size: 1.25rem;
-  line-height: 1.2;
+@mixin eyebrow {
+  font-size: 24px;
+  line-height: 100%;
+  font-family: $font-greed-narrow;
 }
 
-@mixin h5 {
-  font-size: 1rem;
-  line-height: 1.2;
+@mixin body1 {
+  font-size: 20px;
+  line-height: 100%;
+  font-family: $font-greed-standard;
+}
+
+@mixin body2 {
+  font-size: 20px;
+  line-height: 100%;
+  font-family: $font-greed-narrow;
 }

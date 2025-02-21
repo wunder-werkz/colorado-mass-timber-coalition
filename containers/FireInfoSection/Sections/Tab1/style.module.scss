@@ -4,19 +4,26 @@
   width: 100%;
   height: 100%;
   position: relative;
+  @include full;
 }
 
 .title {
-  font-size: 4rem;
+  @include h1;
   margin: 0;
   text-align: left;
 
   position: relative;
-  top: 40px;
-  left: 40px;
+  top: 20px;
+  left: 20px;
   width: 80%;
   height: auto;
   z-index: 1;
+  @include five-twelfths;
+
+  @include lap-smaller {
+    @include full;
+    width: calc(100% - 40px);
+  }
 }
 
 .mediaWCaption {

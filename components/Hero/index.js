@@ -174,10 +174,10 @@ const Hero = () => {
           </ST.Animation>
           <ST.Animation
             tween={{
-              start: 65,
+              start: 70,
               end: 90,
               to: { y: -40 },
-              ease: "power2.inOut",
+              ease: "power2.out",
             }}
           >
             <div className={styles.fireTrim}>

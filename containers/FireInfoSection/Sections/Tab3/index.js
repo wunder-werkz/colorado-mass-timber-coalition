@@ -56,8 +56,8 @@ export default function Tab3({ index }) {
           >
             <div className={styles.mediaWCaption}>
               <MediaWCaption
-                url="/img/hero.jpeg"
-                caption={"Building better starts with creating healthy forests"}
+                url={CONTENT.image.src}
+                caption={CONTENT.image.alt}
               />
             </div>
           </ST.Animation>
@@ -76,7 +76,7 @@ export default function Tab3({ index }) {
             }}
           >
             <div className={styles.stumpy}>
-              <Stumpy type="stump" />
+              <Stumpy type="tree" color="orange" />
             </div>
           </ST.Animation>
           <ST.Waypoint
@@ -100,7 +100,7 @@ const CONTENT = {
     "These conditions have been driven by disease, insect infestation and uncharacteristic, mega wildfires",
   copy: "Over 22% of the standing trees in Colorado forests are dead and as a tree decomposes, it releases carbon instead of storing it.1 Estimates suggest that since 1990 suggest that our forest ecosystems have been acting as a net source of carbon rather than a net sink.2,3 Climate change and previous forest management practices, or lack thereof, are amplifying these events.",
   image: {
-    src: "/images/fire-info-section/tab1.jpg",
+    src: "/img/tabs/WolfCreek.jpg",
     alt: "Wolf Creek Pass",
   },
   stumpText: "Colorado forests are actively contributing to climate change",

@@ -17,7 +17,7 @@ export default function Tab2({ index }) {
         {CONTENT.acresBurned.map((item, i) => (
           <div key={item.year} className={styles.chartBarItemWrapper}>
             <div className={styles.chartBarItem}>
-              <div className={styles.chartBarItemYear}>{item.year}</div>
+              <div className={styles.chartLabel}>{item.year}</div>
             </div>
             {i !== CONTENT.acresBurned.length - 1 && <SVGDivider />}
           </div>
@@ -27,19 +27,16 @@ export default function Tab2({ index }) {
       <div className={styles.contentContainer}>
         <ST.Animation
           tween={{
-            start: mapToGlobalProgress(index, 15),
-            end: mapToGlobalProgress(index, 25),
-            fromTo: [
-              { scale: 1.3, filter: "blur(10px)" },
-              { scale: 1, filter: "blur(0px)" },
-            ],
+            start: mapToGlobalProgress(index, 0),
+            end: mapToGlobalProgress(index, 15),
+            fromTo: [{ scale: 1.3 }, { scale: 1 }],
             ease: "power2.out",
           }}
         >
           <div className={styles.mediaWCaption}>
             <MediaWCaption
-              url="/img/hero.jpeg"
-              caption={"Building better starts with creating healthy forests"}
+              url={CONTENT.image.src}
+              caption={CONTENT.image.alt}
             />
             <ST.Animation
               tween={{
@@ -115,7 +112,7 @@ const CONTENT = {
   title:
     "But right now, many of our forests exhibit declining health and resilience",
   image: {
-    src: "/images/fire-info-section/tab1.jpg",
+    src: "/img/tabs/Colorado-State-Forest-Service.jpg",
     alt: "Alexander Mountain Fire, <br/>Colorado State Forest Service ",
   },
   acresBurned: [
