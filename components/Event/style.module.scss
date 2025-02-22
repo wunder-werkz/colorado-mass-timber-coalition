@@ -44,7 +44,7 @@
   justify-content: space-between;
 
   h3 {
-    @include h2;
+    @include h3;
     color: $forest;
     padding-bottom: 0px;
     margin-bottom: 8px;

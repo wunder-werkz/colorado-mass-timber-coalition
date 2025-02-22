@@ -1,0 +1,35 @@
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #1a1a1a;
+  color: white;
+  padding: 1.5rem 0;
+  z-index: 0; // Lower z-index so main content appears above
+  height: 500px;
+}
+
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  nav {
+    display: flex;
+    gap: 2rem;
+
+    a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: #ff752a;
+      }
+    }
+  }
+}

@@ -10,6 +10,8 @@ import WorldBuildingSection from "@/containers/WorldBulding";
 import TheFuture from "@/containers/TheFuture";
 import Benefits from "@/containers/Benefits";
 import BuiltToLast from "@/containers/BuiltToLast";
+import Partners from "@/containers/Partners";
+import Footer from "@/components/Footer";
 
 export default async function Home() {
   const general = await client.fetch(GENERAL_QUERY);
@@ -17,20 +19,29 @@ export default async function Home() {
   const partners = await client.fetch(PARTNERS_QUERY);
 
   return (
-    <div style={{ position: "relative" }}>
-      <Hero />
-      <FireInfoSection />
-      <WorldBuildingSection />
-      <TheFuture />
-      <Benefits />
-      <BuiltToLast />
-      <EventSlider events={[...events, ...events, ...events]} />
-      {/* <h3>Partners</h3>
-      <ul>
-        {partners.map((partner) => (
-          <li key={partner._id}>{partner.name}</li>
-        ))}
-      </ul> */}
+    <div
+      style={{
+        position: "relative",
+      }}
+    >
+      <div
+        style={{
+          position: "relative",
+          zIndex: 1,
+          background: "#f0f5ea",
+          minHeight: "100vh",
+        }}
+      >
+        <Hero />
+        <FireInfoSection />
+        <WorldBuildingSection />
+        <TheFuture />
+        <Benefits />
+        <BuiltToLast />
+        <EventSlider events={[...events, ...events, ...events]} />
+        <Partners partners={partners} />
+      </div>
+      <Footer />
     </div>
   );
 }

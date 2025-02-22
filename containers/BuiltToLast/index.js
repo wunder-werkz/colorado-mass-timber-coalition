@@ -153,7 +153,7 @@ export default function BuiltToLast() {
                     <div className={styles.stumpy}>
                       <Stumpy
                         type={
-                          index === 0 ? "stump" : index === 1 ? "tree" : "plank"
+                          index === 0 ? "tree" : index === 1 ? "stump" : "plank"
                         }
                         color="forest"
                       />
@@ -219,9 +219,9 @@ export default function BuiltToLast() {
                         <Stumpy
                           type={
                             index === 0
-                              ? "stump"
+                              ? "tree"
                               : index === 1
-                                ? "tree"
+                                ? "stump"
                                 : "plank"
                           }
                           color="orange"

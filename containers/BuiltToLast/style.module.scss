@@ -13,14 +13,14 @@
     height: 100%;
     position: relative;
     background-color: $orange;
-    padding: 100px 60px;
+    padding: 100px 0px 100px 60px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
 
   &:last-of-type {
-    width: 65%;
+    width: 60%;
     height: 100%;
     position: relative;
     background-color: $cream;
@@ -34,26 +34,25 @@
 .eyebrow {
   width: 100%;
   height: auto;
-  max-height: 100px;
-  font-size: 20px;
   text-transform: uppercase;
   overflow: hidden;
   color: $forest;
+  @include eyebrow;
 }
 
 .headline {
-  font-size: 4rem;
-  margin: 0;
+  margin-top: 20px;
   text-align: left;
   position: relative;
   width: 100%;
   height: auto;
-  font-size: 30px;
+  @include h2;
 }
 
 .copy {
   width: 100%;
   height: auto;
+  @include body1;
 }
 
 .svgCircle {
@@ -88,27 +87,43 @@
 
   .stumpyText {
     flex: 1;
-    font-size: 18px;
-    min-width: 400px;
+    max-width: 200px;
+    @include body1;
+    text-transform: uppercase;
   }
 }
 
 .stumpyWrapper-0 {
   top: 65%;
-  left: 10%;
-  transform: translateX(-50%);
+  left: 5%;
+
+  .stumpyText {
+    top: 50%;
+    transform: translateY(-20%);
+  }
 }
 
 .stumpyWrapper-1 {
-  top: 15%;
+  top: 10%;
   left: 75%;
+  width: 600px;
   transform: translateX(-50%);
+
+  .stumpyText {
+    transform: translate(50%, -110%);
+  }
 }
 
 .stumpyWrapper-2 {
-  bottom: 15%;
-  left: 80%;
-  transform: translateX(-50%);
+  bottom: 10%;
+  right: 0%;
+
+  transform: translateX(50%);
+
+  .stumpyText {
+    max-width: 300px;
+    transform: translate(-100%, -80%);
+  }
 }
 
 .finalCopy {
@@ -123,5 +138,18 @@
   p {
     text-align: center;
     font-size: 3rem;
+  }
+}
+
+.secondStumpWrapper {
+  .stumpyWrapper-0 {
+  }
+
+  .stumpyWrapper-1 {
+    top: 5%;
+  }
+
+  .stumpyWrapper-2 {
+    transform: translateX(-80%);
   }
 }

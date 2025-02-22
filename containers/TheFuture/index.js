@@ -11,7 +11,7 @@ import { CLTSvg, GLUSvg, NLTSvg, DLTSvg } from "./SVG";
 export default function TheFuture() {
   const headline = useRef(null);
   const copy = useRef(null);
-
+  const eyebrowRef = useRef(null);
   const cltRef = useRef(null);
   const gluRef = useRef(null);
   const nltRef = useRef(null);
@@ -22,19 +22,15 @@ export default function TheFuture() {
       <div className={`${styles.container}`}>
         <div className={styles.column}>
           <div>
-            <div className={styles.eyebrow}>
-              <ST.Animation
-                tween={[
-                  {
-                    start: 0,
-                    end: 5,
-                    fromTo: [{ y: "200%" }, { y: "0" }],
-                    ease: "power2.out",
-                  },
-                ]}
-              >
+            <ST.Waypoint
+              at={1}
+              onCall={() => eyebrowRef.current?.restart()}
+              onReverseCall={() => eyebrowRef.current?.reverse()}
+            />
+            <div className={`${styles.eyebrow}`}>
+              <SplitTextBg ref={eyebrowRef} color="cream" inline>
                 <h2>{CONTENT.eyebrow}</h2>
-              </ST.Animation>
+              </SplitTextBg>
             </div>
 
             <ST.Waypoint
