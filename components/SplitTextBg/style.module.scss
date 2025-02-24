@@ -21,6 +21,17 @@
     margin: 0;
     padding: 0;
   }
+
+  sup {
+    display: inline-block;
+    cursor: pointer;
+    color: inherit;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
 }
 
 .text {
@@ -57,4 +68,23 @@
   font-size: inherit;
   line-height: inherit;
   padding: 0px 20px;
+}
+
+.citation {
+  cursor: pointer;
+  display: inline;
+  position: relative;
+  font-size: 0.75em;
+  vertical-align: super;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.line {
+  sup {
+    display: inline !important;
+  }
 }

@@ -4,6 +4,7 @@ import { useRef, forwardRef, useImperativeHandle } from "react";
 import useIsomorphicLayoutEffect from "@/hooks/useIsomorphicLayoutEffect";
 import { gsap, SplitText } from "@/lib/gsapConfig";
 import styles from "./style.module.scss";
+import { useModal } from "@/context/ModalContext";
 
 const SplitTextBg = forwardRef(
   ({ children, color, inline = false, isPlaying = false }, ref) => {
@@ -11,6 +12,7 @@ const SplitTextBg = forwardRef(
     const backgroundsRef = useRef([]);
     const linesRef = useRef([]);
     const animationTl = useRef(null);
+    const { openModal } = useModal();
 
     useImperativeHandle(ref, () => ({
       play: () => animationTl.current?.play(),
@@ -24,9 +26,19 @@ const SplitTextBg = forwardRef(
         const padding = "0.5em 1em";
         textRef.current.style.padding = padding;
 
+        const sups = textRef.current.getElementsByTagName("sup");
+        Array.from(sups).forEach((sup) => {
+          sup.className = styles.citation;
+          sup.addEventListener("click", (e) => {
+            e.preventDefault();
+            openModal();
+          });
+        });
+
         const splitText = new SplitText(textRef.current.children[0], {
           types: "lines",
           linesClass: styles.line,
+          reduceWhiteSpace: false,
         });
 
         textRef.current.style.padding = "0";
@@ -75,6 +87,10 @@ const SplitTextBg = forwardRef(
           );
 
         return () => {
+          // Clean up event listeners
+          Array.from(sups).forEach((sup) => {
+            sup.removeEventListener("click", openModal);
+          });
           splitText.revert();
         };
       }, textRef);

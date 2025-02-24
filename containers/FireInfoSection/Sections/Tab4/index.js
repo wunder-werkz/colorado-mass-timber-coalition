@@ -61,7 +61,7 @@ export default function Tab4({ index }) {
       />
       <div className={`${styles.copy}`}>
         <SplitTextBg ref={copyT4Ref} color="orange" key={`copy-${index}`}>
-          <p>{CONTENT.copy} </p>
+          <p dangerouslySetInnerHTML={{ __html: CONTENT.copy }} />
         </SplitTextBg>
       </div>
 
@@ -95,7 +95,7 @@ export default function Tab4({ index }) {
 
 const CONTENT = {
   headline: "Healthy forests are critical to providing clean water",
-  copy: "As snow melts our forests help remove pollutants and sediment, regulate streamflow, reduce flood damage, and replenish groundwater.4–6  Healthy forests have even shown to reduce water treatment costs.7",
+  copy: "As snow melts our forests help remove pollutants and sediment, regulate streamflow, reduce flood damage, and replenish groundwater.<sup>4–6</sup> Healthy forests have even shown to reduce water treatment costs.<sup>7</sup>",
   image: {
     src: "/images/fire-info-section/tab1.jpg",
     alt: "East Troublesome Fire burn scar, © Jason Houston",

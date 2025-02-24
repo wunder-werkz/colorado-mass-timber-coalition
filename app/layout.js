@@ -1,6 +1,8 @@
 import localFont from "next/font/local";
 import ScrollSmoother from "@/containers/ScrollSmoother";
 import Layout from "@/containers/Layout";
+import { ModalProvider } from "@/context/ModalContext";
+
 import "@/styles/global.scss";
 
 const greedNarrow = localFont({
@@ -22,8 +24,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${greedNarrow.variable} ${greedStandard.variable}`}>
-        <Layout />
-        <ScrollSmoother>{children}</ScrollSmoother>
+        <ModalProvider>
+          <Layout />
+          <ScrollSmoother>{children}</ScrollSmoother>
+        </ModalProvider>
       </body>
     </html>
   );

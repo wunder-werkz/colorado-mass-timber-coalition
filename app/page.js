@@ -12,6 +12,7 @@ import Benefits from "@/containers/Benefits";
 import BuiltToLast from "@/containers/BuiltToLast";
 import Partners from "@/containers/Partners";
 import Footer from "@/components/Footer";
+import CitationsModal from "@/containers/CitationsModal";
 
 export default async function Home() {
   const general = await client.fetch(GENERAL_QUERY);
@@ -40,6 +41,7 @@ export default async function Home() {
         <BuiltToLast />
         <EventSlider events={[...events, ...events, ...events]} />
         <Partners partners={partners} />
+        <CitationsModal />
       </div>
       <Footer />
     </div>

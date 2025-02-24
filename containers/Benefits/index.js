@@ -162,7 +162,7 @@ export default function Benefits() {
                 inline
                 ref={(el) => (splitTextRefs.current[index] = el)}
               >
-                <p>{section.text}</p>
+                <p dangerouslySetInnerHTML={{ __html: section.text }} />
               </SplitTextBg>
             </div>
 
@@ -195,7 +195,7 @@ const CONTENT = {
   eyebrow: "Benefits of Mass Timber",
   sections: [
     {
-      text: "Lower embodied carbon – making wood products, especially locally, uses less energy than other building materials15",
+      text: "Lower embodied carbon – making wood products, especially locally, uses less energy than other building materials<sup>15</sup>",
       image: "/img/benefits/CMTC_Section4_1.jpg",
     },
     {
@@ -206,15 +206,14 @@ const CONTENT = {
     },
 
     {
-      text: "Prefabrication leads to fast,16 quiet, and clean construction requiring fewer workers17 with less waste",
+      text: "Prefabrication leads to fast,<sup>16</sup> quiet, and clean construction requiring fewer workers<sup>17</sup> with less waste",
       image: "/img/benefits/CMTC_Section4_3.jpg",
     },
     {
-      text: "Has a natural mechanism of resistance to fire: a protective char layer18",
+      text: "Has a natural mechanism of resistance to fire: a protective char layer<sup>18</sup>",
     },
     {
-      text: "Creates spaces that connect people with nature which has been scientifically proven to increase health – also known as biophilia19",
-
+      text: "Creates spaces that connect people with nature which has been scientifically proven to increase health – also known as biophilia<sup>19</sup>",
       stumpy: true,
       stumpyText: "I make you feel better!",
     },
@@ -223,7 +222,7 @@ const CONTENT = {
       image: "/img/benefits/CMTC_Section4_4.jpg",
     },
     {
-      text: "Supports a solution to affordable housing and alleviating the housing crisis20",
+      text: "Supports a solution to affordable housing and alleviating the housing crisis<sup>20</sup>",
     },
   ],
 };

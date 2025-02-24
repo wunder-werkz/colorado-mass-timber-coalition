@@ -93,7 +93,7 @@ const WorldBuildingSection = () => {
                 />
                 <div className={`${styles.copy}`}>
                   <SplitTextBg ref={copyRef} color="cream" inline>
-                    <h3>{CONTENT.copy}</h3>
+                    <h3 dangerouslySetInnerHTML={{ __html: CONTENT.copy }} />
                   </SplitTextBg>
                 </div>
 
@@ -195,7 +195,7 @@ const WorldBuildingSection = () => {
                 />
                 <div className={`${styles.endCopy}`}>
                   <SplitTextBg ref={endCopyRef} color="cream" inline>
-                    <h2>{CONTENT.endCopy}</h2>
+                    <h2 dangerouslySetInnerHTML={{ __html: CONTENT.endCopy }} />
                   </SplitTextBg>
                 </div>
               </div>
@@ -234,9 +234,9 @@ const CONTENT = {
   ],
   eyebrow: "The world is building…a lot",
   headline: "Wood is the only renewable building material at scale",
-  copy: "From 2025 to 2050, the world is expected to add about 1.7 trillion square feet of new floor area to the global building stock.11",
+  copy: "From 2025 to 2050, the world is expected to add about 1.7 trillion square feet of new floor area to the global building stock.<sup>11</sup>",
   endCopy:
-    "Less than a fraction of one percent of all buildings are built with mass timber12 and future demand can be met sustainably.13 Mass timber is an immediate solution to help solve our climate crisis for which building materials, like concrete and steel, contribute 11% of total global greenhouse gas emissions.14",
+    "Less than a fraction of one percent of all buildings are built with mass timber<sup>12</sup> and future demand can be met sustainably.<sup>13</sup> Mass timber is an immediate solution to help solve our climate crisis for which building materials, like concrete and steel, contribute 11% of total global greenhouse gas emissions.<sup>14</sup>",
   stumpy:
     "That’s the same as building 111 Mile High Stadiums every day for the next 25 years…go Broncos!",
 };

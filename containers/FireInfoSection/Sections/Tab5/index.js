@@ -56,7 +56,7 @@ export default function Tab5({ index }) {
       />
       <div className={`${styles.copy}`}>
         <SplitTextBg ref={copyRef} color="orange">
-          <p>{CONTENT.copy} </p>
+          <p dangerouslySetInnerHTML={{ __html: CONTENT.copy }} />
         </SplitTextBg>
       </div>
 
@@ -93,7 +93,7 @@ export default function Tab5({ index }) {
 
 const CONTENT = {
   headline: "We need to be proactive, not reactive",
-  copy: "In addition to climate change, centuries of fire suppression activity have led to unhealthy and unbalanced forests.8 Active stewardship will help our forests endure naturally occurring wildfires, be less susceptible to disease and insect infestation, support a broad range of biodiversity, and contribute to healthy watersheds.9,10",
+  copy: "In addition to climate change, centuries of fire suppression activity have led to unhealthy and unbalanced forests.<sup>8</sup> Active stewardship will help our forests endure naturally occurring wildfires, be less susceptible to disease and insect infestation, support a broad range of biodiversity, and contribute to healthy watersheds.<sup>9,10</sup>",
   image: {
     src: "/img/tabs/millertimber.jpg",
     alt: "Monarch Pass, <br/>Arkansas River Watershed Collaborative<br/> and Miller Timber Services",

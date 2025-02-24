@@ -37,7 +37,7 @@ export default function Tab3({ index }) {
         />
         <div className={`${styles.copy}`}>
           <SplitTextBg ref={copyRef} color="orange">
-            <p>{CONTENT.copy} </p>
+            <p dangerouslySetInnerHTML={{ __html: CONTENT.copy }} />
           </SplitTextBg>
         </div>
       </div>
@@ -98,7 +98,7 @@ export default function Tab3({ index }) {
 const CONTENT = {
   headline:
     "These conditions have been driven by disease, insect infestation and uncharacteristic, mega wildfires",
-  copy: "Over 22% of the standing trees in Colorado forests are dead and as a tree decomposes, it releases carbon instead of storing it.1 Estimates suggest that since 1990 suggest that our forest ecosystems have been acting as a net source of carbon rather than a net sink.2,3 Climate change and previous forest management practices, or lack thereof, are amplifying these events.",
+  copy: "Over 22% of the standing trees in Colorado forests are dead and as a tree decomposes, it releases carbon instead of storing it.<sup>1</sup> Estimates suggest that since 1990 suggest that our forest ecosystems have been acting as a net source of carbon rather than a net sink.<sup>2,3</sup> Climate change and previous forest management practices, or lack thereof, are amplifying these events.",
   image: {
     src: "/img/tabs/WolfCreek.jpg",
     alt: "Wolf Creek Pass",

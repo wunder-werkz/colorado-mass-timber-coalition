@@ -41,6 +41,7 @@ export default function TabPanel({ index }) {
       className={`${styles.tabPanel} tab-${index}`}
       style={{
         transform: "translateX(100%)",
+        zIndex: 0,
         opacity: 0,
       }}
     >
@@ -51,7 +52,6 @@ export default function TabPanel({ index }) {
           to: {
             opacity: 1,
             x: 0,
-            pointerEvents: "none",
             zIndex: 1,
             filter: "blur(0px)",
           },
