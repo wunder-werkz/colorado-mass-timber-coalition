@@ -188,11 +188,6 @@ const WorldBuildingSection = () => {
                   onCall={() => endCopyRef.current?.restart()}
                   onReverseCall={() => endCopyRef.current?.reverse()}
                 />
-                <ST.Waypoint
-                  at={95}
-                  onCall={() => endCopyRef.current?.reverse()}
-                  onReverseCall={() => endCopyRef.current?.restart()}
-                />
                 <div className={`${styles.endCopy}`}>
                   <SplitTextBg ref={endCopyRef} color="cream" inline>
                     <h2 dangerouslySetInnerHTML={{ __html: CONTENT.endCopy }} />

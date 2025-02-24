@@ -2,6 +2,7 @@ import localFont from "next/font/local";
 import ScrollSmoother from "@/containers/ScrollSmoother";
 import Layout from "@/containers/Layout";
 import { ModalProvider } from "@/context/ModalContext";
+import Footer from "@/components/Footer";
 
 import "@/styles/global.scss";
 
@@ -26,7 +27,23 @@ export default function RootLayout({ children }) {
       <body className={`${greedNarrow.variable} ${greedStandard.variable}`}>
         <ModalProvider>
           <Layout />
-          <ScrollSmoother>{children}</ScrollSmoother>
+          <div
+            style={{
+              position: "relative",
+            }}
+          >
+            <div
+              style={{
+                position: "relative",
+                zIndex: 1,
+                background: "#f0f5ea",
+                minHeight: "100vh",
+              }}
+            >
+              <ScrollSmoother>{children}</ScrollSmoother>
+            </div>
+          </div>
+          <Footer />
         </ModalProvider>
       </body>
     </html>

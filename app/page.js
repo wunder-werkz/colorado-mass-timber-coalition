@@ -11,7 +11,6 @@ import TheFuture from "@/containers/TheFuture";
 import Benefits from "@/containers/Benefits";
 import BuiltToLast from "@/containers/BuiltToLast";
 import Partners from "@/containers/Partners";
-import Footer from "@/components/Footer";
 import CitationsModal from "@/containers/CitationsModal";
 
 export default async function Home() {
@@ -20,30 +19,16 @@ export default async function Home() {
   const partners = await client.fetch(PARTNERS_QUERY);
 
   return (
-    <div
-      style={{
-        position: "relative",
-      }}
-    >
-      <div
-        style={{
-          position: "relative",
-          zIndex: 1,
-          background: "#f0f5ea",
-          minHeight: "100vh",
-        }}
-      >
-        <Hero />
-        <FireInfoSection />
-        <WorldBuildingSection />
-        <TheFuture />
-        <Benefits />
-        <BuiltToLast />
-        <EventSlider events={[...events, ...events, ...events]} />
-        <Partners partners={partners} />
-        <CitationsModal />
-      </div>
-      <Footer />
-    </div>
+    <>
+      <Hero />
+      <FireInfoSection />
+      <WorldBuildingSection />
+      <TheFuture />
+      <Benefits />
+      <BuiltToLast />
+      <EventSlider events={[...events, ...events, ...events]} />
+      <Partners partners={partners} />
+      <CitationsModal />
+    </>
   );
 }

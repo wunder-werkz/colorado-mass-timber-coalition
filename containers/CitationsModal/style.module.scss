@@ -63,8 +63,7 @@
   flex-direction: column;
   gap: 0.5rem;
   font-size: 0.9rem;
-  line-height: 1.4;
-  min-height: 120px;
+  margin-bottom: 1rem;
 }
 
 .number {
@@ -79,6 +78,12 @@
 
 .text {
   @include body1;
+}
+
+.link {
+  @include body1;
+  text-decoration: underline;
+  word-break: break-all;
 }
 
 @media (max-width: 768px) {
