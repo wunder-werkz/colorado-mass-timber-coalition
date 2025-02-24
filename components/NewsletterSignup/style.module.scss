@@ -1,0 +1,60 @@
+@use "@/styles/vars" as *;
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  color: $cream;
+
+  h3 {
+    @include h1;
+    margin: 0;
+    padding: 0;
+  }
+
+  p {
+    @include body1;
+  }
+}
+
+.newsletter {
+  width: 100%;
+
+  p {
+    color: $cream;
+    @include body1;
+  }
+
+  input {
+    color: $forest;
+    width: 70%;
+    &::placeholder {
+      color: $forest;
+    }
+
+    border: none;
+    background: $orange;
+    color: $forest;
+    display: block;
+
+    @include h3;
+    padding: 10px 20px;
+
+    @include mobile() {
+      max-width: 100%;
+      font-size: 20px;
+      line-height: 20px;
+    }
+  }
+
+  .form {
+    display: flex;
+    gap: 5px;
+
+    button {
+      background: transparent !important;
+      color: $cream !important;
+    }
+  }
+}
