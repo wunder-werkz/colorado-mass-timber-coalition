@@ -108,7 +108,7 @@ const Hero = () => {
                 start: 19.5,
                 end: 75,
                 to: {
-                  clipPath: "circle(110% at 50% 100%)",
+                  clipPath: "circle(120% at 50% 100%)",
                   height: "calc(100% - 120px)",
                 },
               },
@@ -125,7 +125,7 @@ const Hero = () => {
                 >
                   <div className={styles.mediaWCaption}>
                     <MediaWCaption
-                      url="/img/hero.jpeg"
+                      url="/img/hero.jpg"
                       caption={
                         "Building better starts with creating healthy forests"
                       }
@@ -177,7 +177,6 @@ const Hero = () => {
               start: 70,
               end: 90,
               to: { y: -40 },
-              ease: "power2.out",
             }}
           >
             <div className={styles.fireTrim}>

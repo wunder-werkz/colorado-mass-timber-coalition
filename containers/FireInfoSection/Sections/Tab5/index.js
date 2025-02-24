@@ -95,7 +95,7 @@ const CONTENT = {
   headline: "We need to be proactive, not reactive",
   copy: "In addition to climate change, centuries of fire suppression activity have led to unhealthy and unbalanced forests.8 Active stewardship will help our forests endure naturally occurring wildfires, be less susceptible to disease and insect infestation, support a broad range of biodiversity, and contribute to healthy watersheds.9,10",
   image: {
-    src: "/img/tabs/millertimber.jpeg",
+    src: "/img/tabs/millertimber.jpg",
     alt: "Monarch Pass, <br/>Arkansas River Watershed Collaborative<br/> and Miller Timber Services",
   },
   stumpText:

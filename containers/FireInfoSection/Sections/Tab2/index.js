@@ -41,7 +41,7 @@ export default function Tab2({ index }) {
             <ST.Animation
               tween={{
                 start: mapToGlobalProgress(index, 25),
-                end: mapToGlobalProgress(index, 90),
+                end: mapToGlobalProgress(index, 80),
                 fromTo: [{ height: 0 }, { height: "100%" }],
                 ease: "power2.out",
               }}
@@ -63,8 +63,8 @@ export default function Tab2({ index }) {
               ease: "power2.out",
             },
             {
-              start: mapToGlobalProgress(index, 80),
-              end: mapToGlobalProgress(index, 90),
+              start: mapToGlobalProgress(index, 90),
+              end: mapToGlobalProgress(index, 95),
               to: { opacity: 0, height: 0 },
               ease: "power2.out",
             },
@@ -74,7 +74,7 @@ export default function Tab2({ index }) {
             <ST.Animation
               tween={{
                 start: mapToGlobalProgress(index, 30),
-                end: mapToGlobalProgress(index, 90),
+                end: mapToGlobalProgress(index, 85),
                 ease: "power2.out",
                 to: {
                   yPercent: -700,

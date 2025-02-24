@@ -23,6 +23,13 @@
   height: 100%;
 }
 
+.contentContainer {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
 .chartBarItemWrapper {
   display: flex;
   align-items: center;

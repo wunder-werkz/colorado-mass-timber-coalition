@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import Link from "next/link";
 import useIsomorphicLayoutEffect from "@/hooks/useIsomorphicLayoutEffect";
 import { gsap, ScrollTrigger } from "@/lib/gsapConfig";
 import styles from "./style.module.scss";
@@ -85,7 +86,18 @@ const Header = () => {
       ref={headerRef}
     >
       <div className={styles.logo}>
-        <LogoSm />
+        <Link
+          href="/"
+          onClick={(e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+            if (pathname !== "/") {
+              window.location.href = "/";
+            }
+          }}
+        >
+          <LogoSm />
+        </Link>
       </div>
 
       <button

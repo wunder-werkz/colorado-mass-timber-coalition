@@ -120,20 +120,6 @@ export default function Benefits() {
           ease: "power3.out",
         });
       }
-
-      // Text animation using SplitText
-      if (splitTextRefs.current[index]) {
-        gsap.from(splitTextRefs.current[index].children, {
-          scrollTrigger: {
-            trigger: textRef,
-            start: "top 80%",
-          },
-          yPercent: 100,
-          duration: 1,
-          stagger: 0.05,
-          ease: "power3.out",
-        });
-      }
     });
   }, []);
 
@@ -234,7 +220,7 @@ const CONTENT = {
     },
     {
       text: "Provides aesthetics that differentiate from other buildings on the market ",
-      image: "/img/benefits/CMTC_Section4_4.jpeg",
+      image: "/img/benefits/CMTC_Section4_4.jpg",
     },
     {
       text: "Supports a solution to affordable housing and alleviating the housing crisis20",

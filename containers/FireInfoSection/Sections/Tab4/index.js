@@ -31,7 +31,7 @@ export default function Tab4({ index }) {
         >
           <div className={styles.mediaWCaption}>
             <MediaWCaption
-              url="/img/hero.jpeg"
+              url="/img/hero.jpg"
               caption={"Building better starts with creating healthy forests"}
             />
           </div>

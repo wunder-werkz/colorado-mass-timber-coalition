@@ -36,7 +36,7 @@ const CONTENT = {
   title:
     "But right now, many of our forests exhibit declining health and resilience",
   image: {
-    src: "/img/tabs/PineGulch.jpeg",
+    src: "/img/tabs/PineGulch.jpg",
     alt: "Pine Gulch Fire, Kyle Miller Photography",
   },
 };
