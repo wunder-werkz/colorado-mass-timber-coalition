@@ -12,6 +12,7 @@ import useWindowSize from "@/hooks/useWindowSize";
 import { mapToGlobalProgress } from "../../utils";
 export default function Tab2({ index }) {
   const panelRef = useRef(null);
+  const sectionTitleRef = useRef(null);
   const textRef = useRef(null);
   const { width } = useWindowSize();
   const smScreen = width < 786;
@@ -30,6 +31,26 @@ export default function Tab2({ index }) {
       </div>
 
       <div className={styles.contentContainer}>
+        {smScreen && (
+          <>
+            <ST.Waypoint
+              at={mapToGlobalProgress(index, 1)}
+              onCall={() => sectionTitleRef.current?.restart()}
+              onReverseCall={() => sectionTitleRef.current?.reverse()}
+            />
+
+            <ST.Waypoint
+              at={mapToGlobalProgress(index, 20)}
+              onCall={() => sectionTitleRef.current?.reverse()}
+              onReverseCall={() => sectionTitleRef.current?.restart()}
+            />
+            <div className={`${styles.sectionTitle}`}>
+              <SplitTextBg ref={sectionTitleRef} color="cream" inline>
+                <h2>{CONTENT.sectionTitle}</h2>
+              </SplitTextBg>
+            </div>
+          </>
+        )}
         <ST.Animation
           tween={{
             start: mapToGlobalProgress(index, 0),
@@ -114,7 +135,7 @@ export default function Tab2({ index }) {
 }
 
 const CONTENT = {
-  sectionTitle: "Why This Is Happening?",
+  sectionTitle: "Up In Smoke",
   title:
     "But right now, many of our forests exhibit declining health and resilience",
   image: {
