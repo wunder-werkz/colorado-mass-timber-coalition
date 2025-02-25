@@ -9,6 +9,7 @@ export default function Button({
   variant = "primary",
   color = "forest",
   fill = true,
+  large,
   href,
   onClick,
   className,
@@ -18,6 +19,7 @@ export default function Button({
     styles.button,
     styles[variant],
     styles[color],
+    styles[className],
     fill ? styles.fill : "",
     className,
   ]

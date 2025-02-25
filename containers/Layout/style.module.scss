@@ -1,29 +1,38 @@
 @use "@/styles/vars" as *;
 
 .header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 80px;
-  display: flex;
   align-items: center;
+  background-color: $white;
+  display: flex;
+  height: 80px;
   justify-content: space-between;
-  padding: 0 2rem;
-  z-index: 1000;
-  transform: translateY(-100%);
+  left: 0;
   padding: 0 50px;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 1000;
 
   @include lap-smaller {
     height: 60px;
     padding: 0 20px;
   }
+  @include tablet-and-lower {
+    height: 60px;
+    padding: 0 10px;
+  }
 }
 
 .logo {
+  transform: translateY(-100px);
   @include lap-smaller {
     svg {
-      width: 100px;
+      width: 150px;
+    }
+  }
+  @include mobile {
+    svg {
+      width: 120px
     }
   }
 }
@@ -32,7 +41,7 @@
   border: none;
   background: $orange;
   cursor: pointer;
-  padding: 15px 10px;
+  padding: 20px 10px;
   z-index: 1001;
 
   span {
@@ -42,6 +51,9 @@
     background: black;
     position: relative;
     transition: all 0.3s;
+    @include mobile {
+      width: 33px;
+    }
 
     &:before,
     &:after {
@@ -55,12 +67,25 @@
 
     &:before {
       left: 0;
-      transform: translateY(-8px);
+      transform: translateY(-10px);
     }
     &:after {
       left: 0;
-      transform: translateY(8px);
+      transform: translateY(10px);
     }
+  }
+  &:hover {
+    span {
+      &:before {
+        left: 0;
+        transform: translateY(-12px);
+      }
+      &:after {
+        left: 0;
+        transform: translateY(12px);
+      }
+    }
+
   }
 
   &.open {
@@ -80,19 +105,22 @@
 }
 
 .menu {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 0;
   background: $orange;
-  overflow: hidden;
   display: flex;
   flex-direction: row;
+  height: 0;
+  left: 0;
   justify-content: space-between;
-  z-index: 1000;
-
+  overflow: hidden;
+  position: fixed;
+  right: 0;
+  top: 0;
   width: 100%;
+  z-index: 1000;
+  @include tablet-and-lower {
+    align-items: center;
+    flex-direction: column;
+  }
 }
 
 .stumpyWrap {
@@ -111,27 +139,30 @@
 }
 
 .titleWrap {
-  margin-bottom: 20px;
   @include h2;
-  text-align: center;
-  width: 50%;
-  height: auto;
-  display: flex;
   align-items: center;
-  justify-content: center;
   background: $cream;
+  display: flex;
+  height: auto;
+  justify-content: center;
+  margin-bottom: 20px;
+  max-width: 433px;
+  padding: 10px;
+  width: $four-twelfths;
 }
 
 .buttonWrap {
-  width: 50%;
-  height: 100%;
-
+  align-items: flex-start;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  gap: 60px;
+  height: 100%;
   justify-content: center;
-  gap: 20px;
-
+  width: 50%;
+  @include tablet-and-lower {
+    align-items: center;
+    gap: 30px;
+  }
   a {
     height: auto;
     border-radius: 50px;
@@ -150,33 +181,43 @@
 }
 
 .socialWrap {
-  margin-top: 50px;
-  display: flex;
   align-items: center;
+  display: flex;
+  gap: 60px;
   justify-content: center;
-  gap: 1rem;
+  margin-top: 50px;
+  @include tablet-and-lower {
+    gap: 30px;
+    margin-top: 10px;
+  }
 }
 
 .url {
-  height: 90px !important;
-  width: 90px;
-  background: $forest;
-  border-radius: 50%;
-  display: flex;
   align-items: center;
+  background: $forest;
+  border-radius: 50% !important;
+  display: flex;
+  height: $one-twelfth !important;
   justify-content: center;
+  min-width: 50px;
+  min-height: 50px;
+  width: $one-twelfth;
+  transition: background 0.2s ease;
   svg {
-    stroke: $cream;
-    width: 50px;
-    height: 50px;
+    width: 50%;
+    height: 50%;
+    path {
+      fill: $cream;
+    }
   }
 
-  transition: background 0.2s ease;
+
   &:hover {
     background: $cream;
     svg {
-      // fill: $forest;
-      stroke: $forest;
+      path {
+        stroke: $forest;
+      }
     }
   }
 }
