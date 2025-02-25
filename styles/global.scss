@@ -11,7 +11,7 @@ body {
 body {
   background: $cream;
   color: $forest;
-  font-family: "font-greed-narrow", sans-serif;
+  font-family: var(--font-greed-narrow), sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -34,7 +34,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "font-greed-standard", sans-serif;
+  font-family: var(--font-greed-standard), sans-serif;
   font-weight: 400;
 }
 

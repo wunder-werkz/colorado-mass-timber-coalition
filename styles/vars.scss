@@ -110,8 +110,8 @@ $full: 100%;
 
 // TYPOGRAPHY
 
-$font-greed-narrow: "font-greed-narrow", sans-serif;
-$font-greed-standard: "font-greed-standard", sans-serif;
+$font-greed-narrow: var(--font-greed-narrow), sans-serif;
+$font-greed-standard: var(--font-greed-standard), sans-serif;
 
 @mixin h1 {
   font-size: 64px;
