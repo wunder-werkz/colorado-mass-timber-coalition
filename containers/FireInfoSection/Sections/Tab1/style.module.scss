@@ -21,8 +21,14 @@
   @include five-twelfths;
 
   @include lap-smaller {
+    position: relative;
     @include full;
-    width: calc(100% - 40px);
+    width: 100%;
+    left: 0;
+
+    top: 0;
+
+    padding: 10px;
   }
 }
 
