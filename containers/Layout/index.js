@@ -14,7 +14,7 @@ import { LinkedIn, Instagram } from "@/components/SVG/Social";
 
 const Header = ({ contactEmail }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const headerRef = useRef(null);
+  const logoRef = useRef(null);
   const menuRef = useRef(null);
   const timeline = useRef(null);
   const menuItemsRef = useRef([]);
@@ -23,9 +23,9 @@ const Header = ({ contactEmail }) => {
   const isHomePage = pathname === "/" || pathname === "/home";
 
   useIsomorphicLayoutEffect(() => {
-    if (!headerRef.current) return;
+    if (!logoRef.current) return;
 
-    const anim = gsap.to(headerRef.current, {
+    const logoAnim = gsap.to(logoRef.current, {
       y: 0,
       duration: 0.6,
       ease: "power2.out",
@@ -37,8 +37,8 @@ const Header = ({ contactEmail }) => {
         trigger: "#hero-section",
         start: "top+=180% top",
         end: "+=1",
-        onEnter: () => anim.play(),
-        onLeaveBack: () => anim.reverse(),
+        onEnter: () => logoAnim.play(),
+        onLeaveBack: () => logoAnim.reverse(),
       });
     }
 
@@ -48,6 +48,7 @@ const Header = ({ contactEmail }) => {
   }, [isHomePage]);
 
   const toggleMenu = () => {
+    const body = document.body;
     if (!timeline.current) {
       timeline.current = gsap
         .timeline({ paused: true })
@@ -67,9 +68,15 @@ const Header = ({ contactEmail }) => {
     if (!isMenuOpen) {
       window._smoothScroll?.paused(true);
       timeline.current.play();
+      body.style.overflow = "hidden";
+      body.style.height = "100%";
+
     } else {
+      body.style.overflow = "unset";
+      body.style.height = "auto";
       window._smoothScroll?.paused(false);
       timeline.current.reverse();
+ 
     }
 
     setIsMenuOpen(!isMenuOpen);
@@ -103,9 +110,8 @@ const Header = ({ contactEmail }) => {
   return (
     <header
       className={`${styles.header} ${isMenuOpen ? styles.open : ""}`}
-      ref={headerRef}
     >
-      <div className={styles.logo}>
+      <div className={styles.logo} ref={logoRef}>
         <Link
           href="/"
           onClick={(e) => {
@@ -132,7 +138,7 @@ const Header = ({ contactEmail }) => {
           className={styles.stumpyWrap}
           ref={(el) => (menuItemsRef.current[0] = el)}
         >
-          <div className={styles.titleWrap}>What Can I Help You With?</div>
+          <div className={styles.titleWrap}>What can I help you find?</div>
           <div className={styles.stumpWrap}>
             <Stumpy color="cream" type="stump" />
           </div>
@@ -144,6 +150,7 @@ const Header = ({ contactEmail }) => {
           <Button
             variant="primary"
             color="forest"
+            className="large"
             onClick={() => handleLinkClick("/events")}
           >
             Events
@@ -151,6 +158,7 @@ const Header = ({ contactEmail }) => {
           <Button
             variant="primary"
             color="forest"
+            className="large"
             onClick={() => handleLinkClick(`mailto:${contactEmail}`, true)}
           >
             Contact

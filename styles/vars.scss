@@ -3,7 +3,7 @@ $orange: #ff752a;
 $cream: #f0f5ea;
 $forest: #343516;
 $black: #343516;
-$white: #ffffff;
+$white: #F0F5EA;
 
 @mixin phone() {
   @media only screen and (max-width: 640px) {
@@ -19,6 +19,13 @@ $white: #ffffff;
 
 @mixin tablet-and-lower() {
   @media only screen and (max-width: 820px) {
+    @content;
+  }
+}
+
+
+@mixin medium() {
+  @media only screen and (max-width: 1439px) {
     @content;
   }
 }
@@ -109,9 +116,8 @@ $full: 100%;
 }
 
 // TYPOGRAPHY
-
-$font-greed-narrow: "font-greed-narrow", sans-serif;
-$font-greed-standard: "font-greed-standard", sans-serif;
+$font-greed-narrow: var(--font-greed-narrow), sans-serif;
+$font-greed-standard: var(--font-greed-standard), sans-serif;
 
 @mixin h1 {
   font-size: 64px;
