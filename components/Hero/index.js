@@ -9,12 +9,16 @@ import { MediaWCaption } from "@/components/MediaWCaption";
 import SplitTextBg from "@/components/SplitTextBg";
 import Tagline from "@/components/SVG/Tagline";
 
+import useWindowSize from "@/hooks/useWindowSize";
+
 import styles from "./style.module.scss";
 
 const Hero = () => {
   const splitTextAnimationRef = useRef(null);
   const splitTextAnimationRef2 = useRef(null);
 
+  const { width } = useWindowSize();
+  const isMobile = width < 768;
   return (
     <ST.Root scrub="true" start="top top" end="bottom bottom">
       <ST.Pin childHeight={"100vh"} pinSpacerHeight={"600vh"} top={0}>
@@ -105,7 +109,9 @@ const Hero = () => {
                 start: 19.5,
                 end: 75,
                 to: {
-                  clipPath: "circle(190% at 50% 100%)",
+                  clipPath: isMobile
+                    ? "circle(190% at 50% 100%)"
+                    : "circle(120% at 50% 100%)",
                 },
               },
             ]}
