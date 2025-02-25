@@ -4,26 +4,13 @@ import { gsap } from "@/lib/gsapConfig";
 import styles from "./style.module.scss";
 import SplitTextBg from "@/components/SplitTextBg";
 import Event from "@/components/Event";
+import Button from "@/components/Button";
 
-export default function EventsClient({ events, general }) {
-  const [filteredEvents, setFilteredEvents] = useState(events);
+export default function EventsClient({ pastEvents, upcomingEvents }) {
+  const [isShowingPastEvents, setIsShowingPastEvents] = useState(false);
   const containerRef = useRef(null);
   const splitTextAnimationRef = useRef(null);
   const eventsRef = useRef([]);
-
-  const showFutureEvents = () => {
-    const future = events.filter(
-      (event) => new Date(event.startDate) >= new Date()
-    );
-    setFilteredEvents(future);
-  };
-
-  const showPastEvents = () => {
-    const past = events.filter(
-      (event) => new Date(event.startDate) < new Date()
-    );
-    setFilteredEvents(past);
-  };
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -54,7 +41,7 @@ export default function EventsClient({ events, general }) {
     });
 
     return () => ctx.revert();
-  }, [filteredEvents]);
+  }, [isShowingPastEvents]);
 
   return (
     <div className={styles.eventsPageWrap} ref={containerRef}>
@@ -66,23 +53,42 @@ export default function EventsClient({ events, general }) {
         </div>
         <p className={styles.eventDesc}>
           Join us at one of our upcoming events or browse through our past
-          gatherings. From workshops to community meetups, there's always
+          gatherings. From workshops to community meetups, there&apos;s always
           something exciting happening.
         </p>
+      </div>
+      <div className={styles.filterWrap}>
         <div className={styles.filterButtons}>
-          <button onClick={showFutureEvents}>Upcoming Events</button>
-          <button onClick={showPastEvents}>Past Events</button>
+          <Button
+            onClick={() => setIsShowingPastEvents(false)}
+            variant="secondary"
+            color="orange"
+            fill={!isShowingPastEvents}
+          >
+            Future Events
+          </Button>
+          <Button
+            onClick={() => setIsShowingPastEvents(true)}
+            variant="secondary"
+            color="orange"
+            fill={isShowingPastEvents}
+          >
+            Past Events
+          </Button>
         </div>
       </div>
       <div className={styles.eventsGrid}>
-        {filteredEvents.map((event, index) => (
-          <Event
-            key={event._id}
-            event={event}
-            ref={(el) => (eventsRef.current[index] = el)}
-            secondary={true}
-          />
-        ))}
+        {(isShowingPastEvents ? pastEvents : upcomingEvents).map(
+          (event, index) => (
+            <Event
+              key={event._id}
+              event={event}
+              ref={(el) => (eventsRef.current[index] = el)}
+              secondary={true}
+              isPastEvent={isShowingPastEvents}
+            />
+          )
+        )}
       </div>
     </div>
   );

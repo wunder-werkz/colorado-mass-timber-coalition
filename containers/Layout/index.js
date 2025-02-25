@@ -10,10 +10,9 @@ import { usePathname, useRouter } from "next/navigation";
 
 import Stumpy from "@/components/Stumpy";
 import Button from "@/components/Button";
-import SplitTextBg from "@/components/SplitTextBg";
 import { LinkedIn, Instagram } from "@/components/SVG/Social";
 
-const Header = () => {
+const Header = ({ contactEmail }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const headerRef = useRef(null);
   const menuRef = useRef(null);
@@ -152,7 +151,7 @@ const Header = () => {
           <Button
             variant="primary"
             color="forest"
-            onClick={() => handleLinkClick("mailto:info@stumpy.com", true)}
+            onClick={() => handleLinkClick(`mailto:${contactEmail}`, true)}
           >
             Contact
           </Button>
@@ -168,28 +167,6 @@ const Header = () => {
           </div>
         </div>
       </nav>
-      {/* <a
-          className={styles.menuItem}
-          onClick={() => handleLinkClick("/home")}
-          ref={(el) => (menuItemsRef.current[0] = el)}
-        >
-          Home
-        </a>
-        <a
-          className={styles.menuItem}
-          onClick={() => handleLinkClick("/about")}
-          ref={(el) => (menuItemsRef.current[1] = el)}
-        >
-          About
-        </a>
-        <a
-          className={styles.menuItem}
-          onClick={() => handleLinkClick("/contact")}
-          ref={(el) => (menuItemsRef.current[2] = el)}
-        >
-          Contact
-        </a> */}
-      {/* </nav> */}
     </header>
   );
 };

@@ -1,10 +1,12 @@
-import { GENERAL_QUERY, EVENTS_QUERY } from "@/sanity/lib/queries";
+import { PAST_EVENTS_QUERY, UPCOMING_EVENTS_QUERY } from "@/sanity/lib/queries";
 import { client } from "@/sanity/lib/client";
 import EventsClient from "@/containers/EventsClient";
 
 export default async function Events() {
-  const events = await client.fetch(EVENTS_QUERY);
-  const general = await client.fetch(GENERAL_QUERY);
+  const pastEvents = await client.fetch(PAST_EVENTS_QUERY);
+  const upcomingEvents = await client.fetch(UPCOMING_EVENTS_QUERY);
 
-  return <EventsClient events={events} general={general} />;
+  return (
+    <EventsClient pastEvents={pastEvents} upcomingEvents={upcomingEvents} />
+  );
 }

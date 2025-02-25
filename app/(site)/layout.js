@@ -1,8 +1,11 @@
 import localFont from "next/font/local";
+
+import { GENERAL_QUERY } from "@/sanity/lib/queries";
 import ScrollSmoother from "@/containers/ScrollSmoother";
 import Layout from "@/containers/Layout";
 import { ModalProvider } from "@/context/ModalContext";
 import Footer from "@/components/Footer";
+import { client } from "@/sanity/lib/client";
 
 import "@/styles/global.scss";
 
@@ -21,12 +24,15 @@ export const metadata = {
   description: "Colorado Mass Timber Coalition",
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const general = await client.fetch(GENERAL_QUERY);
+  const { contactEmail } = general[0];
+
   return (
     <html lang="en">
       <body className={`${greedNarrow.variable} ${greedStandard.variable}`}>
         <ModalProvider>
-          <Layout />
+          <Layout contactEmail={contactEmail} />
           <div
             style={{
               position: "relative",
@@ -43,7 +49,7 @@ export default function RootLayout({ children }) {
               <ScrollSmoother>{children}</ScrollSmoother>
             </div>
           </div>
-          <Footer />
+          <Footer contactEmail={contactEmail} />
         </ModalProvider>
       </body>
     </html>

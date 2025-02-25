@@ -9,28 +9,26 @@ import Stumpy from "@/components/Stumpy";
 
 import { Email, LinkedIn, Instagram } from "@/components/SVG/Social";
 
-const SOCIAL_LINKS = [
-  {
-    icon: <Email />,
-    url: "mailto:info@coloradomass.org",
-  },
-  {
-    icon: <LinkedIn />,
-    url: "https://www.linkedin.com/company/colorado-mass-timber-coalition/",
-  },
-  {
-    icon: <Instagram />,
-    url: "https://www.instagram.com/coloradomass.timber/",
-  },
-];
+export default function Footer({ contactEmail }) {
+  const SOCIAL_LINKS = [
+    {
+      icon: <Email />,
+      url: `mailto:${contactEmail}`,
+    },
+    {
+      icon: <LinkedIn />,
+      url: "https://www.linkedin.com/company/colorado-mass-timber-coalition/",
+    },
+    {
+      icon: <Instagram />,
+      url: "https://www.instagram.com/coloradomass.timber/",
+    },
+  ];
 
-export default function Footer() {
   const footerRef = useRef(null);
 
   useEffect(() => {
     if (!footerRef.current) return;
-
-    // Get footer height
     const footerHeight = footerRef.current.offsetHeight;
 
     document.body.style.paddingBottom = `${footerHeight}px`;

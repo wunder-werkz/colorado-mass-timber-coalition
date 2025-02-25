@@ -3,23 +3,27 @@ import Button from "@/components/Button";
 
 import { forwardRef } from "react";
 
-const Event = forwardRef(({ event, secondary }, ref) => {
+const Event = forwardRef(({ event, secondary, isPastEvent = false }, ref) => {
   const renderDate = () => {
+    const dateOptions = {
+      month: "short",
+      day: "numeric",
+      ...(isPastEvent && { year: "numeric" }),
+    };
+
     if (!event.endDate) {
-      return new Date(event.startDate).toLocaleDateString("en-US", {
-        month: "short",
-        day: "numeric",
-      });
+      return new Date(event.startDate).toLocaleDateString("en-US", dateOptions);
     }
+
     if (event.startDate && event.endDate) {
-      const startDate = new Date(event.startDate).toLocaleDateString("en-US", {
-        month: "short",
-        day: "numeric",
-      });
-      const endDate = new Date(event.endDate).toLocaleDateString("en-US", {
-        month: "short",
-        day: "numeric",
-      });
+      const startDate = new Date(event.startDate).toLocaleDateString(
+        "en-US",
+        dateOptions
+      );
+      const endDate = new Date(event.endDate).toLocaleDateString(
+        "en-US",
+        dateOptions
+      );
       return `${startDate} - ${endDate}`;
     }
 
@@ -45,14 +49,16 @@ const Event = forwardRef(({ event, secondary }, ref) => {
           <h3>{event.name}</h3>
           <p>{event.location}</p>
         </div>
-        <Button
-          href={`${event.link}`}
-          variant="primary"
-          color={selfHosted ? "orange" : "forest"}
-          fill={false}
-        >
-          See More
-        </Button>
+        {event.link && (
+          <Button
+            href={`${event.link}`}
+            variant="primary"
+            color={selfHosted ? "orange" : "forest"}
+            fill={false}
+          >
+            See More
+          </Button>
+        )}
       </div>
     </div>
   );

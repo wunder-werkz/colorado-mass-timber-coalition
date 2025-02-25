@@ -1,6 +1,4 @@
-import { GENERAL_QUERY } from "@/sanity/lib/queries";
-import { EVENTS_QUERY } from "@/sanity/lib/queries";
-import { PARTNERS_QUERY } from "@/sanity/lib/queries";
+import { PARTNERS_QUERY, UPCOMING_EVENTS_QUERY } from "@/sanity/lib/queries";
 import { client } from "@/sanity/lib/client";
 
 import Hero from "@/components/Hero";
@@ -14,8 +12,7 @@ import Partners from "@/containers/Partners";
 import CitationsModal from "@/containers/CitationsModal";
 
 export default async function Home() {
-  const general = await client.fetch(GENERAL_QUERY);
-  const events = await client.fetch(EVENTS_QUERY);
+  const events = await client.fetch(UPCOMING_EVENTS_QUERY);
   const partners = await client.fetch(PARTNERS_QUERY);
 
   return (
@@ -26,7 +23,7 @@ export default async function Home() {
       <TheFuture />
       <Benefits />
       <BuiltToLast />
-      <EventSlider events={[...events, ...events, ...events]} />
+      <EventSlider events={events} />
       <Partners partners={partners} />
       <CitationsModal />
     </>
