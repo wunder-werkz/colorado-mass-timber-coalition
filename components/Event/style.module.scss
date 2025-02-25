@@ -17,7 +17,7 @@
 
 .eventDate {
   font-family: $font-greed-narrow;
-  font-size: 32px;
+  @include eyebrow;
   border: 4px solid $orange;
   padding: 10px;
   color: $forest;
@@ -78,5 +78,9 @@
     width: fit-content; // Changed from 'auto' to 'fit-content'
     display: inline-flex;
     align-self: flex-start;
+  }
+
+  @include lap-smaller {
+    min-height: 200px;
   }
 }
