@@ -13,11 +13,19 @@
   z-index: 1000;
   transform: translateY(-100%);
   padding: 0 50px;
+
+  @include lap-smaller {
+    height: 60px;
+    padding: 0 20px;
+  }
 }
 
 .logo {
-  font-size: 1.5rem;
-  font-weight: bold;
+  @include lap-smaller {
+    svg {
+      width: 100px;
+    }
+  }
 }
 
 .hamburger {
