@@ -7,6 +7,10 @@
   @include grid-wrap;
   @include full;
   padding-top: 80px;
+
+  @include phone {
+    padding-top: 100px;
+  }
 }
 
 .logoWrapper,

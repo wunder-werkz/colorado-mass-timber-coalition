@@ -79,7 +79,7 @@ export default function Tab3({ index }) {
           <SplitTextBg ref={copyRef} color="orange">
             <p>
               Over 22% of the standing trees in Colorado forests are dead and as
-              a tree decomposes, it releases carbon instead of storing it
+              a tree decomposes, it releases carbon instead of storing it{" "}
               <sup>1</sup> Estimates suggest that since 1990 suggest that our
               forest ecosystems have been acting as a net source of carbon
               rather than a net sink<sup>2,3</sup> Climate change and previous
