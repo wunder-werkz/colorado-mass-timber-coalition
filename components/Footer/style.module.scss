@@ -8,6 +8,10 @@
   height: auto;
   background: $forest;
   padding: 80px 0px;
+
+  @include tablet-and-lower {
+    padding: 40px 0px;
+  }
 }
 
 .content {
@@ -22,6 +26,10 @@
 .newsletter {
   margin-bottom: 2rem;
   @include eight-twelfths;
+
+  @include tablet-and-lower {
+    @include full;
+  }
 }
 
 .socialWrap {
@@ -30,6 +38,10 @@
   align-items: flex-end;
   padding-bottom: 2rem;
   @include two-twelfths;
+
+  @include tablet-and-lower {
+    @include six-twelfths;
+  }
 }
 
 .url {
@@ -68,5 +80,12 @@
   svg {
     width: 100%;
     height: auto;
+  }
+
+  @include tablet-and-lower {
+    @include six-twelfths;
+    svg {
+      width: 50%;
+    }
   }
 }

@@ -2,7 +2,8 @@
 
 .eventsPageWrap {
   position: relative;
-  padding: 100px 60px;
+  @include grid-wrap;
+  margin-top: 100px;
 }
 
 .topWrap {
@@ -13,6 +14,7 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 30px;
+  @include full;
 }
 
 .eventsTitle {
@@ -47,6 +49,7 @@
 }
 
 .eventsGrid {
+  @include full;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 40px;

@@ -31,6 +31,18 @@
     z-index: 1;
     transition: color 0.3s ease;
   }
+
+  @include tablet-and-lower {
+    font-size: 24px;
+    height: 40px;
+    padding: 0px 40px 0px 20px;
+  }
+
+  @include phone {
+    font-size: 20px;
+    height: 30px;
+    padding: 0px 30px 0px 15px;
+  }
 }
 
 // Primary styles
@@ -50,6 +62,24 @@
     justify-content: center;
     background-color: var(--circle-bg);
     transition: background-color 0.3s ease;
+
+    @include tablet-and-lower {
+      width: 36px;
+      height: 36px;
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    @include phone {
+      width: 26px;
+      height: 26px;
+      svg {
+        width: 15px;
+        height: 15px;
+      }
+    }
   }
 
   &.forest {

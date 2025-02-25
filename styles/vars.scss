@@ -61,6 +61,14 @@ $full: 100%;
   grid-column-gap: 10;
   grid-row-gap: 0;
   padding: 0 50px;
+
+  @include tablet-and-lower {
+    padding: 0 20px;
+  }
+
+  @include phone {
+    padding: 0 10px;
+  }
 }
 
 @mixin one-twelfth {
@@ -110,6 +118,12 @@ $font-greed-standard: "font-greed-standard", sans-serif;
   line-height: 100%;
   font-family: $font-greed-standard;
   font-weight: 400;
+  @include tablet-and-lower {
+    font-size: 40px;
+  }
+  @include phone {
+    font-size: 32px;
+  }
 }
 
 @mixin h2 {
@@ -117,6 +131,12 @@ $font-greed-standard: "font-greed-standard", sans-serif;
   line-height: 100%;
   font-family: $font-greed-standard;
   font-weight: 400;
+  @include tablet-and-lower {
+    font-size: 32px;
+  }
+  @include phone {
+    font-size: 24px;
+  }
 }
 
 @mixin h3 {
@@ -124,6 +144,12 @@ $font-greed-standard: "font-greed-standard", sans-serif;
   line-height: 100%;
   font-family: $font-greed-standard;
   font-weight: 400;
+  @include tablet-and-lower {
+    font-size: 24px;
+  }
+  @include phone {
+    font-size: 20px;
+  }
 }
 
 @mixin eyebrow {
@@ -131,6 +157,12 @@ $font-greed-standard: "font-greed-standard", sans-serif;
   line-height: 100%;
   font-family: $font-greed-narrow;
   font-weight: 400;
+  @include tablet-and-lower {
+    font-size: 20px;
+  }
+  @include phone {
+    font-size: 16px;
+  }
 }
 
 @mixin body1 {
@@ -138,6 +170,12 @@ $font-greed-standard: "font-greed-standard", sans-serif;
   line-height: 100%;
   font-family: $font-greed-standard;
   font-weight: 400;
+  @include tablet-and-lower {
+    font-size: 16px;
+  }
+  @include phone {
+    font-size: 14px;
+  }
 }
 
 @mixin body2 {
@@ -145,4 +183,10 @@ $font-greed-standard: "font-greed-standard", sans-serif;
   line-height: 100%;
   font-family: $font-greed-narrow;
   font-weight: 400;
+  @include tablet-and-lower {
+    font-size: 16px;
+  }
+  @include phone {
+    font-size: 14px;
+  }
 }

@@ -51,6 +51,27 @@
   p {
     font-size: 50px;
   }
+
+  @include tablet-and-lower {
+    p {
+      font-size: 40px;
+    }
+    i {
+      font-size: 40px;
+    }
+    max-width: 800px;
+  }
+
+  @include phone {
+    max-width: 400px;
+    font-size: 30px;
+    p {
+      font-size: 30px;
+    }
+    i {
+      font-size: 30px;
+    }
+  }
 }
 
 .maskContainer {
@@ -63,6 +84,18 @@
   z-index: 1;
   clip-path: circle(0% at 50% 100%);
   opacity: 0;
+
+  @include tablet-and-lower {
+    width: calc(100% - 50px);
+    height: calc(100% - 50px);
+    transform: translate(25px, 25px);
+  }
+
+  @include phone {
+    width: calc(100% - 20px);
+    height: calc(100% - 20px);
+    transform: translate(10px, 10px);
+  }
 }
 
 .mask {
@@ -112,6 +145,16 @@
   height: 100px;
   transform: translateY(-50%);
   opacity: 0;
+
+  @include tablet-and-lower {
+    width: 80px;
+    height: 80px;
+  }
+
+  @include phone {
+    width: 60px;
+    height: 60px;
+  }
 }
 
 .eyeball2 {
@@ -122,6 +165,16 @@
   height: 100px;
   transform: translateY(-50%);
   opacity: 0;
+
+  @include tablet-and-lower {
+    width: 80px;
+    height: 80px;
+  }
+
+  @include phone {
+    width: 60px;
+    height: 60px;
+  }
 }
 
 .eyeball3 {
@@ -132,6 +185,16 @@
   height: 100px;
   transform: translateY(-50%);
   opacity: 0;
+
+  @include tablet-and-lower {
+    width: 80px;
+    height: 80px;
+  }
+
+  @include phone {
+    width: 60px;
+    height: 60px;
+  }
 }
 
 .eyeball4 {
@@ -142,6 +205,16 @@
   height: 100px;
   transform: translateY(-50%);
   opacity: 0;
+
+  @include tablet-and-lower {
+    width: 80px;
+    height: 80px;
+  }
+
+  @include phone {
+    width: 60px;
+    height: 60px;
+  }
 }
 
 .eyeball5 {
@@ -152,6 +225,16 @@
   height: 100px;
   transform: translateY(-50%);
   opacity: 0;
+
+  @include tablet-and-lower {
+    width: 80px;
+    height: 80px;
+  }
+
+  @include phone {
+    width: 60px;
+    height: 60px;
+  }
 }
 
 .fireTrim {
@@ -166,5 +249,17 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+
+  @include tablet-and-lower {
+    width: calc(100% - 50px);
+    height: calc(100% - 50px);
+    transform: translate(25px, 25px);
+  }
+
+  @include phone {
+    width: calc(100% - 20px);
+    height: calc(100% - 20px);
+    transform: translate(10px, 10px);
   }
 }
