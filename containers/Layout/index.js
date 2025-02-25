@@ -6,7 +6,12 @@ import useIsomorphicLayoutEffect from "@/hooks/useIsomorphicLayoutEffect";
 import { gsap, ScrollTrigger } from "@/lib/gsapConfig";
 import styles from "./style.module.scss";
 import LogoSm from "@/components/SVG/LogoSm";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+
+import Stumpy from "@/components/Stumpy";
+import Button from "@/components/Button";
+import SplitTextBg from "@/components/SplitTextBg";
+import { LinkedIn, Instagram } from "@/components/SVG/Social";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -15,6 +20,7 @@ const Header = () => {
   const timeline = useRef(null);
   const menuItemsRef = useRef([]);
   const pathname = usePathname();
+  const router = useRouter();
   const isHomePage = pathname === "/" || pathname === "/home";
 
   useIsomorphicLayoutEffect(() => {
@@ -70,15 +76,30 @@ const Header = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const handleLinkClick = (href) => {
+  const handleLinkClick = (href, isExternal = false) => {
     timeline.current.reverse();
-    document.body.style.overflow = "auto";
+    window._smoothScroll?.paused(false);
     setIsMenuOpen(false);
 
     setTimeout(() => {
-      console.log("Navigate to:", href);
+      if (isExternal) {
+        window.open(href, "_blank");
+      } else {
+        router.push(href);
+      }
     }, 500);
   };
+
+  const SOCIAL_LINKS = [
+    {
+      icon: <LinkedIn />,
+      url: "https://www.linkedin.com/company/colorado-mass-timber-coalition/",
+    },
+    {
+      icon: <Instagram />,
+      url: "https://www.instagram.com/coloradomass.timber/",
+    },
+  ];
 
   return (
     <header
@@ -108,7 +129,46 @@ const Header = () => {
       </button>
 
       <nav className={styles.menu} ref={menuRef}>
-        <a
+        <div
+          className={styles.stumpyWrap}
+          ref={(el) => (menuItemsRef.current[0] = el)}
+        >
+          <div className={styles.titleWrap}>What Can I Help You With?</div>
+          <div className={styles.stumpWrap}>
+            <Stumpy color="cream" type="stump" />
+          </div>
+        </div>
+        <div
+          className={styles.buttonWrap}
+          ref={(el) => (menuItemsRef.current[1] = el)}
+        >
+          <Button
+            variant="primary"
+            color="forest"
+            onClick={() => handleLinkClick("/events")}
+          >
+            Events
+          </Button>
+          <Button
+            variant="primary"
+            color="forest"
+            onClick={() => handleLinkClick("mailto:info@stumpy.com", true)}
+          >
+            Contact
+          </Button>
+          <div
+            className={styles.socialWrap}
+            ref={(el) => (menuItemsRef.current[2] = el)}
+          >
+            {SOCIAL_LINKS.map((link) => (
+              <a href={link.url} key={link.url} className={styles.url}>
+                {link.icon}
+              </a>
+            ))}
+          </div>
+        </div>
+      </nav>
+      {/* <a
           className={styles.menuItem}
           onClick={() => handleLinkClick("/home")}
           ref={(el) => (menuItemsRef.current[0] = el)}
@@ -128,8 +188,8 @@ const Header = () => {
           ref={(el) => (menuItemsRef.current[2] = el)}
         >
           Contact
-        </a>
-      </nav>
+        </a> */}
+      {/* </nav> */}
     </header>
   );
 };

@@ -80,21 +80,95 @@
   background: $orange;
   overflow: hidden;
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  z-index: 1000;
+
+  width: 100%;
+}
+
+.stumpyWrap {
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+
+  width: 50%;
+  height: 100%;
 }
 
-.menuItem {
-  font-size: 2rem;
-  margin: 1rem 0;
-  cursor: pointer;
-  text-decoration: none;
-  color: $cream;
-  transition: color 0.3s;
+.stumpWrap {
+  width: 40%;
+  height: auto;
+}
 
+.titleWrap {
+  margin-bottom: 20px;
+  @include h2;
+  text-align: center;
+  width: 50%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $cream;
+}
+
+.buttonWrap {
+  width: 50%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 20px;
+
+  a {
+    height: auto;
+    border-radius: 50px;
+    span {
+      @include h1;
+      width: 100%;
+
+      &.circle {
+        width: 70px !important;
+        height: 70px !important;
+        border-radius: 50%;
+        background: $forest;
+      }
+    }
+  }
+}
+
+.socialWrap {
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.url {
+  height: 90px !important;
+  width: 90px;
+  background: $forest;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  svg {
+    stroke: $cream;
+    width: 50px;
+    height: 50px;
+  }
+
+  transition: background 0.2s ease;
   &:hover {
-    color: $forest;
+    background: $cream;
+    svg {
+      // fill: $forest;
+      stroke: $forest;
+    }
   }
 }
