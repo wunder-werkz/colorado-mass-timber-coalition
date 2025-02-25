@@ -6,7 +6,7 @@ $black: #343516;
 $white: #F0F5EA;
 
 @mixin phone() {
-  @media only screen and (max-width: 640px) {
+  @media only screen and (max-width: 900px) {
     @content;
   }
 }

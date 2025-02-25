@@ -12,7 +12,7 @@ const FireInfoSection = () => {
   return (
     <ST.Root scrub="true" start="top top" end="bottom bottom">
       <ST.Pin
-        childHeight={"90vh"}
+        childHeight={"100vh"}
         pinSpacerHeight={`${TOTAL_SCROLL_HEIGHT}vh`}
         top={0}
       >

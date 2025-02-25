@@ -7,12 +7,27 @@
   position: relative;
   z-index: 1;
   @include grid-wrap;
-  padding-top: 135px;
+  grid-template-rows: auto 1fr;
+
+  padding-top: 80px;
+  padding-bottom: 50px;
+
+  @include tablet-and-lower {
+    padding-top: 70px;
+    padding-bottom: 20px;
+  }
+
+  @include phone {
+    padding-top: 60px;
+    padding-bottom: 10px;
+  }
 }
 
 .tabNav {
   @include full;
+  grid-row: 1;
   position: relative;
+  height: auto;
   z-index: 2;
   display: flex;
   background: $cream;
@@ -54,11 +69,12 @@
 }
 
 .tabContent {
-  height: calc(100vh - 245px);
+  height: 100%;
   position: relative;
   border: 4px solid $orange;
   overflow: hidden;
   @include full;
+  grid-row: 2;
 }
 
 .navContainer {

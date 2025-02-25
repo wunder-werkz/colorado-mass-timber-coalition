@@ -7,10 +7,15 @@ import styles from "./style.module.scss";
 import { MediaWCaption } from "@/components/MediaWCaption";
 import SplitTextBg from "@/components/SplitTextBg";
 
+import useWindowSize from "@/hooks/useWindowSize";
+
 import { mapToGlobalProgress } from "../../utils";
 export default function Tab2({ index }) {
   const panelRef = useRef(null);
   const textRef = useRef(null);
+  const { width } = useWindowSize();
+  const smScreen = width < 786;
+
   return (
     <div ref={panelRef} className={`${styles.container}`}>
       <div className={styles.chartContainer}>
@@ -58,7 +63,7 @@ export default function Tab2({ index }) {
               end: mapToGlobalProgress(index, 25),
               fromTo: [
                 { opacity: 0, height: 0 },
-                { opacity: 1, height: "120px" },
+                { opacity: 1, height: smScreen ? "60px" : "120px" },
               ],
               ease: "power2.out",
             },
@@ -109,6 +114,7 @@ export default function Tab2({ index }) {
 }
 
 const CONTENT = {
+  sectionTitle: "Why This Is Happening?",
   title:
     "But right now, many of our forests exhibit declining health and resilience",
   image: {

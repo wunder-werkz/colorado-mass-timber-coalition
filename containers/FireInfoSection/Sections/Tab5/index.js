@@ -10,7 +10,15 @@ import Stumpy from "@/components/Stumpy";
 
 import { mapToGlobalProgress } from "../../utils";
 
+import useWindowSize from "@/hooks/useWindowSize";
+
 export default function Tab5({ index }) {
+  const { width } = useWindowSize();
+  const smScreen = width < 1080;
+  const phoneScreen = width < 900;
+
+  const sectionTitleRef = useRef(null);
+
   const headlineRef = useRef(null);
   const copyRef = useRef(null);
   const stumpTextRef = useRef(null);
@@ -38,33 +46,73 @@ export default function Tab5({ index }) {
         </ST.Animation>
       </div>
 
-      <ST.Waypoint
-        at={mapToGlobalProgress(index, 1)}
-        onCall={() => headlineRef.current?.restart()}
-        onReverseCall={() => headlineRef.current?.reverse()}
-      />
-      <div className={`${styles.headline}`}>
-        <SplitTextBg ref={headlineRef} color="cream" inline>
-          <h2>{CONTENT.headline}</h2>
-        </SplitTextBg>
+      <div className={styles.headlineWrap}>
+        {smScreen && (
+          <>
+            <ST.Waypoint
+              at={mapToGlobalProgress(index, 1)}
+              onCall={() => sectionTitleRef.current?.restart()}
+              onReverseCall={() => sectionTitleRef.current?.reverse()}
+            />
+
+            <div className={`${styles.sectionTitle}`}>
+              <SplitTextBg ref={sectionTitleRef} color="cream" inline>
+                <h2>{CONTENT.sectionTitle}</h2>
+              </SplitTextBg>
+            </div>
+          </>
+        )}
+
+        {phoneScreen && (
+          <>
+            <ST.Waypoint
+              at={mapToGlobalProgress(index, 40)}
+              onCall={() => sectionTitleRef.current?.reverse()}
+              onReverseCall={() => sectionTitleRef.current?.restart()}
+            />
+            <ST.Waypoint
+              at={mapToGlobalProgress(index, 40)}
+              onCall={() => headlineRef.current?.reverse()}
+              onReverseCall={() => headlineRef.current?.restart()}
+            />
+          </>
+        )}
+
+        <ST.Waypoint
+          at={mapToGlobalProgress(index, 1)}
+          onCall={() => headlineRef.current?.restart()}
+          onReverseCall={() => headlineRef.current?.reverse()}
+        />
+        <div className={`${styles.headline}`}>
+          <SplitTextBg ref={headlineRef} color="cream" inline>
+            <h2>{CONTENT.headline}</h2>
+          </SplitTextBg>
+        </div>
       </div>
 
       <ST.Waypoint
-        at={mapToGlobalProgress(index, 8)}
+        at={mapToGlobalProgress(index, phoneScreen ? 50 : 8)}
         onCall={() => copyRef.current?.restart()}
         onReverseCall={() => copyRef.current?.reverse()}
       />
       <div className={`${styles.copy}`}>
         <SplitTextBg ref={copyRef} color="orange">
-          <p dangerouslySetInnerHTML={{ __html: CONTENT.copy }} />
+          <p>
+            In addition to climate change, centuries of fire suppression
+            activity have led to unhealthy and unbalanced forests.<sup>8</sup>{" "}
+            Active stewardship will help our forests endure naturally occurring
+            wildfires, be less susceptible to disease and insect infestation,
+            support a broad range of biodiversity, and contribute to healthy
+            watersheds.<sup>9,10</sup>
+          </p>
         </SplitTextBg>
       </div>
 
       <div className={styles.stumpyWrap}>
         <ST.Animation
           tween={{
-            start: mapToGlobalProgress(index, 50),
-            end: mapToGlobalProgress(index, 60),
+            start: mapToGlobalProgress(index, phoneScreen ? 70 : 50),
+            end: mapToGlobalProgress(index, phoneScreen ? 80 : 60),
             fromTo: [
               { opacity: 0, scale: 0.2 },
               { opacity: 1, scale: 1 },
@@ -77,7 +125,7 @@ export default function Tab5({ index }) {
           </div>
         </ST.Animation>
         <ST.Waypoint
-          at={mapToGlobalProgress(index, 60)}
+          at={mapToGlobalProgress(index, phoneScreen ? 70 : 60)}
           onCall={() => stumpTextRef.current?.restart()}
           onReverseCall={() => stumpTextRef.current?.reverse()}
         />
@@ -93,7 +141,7 @@ export default function Tab5({ index }) {
 
 const CONTENT = {
   headline: "We need to be proactive, not reactive",
-  copy: "In addition to climate change, centuries of fire suppression activity have led to unhealthy and unbalanced forests.<sup>8</sup> Active stewardship will help our forests endure naturally occurring wildfires, be less susceptible to disease and insect infestation, support a broad range of biodiversity, and contribute to healthy watersheds.<sup>9,10</sup>",
+  sectionTitle: "What Can We Do?",
   image: {
     src: "/img/tabs/millertimber.jpg",
     alt: "Monarch Pass, <br/>Arkansas River Watershed Collaborative<br/> and Miller Timber Services",

@@ -16,6 +16,11 @@
   gap: 1rem;
 
   padding: 2rem;
+
+  @include lap-smaller {
+    padding: 1rem;
+    width: 100px;
+  }
 }
 
 .chart {
@@ -76,6 +81,15 @@
 
   @include h3;
   text-transform: uppercase;
+
+  @include phone {
+    height: 80px;
+    right: 10px;
+    top: 60%;
+    width: 95%;
+
+    padding: 0 10px;
+  }
 }
 
 .acresContainerInner {
@@ -90,6 +104,21 @@
 
   font-size: 120px;
   line-height: 1;
+
+  @include phone {
+    width: 80%;
+    font-size: 60px;
+  }
+}
+
+.acresBurnedText {
+  @include h3;
+  text-transform: uppercase;
+
+  @include phone {
+    padding: 0 10px;
+    margin: 0px 0px 10px 0px;
+  }
 }
 
 .text {
@@ -100,5 +129,11 @@
   height: auto;
   h2 {
     @include h1;
+  }
+
+  @include phone {
+    width: 90%;
+    left: 5%;
+    top: 5%;
   }
 }
