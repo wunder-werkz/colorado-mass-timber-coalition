@@ -1,7 +1,6 @@
 import localFont from "next/font/local";
 
 import { GENERAL_QUERY } from "@/sanity/lib/queries";
-import ScrollSmoother from "@/containers/ScrollSmoother";
 import Layout from "@/containers/Layout";
 import { ModalProvider } from "@/context/ModalContext";
 import Footer from "@/components/Footer";
@@ -33,9 +32,11 @@ export default async function RootLayout({ children }) {
       <body className={`${greedNarrow.variable} ${greedStandard.variable}`}>
         <ModalProvider>
           <Layout contactEmail={contactEmail} />
-          <div
+          <main
             style={{
               position: "relative",
+              width: "100%",
+              maxWidth: "100vw",
             }}
           >
             <div
@@ -44,11 +45,14 @@ export default async function RootLayout({ children }) {
                 zIndex: 1,
                 background: "#f0f5ea",
                 minHeight: "100vh",
+                width: "100%",
+                margin: "0 auto",
+                overflowX: "clip",
               }}
             >
-              <ScrollSmoother>{children}</ScrollSmoother>
+              {children}
             </div>
-          </div>
+          </main>
           <Footer contactEmail={contactEmail} />
         </ModalProvider>
       </body>
