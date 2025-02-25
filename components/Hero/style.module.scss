@@ -79,22 +79,23 @@
   top: 80px;
   left: 0;
   width: calc(100% - 100px);
-  height: calc(100% - 80px);
+  height: calc(100% - 120px);
   transform: translate(50px, 50px);
   z-index: 1;
   clip-path: circle(0% at 50% 100%);
   opacity: 0;
 
   @include tablet-and-lower {
+    top: 100px;
     width: calc(100% - 50px);
-    height: calc(100% - 50px);
-    transform: translate(25px, 25px);
+    height: calc(100% - 80px);
+    transform: translate(25px, 100%);
   }
 
   @include phone {
     width: calc(100% - 20px);
-    height: calc(100% - 20px);
-    transform: translate(10px, 10px);
+    height: calc(100% - 80px);
+    transform: translate(10px, 100%);
   }
 }
 
@@ -134,6 +135,10 @@
   max-width: 890px;
   p {
     @include h1;
+  }
+
+  @include tablet-and-lower {
+    max-width: 90%;
   }
 }
 
@@ -252,14 +257,15 @@
   }
 
   @include tablet-and-lower {
+    top: 100px;
     width: calc(100% - 50px);
-    height: calc(100% - 50px);
-    transform: translate(25px, 25px);
+    height: calc(100% - 80px);
+    transform: translate(25px, 100%);
   }
 
   @include phone {
     width: calc(100% - 20px);
-    height: calc(100% - 20px);
-    transform: translate(10px, 10px);
+    height: calc(100% - 80px);
+    transform: translate(10px, 100%);
   }
 }

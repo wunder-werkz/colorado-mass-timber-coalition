@@ -105,8 +105,7 @@ const Hero = () => {
                 start: 19.5,
                 end: 75,
                 to: {
-                  clipPath: "circle(120% at 50% 100%)",
-                  height: "calc(100% - 120px)",
+                  clipPath: "circle(190% at 50% 100%)",
                 },
               },
             ]}
