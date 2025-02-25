@@ -54,12 +54,6 @@ export default function Tab4({ index }) {
               onReverseCall={() => sectionTitleRef.current?.reverse()}
             />
 
-            <ST.Waypoint
-              at={mapToGlobalProgress(index, 40)}
-              onCall={() => sectionTitleRef.current?.reverse()}
-              onReverseCall={() => sectionTitleRef.current?.restart()}
-            />
-
             <div className={`${styles.sectionTitle}`}>
               <SplitTextBg ref={sectionTitleRef} color="cream" inline>
                 <h2>{CONTENT.sectionTitle}</h2>
@@ -68,8 +62,13 @@ export default function Tab4({ index }) {
           </>
         )}
 
-        {smScreen && (
+        {phoneScreen && (
           <>
+            <ST.Waypoint
+              at={mapToGlobalProgress(index, 40)}
+              onCall={() => sectionTitleRef.current?.reverse()}
+              onReverseCall={() => sectionTitleRef.current?.restart()}
+            />
             <ST.Waypoint
               at={mapToGlobalProgress(index, 40)}
               onCall={() => headlineT4Ref.current?.reverse()}
