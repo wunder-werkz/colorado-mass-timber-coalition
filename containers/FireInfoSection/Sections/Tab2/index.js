@@ -114,6 +114,7 @@ export default function Tab2({ index }) {
 }
 
 const CONTENT = {
+  sectionTitle: "Why This Is Happening?",
   title:
     "But right now, many of our forests exhibit declining health and resilience",
   image: {
