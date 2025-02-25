@@ -7,14 +7,32 @@
   @include full;
 }
 
+.titleWrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  padding: 20px;
+
+  @include lap-smaller {
+    padding: 10px;
+  }
+}
+
+.sectionTitle {
+  h2 {
+    @include eyebrow;
+    margin: 0;
+    padding-bottom: 10px;
+  }
+}
+
 .title {
   @include h1;
   margin: 0;
   text-align: left;
 
   position: relative;
-  top: 20px;
-  left: 20px;
   width: 80%;
   height: auto;
   z-index: 1;
@@ -24,11 +42,6 @@
     position: relative;
     @include full;
     width: 100%;
-    left: 0;
-
-    top: 0;
-
-    padding: 10px;
   }
 }
 
