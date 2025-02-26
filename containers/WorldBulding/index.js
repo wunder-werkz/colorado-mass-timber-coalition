@@ -152,12 +152,12 @@ const WorldBuildingSection = () => {
                 </div>
 
                 <ST.Waypoint
-                  at={35}
+                  at={5}
                   onCall={handleCopyStart}
                   onReverseCall={handleCopyReverse}
                 />
                 <ST.Waypoint
-                  at={55}
+                  at={20}
                   onCall={handleCopyReverseAlt}
                   onReverseCall={handleCopyStartAlt}
                 />
@@ -229,8 +229,8 @@ const WorldBuildingSection = () => {
                         ease: "power2.out",
                       },
                       {
-                        start: 60,
-                        end: 70,
+                        start: 70,
+                        end: 80,
                         to: { opacity: 0, scale: 0 },
                         ease: "power2.out",
                       },
@@ -246,7 +246,7 @@ const WorldBuildingSection = () => {
                     onReverseCall={handleStumpTextReverse}
                   />
                   <ST.Waypoint
-                    at={80}
+                    at={75}
                     onCall={handleStumpTextReverseAlt}
                     onReverseCall={handleStumpTextStartAlt}
                   />

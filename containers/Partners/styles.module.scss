@@ -2,12 +2,22 @@
 
 .container {
   padding: 80px 60px;
+  @include lap-smaller {
+    padding: 60px 20px 80px 20px;
+  }
+  @include phone {
+    padding: 60px 10px 80px 10px;
+  }
 }
 
 .titleWrapper {
   margin-bottom: 4rem;
   h2 {
     @include h1;
+  }
+
+  @include lap-smaller {
+    margin-bottom: 1rem;
   }
 }
 
@@ -16,6 +26,10 @@
   flex-direction: column;
   gap: 2rem;
   margin: 0 auto;
+
+  @include lap-smaller {
+    gap: 0;
+  }
 }
 
 .partnerItem {

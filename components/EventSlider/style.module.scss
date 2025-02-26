@@ -3,6 +3,12 @@
 .eventsHomeWrap {
   position: relative;
   padding: 100px 60px;
+  @include lap-smaller {
+    padding: 50px 20px;
+  }
+  @include phone {
+    padding: 20px 10px;
+  }
 }
 
 .topWrap {
@@ -14,6 +20,14 @@
     left: 50%;
     transform: translateX(-50%);
   }
+  @include lap-smaller {
+    a {
+      position: relative;
+      left: 0;
+      transform: translateX(0);
+      margin-top: 20px;
+    }
+  }
 }
 
 .sliderContainer {
@@ -23,6 +37,9 @@
   width: 100%;
 
   margin: 100px 0px;
+  @include lap-smaller {
+    margin: 20px 0px;
+  }
 }
 
 .eventsTitle {
@@ -45,6 +62,10 @@
   gap: 1rem;
   margin: 30px auto;
   width: 300px;
+
+  @include lap-smaller {
+    margin: 10px auto;
+  }
 }
 
 .navDivider {
