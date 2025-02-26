@@ -12,6 +12,10 @@ import {
 import { gsap, SplitText } from "@/lib/gsapConfig";
 import styles from "./style.module.scss";
 import { useModal } from "@/context/ModalContext";
+import useWindowSize from "@/hooks/useWindowSize";
+
+// Mobile breakpoint
+const MOBILE_BREAKPOINT = 768;
 
 // Debounce utility
 const debounce = (func, wait) => {
@@ -30,6 +34,8 @@ const SplitTextBg = forwardRef(
     const animationTl = useRef(null);
     const splitTextInstanceRef = useRef(null);
     const { openModal } = useModal();
+    const { width } = useWindowSize();
+    const isMobile = width < MOBILE_BREAKPOINT;
 
     const lastWidthRef = useRef(0);
 
@@ -44,6 +50,95 @@ const SplitTextBg = forwardRef(
     const setupSplitText = useCallback(() => {
       if (!textRef.current) return;
 
+      // Clean up previous animation if it exists
+      if (animationTl.current) {
+        animationTl.current.kill();
+      }
+
+      // For mobile devices, create a simple fade animation instead of split text
+      if (isMobile) {
+        // Reset any previous split text
+        if (splitTextInstanceRef.current) {
+          splitTextInstanceRef.current.revert();
+          splitTextInstanceRef.current = null;
+          backgroundsRef.current = [];
+          linesRef.current = [];
+        }
+
+        // Create a single background element for mobile
+        // Clean up previous background if exists
+        const previousBg = textRef.current.querySelector(`.${styles.mobileBg}`);
+        if (previousBg) {
+          previousBg.remove();
+        }
+
+        const mobileBackground = document.createElement("div");
+        mobileBackground.className = `${styles.lineBackground} ${styles.mobileBg}`;
+        mobileBackground.style.position = "absolute";
+        mobileBackground.style.top = "0";
+        mobileBackground.style.left = "0";
+        mobileBackground.style.width = "100%";
+        mobileBackground.style.height = "100%";
+        mobileBackground.style.zIndex = "0";
+        textRef.current.style.position = "relative";
+
+        // Insert background before content
+        textRef.current.insertBefore(
+          mobileBackground,
+          textRef.current.firstChild
+        );
+
+        // Store reference to background
+        backgroundsRef.current = [mobileBackground];
+
+        // Ensure content sits on top of background
+        if (textRef.current.children[1]) {
+          textRef.current.children[1].style.position = "relative";
+          textRef.current.children[1].style.zIndex = "1";
+        }
+
+        // Reset initial states
+        gsap.set(mobileBackground, { scaleY: 0 });
+        gsap.set(textRef.current.children[1], {
+          autoAlpha: 0,
+          y: 20,
+        });
+
+        // Setup animation timeline for mobile
+        animationTl.current = gsap.timeline({ paused: true });
+        animationTl.current
+          .addLabel("start")
+          .to(
+            mobileBackground,
+            {
+              scaleY: 1,
+              duration: 0.3,
+              ease: "power2.inOut",
+            },
+            "start"
+          )
+          .to(
+            textRef.current.children[1],
+            {
+              autoAlpha: 1,
+              y: 0,
+              duration: 0.5,
+              ease: "power2.out",
+            },
+            "start+=0.2"
+          );
+
+        // Apply play state based on isPlaying prop
+        if (isPlaying) {
+          animationTl.current.play();
+        } else {
+          animationTl.current.pause();
+        }
+
+        return;
+      }
+
+      // Desktop animation with split text below
       const padding = "1px 25px";
       textRef.current.style.padding = padding;
 
@@ -143,7 +238,7 @@ const SplitTextBg = forwardRef(
       } else {
         animationTl.current.pause();
       }
-    }, [inline, isPlaying, openModal]);
+    }, [inline, isPlaying, openModal, isMobile]);
 
     // Create memoized handlers
     const debouncedResizeHandler = useMemo(
@@ -178,22 +273,31 @@ const SplitTextBg = forwardRef(
     }, [inline, debouncedResizeHandler, setupSplitText]);
 
     useEffect(() => {
-      if (isPlaying) {
-        // Reset will-change for animation
-        backgroundsRef.current.forEach((bg) => {
-          if (bg) bg.style.willChange = "transform";
-        });
+      if (animationTl.current) {
+        if (isPlaying) {
+          if (!isMobile) {
+            // Reset will-change for animation on desktop
+            backgroundsRef.current.forEach((bg) => {
+              if (bg) bg.style.willChange = "transform";
+            });
 
-        linesRef.current.forEach((line) => {
-          if (line && line.parentNode)
-            line.parentNode.style.willChange = "transform";
-        });
+            linesRef.current.forEach((line) => {
+              if (line && line.parentNode)
+                line.parentNode.style.willChange = "transform";
+            });
+          }
 
-        animationTl.current?.play();
-      } else {
-        animationTl.current?.pause();
+          animationTl.current?.play();
+        } else {
+          animationTl.current?.reverse();
+        }
       }
-    }, [isPlaying]);
+    }, [isPlaying, isMobile]);
+
+    // Set up new effect to re-initialize animation when screen size changes between mobile and desktop
+    useEffect(() => {
+      setupSplitText();
+    }, [isMobile, setupSplitText]);
 
     // Clean up effect for event listeners on citations
     useEffect(() => {
