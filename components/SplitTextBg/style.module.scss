@@ -47,6 +47,7 @@
   display: block;
   font-size: inherit;
   line-height: 1.1;
+  will-change: transform;
 
   &.inline {
     display: inline-block;
@@ -59,6 +60,7 @@
   inset: 0;
   background-color: var(--bg-color, #000);
   transform-origin: bottom;
+  will-change: transform;
 }
 
 .line {
@@ -68,6 +70,8 @@
   font-size: inherit;
   line-height: inherit;
   padding: 1px 15px;
+  will-change: transform;
+  transform: translateY(0);
 }
 
 .citation {

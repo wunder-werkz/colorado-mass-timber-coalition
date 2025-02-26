@@ -6,6 +6,7 @@ import {
   useImperativeHandle,
   useEffect,
   useMemo,
+  useCallback,
 } from "react";
 
 import { gsap, SplitText } from "@/lib/gsapConfig";
@@ -30,21 +31,6 @@ const SplitTextBg = forwardRef(
     const splitTextInstanceRef = useRef(null);
     const { openModal } = useModal();
 
-    // Create memoized handlers
-    const debouncedResizeHandler = useMemo(
-      () =>
-        debounce(() => {
-          if (!textRef.current) return;
-
-          // Only do a full recalculation on significant size changes
-          if (window.innerWidth !== lastWidthRef.current) {
-            setupSplitText();
-            lastWidthRef.current = window.innerWidth;
-          }
-        }, 300),
-      []
-    );
-
     const lastWidthRef = useRef(0);
 
     useImperativeHandle(ref, () => ({
@@ -55,7 +41,7 @@ const SplitTextBg = forwardRef(
     }));
 
     // Define setupSplitText function outside useEffect to allow reuse
-    const setupSplitText = () => {
+    const setupSplitText = useCallback(() => {
       if (!textRef.current) return;
 
       const padding = "1px 25px";
@@ -109,8 +95,9 @@ const SplitTextBg = forwardRef(
         backgroundsRef.current[i] = background;
         linesRef.current[i] = line;
 
+        // Set initial states using only transforms
         gsap.set(background, { scaleY: 0 });
-        gsap.set(line, { yPercent: 100, opacity: 0 });
+        gsap.set(line, { yPercent: 100 }); // Removed opacity, using only transforms
       });
 
       // Setup animation timeline
@@ -145,7 +132,6 @@ const SplitTextBg = forwardRef(
           linesRef.current,
           {
             yPercent: 0,
-            opacity: 1,
             duration: 0.4,
             stagger: 0.1,
             ease: "expo.out",
@@ -159,30 +145,39 @@ const SplitTextBg = forwardRef(
       } else {
         animationTl.current.pause();
       }
-    };
+    }, [inline, isPlaying, openModal]);
+
+    // Create memoized handlers
+    const debouncedResizeHandler = useMemo(
+      () =>
+        debounce(() => {
+          if (!textRef.current) return;
+
+          // Only do a full recalculation on significant size changes
+          if (window.innerWidth !== lastWidthRef.current) {
+            setupSplitText();
+            lastWidthRef.current = window.innerWidth;
+          }
+        }, 300),
+      [setupSplitText]
+    );
 
     useEffect(() => {
       const ctx = gsap.context(() => {
-        // Record initial width
         lastWidthRef.current = window.innerWidth;
-
-        // Initial setup
         setupSplitText();
-
-        // Add resize handler
         window.addEventListener("resize", debouncedResizeHandler);
 
         return () => {
           if (splitTextInstanceRef.current) {
             splitTextInstanceRef.current.revert();
           }
-
           window.removeEventListener("resize", debouncedResizeHandler);
         };
       }, textRef);
 
       return () => ctx.revert();
-    }, [inline, debouncedResizeHandler]);
+    }, [inline, debouncedResizeHandler, setupSplitText]);
 
     useEffect(() => {
       if (isPlaying) {
@@ -204,9 +199,10 @@ const SplitTextBg = forwardRef(
 
     // Clean up effect for event listeners on citations
     useEffect(() => {
+      const text = textRef.current;
       return () => {
-        if (textRef.current) {
-          const sups = textRef.current.getElementsByTagName("sup");
+        if (text) {
+          const sups = text.getElementsByTagName("sup");
           if (sups.length) {
             Array.from(sups).forEach((sup) => {
               sup.removeEventListener("click", openModal);
