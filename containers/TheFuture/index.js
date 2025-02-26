@@ -6,6 +6,8 @@ import styles from "./style.module.scss";
 
 import SplitTextBg from "@/components/SplitTextBg";
 
+import useWindowSize from "@/hooks/useWindowSize";
+
 import { CLTSvg, GLUSvg, NLTSvg, DLTSvg } from "./SVG";
 
 export default function TheFuture() {
@@ -16,6 +18,9 @@ export default function TheFuture() {
   const gluRef = useRef(null);
   const nltRef = useRef(null);
   const dltRef = useRef(null);
+
+  const { width } = useWindowSize();
+  const smScreen = width < 1090;
 
   return (
     <ST.Root
@@ -55,7 +60,7 @@ export default function TheFuture() {
           </div>
 
           <ST.Waypoint
-            at={80}
+            at={smScreen ? 10 : 80}
             onCall={() => copy.current?.restart()}
             onReverseCall={() => copy.current?.reverse()}
           />
