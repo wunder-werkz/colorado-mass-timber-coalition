@@ -16,7 +16,6 @@ const FireInfoSection = () => {
       end="bottom bottom"
       callbacks={{
         refreshPriority: 2,
-        normalizeScroll: true,
       }}
     >
       <ST.Pin

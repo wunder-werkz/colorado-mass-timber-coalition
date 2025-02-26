@@ -45,7 +45,6 @@ export default function BuiltToLast() {
       end="bottom bottom"
       callbacks={{
         refreshPriority: 5,
-        normalizeScroll: true,
       }}
     >
       <ST.Pin

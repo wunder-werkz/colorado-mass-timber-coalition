@@ -84,7 +84,7 @@ const WorldBuildingSection = () => {
       end="bottom bottom"
       callbacks={{
         refreshPriority: 3,
-        normalizeScroll: true,
+        invalidateOnRefresh: true,
       }}
     >
       <ST.Pin childHeight={"100vh"} pinSpacerHeight={`400vh`} top={0}>

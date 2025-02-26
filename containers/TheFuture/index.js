@@ -70,7 +70,6 @@ export default function TheFuture() {
       end="top top"
       callbacks={{
         refreshPriority: 4,
-        normalizeScroll: true,
       }}
     >
       <div className={`${styles.container}`}>
