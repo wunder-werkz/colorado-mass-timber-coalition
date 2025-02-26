@@ -70,9 +70,9 @@ const Hero = () => {
       .to(
         ".mask-container",
         {
-          clipPath: "circle(25% at 50% 100%)",
+          clipPath: "circle(15% at 50% 100%)",
           opacity: 1,
-          y: 0,
+          y: 50,
           duration: duration * 0.7,
           ease: "power2.inOut",
         },
@@ -186,6 +186,7 @@ const Hero = () => {
                 start: 25,
                 end: 75,
                 to: {
+                  y: 0,
                   clipPath: isMobile
                     ? "circle(190% at 50% 100%)"
                     : "circle(120% at 50% 100%)",
@@ -267,8 +268,8 @@ const Hero = () => {
           </ST.Animation>
           <ST.Animation
             tween={{
-              start: 70,
-              end: 85,
+              start: 65,
+              end: 80,
               to: { y: 0, opacity: 1, ease: "power2.inOut" },
             }}
           >

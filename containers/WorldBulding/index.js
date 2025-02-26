@@ -87,7 +87,7 @@ const WorldBuildingSection = () => {
         invalidateOnRefresh: true,
       }}
     >
-      <ST.Pin childHeight={"100vh"} pinSpacerHeight={`400vh`} top={0}>
+      <ST.Pin childHeight={"100vh"} pinSpacerHeight={`500vh`} top={0}>
         <div className={styles.padWrap}>
           <div className={styles.container}>
             <div className={styles.mediaWCaption}>
@@ -120,7 +120,7 @@ const WorldBuildingSection = () => {
 
               <div className={styles.contentContainer}>
                 <ST.Waypoint
-                  at={1}
+                  at={5}
                   onCall={handleEyebrowStart}
                   onReverseCall={handleEyebrowReverse}
                 />
@@ -136,7 +136,7 @@ const WorldBuildingSection = () => {
                 </div>
 
                 <ST.Waypoint
-                  at={2}
+                  at={8}
                   onCall={() => headline.current?.restart()}
                   onReverseCall={() => headline.current?.reverse()}
                 />
@@ -152,12 +152,12 @@ const WorldBuildingSection = () => {
                 </div>
 
                 <ST.Waypoint
-                  at={5}
+                  at={10}
                   onCall={handleCopyStart}
                   onReverseCall={handleCopyReverse}
                 />
                 <ST.Waypoint
-                  at={20}
+                  at={25}
                   onCall={handleCopyReverseAlt}
                   onReverseCall={handleCopyStartAlt}
                 />
@@ -174,8 +174,8 @@ const WorldBuildingSection = () => {
                 <ST.Animation
                   tween={[
                     {
-                      start: 25,
-                      end: 30,
+                      start: 30,
+                      end: 40,
                       fromTo: [
                         { opacity: 0, height: 0 },
                         { opacity: 1, height: "120px" },
@@ -183,8 +183,8 @@ const WorldBuildingSection = () => {
                       ease: "power2.out",
                     },
                     {
-                      start: 70,
-                      end: 80,
+                      start: 75,
+                      end: 85,
                       to: { opacity: 0, height: 0 },
                       ease: "power2.out",
                     },
@@ -246,7 +246,7 @@ const WorldBuildingSection = () => {
                     onReverseCall={handleStumpTextReverse}
                   />
                   <ST.Waypoint
-                    at={75}
+                    at={72}
                     onCall={handleStumpTextReverseAlt}
                     onReverseCall={handleStumpTextStartAlt}
                   />

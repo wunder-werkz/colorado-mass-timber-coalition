@@ -64,7 +64,7 @@ export default function Tab6({ index }) {
           {smScreen && (
             <>
               <ST.Waypoint
-                at={mapToGlobalProgress(index, 1)}
+                at={mapToGlobalProgress(index, 5)}
                 onCall={handleSectionTitleStart}
                 onReverseCall={handleSectionTitleReverse}
               />
@@ -93,7 +93,7 @@ export default function Tab6({ index }) {
             </>
           )}
           <ST.Waypoint
-            at={mapToGlobalProgress(index, 1)}
+            at={mapToGlobalProgress(index, 5)}
             onCall={handleHeadlineStart}
             onReverseCall={handleHeadlineReverse}
           />
@@ -106,7 +106,7 @@ export default function Tab6({ index }) {
         </div>
 
         <ST.Waypoint
-          at={mapToGlobalProgress(index, phoneScreen ? 50 : 8)}
+          at={mapToGlobalProgress(index, phoneScreen ? 50 : 15)}
           onCall={handleCopyStart}
           onReverseCall={handleCopyReverse}
         />
@@ -120,8 +120,8 @@ export default function Tab6({ index }) {
         <div className={styles.scaleWrap}>
           <ST.Animation
             tween={{
-              start: mapToGlobalProgress(index, 5),
-              end: mapToGlobalProgress(index, 15),
+              start: mapToGlobalProgress(index, 0),
+              end: mapToGlobalProgress(index, 5),
               fromTo: [
                 { scale: 1.1, filter: "blur(10px)" },
                 { scale: 1, filter: "blur(0px)" },
@@ -141,8 +141,8 @@ export default function Tab6({ index }) {
         <div className={styles.stumpyWrap}>
           <ST.Animation
             tween={{
-              start: mapToGlobalProgress(index, phoneScreen ? 60 : 50),
-              end: mapToGlobalProgress(index, phoneScreen ? 70 : 60),
+              start: mapToGlobalProgress(index, phoneScreen ? 65 : 50),
+              end: mapToGlobalProgress(index, phoneScreen ? 75 : 60),
               fromTo: [
                 { opacity: 0, scale: 0.2 },
                 { opacity: 1, scale: 1 },
@@ -155,7 +155,7 @@ export default function Tab6({ index }) {
             </div>
           </ST.Animation>
           <ST.Waypoint
-            at={mapToGlobalProgress(index, phoneScreen ? 60 : 50)}
+            at={mapToGlobalProgress(index, phoneScreen ? 70 : 65)}
             onCall={handleStumpTextStart}
             onReverseCall={handleStumpTextReverse}
           />

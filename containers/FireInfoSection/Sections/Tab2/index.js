@@ -50,10 +50,36 @@ export default function Tab2({ index }) {
       </div>
 
       <div className={styles.contentContainer}>
+        <ST.Animation
+          tween={{
+            start: mapToGlobalProgress(index, 0),
+            end: mapToGlobalProgress(index, 10),
+            fromTo: [{ scale: 1.3 }, { scale: 1 }],
+            ease: "power2.out",
+          }}
+        >
+          <div className={styles.mediaWCaption}>
+            <MediaWCaption
+              url={CONTENT.image.src}
+              caption={CONTENT.image.alt}
+            />
+            <ST.Animation
+              tween={{
+                start: mapToGlobalProgress(index, 25),
+                end: mapToGlobalProgress(index, 65),
+                fromTo: [{ height: 0 }, { height: "100%" }],
+                ease: "power2.out",
+              }}
+            >
+              <div className={styles.mediaWCaptionInner}></div>
+            </ST.Animation>
+          </div>
+        </ST.Animation>
+
         {smScreen && (
           <>
             <ST.Waypoint
-              at={mapToGlobalProgress(index, 1)}
+              at={mapToGlobalProgress(index, 10)}
               onCall={handleSectionTitleStart}
               onReverseCall={handleSectionTitleReverse}
             />
@@ -70,37 +96,12 @@ export default function Tab2({ index }) {
             </div>
           </>
         )}
-        <ST.Animation
-          tween={{
-            start: mapToGlobalProgress(index, 0),
-            end: mapToGlobalProgress(index, 15),
-            fromTo: [{ scale: 1.3 }, { scale: 1 }],
-            ease: "power2.out",
-          }}
-        >
-          <div className={styles.mediaWCaption}>
-            <MediaWCaption
-              url={CONTENT.image.src}
-              caption={CONTENT.image.alt}
-            />
-            <ST.Animation
-              tween={{
-                start: mapToGlobalProgress(index, 25),
-                end: mapToGlobalProgress(index, 80),
-                fromTo: [{ height: 0 }, { height: "100%" }],
-                ease: "power2.out",
-              }}
-            >
-              <div className={styles.mediaWCaptionInner}></div>
-            </ST.Animation>
-          </div>
-        </ST.Animation>
 
         <ST.Animation
           tween={[
             {
               start: mapToGlobalProgress(index, 15),
-              end: mapToGlobalProgress(index, 25),
+              end: mapToGlobalProgress(index, 20),
               fromTo: [
                 { opacity: 0, height: 0 },
                 { opacity: 1, height: smScreen ? "60px" : "120px" },
@@ -108,8 +109,8 @@ export default function Tab2({ index }) {
               ease: "power2.out",
             },
             {
-              start: mapToGlobalProgress(index, 90),
-              end: mapToGlobalProgress(index, 95),
+              start: mapToGlobalProgress(index, 70),
+              end: mapToGlobalProgress(index, 75),
               to: { opacity: 0, height: 0 },
               ease: "power2.out",
             },
@@ -118,8 +119,8 @@ export default function Tab2({ index }) {
           <div className={styles.acresContainer}>
             <ST.Animation
               tween={{
-                start: mapToGlobalProgress(index, 30),
-                end: mapToGlobalProgress(index, 85),
+                start: mapToGlobalProgress(index, 25),
+                end: mapToGlobalProgress(index, 65),
                 ease: "power2.out",
                 to: {
                   yPercent: -700,
@@ -139,7 +140,7 @@ export default function Tab2({ index }) {
         </ST.Animation>
 
         <ST.Waypoint
-          at={mapToGlobalProgress(index, 90)}
+          at={mapToGlobalProgress(index, 80)}
           onCall={handleTextStart}
           onReverseCall={handleTextReverse}
         />
