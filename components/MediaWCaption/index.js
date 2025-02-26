@@ -29,8 +29,8 @@ export const MediaWCaption = memo(({ url, caption, priority = false }) => {
       : 50
     : // Regular images get higher quality
       window.innerWidth < 768
-      ? 65
-      : 75;
+      ? 75
+      : 85;
 
   return (
     <div className={styles.mediaWCaption}>
@@ -49,7 +49,7 @@ export const MediaWCaption = memo(({ url, caption, priority = false }) => {
           alt={caption || "CMTA Media"}
           className={styles.media}
           fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           style={{
             objectFit: "cover",
             willChange: "transform",
