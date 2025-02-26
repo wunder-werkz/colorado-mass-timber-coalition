@@ -5,6 +5,10 @@
   height: 100%;
   position: relative;
   display: flex;
+
+  @include lap-smaller {
+    flex-direction: column;
+  }
 }
 
 .column {
@@ -17,6 +21,10 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
+    @include lap-smaller {
+      width: 100%;
+    }
   }
 
   &:last-of-type {
@@ -24,11 +32,24 @@
     height: 100%;
     position: relative;
     background-color: $cream;
+
+    @include lap-smaller {
+      width: 100%;
+    }
   }
 }
 
 .column2 {
   position: relative;
+
+  @include lap-smaller {
+    min-height: 100vh;
+    padding-top: 150px;
+    padding-bottom: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 .eyebrow {
@@ -100,6 +121,16 @@
   .stumpyText {
     top: 50%;
     transform: translateY(-20%);
+
+    @include lap-smaller {
+      top: 0;
+      transform: translateY(-50%);
+    }
+  }
+
+  @include lap-smaller {
+    top: 60%;
+    left: 5%;
   }
 }
 
@@ -111,6 +142,13 @@
 
   .stumpyText {
     transform: translate(50%, -110%);
+    @include lap-smaller {
+      transform: translate(50%, -200%);
+    }
+  }
+
+  @include lap-smaller {
+    top: 12%;
   }
 }
 
@@ -123,6 +161,16 @@
   .stumpyText {
     max-width: 300px;
     transform: translate(-100%, -80%);
+
+    @include lap-smaller {
+      max-width: 190px;
+      transform: translate(-60%, 80%);
+    }
+  }
+
+  @include lap-smaller {
+    right: 5%;
+    transform: translate(50%, -25%);
   }
 }
 
@@ -139,6 +187,12 @@
     text-align: center;
     @include h2;
   }
+
+  @include lap-smaller {
+    width: 80%;
+    left: 50%;
+    transform: translate(-50%, -70%);
+  }
 }
 
 .secondStumpWrapper {
@@ -147,9 +201,18 @@
 
   .stumpyWrapper-1 {
     top: 5%;
+
+    @include lap-smaller {
+      top: 12%;
+    }
   }
 
   .stumpyWrapper-2 {
     transform: translateX(-80%);
+
+    @include lap-smaller {
+      right: 0;
+      transform: translate(-20%, -25%);
+    }
   }
 }

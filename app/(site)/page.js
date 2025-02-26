@@ -1,7 +1,7 @@
 import { PARTNERS_QUERY, UPCOMING_EVENTS_QUERY } from "@/sanity/lib/queries";
 import { client } from "@/sanity/lib/client";
 
-import Hero from "@/components/Hero";
+import Hero from "@/containers/Hero";
 import EventSlider from "@/components/EventSlider";
 import FireInfoSection from "@/containers/FireInfoSection";
 import WorldBuildingSection from "@/containers/WorldBulding";
@@ -18,10 +18,10 @@ export default async function Home() {
   return (
     <>
       <Hero />
-      <FireInfoSection />
-      <WorldBuildingSection />
+      {/* <FireInfoSection /> */}
+      {/* <WorldBuildingSection />
       <TheFuture />
-      <Benefits />
+      <Benefits /> */}
       <BuiltToLast />
       <EventSlider events={events} />
       <Partners partners={partners} />

@@ -99,7 +99,7 @@ const Hero = () => {
       end="bottom bottom"
       callbacks={{
         refreshPriority: 1,
-        invalidateOnRefresh: true,
+        normalizeScroll: true,
         onUpdate: () => {
           if (!isInitialized) {
             setIsInitialized(true);

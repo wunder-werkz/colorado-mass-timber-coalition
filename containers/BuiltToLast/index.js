@@ -7,9 +7,14 @@ import styles from "./style.module.scss";
 import SplitTextBg from "@/components/SplitTextBg";
 import Stumpy from "@/components/Stumpy";
 
+import useWindowSize from "@/hooks/useWindowSize";
+
 import { FullSvg } from "./SVGs";
 
 export default function BuiltToLast() {
+  const { width } = useWindowSize();
+  const smScreen = width < 1080;
+
   const headline = useRef(null);
   const copy = useRef(null);
   const eyebrowRef = useRef(null);
@@ -36,20 +41,24 @@ export default function BuiltToLast() {
   return (
     <ST.Root
       scrub={true}
-      start="top center"
+      start={smScreen ? "top 80%" : "top center"}
       end="bottom bottom"
       callbacks={{
         refreshPriority: 5,
-        invalidateOnRefresh: true,
+        normalizeScroll: true,
       }}
     >
-      <ST.Pin childHeight={"100vh"} pinSpacerHeight={`400vh`} top={0}>
+      <ST.Pin
+        childHeight={smScreen ? "150vh" : "100vh"}
+        pinSpacerHeight={`400vh`}
+        top={smScreen ? "-50%" : 0}
+      >
         <div className={`${styles.tabPanel}`}>
           <ST.Animation
             tween={{
               start: 60,
               end: 70,
-              to: { xPercent: -100 },
+              to: { xPercent: smScreen ? 0 : -100 },
             }}
           >
             <div className={styles.column}>
@@ -96,7 +105,7 @@ export default function BuiltToLast() {
             tween={{
               start: 60,
               end: 70,
-              to: { width: "100%", xPercent: -20 },
+              to: { width: "100%", xPercent: smScreen ? 0 : -20 },
             }}
           >
             <div className={`${styles.column} ${styles.column2}`}>
