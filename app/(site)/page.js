@@ -18,10 +18,10 @@ export default async function Home() {
   return (
     <>
       <Hero />
-      {/* <FireInfoSection /> */}
-      {/* <WorldBuildingSection />
+      <FireInfoSection />
+      <WorldBuildingSection />
       <TheFuture />
-      <Benefits /> */}
+      <Benefits />
       <BuiltToLast />
       <EventSlider events={events} />
       <Partners partners={partners} />
