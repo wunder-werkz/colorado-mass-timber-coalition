@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useCallback } from "react";
 import * as ST from "@bsmnt/scrollytelling";
 import SplitTextBg from "@/components/SplitTextBg";
 import styles from "./styles.module.scss";
@@ -8,13 +8,22 @@ import styles from "./styles.module.scss";
 export default function Partners({ partners }) {
   const splitTextRef = useRef(null);
 
+  // Memoized callbacks for animations
+  const handleSplitTextStart = useCallback(() => {
+    splitTextRef.current?.restart();
+  }, []);
+
+  const handleSplitTextReverse = useCallback(() => {
+    splitTextRef.current?.reverse();
+  }, []);
+
   return (
-    <ST.Root scrub="true" start="top center" end="bottom bottom">
+    <ST.Root scrub={true} start="top center" end="bottom bottom">
       <div className={styles.container}>
         <ST.Waypoint
           at={1}
-          onCall={() => splitTextRef.current?.restart()}
-          onReverseCall={() => splitTextRef.current?.reverse()}
+          onCall={handleSplitTextStart}
+          onReverseCall={handleSplitTextReverse}
         />
 
         <div className={styles.titleWrapper}>

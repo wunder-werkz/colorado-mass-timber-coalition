@@ -1,8 +1,9 @@
 import * as styles from "./style.module.scss";
-
 import Image from "next/image";
+import { memo, useState, useEffect } from "react";
 
-export const MediaWCaption = ({ url, caption, priority = false }) => {
+export const MediaWCaption = memo(({ url, caption, priority = false }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
   const imageUrl = typeof url === "string" ? url : url?.src;
   const isGif = imageUrl?.toLowerCase().endsWith(".gif");
   const isRemoteUrl = typeof url === "string";
@@ -12,22 +13,55 @@ export const MediaWCaption = ({ url, caption, priority = false }) => {
     ? "data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8H8NQDwAFmQHc0XzqVQAAAABJRU5ErkJggg=="
     : undefined;
 
+  // Use effect to help with initial render flickering
+  useEffect(() => {
+    if (priority) {
+      // If priority, set loaded immediately for smooth animations
+      setIsLoaded(true);
+    }
+  }, [priority]);
+
+  // Determine quality based on device performance
+  const imageQuality = isGif
+    ? // Lower quality for GIFs
+      window.innerWidth < 768
+      ? 40
+      : 50
+    : // Regular images get higher quality
+      window.innerWidth < 768
+      ? 65
+      : 75;
+
   return (
     <div className={styles.mediaWCaption}>
-      <Image
-        src={url}
-        alt={caption || "CMTA Media"}
-        className={styles.media}
-        fill
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+      <div
+        className={`will-change-transform ${isLoaded ? "loaded" : ""}`}
         style={{
-          objectFit: "cover",
+          width: "100%",
+          height: "100%",
+          position: "relative",
+          transition: "opacity 0.3s ease-in-out",
+          opacity: isLoaded ? 1 : 0,
         }}
-        loading={priority ? "eager" : "lazy"}
-        quality={75}
-        {...(!isRemoteUrl && { placeholder: "blur" })}
-        {...(isGif && { placeholder: "blur", blurDataURL })}
-      />
+      >
+        <Image
+          src={url}
+          alt={caption || "CMTA Media"}
+          className={styles.media}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          style={{
+            objectFit: "cover",
+            willChange: "transform",
+          }}
+          loading={priority ? "eager" : "lazy"}
+          quality={imageQuality}
+          unoptimized={isGif}
+          onLoadingComplete={() => setIsLoaded(true)}
+          {...(!isRemoteUrl && { placeholder: "blur" })}
+          {...(isGif && { placeholder: "blur", blurDataURL })}
+        />
+      </div>
       {caption && (
         <div
           className={`${styles.caption}`}
@@ -36,4 +70,6 @@ export const MediaWCaption = ({ url, caption, priority = false }) => {
       )}
     </div>
   );
-};
+});
+
+MediaWCaption.displayName = "MediaWCaption";

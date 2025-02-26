@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { gsap } from "@/lib/gsapConfig";
 import styles from "./style.module.scss";
 import SplitTextBg from "@/components/SplitTextBg";
@@ -12,14 +12,23 @@ export default function EventsClient({ pastEvents, upcomingEvents }) {
   const splitTextAnimationRef = useRef(null);
   const eventsRef = useRef([]);
 
+  // Memoized callbacks for animations
+  const handleSplitTextStart = useCallback(() => {
+    splitTextAnimationRef.current?.restart();
+  }, []);
+
+  const handleSplitTextReverse = useCallback(() => {
+    splitTextAnimationRef.current?.reverse();
+  }, []);
+
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.from(containerRef.current, {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top 75%",
-          onEnter: () => splitTextAnimationRef.current?.restart(),
-          onLeaveBack: () => splitTextAnimationRef.current?.reverse(),
+          onEnter: handleSplitTextStart,
+          onLeaveBack: handleSplitTextReverse,
         },
       });
 
@@ -41,7 +50,7 @@ export default function EventsClient({ pastEvents, upcomingEvents }) {
     });
 
     return () => ctx.revert();
-  }, [isShowingPastEvents]);
+  }, [handleSplitTextStart, handleSplitTextReverse]);
 
   return (
     <div className={styles.eventsPageWrap} ref={containerRef}>

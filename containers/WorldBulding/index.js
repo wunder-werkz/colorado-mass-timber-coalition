@@ -1,6 +1,6 @@
 "use client";
 import * as ST from "@bsmnt/scrollytelling";
-import { useRef } from "react";
+import { useRef, useCallback } from "react";
 import styles from "./style.module.scss";
 
 import { MediaWCaption } from "@/components/MediaWCaption";
@@ -20,9 +20,66 @@ const WorldBuildingSection = () => {
   const { width } = useWindowSize();
   const smScreen = width < 786;
 
+  // Memoized callbacks for animations
+  const handleEyebrowStart = useCallback(() => {
+    eyebrowRef.current?.restart();
+  }, []);
+
+  const handleEyebrowReverse = useCallback(() => {
+    eyebrowRef.current?.reverse();
+  }, []);
+
+  const handleEyebrowReverseAlt = useCallback(() => {
+    eyebrowRef.current?.reverse();
+  }, []);
+
+  const handleEyebrowStartAlt = useCallback(() => {
+    eyebrowRef.current?.restart();
+  }, []);
+
+  const handleCopyStart = useCallback(() => {
+    copyRef.current?.restart();
+  }, []);
+
+  const handleCopyReverse = useCallback(() => {
+    copyRef.current?.reverse();
+  }, []);
+
+  const handleCopyReverseAlt = useCallback(() => {
+    copyRef.current?.reverse();
+  }, []);
+
+  const handleCopyStartAlt = useCallback(() => {
+    copyRef.current?.restart();
+  }, []);
+
+  const handleStumpTextStart = useCallback(() => {
+    stumpTextRef.current?.restart();
+  }, []);
+
+  const handleStumpTextReverse = useCallback(() => {
+    stumpTextRef.current?.reverse();
+  }, []);
+
+  const handleStumpTextReverseAlt = useCallback(() => {
+    stumpTextRef.current?.reverse();
+  }, []);
+
+  const handleStumpTextStartAlt = useCallback(() => {
+    stumpTextRef.current?.restart();
+  }, []);
+
+  const handleEndCopyStart = useCallback(() => {
+    endCopyRef.current?.restart();
+  }, []);
+
+  const handleEndCopyReverse = useCallback(() => {
+    endCopyRef.current?.reverse();
+  }, []);
+
   return (
     <ST.Root
-      scrub="true"
+      scrub={true}
       start="top top"
       end="bottom bottom"
       callbacks={{
@@ -64,13 +121,13 @@ const WorldBuildingSection = () => {
               <div className={styles.contentContainer}>
                 <ST.Waypoint
                   at={1}
-                  onCall={() => eyebrowRef.current?.restart()}
-                  onReverseCall={() => eyebrowRef.current?.reverse()}
+                  onCall={handleEyebrowStart}
+                  onReverseCall={handleEyebrowReverse}
                 />
                 <ST.Waypoint
-                  at={25}
-                  onCall={() => eyebrowRef.current?.reverse()}
-                  onReverseCall={() => eyebrowRef.current?.restart()}
+                  at={30}
+                  onCall={handleEyebrowReverseAlt}
+                  onReverseCall={handleEyebrowStartAlt}
                 />
                 <div className={`${styles.eyebrow}`}>
                   <SplitTextBg ref={eyebrowRef} color="orange" inline>
@@ -95,14 +152,14 @@ const WorldBuildingSection = () => {
                 </div>
 
                 <ST.Waypoint
-                  at={2}
-                  onCall={() => copyRef.current?.restart()}
-                  onReverseCall={() => copyRef.current?.reverse()}
+                  at={35}
+                  onCall={handleCopyStart}
+                  onReverseCall={handleCopyReverse}
                 />
                 <ST.Waypoint
-                  at={25}
-                  onCall={() => copyRef.current?.reverse()}
-                  onReverseCall={() => copyRef.current?.restart()}
+                  at={55}
+                  onCall={handleCopyReverseAlt}
+                  onReverseCall={handleCopyStartAlt}
                 />
                 <div className={`${styles.copy}`}>
                   <SplitTextBg ref={copyRef} color="cream" inline>
@@ -184,14 +241,14 @@ const WorldBuildingSection = () => {
                     </div>
                   </ST.Animation>
                   <ST.Waypoint
-                    at={45}
-                    onCall={() => stumpTextRef.current?.restart()}
-                    onReverseCall={() => stumpTextRef.current?.reverse()}
+                    at={60}
+                    onCall={handleStumpTextStart}
+                    onReverseCall={handleStumpTextReverse}
                   />
                   <ST.Waypoint
-                    at={60}
-                    onCall={() => stumpTextRef.current?.reverse()}
-                    onReverseCall={() => stumpTextRef.current?.restart()}
+                    at={80}
+                    onCall={handleStumpTextReverseAlt}
+                    onReverseCall={handleStumpTextStartAlt}
                   />
                   <div className={`${styles.stumpyText}`}>
                     <SplitTextBg ref={stumpTextRef} color="forest">
@@ -201,9 +258,9 @@ const WorldBuildingSection = () => {
                 </div>
 
                 <ST.Waypoint
-                  at={75}
-                  onCall={() => endCopyRef.current?.restart()}
-                  onReverseCall={() => endCopyRef.current?.reverse()}
+                  at={85}
+                  onCall={handleEndCopyStart}
+                  onReverseCall={handleEndCopyReverse}
                 />
                 <div className={`${styles.endCopy}`}>
                   <SplitTextBg ref={endCopyRef} color="cream" inline>
@@ -256,7 +313,7 @@ const CONTENT = {
   headline: "Wood is the only renewable building material at scale",
 
   stumpy:
-    "That’s the same as building 111 Mile High Stadiums every day for the next 25 years…go Broncos!",
+    "That's the same as building 111 Mile High Stadiums every day for the next 25 years…go Broncos!",
 };
 
 const SVGDivider = () => {

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useCallback } from "react";
 import * as ST from "@bsmnt/scrollytelling";
 import styles from "./style.module.scss";
 
@@ -23,6 +23,39 @@ export default function Tab4({ index }) {
   const headlineT4Ref = useRef(null);
   const copyT4Ref = useRef(null);
   const stumpTextT4Ref = useRef(null);
+
+  // Memoized callbacks for animations
+  const handleSectionTitleStart = useCallback(() => {
+    sectionTitleRef.current?.restart();
+  }, []);
+
+  const handleSectionTitleReverse = useCallback(() => {
+    sectionTitleRef.current?.reverse();
+  }, []);
+
+  const handleHeadlineStart = useCallback(() => {
+    headlineT4Ref.current?.restart();
+  }, []);
+
+  const handleHeadlineReverse = useCallback(() => {
+    headlineT4Ref.current?.reverse();
+  }, []);
+
+  const handleCopyStart = useCallback(() => {
+    copyT4Ref.current?.restart();
+  }, []);
+
+  const handleCopyReverse = useCallback(() => {
+    copyT4Ref.current?.reverse();
+  }, []);
+
+  const handleStumpTextStart = useCallback(() => {
+    stumpTextT4Ref.current?.restart();
+  }, []);
+
+  const handleStumpTextReverse = useCallback(() => {
+    stumpTextT4Ref.current?.reverse();
+  }, []);
 
   return (
     <div className={`${styles.container}`}>
@@ -52,8 +85,8 @@ export default function Tab4({ index }) {
           <>
             <ST.Waypoint
               at={mapToGlobalProgress(index, 1)}
-              onCall={() => sectionTitleRef.current?.restart()}
-              onReverseCall={() => sectionTitleRef.current?.reverse()}
+              onCall={handleSectionTitleStart}
+              onReverseCall={handleSectionTitleReverse}
             />
 
             <div className={`${styles.sectionTitle}`}>
@@ -68,21 +101,21 @@ export default function Tab4({ index }) {
           <>
             <ST.Waypoint
               at={mapToGlobalProgress(index, 40)}
-              onCall={() => sectionTitleRef.current?.reverse()}
-              onReverseCall={() => sectionTitleRef.current?.restart()}
+              onCall={handleSectionTitleReverse}
+              onReverseCall={handleSectionTitleStart}
             />
             <ST.Waypoint
               at={mapToGlobalProgress(index, 40)}
-              onCall={() => headlineT4Ref.current?.reverse()}
-              onReverseCall={() => headlineT4Ref.current?.restart()}
+              onCall={handleHeadlineReverse}
+              onReverseCall={handleHeadlineStart}
             />
           </>
         )}
 
         <ST.Waypoint
           at={mapToGlobalProgress(index, 1)}
-          onCall={() => headlineT4Ref.current?.restart()}
-          onReverseCall={() => headlineT4Ref.current?.reverse()}
+          onCall={handleHeadlineStart}
+          onReverseCall={handleHeadlineReverse}
         />
         <div className={`${styles.headline}`}>
           <SplitTextBg
@@ -98,8 +131,8 @@ export default function Tab4({ index }) {
 
       <ST.Waypoint
         at={mapToGlobalProgress(index, phoneScreen ? 50 : 8)}
-        onCall={() => copyT4Ref.current?.restart()}
-        onReverseCall={() => copyT4Ref.current?.reverse()}
+        onCall={handleCopyStart}
+        onReverseCall={handleCopyReverse}
       />
       <div className={`${styles.copy}`}>
         <SplitTextBg ref={copyT4Ref} color="orange" key={`copy-${index}`}>
@@ -127,8 +160,8 @@ export default function Tab4({ index }) {
         </ST.Animation>
         <ST.Waypoint
           at={mapToGlobalProgress(index, phoneScreen ? 80 : 60)}
-          onCall={() => stumpTextT4Ref.current?.restart()}
-          onReverseCall={() => stumpTextT4Ref.current?.reverse()}
+          onCall={handleStumpTextStart}
+          onReverseCall={handleStumpTextReverse}
         />
         <div className={`${styles.stumpyText}`}>
           <SplitTextBg ref={stumpTextT4Ref} color="cream">

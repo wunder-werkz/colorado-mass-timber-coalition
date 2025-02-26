@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useCallback } from "react";
 import * as ST from "@bsmnt/scrollytelling";
 import styles from "./style.module.scss";
 
@@ -18,6 +18,23 @@ export default function Tab2({ index }) {
   const textRef = useRef(null);
   const { width } = useWindowSize();
   const smScreen = width < 786;
+
+  // Memoized callbacks for animations
+  const handleSectionTitleStart = useCallback(() => {
+    sectionTitleRef.current?.restart();
+  }, []);
+
+  const handleSectionTitleReverse = useCallback(() => {
+    sectionTitleRef.current?.reverse();
+  }, []);
+
+  const handleTextStart = useCallback(() => {
+    textRef.current?.restart();
+  }, []);
+
+  const handleTextReverse = useCallback(() => {
+    textRef.current?.reverse();
+  }, []);
 
   return (
     <div ref={panelRef} className={`${styles.container}`}>
@@ -37,14 +54,14 @@ export default function Tab2({ index }) {
           <>
             <ST.Waypoint
               at={mapToGlobalProgress(index, 1)}
-              onCall={() => sectionTitleRef.current?.restart()}
-              onReverseCall={() => sectionTitleRef.current?.reverse()}
+              onCall={handleSectionTitleStart}
+              onReverseCall={handleSectionTitleReverse}
             />
 
             <ST.Waypoint
               at={mapToGlobalProgress(index, 20)}
-              onCall={() => sectionTitleRef.current?.reverse()}
-              onReverseCall={() => sectionTitleRef.current?.restart()}
+              onCall={handleSectionTitleReverse}
+              onReverseCall={handleSectionTitleStart}
             />
             <div className={`${styles.sectionTitle}`}>
               <SplitTextBg ref={sectionTitleRef} color="cream" inline>
@@ -123,8 +140,8 @@ export default function Tab2({ index }) {
 
         <ST.Waypoint
           at={mapToGlobalProgress(index, 90)}
-          onCall={() => textRef.current?.restart()}
-          onReverseCall={() => textRef.current?.reverse()}
+          onCall={handleTextStart}
+          onReverseCall={handleTextReverse}
         />
         <div className={`${styles.text}`}>
           <SplitTextBg ref={textRef} color="cream" inline>
@@ -178,7 +195,7 @@ const CONTENT = {
       acres: "37k",
     },
   ],
-  text: "Colorado’s top three largest wildfires all occurred in 2020. The next one is not a matter of if, it’s a matter of when",
+  text: "Colorado's top three largest wildfires all occurred in 2020. The next one is not a matter of if, it's a matter of when",
 };
 
 const SVGDivider = () => {

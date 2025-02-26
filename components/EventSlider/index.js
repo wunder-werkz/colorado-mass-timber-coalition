@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { gsap } from "@/lib/gsapConfig";
 import styles from "./style.module.scss";
 import Button from "@/components/Button";
@@ -18,17 +18,26 @@ const EventSlider = ({ events }) => {
   const nextButtonRef = useRef(null);
   const navDividerRef = useRef(null);
 
-  const nextSlide = () => {
+  // Memoized callbacks for animations
+  const handleSplitTextStart = useCallback(() => {
+    splitTextAnimationRef.current?.restart();
+  }, []);
+
+  const handleSplitTextReverse = useCallback(() => {
+    splitTextAnimationRef.current?.reverse();
+  }, []);
+
+  const nextSlide = useCallback(() => {
     if (currentIndex < events.length - 3) {
       setCurrentIndex((prev) => prev + 1);
     }
-  };
+  }, [currentIndex, events.length]);
 
-  const prevSlide = () => {
+  const prevSlide = useCallback(() => {
     if (currentIndex > 0) {
       setCurrentIndex((prev) => prev - 1);
     }
-  };
+  }, [currentIndex]);
 
   useEffect(() => {
     gsap.to(slideRefs.current, {
@@ -52,8 +61,8 @@ const EventSlider = ({ events }) => {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top 75%",
-          onEnter: () => splitTextAnimationRef.current?.restart(),
-          onLeaveBack: () => splitTextAnimationRef.current?.reverse(),
+          onEnter: handleSplitTextStart,
+          onLeaveBack: handleSplitTextReverse,
         },
       });
 
@@ -105,7 +114,7 @@ const EventSlider = ({ events }) => {
     });
 
     return () => ctx.revert();
-  }, []);
+  }, [handleSplitTextStart, handleSplitTextReverse]);
 
   return (
     <div className={styles.eventsHomeWrap} ref={containerRef}>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useCallback } from "react";
 import * as ST from "@bsmnt/scrollytelling";
 import styles from "./style.module.scss";
 
@@ -18,6 +18,23 @@ export default function Tab1({ index }) {
   const sectionTitleRef = useRef(null);
   const titleRef = useRef(null);
 
+  // Memoized callbacks for animations
+  const handleSectionTitleStart = useCallback(() => {
+    sectionTitleRef.current?.restart();
+  }, []);
+
+  const handleSectionTitleReverse = useCallback(() => {
+    sectionTitleRef.current?.reverse();
+  }, []);
+
+  const handleTitleStart = useCallback(() => {
+    titleRef.current?.restart();
+  }, []);
+
+  const handleTitleReverse = useCallback(() => {
+    titleRef.current?.reverse();
+  }, []);
+
   return (
     <div className={`${styles.container}`}>
       <div className={styles.titleWrap}>
@@ -25,8 +42,8 @@ export default function Tab1({ index }) {
           <>
             <ST.Waypoint
               at={mapToGlobalProgress(index, 1)}
-              onCall={() => sectionTitleRef.current?.restart()}
-              onReverseCall={() => sectionTitleRef.current?.reverse()}
+              onCall={handleSectionTitleStart}
+              onReverseCall={handleSectionTitleReverse}
             />
             <div className={`${styles.sectionTitle}`}>
               <SplitTextBg ref={sectionTitleRef} color="cream" inline>
@@ -37,8 +54,8 @@ export default function Tab1({ index }) {
         )}
         <ST.Waypoint
           at={mapToGlobalProgress(index, 1)}
-          onCall={() => titleRef.current?.restart()}
-          onReverseCall={() => titleRef.current?.reverse()}
+          onCall={handleTitleStart}
+          onReverseCall={handleTitleReverse}
         />
 
         <div className={`${styles.title}`}>

@@ -11,7 +11,7 @@ import TabPanel from "./Sections";
 const FireInfoSection = () => {
   return (
     <ST.Root
-      scrub="true"
+      scrub={true}
       start="top top"
       end="bottom bottom"
       callbacks={{

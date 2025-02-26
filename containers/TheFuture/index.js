@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useCallback } from "react";
 import * as ST from "@bsmnt/scrollytelling";
 import styles from "./style.module.scss";
 
@@ -22,9 +22,50 @@ export default function TheFuture() {
   const { width } = useWindowSize();
   const smScreen = width < 1090;
 
+  // Memoized callbacks for animations
+  const handleEyebrowStart = useCallback(() => {
+    eyebrowRef.current?.restart();
+  }, []);
+
+  const handleEyebrowReverse = useCallback(() => {
+    eyebrowRef.current?.reverse();
+  }, []);
+
+  const handleCltStart = useCallback(() => {
+    cltRef.current?.restart();
+  }, []);
+
+  const handleCltReverse = useCallback(() => {
+    cltRef.current?.reverse();
+  }, []);
+
+  const handleGluStart = useCallback(() => {
+    gluRef.current?.restart();
+  }, []);
+
+  const handleGluReverse = useCallback(() => {
+    gluRef.current?.reverse();
+  }, []);
+
+  const handleNltStart = useCallback(() => {
+    nltRef.current?.restart();
+  }, []);
+
+  const handleNltReverse = useCallback(() => {
+    nltRef.current?.reverse();
+  }, []);
+
+  const handleDltStart = useCallback(() => {
+    dltRef.current?.restart();
+  }, []);
+
+  const handleDltReverse = useCallback(() => {
+    dltRef.current?.reverse();
+  }, []);
+
   return (
     <ST.Root
-      scrub="true"
+      scrub={true}
       start="top 50%"
       end="top top"
       callbacks={{
@@ -37,8 +78,8 @@ export default function TheFuture() {
           <div>
             <ST.Waypoint
               at={1}
-              onCall={() => eyebrowRef.current?.restart()}
-              onReverseCall={() => eyebrowRef.current?.reverse()}
+              onCall={handleEyebrowStart}
+              onReverseCall={handleEyebrowReverse}
             />
             <div className={`${styles.eyebrow}`}>
               <SplitTextBg ref={eyebrowRef} color="cream" inline>
@@ -87,8 +128,8 @@ export default function TheFuture() {
               <CLTSvg />
               <ST.Waypoint
                 at={70}
-                onCall={() => cltRef.current?.restart()}
-                onReverseCall={() => cltRef.current?.reverse()}
+                onCall={handleCltStart}
+                onReverseCall={handleCltReverse}
               />
               <div className={`${styles.cltText}`}>
                 <SplitTextBg ref={cltRef} color="forest">
@@ -99,8 +140,8 @@ export default function TheFuture() {
             <div className={styles.gluWrap}>
               <ST.Waypoint
                 at={70}
-                onCall={() => gluRef.current?.restart()}
-                onReverseCall={() => gluRef.current?.reverse()}
+                onCall={handleGluStart}
+                onReverseCall={handleGluReverse}
               />
               <div className={`${styles.gluText}`}>
                 <SplitTextBg ref={gluRef} color="forest">
@@ -112,8 +153,8 @@ export default function TheFuture() {
             <div className={styles.nltWrap}>
               <ST.Waypoint
                 at={70}
-                onCall={() => nltRef.current?.restart()}
-                onReverseCall={() => nltRef.current?.reverse()}
+                onCall={handleNltStart}
+                onReverseCall={handleNltReverse}
               />
               <div className={`${styles.nltText}`}>
                 <SplitTextBg ref={nltRef} color="forest">
@@ -125,8 +166,8 @@ export default function TheFuture() {
             <div className={styles.dltWrap}>
               <ST.Waypoint
                 at={70}
-                onCall={() => dltRef.current?.restart()}
-                onReverseCall={() => dltRef.current?.reverse()}
+                onCall={handleDltStart}
+                onReverseCall={handleDltReverse}
               />
               <div className={`${styles.dltText}`}>
                 <SplitTextBg ref={dltRef} color="forest">

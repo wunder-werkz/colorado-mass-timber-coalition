@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useCallback } from "react";
 import * as ST from "@bsmnt/scrollytelling";
 import styles from "./style.module.scss";
 
@@ -15,9 +15,27 @@ export default function BuiltToLast() {
   const eyebrowRef = useRef(null);
   const stumpyTextRefs = useRef([null, null, null]);
   const finalCopyRef = useRef(null);
+
+  // Memoized callbacks for animations
+  const handleEyebrowStart = useCallback(() => {
+    eyebrowRef.current?.restart();
+  }, []);
+
+  const handleEyebrowReverse = useCallback(() => {
+    eyebrowRef.current?.reverse();
+  }, []);
+
+  const handleFinalCopyStart = useCallback(() => {
+    finalCopyRef.current?.restart();
+  }, []);
+
+  const handleFinalCopyReverse = useCallback(() => {
+    finalCopyRef.current?.reverse();
+  }, []);
+
   return (
     <ST.Root
-      scrub="true"
+      scrub={true}
       start="top center"
       end="bottom bottom"
       callbacks={{
@@ -38,8 +56,8 @@ export default function BuiltToLast() {
               <div>
                 <ST.Waypoint
                   at={1}
-                  onCall={() => eyebrowRef.current?.restart()}
-                  onReverseCall={() => eyebrowRef.current?.reverse()}
+                  onCall={handleEyebrowStart}
+                  onReverseCall={handleEyebrowReverse}
                 />
 
                 <div className={`${styles.eyebrow}`}>
@@ -193,8 +211,8 @@ export default function BuiltToLast() {
 
               <ST.Waypoint
                 at={80}
-                onCall={() => finalCopyRef.current?.restart()}
-                onReverseCall={() => finalCopyRef.current?.reverse()}
+                onCall={handleFinalCopyStart}
+                onReverseCall={handleFinalCopyReverse}
               />
 
               <div className={styles.finalCopy}>

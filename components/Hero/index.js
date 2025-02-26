@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState, useCallback } from "react";
 import * as ST from "@bsmnt/scrollytelling";
 import heroImage from "@/public/img/hero.jpg";
 import fireTrimGif from "@/public/img/Fire_Trim.gif";
@@ -12,56 +12,113 @@ import SplitTextBg from "@/components/SplitTextBg";
 import Tagline from "@/components/SVG/Tagline";
 
 import useWindowSize from "@/hooks/useWindowSize";
+import { gsap } from "@/lib/gsapConfig";
 
 import styles from "./style.module.scss";
 
 const Hero = () => {
   const splitTextAnimationRef = useRef(null);
   const splitTextAnimationRef2 = useRef(null);
+  const [isInitialized, setIsInitialized] = useState(false);
+  const animateRefsRef = useRef([]);
+  const maskContainerRef = useRef(null);
+  const fireTrimRef = useRef(null);
+  const heroSectionRef = useRef(null);
 
   const { width } = useWindowSize();
   const isMobile = width < 768;
+
+  // Memoized callbacks for animations to improve performance
+  const handleSplitText1Animation = useCallback(() => {
+    splitTextAnimationRef.current?.restart();
+  }, []);
+
+  const handleSplitText1Reverse = useCallback(() => {
+    splitTextAnimationRef.current?.reverse();
+  }, []);
+
+  const handleSplitText2Animation = useCallback(() => {
+    splitTextAnimationRef2.current?.restart();
+  }, []);
+
+  const handleSplitText2Reverse = useCallback(() => {
+    splitTextAnimationRef2.current?.reverse();
+  }, []);
+
+  useEffect(() => {
+    const duration = isMobile ? 0.4 : 0.55;
+
+    gsap.set(".animate-refs", { y: -100, opacity: 0 });
+    gsap.set(".mask-container", {
+      clipPath: "circle(0% at 50% 100%)",
+      opacity: 0,
+      y: 50,
+    });
+    gsap.set(fireTrimRef.current, { opacity: 0 });
+
+    const initialAnimations = gsap.timeline({ delay: 0.5 });
+
+    initialAnimations
+      .to(".animate-refs", {
+        y: 0,
+        opacity: 1,
+        duration: duration,
+        stagger: 0.1,
+        ease: "power2.out",
+        clearProps: "transform",
+      })
+      .to(
+        ".mask-container",
+        {
+          clipPath: "circle(25% at 50% 100%)",
+          opacity: 1,
+          y: 0,
+          duration: duration * 0.7,
+          ease: "power2.inOut",
+        },
+        "-=0.2"
+      );
+
+    return () => {
+      initialAnimations.kill();
+    };
+  }, [isMobile]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsInitialized(true);
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <ST.Root
-      scrub="true"
+      scrub={true}
       start="top top"
       end="bottom bottom"
       callbacks={{
         refreshPriority: 1,
         invalidateOnRefresh: true,
+        onUpdate: () => {
+          if (!isInitialized) {
+            setIsInitialized(true);
+          }
+        },
       }}
     >
       <ST.Pin childHeight={"100vh"} pinSpacerHeight={"600vh"} top={0}>
-        <section className={styles.hero} id="hero-section">
-          <ST.Waypoint
-            at={0}
-            tween={{
-              target: ".animate-refs",
-              to: { y: 0, opacity: 1 },
-              duration: 0.55,
-              stagger: 0.1,
-            }}
-          />
-          <ST.Waypoint
-            at={0}
-            tween={{
-              target: ".mask-container",
-              to: { clipPath: "circle(25% at 50% 100%)", opacity: 1, y: 0 },
-              duration: 0.35,
-              delay: 0.6,
-            }}
-          />
-
+        <section className={styles.hero} id="hero-section" ref={heroSectionRef}>
           <ST.Waypoint
             at={8}
-            onCall={() => splitTextAnimationRef.current?.restart()}
-            onReverseCall={() => splitTextAnimationRef.current?.reverse()}
+            onCall={handleSplitText1Animation}
+            onReverseCall={handleSplitText1Reverse}
           />
 
           <ST.Waypoint
             at={50}
-            onCall={() => splitTextAnimationRef2.current?.restart()}
-            onReverseCall={() => splitTextAnimationRef2.current?.reverse()}
+            onCall={handleSplitText2Animation}
+            onReverseCall={handleSplitText2Reverse}
           />
 
           <div className={styles.content}>
@@ -72,7 +129,10 @@ const Hero = () => {
                 to: { y: "-90vh" },
               }}
             >
-              <div className={`${styles.logoWrapper} animate-refs`}>
+              <div
+                className={`${styles.logoWrapper} animate-refs`}
+                ref={(el) => (animateRefsRef.current[0] = el)}
+              >
                 <LogoLg />
               </div>
             </ST.Animation>
@@ -84,7 +144,10 @@ const Hero = () => {
                 to: { y: 80, opacity: 0 },
               }}
             >
-              <div className={`${styles.taglineWrapper} animate-refs`}>
+              <div
+                className={`${styles.taglineWrapper} animate-refs`}
+                ref={(el) => (animateRefsRef.current[1] = el)}
+              >
                 <Tagline />
               </div>
             </ST.Animation>
@@ -120,12 +183,7 @@ const Hero = () => {
           <ST.Animation
             tween={[
               {
-                start: 5,
-                end: 20,
-                to: { top: 80 },
-              },
-              {
-                start: 19.5,
+                start: 25,
                 end: 75,
                 to: {
                   clipPath: isMobile
@@ -135,13 +193,16 @@ const Hero = () => {
               },
             ]}
           >
-            <div className={`${styles.maskContainer} mask-container`}>
+            <div
+              className={`${styles.maskContainer} mask-container will-change-transform`}
+              ref={maskContainerRef}
+            >
               <div className={styles.mask}>
                 <ST.Animation
                   tween={{
                     start: 25.5,
                     end: 60,
-                    to: { top: 0, scale: 1 },
+                    to: { y: 0, scale: 1 },
                   }}
                 >
                   <div className={styles.mediaWCaption}>
@@ -175,19 +236,29 @@ const Hero = () => {
                     to: { opacity: 1, y: 0 },
                   }}
                 >
-                  <div className={styles.eyeball1}>
+                  <div
+                    className={`${styles.eyeball1} will-change-opacity will-change-transform`}
+                  >
                     <Eyeballs />
                   </div>
-                  <div className={styles.eyeball2}>
+                  <div
+                    className={`${styles.eyeball2} will-change-opacity will-change-transform`}
+                  >
                     <Eyeballs />
                   </div>
-                  <div className={styles.eyeball3}>
+                  <div
+                    className={`${styles.eyeball3} will-change-opacity will-change-transform`}
+                  >
                     <Eyeballs />
                   </div>
-                  <div className={styles.eyeball4}>
+                  <div
+                    className={`${styles.eyeball4} will-change-opacity will-change-transform`}
+                  >
                     <Eyeballs />
                   </div>
-                  <div className={styles.eyeball5}>
+                  <div
+                    className={`${styles.eyeball5} will-change-opacity will-change-transform`}
+                  >
                     <Eyeballs />
                   </div>
                 </ST.Stagger>
@@ -197,14 +268,14 @@ const Hero = () => {
           <ST.Animation
             tween={{
               start: 70,
-              end: 90,
-              to: { y: -40 },
+              end: 85,
+              to: { y: 0, opacity: 1, ease: "power2.inOut" },
             }}
           >
-            <div className={styles.fireTrim}>
+            <div className={styles.fireTrim} ref={fireTrimRef}>
               <MediaWCaption
                 url={fireTrimGif}
-                priority={true}
+                priority={false}
                 caption={"Building better starts with creating healthy forests"}
               />
             </div>
