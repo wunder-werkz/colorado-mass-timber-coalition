@@ -10,7 +10,15 @@ import TabPanel from "./Sections";
 
 const FireInfoSection = () => {
   return (
-    <ST.Root scrub="true" start="top top" end="bottom bottom">
+    <ST.Root
+      scrub="true"
+      start="top top"
+      end="bottom bottom"
+      callbacks={{
+        refreshPriority: 2,
+        invalidateOnRefresh: true,
+      }}
+    >
       <ST.Pin
         childHeight={"100vh"}
         pinSpacerHeight={`${TOTAL_SCROLL_HEIGHT}vh`}

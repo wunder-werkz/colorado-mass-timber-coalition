@@ -4,6 +4,8 @@ import { useRef } from "react";
 import * as ST from "@bsmnt/scrollytelling";
 import styles from "./style.module.scss";
 
+import coloradoStateForestServiceImage from "@/public/img/tabs/Colorado-State-Forest-Service.jpg";
+
 import { MediaWCaption } from "@/components/MediaWCaption";
 import SplitTextBg from "@/components/SplitTextBg";
 
@@ -139,7 +141,7 @@ const CONTENT = {
   title:
     "But right now, many of our forests exhibit declining health and resilience",
   image: {
-    src: "/img/tabs/Colorado-State-Forest-Service.jpg",
+    src: coloradoStateForestServiceImage,
     alt: "Alexander Mountain Fire, <br/>Colorado State Forest Service ",
   },
   acresBurned: [

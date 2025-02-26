@@ -25,17 +25,8 @@ export default function Footer({ contactEmail }) {
     },
   ];
 
-  const footerRef = useRef(null);
-
-  useEffect(() => {
-    if (!footerRef.current) return;
-    const footerHeight = footerRef.current.offsetHeight;
-
-    document.body.style.paddingBottom = `${footerHeight}px`;
-  }, []);
-
   return (
-    <footer ref={footerRef} className={styles.footer}>
+    <footer className={styles.footer}>
       <div className={styles.content}>
         <div className={styles.newsletter}>
           <NewsletterSignup />

@@ -2,6 +2,8 @@
 
 import { useRef, useEffect } from "react";
 import * as ST from "@bsmnt/scrollytelling";
+import heroImage from "@/public/img/hero.jpg";
+import fireTrimGif from "@/public/img/Fire_Trim.gif";
 
 import Eyeballs from "@/components/Eyeballs";
 import LogoLg from "@/components/SVG/LogoLg";
@@ -20,7 +22,15 @@ const Hero = () => {
   const { width } = useWindowSize();
   const isMobile = width < 768;
   return (
-    <ST.Root scrub="true" start="top top" end="bottom bottom">
+    <ST.Root
+      scrub="true"
+      start="top top"
+      end="bottom bottom"
+      callbacks={{
+        refreshPriority: 1,
+        invalidateOnRefresh: true,
+      }}
+    >
       <ST.Pin childHeight={"100vh"} pinSpacerHeight={"600vh"} top={0}>
         <section className={styles.hero} id="hero-section">
           <ST.Waypoint
@@ -89,9 +99,18 @@ const Hero = () => {
               <div className={`${styles.splitTextWrapper}`}>
                 <SplitTextBg ref={splitTextAnimationRef} color="orange" inline>
                   <p>
-                    Supporting <i>healthy, resilient forests</i> through a{" "}
-                    <i>vibrant forest-products economy</i> including{" "}
-                    <i>mass timber</i>
+                    Supporting{" "}
+                    <i>
+                      <b>healthy, resilient forests</b>
+                    </i>{" "}
+                    through a{" "}
+                    <i>
+                      <b>vibrant forest-products economy</b>
+                    </i>{" "}
+                    including{" "}
+                    <i>
+                      <b>mass timber</b>
+                    </i>
                   </p>
                 </SplitTextBg>
               </div>
@@ -127,7 +146,8 @@ const Hero = () => {
                 >
                   <div className={styles.mediaWCaption}>
                     <MediaWCaption
-                      url="/img/hero.jpg"
+                      url={heroImage}
+                      priority={true}
                       caption={
                         "Building better starts with creating healthy forests"
                       }
@@ -183,7 +203,8 @@ const Hero = () => {
           >
             <div className={styles.fireTrim}>
               <MediaWCaption
-                url="/img/Fire_Trim.gif"
+                url={fireTrimGif}
+                priority={true}
                 caption={"Building better starts with creating healthy forests"}
               />
             </div>

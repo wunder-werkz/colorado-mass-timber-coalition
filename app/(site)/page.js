@@ -17,8 +17,8 @@ export default async function Home() {
 
   return (
     <>
-      <Hero />
-      <FireInfoSection />
+      {/* <Hero /> */}
+      {/* <FireInfoSection /> */}
       <WorldBuildingSection />
       <TheFuture />
       <Benefits />

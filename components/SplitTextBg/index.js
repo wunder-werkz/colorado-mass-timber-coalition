@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef, forwardRef, useImperativeHandle } from "react";
-import useIsomorphicLayoutEffect from "@/hooks/useIsomorphicLayoutEffect";
+import { useRef, forwardRef, useImperativeHandle, useEffect } from "react";
+
 import { gsap, SplitText } from "@/lib/gsapConfig";
 import styles from "./style.module.scss";
 import { useModal } from "@/context/ModalContext";
@@ -21,84 +21,133 @@ const SplitTextBg = forwardRef(
       reverse: () => animationTl.current?.reverse(),
     }));
 
-    useIsomorphicLayoutEffect(() => {
+    useEffect(() => {
       const ctx = gsap.context(() => {
-        const padding = "0.5em 1em";
+        const padding = "1px 25px";
         textRef.current.style.padding = padding;
 
-        const sups = textRef.current.getElementsByTagName("sup");
-        Array.from(sups).forEach((sup) => {
-          sup.className = styles.citation;
-          sup.addEventListener("click", (e) => {
-            e.preventDefault();
-            openModal();
+        // Store splitText reference for cleanup
+        let splitTextInstance = null;
+
+        // Function to handle text splitting and animation setup
+        const setupSplitText = () => {
+          // Clean up previous split if it exists
+          if (splitTextInstance) {
+            splitTextInstance.revert();
+
+            // Clear existing refs
+            backgroundsRef.current = [];
+            linesRef.current = [];
+          }
+
+          const sups = textRef.current.getElementsByTagName("sup");
+
+          if (sups.length) {
+            Array.from(sups).forEach((sup) => {
+              sup.className = styles.citation;
+              sup.addEventListener("click", (e) => {
+                e.preventDefault();
+                openModal();
+              });
+            });
+          }
+
+          splitTextInstance = new SplitText(textRef.current.children[0], {
+            types: "lines",
+            linesClass: styles.line,
+            reduceWhiteSpace: true,
           });
-        });
 
-        const splitText = new SplitText(textRef.current.children[0], {
-          types: "lines",
-          linesClass: styles.line,
-          reduceWhiteSpace: false,
-        });
+          textRef.current.style.padding = "0";
 
-        textRef.current.style.padding = "0";
+          splitTextInstance.lines.forEach((line, i) => {
+            const wrapper = document.createElement("div");
+            wrapper.className = `${styles.lineWrapper} ${inline ? styles.inline : ""}`;
+            const background = document.createElement("div");
+            background.className = styles.lineBackground;
 
-        splitText.lines.forEach((line, i) => {
-          const wrapper = document.createElement("div");
-          wrapper.className = `${styles.lineWrapper} ${inline ? styles.inline : ""}`;
-          const background = document.createElement("div");
-          background.className = styles.lineBackground;
+            line.parentNode.insertBefore(wrapper, line);
+            wrapper.appendChild(line);
+            wrapper.insertBefore(background, line);
 
-          line.parentNode.insertBefore(wrapper, line);
-          wrapper.appendChild(line);
-          wrapper.insertBefore(background, line);
+            backgroundsRef.current[i] = background;
+            linesRef.current[i] = line;
 
-          backgroundsRef.current[i] = background;
-          linesRef.current[i] = line;
+            gsap.set(background, { scaleY: 0 });
+            gsap.set(line, { yPercent: 100, opacity: 0 });
+          });
 
-          gsap.set(background, { scaleY: 0 });
-          gsap.set(line, { yPercent: 100, opacity: 0 });
-        });
+          // Setup animation timeline
+          animationTl.current = gsap.timeline({ paused: true });
 
-        animationTl.current = gsap.timeline({ paused: true });
+          animationTl.current
+            .addLabel("start")
+            .to(
+              backgroundsRef.current,
+              {
+                scaleY: 1,
+                duration: 0.6,
+                stagger: 0.1,
+                ease: "power4.inOut",
+              },
+              "start"
+            )
+            .to(
+              linesRef.current,
+              {
+                yPercent: 0,
+                opacity: 1,
+                duration: 0.4,
+                stagger: 0.1,
+                ease: "expo.out",
+              },
+              "start+=0.5"
+            );
 
-        animationTl.current
-          .addLabel("start")
-          .to(
-            backgroundsRef.current,
-            {
-              scaleY: 1,
-              duration: 0.6,
-              stagger: 0.1,
-              ease: "power4.inOut",
-            },
-            "start"
-          )
-          .to(
-            linesRef.current,
-            {
-              yPercent: 0,
-              opacity: 1,
-              duration: 0.4,
-              stagger: 0.1,
-              ease: "expo.out",
-            },
-            "start+=0.5"
-          );
+          // Apply play state based on isPlaying prop
+          if (isPlaying) {
+            animationTl.current.play();
+          } else {
+            animationTl.current.pause();
+          }
+        };
+
+        // Initial setup
+        setupSplitText();
+
+        // Add resize handler with debounce
+        const debounce = (func, wait) => {
+          let timeout;
+          return function (...args) {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(this, args), wait);
+          };
+        };
+
+        const handleResize = debounce(setupSplitText, 300);
+        window.addEventListener("resize", handleResize);
 
         return () => {
-          // Clean up event listeners
-          Array.from(sups).forEach((sup) => {
-            sup.removeEventListener("click", openModal);
-          });
-          splitText.revert();
+          // const sups = textRef.current.getElementsByTagName("sup");
+
+          // if (sups.length) {
+          //   Array.from(sups).forEach((sup) => {
+          //     sup.removeEventListener("click", openModal);
+          //   });
+          // }
+
+          if (splitTextInstance) {
+            splitTextInstance.revert();
+          }
+
+          window.removeEventListener("resize", handleResize);
         };
       }, textRef);
 
       return () => ctx.revert();
-    }, [inline]);
+    }, [inline, isPlaying, openModal]);
 
-    useIsomorphicLayoutEffect(() => {
+    useEffect(() => {
       if (isPlaying) {
         animationTl.current?.play();
       } else {

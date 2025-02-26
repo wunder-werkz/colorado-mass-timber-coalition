@@ -4,6 +4,8 @@ import { useRef } from "react";
 import * as ST from "@bsmnt/scrollytelling";
 import styles from "./style.module.scss";
 
+import wolfCreekImage from "@/public/img/tabs/WolfCreek.jpg";
+
 import SplitTextBg from "@/components/SplitTextBg";
 import { MediaWCaption } from "@/components/MediaWCaption";
 import Stumpy from "@/components/Stumpy";
@@ -148,7 +150,7 @@ const CONTENT = {
   headline:
     "These conditions have been driven by disease, insect infestation and uncharacteristic, mega wildfires",
   image: {
-    src: "/img/tabs/WolfCreek.jpg",
+    src: wolfCreekImage,
     alt: "Wolf Creek Pass",
   },
   stumpText: "Colorado forests are actively contributing to climate change",

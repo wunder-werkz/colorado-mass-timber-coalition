@@ -2,9 +2,12 @@ import * as styles from "./style.module.scss";
 
 import Image from "next/image";
 
-export const MediaWCaption = ({ url, caption }) => {
+export const MediaWCaption = ({ url, caption, priority = false }) => {
   const imageUrl = typeof url === "string" ? url : url?.src;
   const isGif = imageUrl?.toLowerCase().endsWith(".gif");
+  const isRemoteUrl = typeof url === "string";
+
+  // Only GIFs need custom blurDataURL
   const blurDataURL = isGif
     ? "data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8H8NQDwAFmQHc0XzqVQAAAABJRU5ErkJggg=="
     : undefined;
@@ -16,13 +19,14 @@ export const MediaWCaption = ({ url, caption }) => {
         alt={caption || "CMTA Media"}
         className={styles.media}
         fill
-        sizes="(min-width: 808px) 100vw, 150vw"
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         style={{
           objectFit: "cover",
         }}
-        loading="lazy"
-        placeholder={typeof url === "string" ? undefined : "blur"}
-        blurDataURL={isGif ? blurDataURL : undefined}
+        loading={priority ? "eager" : "lazy"}
+        quality={75}
+        {...(!isRemoteUrl && { placeholder: "blur" })}
+        {...(isGif && { placeholder: "blur", blurDataURL })}
       />
       {caption && (
         <div

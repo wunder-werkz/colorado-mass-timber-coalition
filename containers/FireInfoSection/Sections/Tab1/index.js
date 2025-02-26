@@ -8,6 +8,7 @@ import SplitTextBg from "@/components/SplitTextBg";
 import { MediaWCaption } from "@/components/MediaWCaption";
 
 import useWindowSize from "@/hooks/useWindowSize";
+import pineGulchImage from "@/public/img/tabs/PineGulch.jpg";
 
 import { mapToGlobalProgress } from "../../utils";
 
@@ -58,7 +59,7 @@ const CONTENT = {
   title:
     "But right now, many of our forests exhibit declining health and resilience",
   image: {
-    src: "/img/tabs/PineGulch.jpg",
+    src: pineGulchImage,
     alt: "Pine Gulch Fire, Kyle Miller Photography",
   },
 };

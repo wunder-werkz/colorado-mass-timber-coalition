@@ -7,6 +7,8 @@ import { MediaWCaption } from "@/components/MediaWCaption";
 import SplitTextBg from "@/components/SplitTextBg";
 import Stumpy from "@/components/Stumpy";
 
+import useWindowSize from "@/hooks/useWindowSize";
+
 const WorldBuildingSection = () => {
   const panelRef = useRef(null);
   const headline = useRef(null);
@@ -15,8 +17,19 @@ const WorldBuildingSection = () => {
   const stumpTextRef = useRef(null);
   const eyebrowRef = useRef(null);
 
+  const { width } = useWindowSize();
+  const smScreen = width < 786;
+
   return (
-    <ST.Root scrub="true" start="top top" end="bottom bottom">
+    <ST.Root
+      scrub="true"
+      start="top top"
+      end="bottom bottom"
+      callbacks={{
+        refreshPriority: 3,
+        invalidateOnRefresh: true,
+      }}
+    >
       <ST.Pin childHeight={"100vh"} pinSpacerHeight={`400vh`} top={0}>
         <div className={styles.padWrap}>
           <div className={styles.container}>
@@ -93,7 +106,11 @@ const WorldBuildingSection = () => {
                 />
                 <div className={`${styles.copy}`}>
                   <SplitTextBg ref={copyRef} color="cream" inline>
-                    <h3 dangerouslySetInnerHTML={{ __html: CONTENT.copy }} />
+                    <h3>
+                      From 2025 to 2050, the world is expected to add about 1.7
+                      trillion square feet of new floor area to the global
+                      building stock.<sup>11</sup>
+                    </h3>
                   </SplitTextBg>
                 </div>
 
@@ -190,7 +207,15 @@ const WorldBuildingSection = () => {
                 />
                 <div className={`${styles.endCopy}`}>
                   <SplitTextBg ref={endCopyRef} color="cream" inline>
-                    <h2 dangerouslySetInnerHTML={{ __html: CONTENT.endCopy }} />
+                    <h2>
+                      Less than a fraction of one percent of all buildings are
+                      built with mass timber<sup>12</sup> and future demand can
+                      be met sustainably.<sup>13</sup> Mass timber is an
+                      immediate solution to help solve our climate crisis for
+                      which building materials, like concrete and steel,
+                      contribute 11% of total global greenhouse gas emissions.
+                      <sup>14</sup>
+                    </h2>
                   </SplitTextBg>
                 </div>
               </div>
@@ -229,9 +254,7 @@ const CONTENT = {
   ],
   eyebrow: "The world is building…a lot",
   headline: "Wood is the only renewable building material at scale",
-  copy: "From 2025 to 2050, the world is expected to add about 1.7 trillion square feet of new floor area to the global building stock.<sup>11</sup>",
-  endCopy:
-    "Less than a fraction of one percent of all buildings are built with mass timber<sup>12</sup> and future demand can be met sustainably.<sup>13</sup> Mass timber is an immediate solution to help solve our climate crisis for which building materials, like concrete and steel, contribute 11% of total global greenhouse gas emissions.<sup>14</sup>",
+
   stumpy:
     "That’s the same as building 111 Mile High Stadiums every day for the next 25 years…go Broncos!",
 };

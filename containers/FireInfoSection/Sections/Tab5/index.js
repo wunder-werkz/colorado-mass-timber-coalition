@@ -4,6 +4,7 @@ import { useRef } from "react";
 import * as ST from "@bsmnt/scrollytelling";
 import styles from "./style.module.scss";
 
+import monarchPass from "@/public/img/tabs/millertimber.jpg";
 import SplitTextBg from "@/components/SplitTextBg";
 import { MediaWCaption } from "@/components/MediaWCaption";
 import Stumpy from "@/components/Stumpy";
@@ -143,7 +144,7 @@ const CONTENT = {
   headline: "We need to be proactive, not reactive",
   sectionTitle: "What Can We Do?",
   image: {
-    src: "/img/tabs/millertimber.jpg",
+    src: monarchPass,
     alt: "Monarch Pass, <br/>Arkansas River Watershed Collaborative<br/> and Miller Timber Services",
   },
   stumpText:

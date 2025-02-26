@@ -8,11 +8,13 @@
   margin-top: 150px;
 
   @include tablet-and-lower {
-    padding: 100px 20px 50px 20px;
+    padding: 80px 20px 40px 20px;
+    margin-top: 30px;
   }
 
   @include phone {
-    padding: 100px 10px 50px 10px;
+    margin-top: 30px;
+    padding: 50px 10px 40px 10px;
   }
 }
 
@@ -44,6 +46,11 @@
   gap: 1rem;
 
   padding: 2rem;
+
+  @include lap-smaller {
+    padding: 1rem;
+    width: 100px;
+  }
 }
 
 .contentContainer {
@@ -73,6 +80,10 @@
       stroke: $cream;
       fill: $cream;
     }
+  }
+
+  @include lap-smaller {
+    gap: 5rem;
   }
 }
 
@@ -113,6 +124,15 @@
 
   @include h3;
   text-transform: uppercase;
+
+  @include lap-smaller {
+    height: 80px;
+    right: 10px;
+    top: 70%;
+    width: 95%;
+
+    padding: 0 10px;
+  }
 }
 
 .sqFtContainerInner {
@@ -141,6 +161,12 @@
     @include eyebrow;
     color: $cream;
   }
+
+  @include lap-smaller {
+    width: 100%;
+    top: 20px;
+    left: -10px;
+  }
 }
 
 .headline {
@@ -149,8 +175,13 @@
   left: 80px;
   width: 800px;
   height: auto;
-  font-size: 50px;
   @include h1;
+
+  @include lap-smaller {
+    width: 90%;
+    top: 60px;
+    left: 0px;
+  }
 }
 
 .copy {
@@ -159,8 +190,13 @@
   left: 80px;
   width: 500px;
   height: auto;
-  font-size: 20px;
   @include body1;
+
+  @include lap-smaller {
+    width: 100%;
+    bottom: 50px;
+    left: -10px;
+  }
 }
 
 .endCopy {
@@ -171,6 +207,13 @@
   height: auto;
   font-size: 20px;
   @include h3;
+
+  @include lap-smaller {
+    top: 20px;
+    width: 95%;
+    left: 0px;
+    font-size: 16px;
+  }
 }
 
 .stumpyWrap {
@@ -183,15 +226,29 @@
   flex-direction: row;
   align-items: flex-start;
   gap: 20px;
+
+  @include lap-smaller {
+    top: 20%;
+    left: 5%;
+    width: 90%;
+  }
 }
 
 .stumpy {
   transform: scale(0);
   width: 100px;
   height: auto;
+
+  @include lap-smaller {
+    width: 80px;
+  }
 }
 
 .stumpyText {
   width: calc(100% - 100px);
   @include body1;
+
+  @include lap-smaller {
+    width: calc(100% - 80px);
+  }
 }

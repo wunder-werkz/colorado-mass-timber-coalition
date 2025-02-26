@@ -4,6 +4,8 @@ import { useRef } from "react";
 import * as ST from "@bsmnt/scrollytelling";
 import styles from "./style.module.scss";
 
+import placeholderImg from "@/public/img/hero.jpg";
+
 import SplitTextBg from "@/components/SplitTextBg";
 import { MediaWCaption } from "@/components/MediaWCaption";
 import Stumpy from "@/components/Stumpy";
@@ -38,7 +40,7 @@ export default function Tab4({ index }) {
         >
           <div className={styles.mediaWCaption}>
             <MediaWCaption
-              url="/img/hero.jpg"
+              url={placeholderImg}
               caption={"Building better starts with creating healthy forests"}
             />
           </div>

@@ -10,6 +10,8 @@ import Stumpy from "@/components/Stumpy";
 
 import useWindowSize from "@/hooks/useWindowSize";
 
+import timberageImage from "@/public/img/tabs/TimberAge.jpg";
+
 import { mapToGlobalProgress } from "../../utils";
 
 export default function Tab6({ index }) {
@@ -144,7 +146,7 @@ const CONTENT = {
     "A forests products economy can both incentivize proactive stewardship and reduce forest management costs",
   copy: "Finding ways to use the wood generated from forest stewardship leads to lower costs for everyone and is a win-win for the environment and community. Plus, products like mass timber which can be used to help address our housing crisis, extend the carbon storage life of a tree, and reduce the environmental impact of new construction.",
   image: {
-    src: "/img/tabs/timberage.jpg",
+    src: timberageImage,
     alt: "Timber Age Systems",
   },
   stumpText: "A local forest product economy helps benefit rural communities",

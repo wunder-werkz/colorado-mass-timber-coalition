@@ -32,28 +32,10 @@ export default async function RootLayout({ children }) {
       <body className={`${greedNarrow.variable} ${greedStandard.variable}`}>
         <ModalProvider>
           <Layout contactEmail={contactEmail} />
-          <main
-            style={{
-              position: "relative",
-              width: "100%",
-              maxWidth: "100vw",
-            }}
-          >
-            <div
-              style={{
-                position: "relative",
-                zIndex: 1,
-                background: "#f0f5ea",
-                minHeight: "100vh",
-                width: "100%",
-                margin: "0 auto",
-                overflowX: "clip",
-              }}
-            >
-              {children}
-            </div>
+          <main>
+            {children}
+            <Footer contactEmail={contactEmail} />
           </main>
-          <Footer contactEmail={contactEmail} />
         </ModalProvider>
       </body>
     </html>

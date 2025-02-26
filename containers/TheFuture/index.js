@@ -18,7 +18,15 @@ export default function TheFuture() {
   const dltRef = useRef(null);
 
   return (
-    <ST.Root scrub="true" start="top 50%" end="top top">
+    <ST.Root
+      scrub="true"
+      start="top 50%"
+      end="top top"
+      callbacks={{
+        refreshPriority: 4,
+        invalidateOnRefresh: true,
+      }}
+    >
       <div className={`${styles.container}`}>
         <div className={styles.column}>
           <div>

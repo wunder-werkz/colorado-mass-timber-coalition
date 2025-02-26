@@ -13,11 +13,18 @@ export default function BuiltToLast() {
   const headline = useRef(null);
   const copy = useRef(null);
   const eyebrowRef = useRef(null);
-  const secondStumpRef = useRef([null, null, null]);
   const stumpyTextRefs = useRef([null, null, null]);
   const finalCopyRef = useRef(null);
   return (
-    <ST.Root scrub="true" start="top center" end="bottom bottom">
+    <ST.Root
+      scrub="true"
+      start="top center"
+      end="bottom bottom"
+      callbacks={{
+        refreshPriority: 5,
+        invalidateOnRefresh: true,
+      }}
+    >
       <ST.Pin childHeight={"100vh"} pinSpacerHeight={`400vh`} top={0}>
         <div className={`${styles.tabPanel}`}>
           <ST.Animation
