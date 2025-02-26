@@ -95,16 +95,14 @@ const SplitTextBg = forwardRef(
         backgroundsRef.current[i] = background;
         linesRef.current[i] = line;
 
-        // Set initial states using only transforms
         gsap.set(background, { scaleY: 0 });
-        gsap.set(line, { yPercent: 100 }); // Removed opacity, using only transforms
+        gsap.set(line, { yPercent: 100 });
       });
 
       // Setup animation timeline
       animationTl.current = gsap.timeline({
         paused: true,
         onComplete: () => {
-          // Remove will-change after animation completes to free up resources
           backgroundsRef.current.forEach((bg) => {
             if (bg) bg.style.willChange = "auto";
           });
@@ -122,9 +120,9 @@ const SplitTextBg = forwardRef(
           backgroundsRef.current,
           {
             scaleY: 1,
-            duration: 0.6,
-            stagger: 0.1,
-            ease: "power4.inOut",
+            duration: 0.3,
+            stagger: 0.05,
+            ease: "power2.inOut",
           },
           "start"
         )
@@ -132,11 +130,11 @@ const SplitTextBg = forwardRef(
           linesRef.current,
           {
             yPercent: 0,
-            duration: 0.4,
-            stagger: 0.1,
-            ease: "expo.out",
+            duration: 0.2,
+            stagger: 0.05,
+            ease: "power2.out",
           },
-          "start+=0.5"
+          "start+=0.25"
         );
 
       // Apply play state based on isPlaying prop

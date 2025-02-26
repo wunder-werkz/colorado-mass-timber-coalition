@@ -42,7 +42,6 @@ export default function TabPanel({ index }) {
       style={{
         transform: "translateX(100%)",
         zIndex: 0,
-        opacity: 0,
       }}
     >
       <ST.Waypoint
@@ -50,10 +49,8 @@ export default function TabPanel({ index }) {
         tween={{
           target: `.tab-${index}`,
           to: {
-            opacity: 1,
             x: 0,
             zIndex: 1,
-            filter: "blur(0px)",
           },
           duration: 0.5,
           ease: "power2.inOut",
