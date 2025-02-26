@@ -241,7 +241,7 @@ const WorldBuildingSection = () => {
                     </div>
                   </ST.Animation>
                   <ST.Waypoint
-                    at={60}
+                    at={50}
                     onCall={handleStumpTextStart}
                     onReverseCall={handleStumpTextReverse}
                   />
