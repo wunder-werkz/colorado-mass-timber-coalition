@@ -39,6 +39,23 @@
   display: block;
   font-size: inherit;
   line-height: 1.1;
+
+  @include lap-smaller {
+    &.block {
+      background-color: var(--bg-color, #000);
+    }
+    span {
+      background-color: var(--bg-color, #000);
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+      line-height: 120%;
+    }
+  }
+
+  sup {
+    font-size: 0.5em;
+    line-height: 0.5em;
+  }
 }
 
 .lineWrapper {
@@ -69,7 +86,7 @@
   display: block;
   font-size: inherit;
   line-height: inherit;
-  padding: 1px 15px;
+  // padding: 1px 15px;
   will-change: transform;
   transform: translateY(0);
 }

@@ -49,7 +49,7 @@ export const MediaWCaption = memo(({ url, caption, priority = false }) => {
           alt={caption || "CMTA Media"}
           className={styles.media}
           fill
-          // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
           style={{
             objectFit: "cover",
             willChange: "transform",

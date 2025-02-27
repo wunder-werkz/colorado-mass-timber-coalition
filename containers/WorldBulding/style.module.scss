@@ -152,7 +152,7 @@
 .eyebrow {
   position: absolute;
   top: 50px;
-  left: 57px;
+  left: 80px;
   width: 800px;
   height: auto;
 
@@ -165,7 +165,7 @@
   @include lap-smaller {
     width: 100%;
     top: 20px;
-    left: -10px;
+    left: 0;
   }
 }
 

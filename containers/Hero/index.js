@@ -162,18 +162,8 @@ const Hero = () => {
               <div className={`${styles.splitTextWrapper}`}>
                 <SplitTextBg ref={splitTextAnimationRef} color="orange" inline>
                   <p>
-                    Supporting{" "}
-                    <i>
-                      <b>healthy, resilient forests</b>
-                    </i>{" "}
-                    through a{" "}
-                    <i>
-                      <b>vibrant forest-products economy</b>
-                    </i>{" "}
-                    including{" "}
-                    <i>
-                      <b>mass timber</b>
-                    </i>
+                    Supporting healthy, resilient forests through a vibrant
+                    forest-products economy including mass timber
                   </p>
                 </SplitTextBg>
               </div>
