@@ -62,6 +62,7 @@ export default function Tab2({ index }) {
             <MediaWCaption
               url={CONTENT.image.src}
               caption={CONTENT.image.alt}
+              imagePosition={"center bottom"}
             />
             <ST.Animation
               tween={{
@@ -160,7 +161,7 @@ const CONTENT = {
     "But right now, many of our forests exhibit declining health and resilience",
   image: {
     src: coloradoStateForestServiceImage,
-    alt: "Alexander Mountain Fire, <br/>Colorado State Forest Service ",
+    alt: "Alexander Mountain Fire, Colorado State Forest Service ",
   },
   acresBurned: [
     {
