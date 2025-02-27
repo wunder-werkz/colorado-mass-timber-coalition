@@ -64,7 +64,7 @@
   position: relative;
   display: block;
   font-size: inherit;
-  line-height: 1.1;
+  line-height: inherit;
   will-change: transform;
 
   &.inline {
@@ -85,7 +85,7 @@
   display: block;
   font-size: inherit;
   line-height: inherit;
-  padding: 1px 15px;
+  padding: 0px 15px;
   position: relative;
   transform: translateY(0);
   will-change: transform;
@@ -97,6 +97,21 @@
 
 .text.stumpy .line {
   padding: 0px 10px;
+}
+
+.text {
+  .lineWrapper {
+    &:first-child {
+      .line {
+        padding-top: 7px;
+      }
+    }
+    &:last-child {
+      .line {
+        padding-bottom: 7px;
+      }
+    }
+  }
 }
 
 .text.stumpy {
@@ -114,14 +129,28 @@
   }
 }
 
+.text.body {
+  .lineWrapper {
+    &:first-child {
+      .line {
+        padding-top: 15px;
+      }
+    }
+    &:last-child {
+      .line {
+        padding-bottom: 15px;
+      }
+    }
+  }
+}
+
 .citation {
   cursor: pointer;
   display: inline;
+  font-size: 0.65em;
   position: relative;
-  font-size: 0.75em;
-  vertical-align: super;
   transition: opacity 0.2s ease;
-
+  vertical-align: super;
   &:hover {
     opacity: 0.7;
   }

@@ -25,5 +25,6 @@
   text-transform: uppercase;
   @include x-small {
     font-size: 11px;
+    padding: 7px;
   }
 }

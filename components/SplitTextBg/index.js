@@ -18,7 +18,7 @@ import useWindowSize from "@/hooks/useWindowSize";
 const MOBILE_BREAKPOINT = 900;
 
 const SplitTextBg = forwardRef(
-  ({ children, color, stumpy, inline = false, isPlaying = false }, ref) => {
+  ({ children, color, stumpy, body, inline = false, isPlaying = false }, ref) => {
     const containerRef = useRef(null);
     const backgroundsRef = useRef([]);
     const textRef = useRef(null);
@@ -193,7 +193,6 @@ const SplitTextBg = forwardRef(
 
         if (sups.length) {
           const handleSupClick = (e) => {
-            console.log("sup clicked");
             e.preventDefault();
             e.stopPropagation();
             openModal();
@@ -218,7 +217,7 @@ const SplitTextBg = forwardRef(
       <div className={styles.container} ref={containerRef}>
         <div
           ref={textRef}
-          className={`${styles.text} ${stumpy && styles.stumpy} ${styles[color]} ${inline ? "" : styles.block}`}
+          className={`${styles.text} ${stumpy && styles.stumpy} ${body && styles.body} ${styles[color]} ${inline ? "" : styles.block}`}
         >
           {children}
         </div>
