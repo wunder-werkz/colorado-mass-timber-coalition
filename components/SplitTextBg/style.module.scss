@@ -72,6 +72,9 @@
   padding: 1px 15px;
   will-change: transform;
   transform: translateY(0);
+  @include x-small {
+    padding: 1px 7px;
+  }
 }
 
 .citation {
