@@ -163,7 +163,7 @@ export default function Tab5({ index }) {
           onReverseCall={handleStumpTextReverse}
         />
         <div className={`${styles.stumpyText}`}>
-          <SplitTextBg ref={stumpTextRef} color="cream">
+          <SplitTextBg ref={stumpTextRef} color="cream" stumpy={true}>
             <p>{CONTENT.stumpText} </p>
           </SplitTextBg>
         </div>

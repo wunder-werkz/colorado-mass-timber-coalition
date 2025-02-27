@@ -117,9 +117,8 @@
 }
 
 .stumpyText {
-  width: calc(100% - 150px);
   @include body1;
-
+  width: calc(100% - 150px);
   @include lap-smaller {
     width: calc(100% - 50px);
   }
