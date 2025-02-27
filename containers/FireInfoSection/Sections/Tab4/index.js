@@ -74,7 +74,7 @@ export default function Tab4({ index }) {
           <div className={styles.mediaWCaption}>
             <MediaWCaption
               url={placeholderImg}
-              caption={"Building better starts with creating healthy forests"}
+              caption={" starts with creating healthy forests"}
             />
           </div>
         </ST.Animation>
