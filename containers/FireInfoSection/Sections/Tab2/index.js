@@ -197,7 +197,7 @@ const CONTENT = {
       acres: "37k",
     },
   ],
-  text: "Colorado's top three largest wildfires all occurred in 2020. The next one is not a matter of if, it's a matter of when",
+  text: "Colorado's top three largest wildfires all occurred in 2020. The next one is not a matter of if, it's a matter of when"
 };
 
 const SVGDivider = () => {

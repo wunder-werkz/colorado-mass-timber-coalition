@@ -63,17 +63,38 @@
   will-change: transform;
 }
 
+
+
 .line {
-  position: relative;
-  z-index: 1;
   display: block;
   font-size: inherit;
   line-height: inherit;
   padding: 1px 15px;
-  will-change: transform;
+  position: relative;
   transform: translateY(0);
+  will-change: transform;
+  z-index: 1;
   @include x-small {
     padding: 1px 7px;
+  }
+}
+
+.text.stumpy .line {
+  padding: 0px 10px;
+}
+
+.text.stumpy {
+  .lineWrapper {
+    &:first-child {
+      .line {
+        padding-top: 7px;
+      }
+    }
+    &:last-child {
+      .line {
+        padding-bottom: 7px;
+      }
+    }
   }
 }
 

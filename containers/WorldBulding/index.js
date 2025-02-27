@@ -251,7 +251,7 @@ const WorldBuildingSection = () => {
                     onReverseCall={handleStumpTextStartAlt}
                   />
                   <div className={`${styles.stumpyText}`}>
-                    <SplitTextBg ref={stumpTextRef} color="forest">
+                    <SplitTextBg ref={stumpTextRef} color="forest" stumpy={true}>
                       <p>{CONTENT.stumpy} </p>
                     </SplitTextBg>
                   </div>

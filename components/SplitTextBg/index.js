@@ -23,7 +23,7 @@ const debounce = (func, wait) => {
 };
 
 const SplitTextBg = forwardRef(
-  ({ children, color, inline = false, isPlaying = false }, ref) => {
+  ({ children, color, stumpy, inline = false, isPlaying = false }, ref) => {
     const textRef = useRef(null);
     const backgroundsRef = useRef([]);
     const linesRef = useRef([]);
@@ -212,7 +212,7 @@ const SplitTextBg = forwardRef(
 
     return (
       <div className={styles.container}>
-        <div ref={textRef} className={`${styles.text} ${styles[color]}`}>
+        <div ref={textRef} className={`${styles.text} ${stumpy && styles.stumpy} ${styles[color]}`}>
           {children}
         </div>
       </div>

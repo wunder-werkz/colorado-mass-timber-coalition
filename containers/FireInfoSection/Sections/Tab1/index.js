@@ -6,6 +6,7 @@ import styles from "./style.module.scss";
 
 import SplitTextBg from "@/components/SplitTextBg";
 import { MediaWCaption } from "@/components/MediaWCaption";
+import Stumpy from "@/components/Stumpy";
 
 import useWindowSize from "@/hooks/useWindowSize";
 import pineGulchImage from "@/public/img/tabs/PineGulch.jpg";
@@ -15,8 +16,10 @@ import { mapToGlobalProgress } from "../../utils";
 export default function Tab1({ index }) {
   const { width } = useWindowSize();
   const smScreen = width < 1080;
+  const phoneScreen = width < 900;
   const sectionTitleRef = useRef(null);
   const titleRef = useRef(null);
+  const stumpTextRef = useRef(null);
 
   // Memoized callbacks for animations
   const handleSectionTitleStart = useCallback(() => {
@@ -33,6 +36,14 @@ export default function Tab1({ index }) {
 
   const handleTitleReverse = useCallback(() => {
     titleRef.current?.reverse();
+  }, []);
+
+  const handleStumpTextStart = useCallback(() => {
+    stumpTextRef.current?.restart();
+  }, []);
+
+  const handleStumpTextReverse = useCallback(() => {
+    stumpTextRef.current?.reverse();
   }, []);
 
   return (
@@ -67,6 +78,33 @@ export default function Tab1({ index }) {
       <div className={styles.mediaWCaption}>
         <MediaWCaption url={CONTENT.image.src} caption={CONTENT.image.alt} />
       </div>
+      <div className={styles.stumpyWrap}>
+          <ST.Animation
+            tween={{
+              start: mapToGlobalProgress(index, phoneScreen ? 65 : 60),
+              end: mapToGlobalProgress(index, phoneScreen ? 75 : 70),
+              fromTo: [
+                { opacity: 0, scale: 0.2 },
+                { opacity: 1, scale: 1 },
+              ],
+              ease: "power2.out",
+            }}
+          >
+            <div className={styles.stumpy}>
+              <Stumpy type="tree" color="white" />
+            </div>
+          </ST.Animation>
+          <ST.Waypoint
+            at={mapToGlobalProgress(index, phoneScreen ? 70 : 65)}
+            onCall={handleStumpTextStart}
+            onReverseCall={handleStumpTextReverse}
+          />
+          <div className={`${styles.stumpyText}`}>
+            <SplitTextBg ref={stumpTextRef} color="forest" stumpy={true}>
+              <p>{CONTENT.stumpText} </p>
+            </SplitTextBg>
+          </div>
+        </div>
     </div>
   );
 }
@@ -79,4 +117,5 @@ const CONTENT = {
     src: pineGulchImage,
     alt: "Pine Gulch Fire, Kyle Miller Photography",
   },
+  stumpText: "Colorado Forests are Carbon sources. They emit more carbon than they sequester."
 };

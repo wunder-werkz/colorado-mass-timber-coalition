@@ -52,3 +52,48 @@
   width: 100%;
   z-index: 0;
 }
+
+.stumpyWrap {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  height: auto;
+  left: 70%;
+  position: absolute;
+  top: 10%;
+  width: 40%;
+  @include lap-smaller {
+    left: 60%;
+    top: 35%;
+
+  }
+  @include phone {
+    left: 55%;
+  }
+  @include x-small {
+    left: 10%;
+    top: 70%;
+    width: 90%;
+  }
+}
+
+.stumpy {
+  height: auto;
+  width: 100px;
+  @include phone {
+    width: 150px;
+  }
+  @include x-small {
+    width: 100px;
+  }
+}
+
+.stumpyText {
+  @include body1;
+  margin-top: 30px;
+  width: calc(100% - 300px);
+  @include lap-smaller {
+    width: 100%;
+  }
+}
