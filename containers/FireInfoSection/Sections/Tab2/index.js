@@ -17,7 +17,7 @@ export default function Tab2({ index }) {
   const sectionTitleRef = useRef(null);
   const textRef = useRef(null);
   const { width } = useWindowSize();
-  const smScreen = width < 786;
+  const smScreen = width < 1080;
 
   // Memoized callbacks for animations
   const handleSectionTitleStart = useCallback(() => {
@@ -37,7 +37,7 @@ export default function Tab2({ index }) {
   }, []);
 
   return (
-    <div ref={panelRef} className={`${styles.container}`}>
+    <div ref={panelRef} className={`${styles.container} tab2`}>
       <div className={styles.chartContainer}>
         {CONTENT.acresBurned.map((item, i) => (
           <div key={item.year} className={styles.chartBarItemWrapper}>
@@ -62,6 +62,7 @@ export default function Tab2({ index }) {
             <MediaWCaption
               url={CONTENT.image.src}
               caption={CONTENT.image.alt}
+              imagePosition="center bottom"
             />
             <ST.Animation
               tween={{
@@ -160,7 +161,7 @@ const CONTENT = {
     "But right now, many of our forests exhibit declining health and resilience",
   image: {
     src: coloradoStateForestServiceImage,
-    alt: "Alexander Mountain Fire, <br/>Colorado State Forest Service ",
+    alt: "Alexander Mountain Fire, Colorado State Forest Service ",
   },
   acresBurned: [
     {

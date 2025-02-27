@@ -2,7 +2,7 @@ import * as styles from "./style.module.scss";
 import Image from "next/image";
 import { memo, useState, useEffect } from "react";
 
-export const MediaWCaption = memo(({ url, caption, priority = false }) => {
+export const MediaWCaption = memo(({ url, caption, priority = false, imagePosition }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const imageUrl = typeof url === "string" ? url : url?.src;
   const isGif = imageUrl?.toLowerCase().endsWith(".gif");
@@ -49,10 +49,10 @@ export const MediaWCaption = memo(({ url, caption, priority = false }) => {
           alt={caption || "CMTA Media"}
           className={styles.media}
           fill
-          // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           style={{
             objectFit: "cover",
             willChange: "transform",
+            objectPosition: imagePosition ? `${imagePosition}` : "center center" 
           }}
           loading={priority ? "eager" : "lazy"}
           quality={imageQuality}

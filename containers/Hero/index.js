@@ -269,7 +269,7 @@ const Hero = () => {
               <MediaWCaption
                 url={fireTrimGif}
                 priority={false}
-                caption={"Building better starts with creating healthy forests"}
+                caption={"cameron peak wildfire, USDA Forest Service  "}
               />
             </div>
           </ST.Animation>

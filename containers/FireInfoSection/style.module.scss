@@ -1,17 +1,16 @@
 @use "@/styles/vars" as *;
 
 .container {
-  width: 100%;
-  height: 100%;
-  background: $cream;
-  position: relative;
-  z-index: 1;
   @include grid-wrap;
+  background: $cream;
   grid-template-rows: auto 1fr;
-
+  height: 100%;
   padding-top: 80px;
-  padding-bottom: 50px;
-
+  padding-bottom: 30px;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+  
   @include tablet-and-lower {
     padding-top: 70px;
     padding-bottom: 20px;
@@ -34,18 +33,18 @@
   color: $forest;
 
   button {
+    align-items: center;
     border-left: 2px solid $orange;
     border-right: 2px solid $orange;
     border-top: 4px solid $orange;
     border-bottom: none;
-    padding: 0.5rem 1rem;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
     color: $forest;
-
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    @include x-small {
+      padding-left: 0.7rem; padding-right: 0.7rem; 
+    }
     &:first-of-type {
       border-left: 4px solid $orange;
     }
