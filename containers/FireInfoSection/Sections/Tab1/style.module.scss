@@ -72,7 +72,7 @@
     left: 55%;
   }
   @include x-small {
-    left: 10%;
+    left: 7%;
     top: 70%;
     width: 90%;
   }
@@ -95,5 +95,10 @@
   width: calc(100% - 300px);
   @include lap-smaller {
     width: 100%;
+  }
+  @include x-small {
+    p {
+      padding: 7px 10px;
+    }
   }
 }
