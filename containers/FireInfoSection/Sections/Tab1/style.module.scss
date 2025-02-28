@@ -9,13 +9,16 @@
 
 .titleWrap {
   position: relative;
-  width: 100%;
+  width: $six-twelfths;
   height: 100%;
   z-index: 1;
-  padding: 20px;
-
+  padding: 20px 0 0 20px;
   @include lap-smaller {
+    width: $eight-twelfths;
     padding: 10px;
+  }
+  @include x-small {
+    width: 100%;
   }
 }
 
@@ -29,15 +32,11 @@
 
 .title {
   @include h1;
-  margin: 0;
-  text-align: left;
-
-  position: relative;
-  width: 80%;
   height: auto;
+  margin: 0;
+  position: relative;
+  text-align: left;
   z-index: 1;
-  @include five-twelfths;
-
   @include lap-smaller {
     position: relative;
     @include full;
@@ -46,10 +45,55 @@
 }
 
 .mediaWCaption {
+  height: 100%;
+  left: 0;
   position: absolute;
   top: 0;
-  left: 0;
   width: 100%;
-  height: 100%;
   z-index: 0;
+}
+
+.stumpyWrap {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  height: auto;
+  left: 70%;
+  position: absolute;
+  top: 10%;
+  width: 40%;
+  @include lap-smaller {
+    left: 60%;
+    top: 35%;
+
+  }
+  @include phone {
+    left: 55%;
+  }
+  @include x-small {
+    left: 10%;
+    top: 70%;
+    width: 90%;
+  }
+}
+
+.stumpy {
+  height: auto;
+  width: 100px;
+  @include phone {
+    width: 150px;
+  }
+  @include x-small {
+    width: 100px;
+  }
+}
+
+.stumpyText {
+  @include body1;
+  margin-top: 30px;
+  width: calc(100% - 300px);
+  @include lap-smaller {
+    width: 100%;
+  }
 }

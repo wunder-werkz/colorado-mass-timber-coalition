@@ -15,10 +15,10 @@ import { useModal } from "@/context/ModalContext";
 import useWindowSize from "@/hooks/useWindowSize";
 
 // Mobile breakpoint
-const MOBILE_BREAKPOINT = 768;
+const MOBILE_BREAKPOINT = 900;
 
 const SplitTextBg = forwardRef(
-  ({ children, color, inline = false, isPlaying = false }, ref) => {
+  ({ children, color, stumpy, inline = false, isPlaying = false }, ref) => {
     const containerRef = useRef(null);
     const backgroundsRef = useRef([]);
     const textRef = useRef(null);
@@ -47,6 +47,11 @@ const SplitTextBg = forwardRef(
         const textElem = textRef.current;
 
         if (isMobile) {
+          if (textElem.children[0]) {
+            textElem.children[0].style.paddingRight = "0px";
+            textElem.children[0].style.paddingLeft = "0px";
+          }
+
           if (splitTextInstanceRef.current) {
             splitTextInstanceRef.current.revert();
             backgroundsRef.current = [];
@@ -79,12 +84,29 @@ const SplitTextBg = forwardRef(
             backgroundsRef.current = [];
             linesRef.current = [];
           }
+          const textWidth = 25;
+          if (textElem) {
+            textElem.style.paddingRight = `${textWidth}px`;
+            textElem.style.paddingLeft = `${textWidth}px`;
+          }
 
           splitTextInstanceRef.current = new SplitText(textElem.children[0], {
             types: "lines",
             linesClass: styles.line,
-            reduceWhiteSpace: true,
+            reduceWhiteSpace: false,
+            lineThreshold: 0.2,
+            onComplete: () => {
+              if (textElem) {
+                textElem.style.paddingRight = "0px";
+                textElem.style.paddingLeft = "0px";
+              }
+            },
           });
+
+          if (textElem) {
+            textElem.style.paddingRight = "0px";
+            textElem.style.paddingLeft = "0px";
+          }
 
           splitTextInstanceRef.current.lines.forEach((line, i) => {
             const wrapper = document.createElement("div");
@@ -168,7 +190,6 @@ const SplitTextBg = forwardRef(
         }
 
         const sups = containerRef.current.querySelectorAll("sup");
-        console.log("Found sups:", sups.length);
 
         if (sups.length) {
           const handleSupClick = (e) => {
@@ -197,7 +218,7 @@ const SplitTextBg = forwardRef(
       <div className={styles.container} ref={containerRef}>
         <div
           ref={textRef}
-          className={`${styles.text} ${styles[color]} ${inline ? "" : styles.block}`}
+          className={`${styles.text} ${stumpy && styles.stumpy} ${styles[color]} ${inline ? "" : styles.block}`}
         >
           {children}
         </div>

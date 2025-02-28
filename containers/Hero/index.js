@@ -25,8 +25,9 @@ const Hero = () => {
   const fireTrimRef = useRef(null);
   const heroSectionRef = useRef(null);
 
-  const { width } = useWindowSize();
+  const { width, height } = useWindowSize();
   const isMobile = width < 768;
+  const tabletView = height > width;
 
   // Memoized callbacks for animations to improve performance
   const handleSplitText1Animation = useCallback(() => {
@@ -70,7 +71,10 @@ const Hero = () => {
       .to(
         ".mask-container",
         {
-          clipPath: "circle(15% at 50% 100%)",
+          clipPath:
+            isMobile || tabletView
+              ? "circle(25% at 50% 60%)"
+              : "circle(25% at 50% 100%)",
           opacity: 1,
           y: 50,
           duration: duration * 0.7,
@@ -82,7 +86,7 @@ const Hero = () => {
     return () => {
       initialAnimations.kill();
     };
-  }, [isMobile]);
+  }, [isMobile, tabletView]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -156,7 +160,7 @@ const Hero = () => {
               tween={{
                 start: 26,
                 end: 50,
-                to: { y: "-110vh" },
+                to: { y: "-100vh" },
               }}
             >
               <div className={`${styles.splitTextWrapper}`}>
@@ -177,9 +181,10 @@ const Hero = () => {
                 end: 75,
                 to: {
                   y: 0,
-                  clipPath: isMobile
-                    ? "circle(190% at 50% 100%)"
-                    : "circle(120% at 50% 100%)",
+                  clipPath:
+                    isMobile || tabletView
+                      ? "circle(190% at 50% 100%)"
+                      : "circle(120% at 50% 100%)",
                 },
               },
             ]}
@@ -201,7 +206,7 @@ const Hero = () => {
                       url={heroImage}
                       priority={true}
                       caption={
-                        "Building better starts with creating healthy forests"
+                        "State Forest State Park, Colorado State Forest Service"
                       }
                     />
                   </div>
@@ -228,27 +233,27 @@ const Hero = () => {
                   }}
                 >
                   <div
-                    className={`${styles.eyeball1} will-change-opacity will-change-transform`}
+                    className={`${styles.eyeball1} ${styles.eyeball} will-change-opacity will-change-transform`}
                   >
                     <Eyeballs />
                   </div>
                   <div
-                    className={`${styles.eyeball2} will-change-opacity will-change-transform`}
+                    className={`${styles.eyeball2} ${styles.eyeball} will-change-opacity will-change-transform`}
                   >
                     <Eyeballs />
                   </div>
                   <div
-                    className={`${styles.eyeball3} will-change-opacity will-change-transform`}
+                    className={`${styles.eyeball3} ${styles.eyeball} will-change-opacity will-change-transform`}
                   >
                     <Eyeballs />
                   </div>
                   <div
-                    className={`${styles.eyeball4} will-change-opacity will-change-transform`}
+                    className={`${styles.eyeball4} ${styles.eyeball}  will-change-opacity will-change-transform`}
                   >
                     <Eyeballs />
                   </div>
                   <div
-                    className={`${styles.eyeball5} will-change-opacity will-change-transform`}
+                    className={`${styles.eyeball5} ${styles.eyeball}  will-change-opacity will-change-transform`}
                   >
                     <Eyeballs />
                   </div>
@@ -267,7 +272,7 @@ const Hero = () => {
               <MediaWCaption
                 url={fireTrimGif}
                 priority={false}
-                caption={"Building better starts with creating healthy forests"}
+                caption={"cameron peak wildfire, USDA Forest Service  "}
               />
             </div>
           </ST.Animation>
