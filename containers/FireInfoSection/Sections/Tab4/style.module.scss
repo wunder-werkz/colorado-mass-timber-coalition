@@ -1,25 +1,20 @@
 @use "@/styles/vars" as *;
 
 .container {
-  width: 100%;
+  display: flex;
   height: 100%;
   position: relative;
-  display: flex;
+  width: 100%;
 }
 
 .headlineWrap {
-  position: relative;
-  width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
-
+  height: auto;
+  left: 0;
   position: absolute;
   top: 0;
-  left: 0;
-  width: 60%;
-  height: auto;
-
+  width: $five-twelfths;
   @include phone {
     width: 100%;
   }
@@ -37,6 +32,7 @@
 .headline {
   h2 {
     @include h1;
+    line-height: 1.1;
   }
   margin: 0;
   text-align: left;
@@ -50,29 +46,29 @@
 }
 
 .copy {
-  position: absolute;
   bottom: -5px;
-  left: 0;
-  width: 40%;
   height: auto;
+  left: 0;
+  position: absolute;
+  width: $three-twelfths;
   @include body1;
 
   @include phone {
-    position: absolute;
-    width: 100%;
-    top: 0;
     left: 0;
     padding: 10px;
+    position: absolute;
+    top: 0;
+    width: 100%;
   }
 }
 
 .scaleWrap {
+  height: 100%;
+  left: 0;
+  overflow: hidden;
   position: absolute;
   top: 0;
-  left: 0;
   width: 100%;
-  height: 100%;
-  overflow: hidden;
   z-index: 0;
 }
 
@@ -84,35 +80,35 @@
 }
 
 .stumpyWrap {
-  position: absolute;
-  top: 60%;
-  right: 10%;
-  width: 40%;
-  height: auto;
+  align-items: flex-start;
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
   gap: 20px;
+  height: auto;
+  position: absolute;
+  right: 0;
+  top: 60%;
+  width: $three-twelfths;
 
   @include phone {
-    position: absolute;
-    width: 100%;
-    top: 50%;
     left: 0;
     padding: 10px;
+    position: absolute;
+    top: 50%;
+    width: 100%;
   }
 }
 
 .stumpy {
-  width: 100px;
   height: auto;
-  transform: scale(0);
   opacity: 0;
+  transform: scale(0);
+  width: 100px;
 }
 
 .stumpyText {
-  width: calc(100% - 100px);
   @include body2;
+  width: calc(100% - 100px);
 
   @include phone {
     width: 100%;
