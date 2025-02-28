@@ -104,8 +104,8 @@ export default function Tab2({ index }) {
               start: mapToGlobalProgress(index, 15),
               end: mapToGlobalProgress(index, 20),
               fromTo: [
-                { opacity: 0, height: 0 },
-                { opacity: 1, height: smScreen ? "60px" : "120px" },
+                { opacity: 0 },
+                { opacity: 1 },
               ],
               ease: "power2.out",
             },
