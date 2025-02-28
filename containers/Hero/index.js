@@ -71,7 +71,10 @@ const Hero = () => {
       .to(
         ".mask-container",
         {
-          clipPath: (isMobile || tabletView) ? "circle(25% at 50% 60%)" : "circle(25% at 50% 100%)",
+          clipPath:
+            isMobile || tabletView
+              ? "circle(25% at 50% 60%)"
+              : "circle(25% at 50% 100%)",
           opacity: 1,
           y: 50,
           duration: duration * 0.7,
@@ -163,9 +166,8 @@ const Hero = () => {
               <div className={`${styles.splitTextWrapper}`}>
                 <SplitTextBg ref={splitTextAnimationRef} color="orange" inline>
                   <p>
-                    Supporting healthy, resilient forests
-                     through a vibrant forest-products economy
-                    including mass timber
+                    Supporting healthy, resilient forests through a vibrant
+                    forest-products economy including mass timber
                   </p>
                 </SplitTextBg>
               </div>
@@ -179,9 +181,10 @@ const Hero = () => {
                 end: 75,
                 to: {
                   y: 0,
-                  clipPath: isMobile || tabletView
-                    ? "circle(190% at 50% 100%)"
-                    : "circle(120% at 50% 100%)",
+                  clipPath:
+                    isMobile || tabletView
+                      ? "circle(190% at 50% 100%)"
+                      : "circle(120% at 50% 100%)",
                 },
               },
             ]}

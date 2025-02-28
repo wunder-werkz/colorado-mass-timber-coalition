@@ -12,26 +12,22 @@ import {
 import { gsap, SplitText } from "@/lib/gsapConfig";
 import styles from "./style.module.scss";
 import { useModal } from "@/context/ModalContext";
+import useWindowSize from "@/hooks/useWindowSize";
 
-// Debounce utility
-const debounce = (func, wait) => {
-  let timeout;
-  return function (...args) {
-    clearTimeout(timeout);
-    timeout = setTimeout(() => func.apply(this, args), wait);
-  };
-};
+// Mobile breakpoint
+const MOBILE_BREAKPOINT = 900;
 
 const SplitTextBg = forwardRef(
   ({ children, color, stumpy, inline = false, isPlaying = false }, ref) => {
-    const textRef = useRef(null);
+    const containerRef = useRef(null);
     const backgroundsRef = useRef([]);
-    const linesRef = useRef([]);
-    const animationTl = useRef(null);
+    const textRef = useRef(null);
     const splitTextInstanceRef = useRef(null);
+    const animationTl = useRef(null);
+    const linesRef = useRef([]);
     const { openModal } = useModal();
-
-    const lastWidthRef = useRef(0);
+    const { width } = useWindowSize();
+    const isMobile = width < MOBILE_BREAKPOINT;
 
     useImperativeHandle(ref, () => ({
       play: () => animationTl.current?.play(),
@@ -40,179 +36,190 @@ const SplitTextBg = forwardRef(
       reverse: () => animationTl.current?.reverse(),
     }));
 
-    // Define setupSplitText function outside useEffect to allow reuse
-    const setupSplitText = useCallback(() => {
+    useEffect(() => {
       if (!textRef.current) return;
 
-      const padding = "1px 25px";
-      textRef.current.style.padding = padding;
-
-      // Clean up previous split if it exists
-      if (splitTextInstanceRef.current) {
-        splitTextInstanceRef.current.revert();
-
-        // Clear existing refs
-        backgroundsRef.current = [];
-        linesRef.current = [];
+      if (animationTl.current) {
+        animationTl.current.kill();
       }
 
-      const sups = textRef.current.getElementsByTagName("sup");
-
-      if (sups.length) {
-        Array.from(sups).forEach((sup) => {
-          sup.className = styles.citation;
-          sup.addEventListener("click", (e) => {
-            e.preventDefault();
-            openModal();
-          });
-        });
-      }
-
-      splitTextInstanceRef.current = new SplitText(
-        textRef.current.children[0],
-        {
-          types: "lines",
-          linesClass: styles.line,
-          reduceWhiteSpace: true,
-        }
-      );
-
-      textRef.current.style.padding = "0";
-
-      splitTextInstanceRef.current.lines.forEach((line, i) => {
-        const wrapper = document.createElement("div");
-        wrapper.className = `${styles.lineWrapper} ${inline ? styles.inline : ""}`;
-        wrapper.style.willChange = "transform";
-
-        const background = document.createElement("div");
-        background.className = styles.lineBackground;
-        background.style.willChange = "transform";
-
-        line.parentNode.insertBefore(wrapper, line);
-        wrapper.appendChild(line);
-        wrapper.insertBefore(background, line);
-
-        backgroundsRef.current[i] = background;
-        linesRef.current[i] = line;
-
-        gsap.set(background, { scaleY: 0 });
-        gsap.set(line, { yPercent: 100 });
-      });
-
-      // Setup animation timeline
-      animationTl.current = gsap.timeline({
-        paused: true,
-        onComplete: () => {
-          backgroundsRef.current.forEach((bg) => {
-            if (bg) bg.style.willChange = "auto";
-          });
-
-          linesRef.current.forEach((line) => {
-            if (line && line.parentNode)
-              line.parentNode.style.willChange = "auto";
-          });
-        },
-      });
-
-      animationTl.current
-        .addLabel("start")
-        .to(
-          backgroundsRef.current,
-          {
-            scaleY: 1,
-            duration: 0.3,
-            stagger: 0.05,
-            ease: "power2.inOut",
-          },
-          "start"
-        )
-        .to(
-          linesRef.current,
-          {
-            yPercent: 0,
-            duration: 0.2,
-            stagger: 0.05,
-            ease: "power2.out",
-          },
-          "start+=0.25"
-        );
-
-      // Apply play state based on isPlaying prop
-      if (isPlaying) {
-        animationTl.current.play();
-      } else {
-        animationTl.current.pause();
-      }
-    }, [inline, isPlaying, openModal]);
-
-    // Create memoized handlers
-    const debouncedResizeHandler = useMemo(
-      () =>
-        debounce(() => {
-          if (!textRef.current) return;
-
-          // Only do a full recalculation on significant size changes
-          if (window.innerWidth !== lastWidthRef.current) {
-            setupSplitText();
-            lastWidthRef.current = window.innerWidth;
-          }
-        }, 300),
-      [setupSplitText]
-    );
-
-    useEffect(() => {
       const ctx = gsap.context(() => {
-        lastWidthRef.current = window.innerWidth;
-        setupSplitText();
-        window.addEventListener("resize", debouncedResizeHandler);
+        const textElem = textRef.current;
 
-        return () => {
+        if (isMobile) {
+          if (textElem.children[0]) {
+            textElem.children[0].style.paddingRight = "0px";
+            textElem.children[0].style.paddingLeft = "0px";
+          }
+
           if (splitTextInstanceRef.current) {
             splitTextInstanceRef.current.revert();
+            backgroundsRef.current = [];
+            linesRef.current = [];
           }
-          window.removeEventListener("resize", debouncedResizeHandler);
-        };
-      }, textRef);
+          if (inline) {
+            const firstElem = textElem.children[0];
+            const span = document.createElement("span");
+            span.innerHTML = firstElem.innerHTML;
+
+            firstElem.innerHTML = "";
+            firstElem.appendChild(span);
+          }
+
+          gsap.set(textElem, { autoAlpha: 0, y: 20 });
+          animationTl.current = gsap.timeline({ paused: true });
+          animationTl.current.to(
+            textElem,
+            {
+              autoAlpha: 1,
+              y: 0,
+              duration: 0.5,
+              ease: "power2.out",
+            },
+            0
+          );
+        } else {
+          if (splitTextInstanceRef.current) {
+            splitTextInstanceRef.current.revert();
+            backgroundsRef.current = [];
+            linesRef.current = [];
+          }
+          const textWidth = 25;
+          if (textElem) {
+            textElem.style.paddingRight = `${textWidth}px`;
+            textElem.style.paddingLeft = `${textWidth}px`;
+          }
+
+          splitTextInstanceRef.current = new SplitText(textElem.children[0], {
+            types: "lines",
+            linesClass: styles.line,
+            reduceWhiteSpace: false,
+            lineThreshold: 0.2,
+            onComplete: () => {
+              if (textElem) {
+                textElem.style.paddingRight = "0px";
+                textElem.style.paddingLeft = "0px";
+              }
+            },
+          });
+
+          if (textElem) {
+            textElem.style.paddingRight = "0px";
+            textElem.style.paddingLeft = "0px";
+          }
+
+          splitTextInstanceRef.current.lines.forEach((line, i) => {
+            const wrapper = document.createElement("div");
+            wrapper.className = `${styles.lineWrapper} ${inline ? styles.inline : ""}`;
+            wrapper.style.willChange = "transform";
+            const background = document.createElement("div");
+            background.className = styles.lineBackground;
+            background.style.willChange = "transform";
+            line.parentNode.insertBefore(wrapper, line);
+            wrapper.appendChild(line);
+            wrapper.insertBefore(background, line);
+            backgroundsRef.current[i] = background;
+            linesRef.current[i] = line;
+
+            gsap.set(background, { scaleY: 0 });
+            gsap.set(line, { yPercent: 100 });
+          });
+
+          animationTl.current = gsap.timeline({
+            paused: true,
+            onComplete: () => {
+              backgroundsRef.current.forEach((bg) => {
+                if (bg) bg.style.willChange = "auto";
+              });
+
+              linesRef.current.forEach((line) => {
+                if (line && line.parentNode)
+                  line.parentNode.style.willChange = "auto";
+              });
+            },
+          });
+
+          animationTl.current
+            .addLabel("start")
+            .to(
+              backgroundsRef.current,
+              {
+                scaleY: 1,
+                duration: 0.3,
+                stagger: 0.05,
+                ease: "power2.inOut",
+              },
+              "start"
+            )
+            .to(
+              linesRef.current,
+              {
+                yPercent: 0,
+                duration: 0.2,
+                stagger: 0.05,
+                ease: "power2.out",
+              },
+              "start+=0.25"
+            );
+        }
+        if (isPlaying) {
+          animationTl.current.play();
+        } else {
+          animationTl.current.pause();
+        }
+      });
 
       return () => ctx.revert();
-    }, [inline, debouncedResizeHandler, setupSplitText]);
+    }, [inline, isPlaying, isMobile, color, width]);
 
     useEffect(() => {
-      if (isPlaying) {
-        // Reset will-change for animation
-        backgroundsRef.current.forEach((bg) => {
-          if (bg) bg.style.willChange = "transform";
-        });
-
-        linesRef.current.forEach((line) => {
-          if (line && line.parentNode)
-            line.parentNode.style.willChange = "transform";
-        });
-
-        animationTl.current?.play();
-      } else {
-        animationTl.current?.pause();
+      if (animationTl.current) {
+        if (isPlaying) {
+          animationTl.current.play();
+        } else {
+          animationTl.current.reverse();
+        }
       }
     }, [isPlaying]);
 
-    // Clean up effect for event listeners on citations
     useEffect(() => {
-      const text = textRef.current;
-      return () => {
-        if (text) {
-          const sups = text.getElementsByTagName("sup");
-          if (sups.length) {
-            Array.from(sups).forEach((sup) => {
-              sup.removeEventListener("click", openModal);
-            });
-          }
+      const timeout = setTimeout(() => {
+        if (!containerRef.current) {
+          console.log("Container ref not available yet");
+          return;
         }
+
+        const sups = containerRef.current.querySelectorAll("sup");
+
+        if (sups.length) {
+          const handleSupClick = (e) => {
+            console.log("sup clicked");
+            e.preventDefault();
+            e.stopPropagation();
+            openModal();
+          };
+
+          Array.from(sups).forEach((sup) => {
+            sup.className = styles.citation;
+            sup.style.cursor = "pointer";
+
+            sup.removeEventListener("click", handleSupClick);
+            sup.addEventListener("click", handleSupClick);
+          });
+        }
+      }, 500);
+
+      return () => {
+        clearTimeout(timeout);
       };
-    }, [openModal]);
+    }, [openModal, containerRef]);
 
     return (
-      <div className={styles.container}>
-        <div ref={textRef} className={`${styles.text} ${stumpy && styles.stumpy} ${styles[color]}`}>
+      <div className={styles.container} ref={containerRef}>
+        <div
+          ref={textRef}
+          className={`${styles.text} ${stumpy && styles.stumpy} ${styles[color]} ${inline ? "" : styles.block}`}
+        >
           {children}
         </div>
       </div>
