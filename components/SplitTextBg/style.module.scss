@@ -40,7 +40,7 @@
   font-size: inherit;
   line-height: 1.1;
 
-  @include lap-smaller {
+  @include phone {
     &.block {
       background-color: var(--bg-color, #000);
     }

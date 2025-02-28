@@ -94,7 +94,7 @@ const SplitTextBg = forwardRef(
             types: "lines",
             linesClass: styles.line,
             reduceWhiteSpace: false,
-            lineThreshold: 0.2,
+            lineThreshold: 0.5,
             onComplete: () => {
               if (textElem) {
                 textElem.style.paddingRight = "0px";
