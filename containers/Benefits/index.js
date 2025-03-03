@@ -18,15 +18,12 @@ export default function Benefits() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Animate each section when it comes into view
       contentRefs.current.forEach((content, index) => {
         const { textRef, imageRef } = content;
 
-        // Different parallax speeds based on index
         const parallaxDistance = index % 2 === 0 ? 100 : -100;
         const parallaxSpeed = 0.5 + index * 0.1;
 
-        // Parallax for images with different speeds
         gsap.to(imageRef, {
           scrollTrigger: {
             trigger: textRef,
@@ -38,7 +35,6 @@ export default function Benefits() {
           ease: "none",
         });
 
-        // Text animation trigger
         ScrollTrigger.create({
           trigger: textRef,
           start: "top 80%",
@@ -47,11 +43,16 @@ export default function Benefits() {
         });
       });
 
-      // Stumpy animations - now using stumpyRefs directly
+      ScrollTrigger.create({
+        trigger: containerRef.current.querySelector(`.${styles.eyebrow}`),
+        start: "top 80%",
+        onEnter: () => eyebrowRef.current?.restart(),
+        onLeaveBack: () => eyebrowRef.current?.reverse(),
+      });
+
       stumpyRefs.current.forEach((stumpyRef, index) => {
         if (!stumpyRef) return;
 
-        // Set initial states
         gsap.set(stumpyRef, {
           scale: 0.8,
           opacity: 0,
@@ -61,7 +62,6 @@ export default function Benefits() {
           trigger: stumpyRef,
           start: "top 80%",
           onEnter: () => {
-            // Animate stumpy
             gsap.to(stumpyRef, {
               scale: 1,
               opacity: 1,
@@ -69,7 +69,6 @@ export default function Benefits() {
               ease: "power3.out",
             });
 
-            // Animate text
             const stumpyTextRef = stumpyTextRefs.current[index];
             if (stumpyTextRef) {
               stumpyTextRef.restart();
@@ -91,23 +90,9 @@ export default function Benefits() {
   useEffect(() => {
     if (!containerRef.current) return;
 
-    // Eyebrow animation
-    gsap.from(eyebrowRef.current.children, {
-      scrollTrigger: {
-        trigger: eyebrowRef.current,
-        start: "top 80%",
-      },
-      yPercent: 100,
-      duration: 1,
-      stagger: 0.05,
-      ease: "power3.out",
-    });
-
-    // Content animations
     CONTENT.sections.forEach((_, index) => {
       const { imageRef, textRef } = contentRefs.current[index];
 
-      // Image animation
       if (imageRef) {
         gsap.from(imageRef.querySelector(`.${styles.imageBlock}`), {
           scrollTrigger: {
@@ -125,11 +110,11 @@ export default function Benefits() {
 
   return (
     <div ref={containerRef} className={styles.container}>
-      <h2 ref={eyebrowRef} className={styles.eyebrow}>
-        <SplitTextBg color="cream" inline>
+      <div className={styles.eyebrow}>
+        <SplitTextBg color="cream" inline ref={eyebrowRef}>
           <h2>{CONTENT.eyebrow}</h2>
         </SplitTextBg>
-      </h2>
+      </div>
 
       <div className={styles.content}>
         {CONTENT.sections.map((section, index) => (
