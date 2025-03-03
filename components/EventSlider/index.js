@@ -40,8 +40,24 @@ const EventSlider = ({ events }) => {
   }, [currentIndex]);
 
   useEffect(() => {
+    const calculateSlideOffset = () => {
+      if (slideRefs.current.length === 0) return 0;
+
+      const slideElement = slideRefs.current[0];
+      if (!slideElement) return 0;
+
+      const slideWidth = slideElement.getBoundingClientRect().width;
+
+      const computedStyle = getComputedStyle(document.documentElement);
+      const gap = parseFloat(computedStyle.fontSize);
+
+      return slideWidth + gap;
+    };
+
+    const slideOffset = calculateSlideOffset();
+
     gsap.to(slideRefs.current, {
-      x: `${-currentIndex * 100}%`,
+      x: `${-currentIndex * slideOffset}px`,
       duration: 0.5,
       ease: "power2.out",
     });

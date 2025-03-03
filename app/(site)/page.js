@@ -17,12 +17,12 @@ export default async function Home() {
 
   return (
     <>
-      <Hero />
+      {/* <Hero />
       <FireInfoSection />
       <WorldBuildingSection />
       <TheFuture />
       <Benefits />
-      <BuiltToLast />
+      <BuiltToLast /> */}
       <EventSlider events={events} />
       <Partners partners={partners} />
       <CitationsModal />
