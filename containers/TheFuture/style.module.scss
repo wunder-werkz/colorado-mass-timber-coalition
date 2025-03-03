@@ -111,8 +111,8 @@
 .nltWrap {
   grid-column: 1 / 2;
   grid-row: 2 / 3;
-  margin-left: -30%;
-  margin-top: -30%;
+  margin-left: -20%;
+  margin-top: -50%;
   @include lap-smaller {
     margin-left: 0;
     margin-top: -120%;
