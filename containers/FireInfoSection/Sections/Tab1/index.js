@@ -79,32 +79,32 @@ export default function Tab1({ index }) {
         <MediaWCaption url={CONTENT.image.src} caption={CONTENT.image.alt} />
       </div>
       <div className={styles.stumpyWrap}>
-          <ST.Animation
-            tween={{
-              start: mapToGlobalProgress(index, phoneScreen ? 65 : 60),
-              end: mapToGlobalProgress(index, phoneScreen ? 75 : 70),
-              fromTo: [
-                { opacity: 0, scale: 0.2 },
-                { opacity: 1, scale: 1 },
-              ],
-              ease: "power2.out",
-            }}
-          >
-            <div className={styles.stumpy}>
-              <Stumpy type="tree" color="white" />
-            </div>
-          </ST.Animation>
-          <ST.Waypoint
-            at={mapToGlobalProgress(index, phoneScreen ? 70 : 65)}
-            onCall={handleStumpTextStart}
-            onReverseCall={handleStumpTextReverse}
-          />
-          <div className={`${styles.stumpyText}`}>
-            <SplitTextBg ref={stumpTextRef} color="forest" stumpy={true}>
-              <p>{CONTENT.stumpText} </p>
-            </SplitTextBg>
+        <ST.Animation
+          tween={{
+            start: mapToGlobalProgress(index, phoneScreen ? 65 : 60),
+            end: mapToGlobalProgress(index, phoneScreen ? 75 : 70),
+            fromTo: [
+              { opacity: 0, scale: 0.2 },
+              { opacity: 1, scale: 1 },
+            ],
+            ease: "power2.out",
+          }}
+        >
+          <div className={styles.stumpy}>
+            <Stumpy type="tree" color="orange" />
           </div>
+        </ST.Animation>
+        <ST.Waypoint
+          at={mapToGlobalProgress(index, phoneScreen ? 70 : 65)}
+          onCall={handleStumpTextStart}
+          onReverseCall={handleStumpTextReverse}
+        />
+        <div className={`${styles.stumpyText}`}>
+          <SplitTextBg ref={stumpTextRef} color="forest" stumpy={true}>
+            <p>{CONTENT.stumpText} </p>
+          </SplitTextBg>
         </div>
+      </div>
     </div>
   );
 }
@@ -117,5 +117,6 @@ const CONTENT = {
     src: pineGulchImage,
     alt: "Pine Gulch Fire, Kyle Miller Photography",
   },
-  stumpText: "Colorado Forests are Carbon sources. They emit more carbon than they sequester."
+  stumpText:
+    "Colorado Forests are Carbon sources. They emit more carbon than they sequester.",
 };
