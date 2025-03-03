@@ -1,9 +1,11 @@
 import * as styles from "./style.module.scss";
 import Image from "next/image";
+import useWindowSize from "@/hooks/useWindowSize";
 import { memo, useState, useEffect } from "react";
 
 export const MediaWCaption = memo(
   ({ url, caption, priority = false, imagePosition }) => {
+    const { width } = useWindowSize();
     const [isLoaded, setIsLoaded] = useState(false);
     const imageUrl = typeof url === "string" ? url : url?.src;
     const isGif = imageUrl?.toLowerCase().endsWith(".gif");
@@ -25,11 +27,11 @@ export const MediaWCaption = memo(
     // Determine quality based on device performance
     const imageQuality = isGif
       ? // Lower quality for GIFs
-        window.innerWidth < 768
+        width < 768
         ? 40
         : 50
       : // Regular images get higher quality
-        window.innerWidth < 768
+        width < 768
         ? 75
         : 85;
 
