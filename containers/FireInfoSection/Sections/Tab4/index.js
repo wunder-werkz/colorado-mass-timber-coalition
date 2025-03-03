@@ -4,7 +4,7 @@ import { useRef, useCallback } from "react";
 import * as ST from "@bsmnt/scrollytelling";
 import styles from "./style.module.scss";
 
-import placeholderImg from "@/public/img/hero.jpg";
+import fireBurnImg from "@/public/img/tabs/colorado-fire-burn-scar.jpg";
 
 import SplitTextBg from "@/components/SplitTextBg";
 import { MediaWCaption } from "@/components/MediaWCaption";
@@ -73,8 +73,8 @@ export default function Tab4({ index }) {
         >
           <div className={styles.mediaWCaption}>
             <MediaWCaption
-              url={placeholderImg}
-              caption={" starts with creating healthy forests"}
+              url={CONTENT.image.src}
+              caption={CONTENT.image.alt}
             />
           </div>
         </ST.Animation>
@@ -135,7 +135,7 @@ export default function Tab4({ index }) {
         onReverseCall={handleCopyReverse}
       />
       <div className={`${styles.copy}`}>
-        <SplitTextBg ref={copyT4Ref} color="orange" key={`copy-${index}`}>
+        <SplitTextBg ref={copyT4Ref} color="orange" key={`copy-${index}`} body={true}>
           <p>
             As snow melts our forests help remove pollutants and sediment,
             regulate streamflow, reduce flood damage, and replenish groundwater.
@@ -164,7 +164,7 @@ export default function Tab4({ index }) {
           onReverseCall={handleStumpTextReverse}
         />
         <div className={`${styles.stumpyText}`}>
-          <SplitTextBg ref={stumpTextT4Ref} color="cream">
+          <SplitTextBg ref={stumpTextT4Ref} color="cream" stumpy={true}>
             <p>{CONTENT.stumpText} </p>
           </SplitTextBg>
         </div>
@@ -177,7 +177,7 @@ const CONTENT = {
   sectionTitle: "Why Does It Matter?",
   headline: "Healthy forests are critical to providing clean water",
   image: {
-    src: "/images/fire-info-section/tab1.jpg",
+    src: fireBurnImg,
     alt: "East Troublesome Fire burn scar, © Jason Houston",
   },
   stumpText:

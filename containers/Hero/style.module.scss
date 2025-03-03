@@ -140,6 +140,7 @@
   width: $six-twelfths;
   p {
     @include h1;
+    line-height: inherit;
   }
   @include lap-small {
     width: $nine-twelfths;

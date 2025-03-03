@@ -177,7 +177,7 @@ const CONTENT = {
   sectionTitle: "What Can We Do?",
   image: {
     src: monarchPass,
-    alt: "Monarch Pass, <br/>Arkansas River Watershed Collaborative<br/> and Miller Timber Services",
+    alt: "Monarch Pass, Arkansas River Watershed Collaborative and Miller Timber Services",
   },
   stumpText:
     "The health of certain forests could improve through management practices like prescribed burns or mechanical thinning (shown here).",
