@@ -18,7 +18,10 @@ import useWindowSize from "@/hooks/useWindowSize";
 const MOBILE_BREAKPOINT = 900;
 
 const SplitTextBg = forwardRef(
-  ({ children, color, stumpy, body, inline = false, isPlaying = false }, ref) => {
+  (
+    { children, color, stumpy, body, inline = false, isPlaying = false },
+    ref
+  ) => {
     const containerRef = useRef(null);
     const backgroundsRef = useRef([]);
     const textRef = useRef(null);
@@ -28,6 +31,13 @@ const SplitTextBg = forwardRef(
     const { openModal } = useModal();
     const { width } = useWindowSize();
     const isMobile = width < MOBILE_BREAKPOINT;
+
+    // Ensure text is hidden on initial mount
+    useEffect(() => {
+      if (textRef.current) {
+        gsap.set(textRef.current, { opacity: 0 });
+      }
+    }, []);
 
     useImperativeHandle(ref, () => ({
       play: () => animationTl.current?.play(),
@@ -141,6 +151,7 @@ const SplitTextBg = forwardRef(
 
           animationTl.current
             .addLabel("start")
+            .set(textRef.current, { opacity: 1 }, "start")
             .to(
               backgroundsRef.current,
               {
@@ -178,6 +189,11 @@ const SplitTextBg = forwardRef(
           animationTl.current.play();
         } else {
           animationTl.current.reverse();
+          animationTl.current.eventCallback("onReverseComplete", () => {
+            if (textRef.current) {
+              gsap.set(textRef.current, { opacity: 0 });
+            }
+          });
         }
       }
     }, [isPlaying]);

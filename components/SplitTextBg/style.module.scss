@@ -39,6 +39,7 @@
   display: block;
   font-size: inherit;
   line-height: 1.1;
+  opacity: 0;
 
   @include phone {
     &.block {
@@ -64,7 +65,6 @@
     p {
       padding: 10px 15px;
     }
-   
   }
 }
 
@@ -88,6 +88,7 @@
   background-color: var(--bg-color, #000);
   transform-origin: bottom;
   will-change: transform;
+  transform: scaleY(0);
 }
 
 .line {
@@ -96,7 +97,6 @@
   line-height: inherit;
   padding: 0px 15px;
   position: relative;
-  transform: translateY(0);
   will-change: transform;
   z-index: 1;
   @include x-small {
