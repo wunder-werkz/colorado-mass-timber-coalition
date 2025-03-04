@@ -3,7 +3,6 @@
 .container {
   @include grid-wrap;
   background: $forest;
-  display: flex;
   height: 100%;
   position: relative;
   padding: 0;
