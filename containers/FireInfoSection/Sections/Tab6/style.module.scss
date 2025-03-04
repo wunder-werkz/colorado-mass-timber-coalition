@@ -31,7 +31,7 @@
     @include widescreen {
       @include five-twelfths;
     }
-    @include lap-smaller {
+    @media (max-width: 1200px) {
       background-color: transparent;
       height: 100%;
       left: 0;
@@ -58,11 +58,11 @@
     height: 100%;
     position: relative;
     padding-left: 20px;
-   
+
     @include widescreen {
       @include seven-twelfths;
     }
-    @include lap-smaller {
+    @media (max-width: 1200px) {
       grid-column: 1 / 13;
       z-index: 0;
     }
@@ -106,7 +106,7 @@
   @include body1;
   width: $three-twelfths;
   height: auto;
-  @include lap-smaller {
+  @media (max-width: 1200px) {
     width: $four-twelfths;
   }
   @include phone {
@@ -127,7 +127,7 @@
   overflow: hidden;
   position: absolute;
   top: 0;
-  width: 100%; 
+  width: 100%;
 }
 
 .mediaWCaption {
@@ -147,14 +147,14 @@
   right: 0;
   top: 10%;
   width: 45%;
-  @include lap-smaller {
+  @media (max-width: 1200px) {
     width: 50%;
     top: 50%;
   }
 
   @include phone {
-   right: 5%;
-   top: -70px;
+    right: 5%;
+    top: -70px;
   }
   @include x-small {
     width: 70%;
@@ -170,7 +170,7 @@
   width: calc(100% - 100px);
   @include body1;
 
-  @include lap-smaller {
+  @media (max-width: 1200px) {
     width: 100%;
   }
 }
