@@ -82,16 +82,24 @@
   flex-direction: column;
   height: 100%;
   justify-content: space-around;
-
-  svg {
-    margin-top: 0.5rem;
-    height: calc((40vh * 1 / 7) - 1rem);
-    width: auto;
-    line {
-      stroke: $cream;
-      fill: $cream;
-    }
+  &:last-of-type {
+    height: auto;
   }
+}
+
+.divider {
+  width: 2px;
+  height: 50%;
+  background-color: $cream;
+  margin: auto;
+}
+
+.dividerWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  flex: 1;
 }
 
 .mediaWCaption {
@@ -132,7 +140,7 @@
     margin-bottom: 10px;
   }
   @include lap-smaller {
-    height: 80px;
+    height: 130px;
     padding: 0 10px;
     right: 10px;
     top: 70%;
@@ -140,6 +148,12 @@
   @include tablet-and-lower {
     right: 30px;
   }
+
+  @include phone {
+    height: 80px;
+    padding: 0 10px;
+  }
+
   @include x-small {
     height: 60px;
   }
@@ -150,14 +164,15 @@
   display: flex;
   flex-direction: column;
   font-size: 120px;
+  line-height: 130px;
   height: 100%;
-  line-height: 1;
   padding-right: 30px;
   position: relative;
   width: 180px;
 
   @include phone {
     font-size: 60px;
+    line-height: 80px;
     width: 80%;
   }
   @include tablet-and-lower {

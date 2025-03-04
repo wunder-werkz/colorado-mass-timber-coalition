@@ -70,7 +70,6 @@ const WorldBuildingSection = () => {
     stumpTextRef.current?.restart();
   }, []);
 
-
   const handleEndCopyHeadlineStart = useCallback(() => {
     endCopyHeadlineRef.current?.restart();
   }, []);
@@ -107,7 +106,7 @@ const WorldBuildingSection = () => {
               />
               <ST.Animation
                 tween={{
-                  start: 25,
+                  start: 35,
                   end: 70,
                   fromTo: [{ bottom: "0%" }, { bottom: "100%" }],
                   ease: "power2.out",
@@ -123,7 +122,11 @@ const WorldBuildingSection = () => {
                     <div className={styles.chartBarItem}>
                       <div className={styles.chartLabel}>{item.year}</div>
                     </div>
-                    {i !== CONTENT.sqFt.length - 1 && <SVGDivider />}
+                    {i !== CONTENT.sqFt.length - 1 && (
+                      <div className={styles.dividerWrapper}>
+                        <div className={styles.divider}></div>
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>
@@ -184,18 +187,15 @@ const WorldBuildingSection = () => {
                 <ST.Animation
                   tween={[
                     {
-                      start: 30,
-                      end: 40,
-                      fromTo: [
-                        { opacity: 0, height: 0 },
-                        { opacity: 1, height: "80px" },
-                      ],
+                      start: 25,
+                      end: 35,
+                      fromTo: [{ opacity: 0 }, { opacity: 1 }],
                       ease: "power2.out",
                     },
                     {
                       start: 75,
                       end: 85,
-                      to: { opacity: 0, height: 0 },
+                      to: { opacity: 0 },
                       ease: "power2.out",
                     },
                   ]}
@@ -203,7 +203,7 @@ const WorldBuildingSection = () => {
                   <div className={styles.sqFtContainer}>
                     <ST.Animation
                       tween={{
-                        start: 30,
+                        start: 35,
                         end: 70,
                         ease: "power2.out",
                         to: {
@@ -261,7 +261,11 @@ const WorldBuildingSection = () => {
                     onReverseCall={handleStumpTextStartAlt}
                   />
                   <div className={`${styles.stumpyText}`}>
-                    <SplitTextBg ref={stumpTextRef} color="forest" stumpy={true}>
+                    <SplitTextBg
+                      ref={stumpTextRef}
+                      color="forest"
+                      stumpy={true}
+                    >
                       <p>{CONTENT.stumpy} </p>
                     </SplitTextBg>
                   </div>
@@ -272,9 +276,10 @@ const WorldBuildingSection = () => {
                   onReverseCall={handleEndCopyHeadlineReverse}
                 >
                   <div className={styles.headline}>
-                  <SplitTextBg ref={endCopyHeadlineRef} color="cream" inline>
+                    <SplitTextBg ref={endCopyHeadlineRef} color="cream" inline>
                       <h3>
-                      Mass timber is an immediate solution to help solve our climate crisis         
+                        Mass timber is an immediate solution to help solve our
+                        climate crisis
                       </h3>
                     </SplitTextBg>
                   </div>
@@ -287,7 +292,11 @@ const WorldBuildingSection = () => {
                 <div className={`${styles.endCopy}`}>
                   <SplitTextBg ref={endCopyRef} color="cream" inline>
                     <p>
-                    Less than a fraction of one percent of all buildings are built with mass timber<sup>12</sup> and future demand can be met sustainably.<sup>13 </sup>Building materials, like concrete and steel, contribute 11% of total global greenhouse gas emissions. <sup>14 </sup>     
+                      Less than a fraction of one percent of all buildings are
+                      built with mass timber<sup>12</sup> and future demand can
+                      be met sustainably.<sup>13 </sup>Building materials, like
+                      concrete and steel, contribute 11% of total global
+                      greenhouse gas emissions. <sup>14 </sup>
                     </p>
                   </SplitTextBg>
                 </div>

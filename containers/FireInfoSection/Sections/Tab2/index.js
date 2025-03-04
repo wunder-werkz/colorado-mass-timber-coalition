@@ -44,7 +44,11 @@ export default function Tab2({ index }) {
             <div className={styles.chartBarItem}>
               <div className={styles.chartLabel}>{item.year}</div>
             </div>
-            {i !== CONTENT.acresBurned.length - 1 && <SVGDivider />}
+            {i !== CONTENT.acresBurned.length - 1 && (
+              <div className={styles.dividerWrapper}>
+                <div className={styles.divider}></div>
+              </div>
+            )}
           </div>
         ))}
       </div>
@@ -103,10 +107,7 @@ export default function Tab2({ index }) {
             {
               start: mapToGlobalProgress(index, 15),
               end: mapToGlobalProgress(index, 20),
-              fromTo: [
-                { opacity: 0 },
-                { opacity: 1 },
-              ],
+              fromTo: [{ opacity: 0 }, { opacity: 1 }],
               ease: "power2.out",
             },
             {
@@ -197,25 +198,5 @@ const CONTENT = {
       acres: "37k",
     },
   ],
-  text: "Colorado's top three largest wildfires all occurred in 2020. The next one is not a matter of if, it's a matter of when"
-};
-
-const SVGDivider = () => {
-  return (
-    <svg
-      width="1"
-      height="34"
-      viewBox="0 0 1 34"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <line
-        x1="0.5"
-        y1="2.18557e-08"
-        x2="0.499999"
-        y2="33.9791"
-        stroke="black"
-      />
-    </svg>
-  );
+  text: "Colorado's top three largest wildfires all occurred in 2020. The next one is not a matter of if, it's a matter of when",
 };
