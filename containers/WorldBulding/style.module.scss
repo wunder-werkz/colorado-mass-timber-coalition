@@ -85,7 +85,7 @@
 
   svg {
     margin-top: 0.5rem;
-    height: calc((40vh * 1/7) - 1rem);
+    height: calc((40vh * 1 / 7) - 1rem);
     width: auto;
     line {
       stroke: $cream;
@@ -154,8 +154,8 @@
   line-height: 1;
   padding-right: 30px;
   position: relative;
-  width: 180px; 
- 
+  width: 180px;
+
   @include phone {
     font-size: 60px;
     width: 80%;
@@ -201,7 +201,7 @@
   height: auto;
   left: 0px;
   position: absolute;
-  top: 60px;
+  top: 110px;
   width: 800px;
   @include lap-smaller {
     width: 90%;
@@ -246,7 +246,7 @@
   width: $four-twelfths;
 
   @include lap-smaller {
-    bottom: 200px;  
+    bottom: 200px;
   }
   @include tablet-and-lower {
     width: $seven-twelfths;
@@ -272,7 +272,7 @@
   @include x-small {
     left: 5%;
     top: 20%;
-    width: 90%;  
+    width: 90%;
   }
 }
 

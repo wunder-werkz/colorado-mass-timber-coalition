@@ -1,13 +1,6 @@
 "use client";
 
-import {
-  useRef,
-  forwardRef,
-  useImperativeHandle,
-  useEffect,
-  useMemo,
-  useCallback,
-} from "react";
+import { useRef, forwardRef, useImperativeHandle, useEffect } from "react";
 
 import { gsap, SplitText } from "@/lib/gsapConfig";
 import styles from "./style.module.scss";
@@ -32,7 +25,6 @@ const SplitTextBg = forwardRef(
     const { width } = useWindowSize();
     const isMobile = width < MOBILE_BREAKPOINT;
 
-    // Ensure text is hidden on initial mount
     useEffect(() => {
       if (textRef.current) {
         gsap.set(textRef.current, { opacity: 0 });
@@ -199,7 +191,7 @@ const SplitTextBg = forwardRef(
     }, [isPlaying]);
 
     useEffect(() => {
-      const timeout = setTimeout(() => {
+      const setupSupHandlers = () => {
         if (!containerRef.current) {
           console.log("Container ref not available yet");
           return;
@@ -222,12 +214,23 @@ const SplitTextBg = forwardRef(
             sup.addEventListener("click", handleSupClick);
           });
         }
-      }, 500);
+      };
+
+      setupSupHandlers();
+
+      const observer = new MutationObserver(setupSupHandlers);
+
+      if (containerRef.current) {
+        observer.observe(containerRef.current, {
+          childList: true,
+          subtree: true,
+        });
+      }
 
       return () => {
-        clearTimeout(timeout);
+        observer.disconnect();
       };
-    }, [openModal, containerRef]);
+    }, [openModal]);
 
     return (
       <div className={styles.container} ref={containerRef}>
