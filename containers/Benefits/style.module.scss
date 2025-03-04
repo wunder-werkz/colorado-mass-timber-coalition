@@ -117,6 +117,8 @@
 }
 
 .stumpyText {
+  display: flex;
+  justify-content: flex-end;
   @include body1;
   width: calc(100% - 150px);
   @include lap-smaller {
