@@ -13,6 +13,7 @@ const WorldBuildingSection = () => {
   const panelRef = useRef(null);
   const headline = useRef(null);
   const copyRef = useRef(null);
+  const endCopyHeadlineRef = useRef(null);
   const endCopyRef = useRef(null);
   const stumpTextRef = useRef(null);
   const eyebrowRef = useRef(null);
@@ -67,6 +68,15 @@ const WorldBuildingSection = () => {
 
   const handleStumpTextStartAlt = useCallback(() => {
     stumpTextRef.current?.restart();
+  }, []);
+
+
+  const handleEndCopyHeadlineStart = useCallback(() => {
+    endCopyHeadlineRef.current?.restart();
+  }, []);
+
+  const handleEndCopyHeadlineReverse = useCallback(() => {
+    endCopyHeadlineRef.current?.reverse();
   }, []);
 
   const handleEndCopyStart = useCallback(() => {
@@ -178,7 +188,7 @@ const WorldBuildingSection = () => {
                       end: 40,
                       fromTo: [
                         { opacity: 0, height: 0 },
-                        { opacity: 1, height: "120px" },
+                        { opacity: 1, height: "80px" },
                       ],
                       ease: "power2.out",
                     },
@@ -256,7 +266,19 @@ const WorldBuildingSection = () => {
                     </SplitTextBg>
                   </div>
                 </div>
-
+                <ST.Waypoint
+                  at={85}
+                  onCall={handleEndCopyHeadlineStart}
+                  onReverseCall={handleEndCopyHeadlineReverse}
+                >
+                  <div className={styles.headline}>
+                  <SplitTextBg ref={endCopyHeadlineRef} color="cream" inline>
+                      <h3>
+                      Mass timber is an immediate solution to help solve our climate crisis         
+                      </h3>
+                    </SplitTextBg>
+                  </div>
+                </ST.Waypoint>
                 <ST.Waypoint
                   at={85}
                   onCall={handleEndCopyStart}
@@ -264,15 +286,9 @@ const WorldBuildingSection = () => {
                 />
                 <div className={`${styles.endCopy}`}>
                   <SplitTextBg ref={endCopyRef} color="cream" inline>
-                    <h2>
-                      Less than a fraction of one percent of all buildings are
-                      built with mass timber<sup>12</sup> and future demand can
-                      be met sustainably.<sup>13</sup> Mass timber is an
-                      immediate solution to help solve our climate crisis for
-                      which building materials, like concrete and steel,
-                      contribute 11% of total global greenhouse gas emissions.
-                      <sup>14</sup>
-                    </h2>
+                    <p>
+                    Less than a fraction of one percent of all buildings are built with mass timber<sup>12</sup> and future demand can be met sustainably.<sup>13 </sup>Building materials, like concrete and steel, contribute 11% of total global greenhouse gas emissions. <sup>14 </sup>     
+                    </p>
                   </SplitTextBg>
                 </div>
               </div>
