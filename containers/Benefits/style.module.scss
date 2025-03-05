@@ -14,8 +14,9 @@
 }
 
 .eyebrow {
-  font-size: 2rem;
   color: $forest;
+  font-size: 18px;
+
   margin-bottom: 4rem;
   text-transform: uppercase;
 }
@@ -54,6 +55,12 @@
     width: 90%;
     margin: 0px 0px 40px 0px;
   }
+  @include x-small {
+    width: 100%;
+     p {
+      padding: 0;
+     }
+  }
 }
 
 .imageWrapper {
@@ -64,9 +71,12 @@
   overflow: hidden;
 
   @include lap-smaller {
-    width: 60%;
-    height: 60%;
+    width: 60vw;
+    height: 50vw;
     margin-top: 10%;
+  }
+  @include x-small {
+    margin-top: 0%;
   }
 }
 
@@ -82,46 +92,45 @@
 }
 
 .stumpyBlock {
-  display: flex;
   align-items: center;
+  display: flex;
   gap: 10px;
-
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 30%;
   height: 150px;
-
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 30%;
+  z-index: 100;
   @include lap-smaller {
     width: 50%;
     height: auto;
     position: relative;
     margin-bottom: 10%;
-    margin-right: -20%;
+    margin-right: -50%;
   }
 }
 
 .stumpyWrapper {
   height: 150px;
   width: 110px;
-
   svg {
     height: 100%;
     width: auto;
   }
 
-  @include lap-smaller {
-    height: 90px;
-    width: 40px;
+  @include tablet-and-lower{
+    height: auto;
+    width: 60px;
   }
 }
 
 .stumpyText {
+  @include body1;
   display: flex;
   justify-content: flex-end;
-  @include body1;
+  
   width: calc(100% - 150px);
-  @include lap-smaller {
+  @include tablet-and-lower {
     width: calc(100% - 50px);
   }
 }
