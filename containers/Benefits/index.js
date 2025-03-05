@@ -183,21 +183,23 @@ const CONTENT = {
   sections: [
     {
       text: "Lower embodied carbon – making wood products, especially locally, uses less energy than other building materials<sup>15</sup>",
-      image: "/img/benefits/CMTC_Section4_1.jpg",
+     
     },
     {
       text: "Stored carbon - dry wood is 50% biogenic carbon that is encapsulated for the life of the building!",
-      image: "/img/benefits/CMTC_Section4_2.jpg",
-      stumpy: true,
-      stumpyText: "Half of me is carbon!",
+      image: "/img/benefits/CMTC_Section4_1.jpg",
+     
     },
 
     {
       text: "Prefabrication leads to fast,<sup>16</sup> quiet, and clean construction requiring fewer workers<sup>17</sup> with less waste",
-      image: "/img/benefits/CMTC_Section4_3.jpg",
+      image: "/img/benefits/CMTC_Section4_2.jpg",
+      stumpy: true,
+      stumpyText: "Half of me is carbon!",
     },
     {
       text: "Has a natural mechanism of resistance to fire: a protective char layer<sup>18</sup>",
+      image: "/img/benefits/CMTC_Section4_3.jpg",
     },
     {
       text: "Creates spaces that connect people with nature which has been scientifically proven to increase health – also known as biophilia<sup>19</sup>",

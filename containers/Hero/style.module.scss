@@ -54,6 +54,7 @@
 .splitTextWrapper {
   max-width: $ten-twelfths;
   margin: 0 auto;
+  overflow: hidden;
   text-align: center;
   transform: translateY(-60px);
   color: $forest;

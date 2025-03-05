@@ -123,44 +123,46 @@ export default function TheFuture() {
               ],
             }}
           >
-            <div className={styles.cltWrap}>
-              <CLTSvg />
-              <ST.Waypoint
-                at={70}
-                onCall={handleCltStart}
-                onReverseCall={handleCltReverse}
-              />
-              <div className={`${styles.cltText}`}>
-                <SplitTextBg ref={cltRef} color="forest">
-                  <p>Cross-Laminated Timber (CLT) </p>
-                </SplitTextBg>
-              </div>
-            </div>
             <div className={styles.gluWrap}>
               <ST.Waypoint
                 at={70}
                 onCall={handleGluStart}
                 onReverseCall={handleGluReverse}
               />
-              <div className={`${styles.gluText}`}>
-                <SplitTextBg ref={gluRef} color="forest">
-                  <p>Glue-Laminated Timber (glulam) </p>
+                <GLUSvg />
+                <div className={`${styles.gluText}`}>
+                  <SplitTextBg ref={gluRef} color="forest">
+                    <p>Glue-Laminated Timber (glulam) </p>
+                  </SplitTextBg>
+                </div>
+            </div>
+            <div className={styles.cltWrap}>
+              <ST.Waypoint
+                at={70}
+                onCall={handleCltStart}
+                onReverseCall={handleCltReverse}
+              />
+              <CLTSvg />
+              <div className={`${styles.cltText}`}>
+                <SplitTextBg ref={cltRef} color="forest">
+                  <p>Cross-Laminated Timber (CLT) </p>
                 </SplitTextBg>
               </div>
-              <GLUSvg />
             </div>
+            
             <div className={styles.nltWrap}>
               <ST.Waypoint
                 at={70}
                 onCall={handleNltStart}
                 onReverseCall={handleNltReverse}
               />
+              <NLTSvg />
               <div className={`${styles.nltText}`}>
                 <SplitTextBg ref={nltRef} color="forest">
                   <p>Nail-Laminated Timber (NLT) </p>
                 </SplitTextBg>
               </div>
-              <NLTSvg />
+          
             </div>
             <div className={styles.dltWrap}>
               <ST.Waypoint
@@ -168,12 +170,13 @@ export default function TheFuture() {
                 onCall={handleDltStart}
                 onReverseCall={handleDltReverse}
               />
+              <DLTSvg />
               <div className={`${styles.dltText}`}>
                 <SplitTextBg ref={dltRef} color="forest">
                   <p>Dowel-Laminated Timber (DLT) </p>
                 </SplitTextBg>
               </div>
-              <DLTSvg />
+        
             </div>
           </ST.Stagger>
         </div>
