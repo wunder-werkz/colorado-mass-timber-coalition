@@ -48,16 +48,18 @@
 
 .logoWrapper {
   opacity: 0;
-  // transform: translateY(-100%);
+  max-height: 42vh;
 }
 
 .splitTextWrapper {
+  color: $forest;
   max-width: $ten-twelfths;
   margin: 0 auto;
   overflow: hidden;
+  position: relative;
   text-align: center;
   transform: translateY(-60px);
-  color: $forest;
+  z-index: 1000;
   @extend .will-change-transform;
   @include lap-smaller {
     max-width: 100%;
