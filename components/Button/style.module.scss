@@ -15,7 +15,8 @@
   transition: all 0.3s ease;
   text-transform: uppercase;
   overflow: hidden;
-
+  overflow: clip;
+  overflow-clip-margin: 2px;
   &::before {
     content: "";
     position: absolute;
@@ -53,7 +54,7 @@
 
   .circle {
     position: absolute;
-    right: 0;
+    right: -1;
     top: 50%;
     transform: translateY(-50%);
     width: 46px;
