@@ -25,7 +25,7 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   const general = await client.fetch(GENERAL_QUERY);
-  const { contactEmail } = general[0];
+  const { contactEmail } = general ? general[0] : {contactEmail: "wlepry@nationalforests.org"} ;
 
   return (
     <html lang="en">

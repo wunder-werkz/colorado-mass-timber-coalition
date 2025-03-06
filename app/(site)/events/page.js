@@ -6,7 +6,12 @@ export default async function Events() {
   const pastEvents = await client.fetch(PAST_EVENTS_QUERY);
   const upcomingEvents = await client.fetch(UPCOMING_EVENTS_QUERY);
 
-  return (
-    <EventsClient pastEvents={pastEvents} upcomingEvents={upcomingEvents} />
-  );
+  if (pastEvents || upcomingEvents) {
+    return (
+      <EventsClient pastEvents={pastEvents} upcomingEvents={upcomingEvents} />
+    );
+  } else {
+    return <h1> no events</h1>
+  }
+
 }
