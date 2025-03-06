@@ -37,6 +37,9 @@
     @include lap-smaller {
       width: 100%;
     }
+    @include x-small {
+      margin-top: 0;
+    }
   }
 }
 
@@ -50,6 +53,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+  @include x-small {
+    padding-top: 0;
+    padding-bottom: 0;
   }
 }
 
@@ -77,6 +84,12 @@
   height: auto;
   padding-top: 30px;
   width: $three-twelfths;
+  @include lap-smaller {
+    width: $five-twelfths;
+  }
+  @include x-small {
+    width: $ten-twelfths;
+  }
  
 }
 

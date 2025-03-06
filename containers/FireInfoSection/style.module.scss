@@ -43,7 +43,8 @@
     justify-content: center;
     padding: 0.5rem 1rem;
     @include x-small {
-      padding-left: 0.7rem; padding-right: 0.7rem; 
+      padding-left: 0.7rem; 
+      padding-right: 0.7rem; 
     }
     &:first-of-type {
       border-left: 4px solid $orange;

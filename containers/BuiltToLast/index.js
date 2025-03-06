@@ -49,7 +49,7 @@ export default function BuiltToLast() {
     >
       <ST.Pin
         childHeight={smScreen ? "150vh" : "100vh"}
-        pinSpacerHeight={`400vh`}
+        pinSpacerHeight={smScreen ? `600vh`:`400vh`}
         top={smScreen ? "-50%" : 0}
       >
         <div className={`${styles.tabPanel}`}>

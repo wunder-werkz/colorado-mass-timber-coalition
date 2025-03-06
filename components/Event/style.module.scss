@@ -10,6 +10,9 @@
       min-width: calc((100% - 1rem) / 2);
       max-width: calc((100% - 1rem) / 2);
     }
+    @include x-small {
+      min-width: 100%;
+    }
   
     &.secondary {
       min-width: 100%;

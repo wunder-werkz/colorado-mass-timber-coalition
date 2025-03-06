@@ -6,6 +6,7 @@
   @include lap-smaller {
     padding: 50px 20px;
   }
+  @inclu
   @include phone {
     padding: 20px 10px;
   }
@@ -21,12 +22,19 @@
     transform: translateX(-50%);
   }
   @include lap-smaller {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 90px;
     a {
       position: relative;
       left: 0;
       transform: translateX(0);
-      margin-top: 20px;
+      margin-top: 0px;
     }
+  }
+  @include x-small {
+    align-items: center;
+    margin-bottom: 40px;
   }
 }
 
