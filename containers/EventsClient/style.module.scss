@@ -9,7 +9,7 @@
 }
 
 .topWrap {
-  width: 75%;
+  width: $eight-twelfths;
   position: relative;
   margin-bottom: 40px;
   display: flex;
@@ -43,7 +43,7 @@
 
 .filterButtons {
   display: flex;
-  gap: 20px;
+  gap: $one-twelfth;
   margin-top: 20px;
 
   @include lap-smaller {

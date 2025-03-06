@@ -69,20 +69,20 @@ export default function EventsClient({ pastEvents, upcomingEvents }) {
       <div className={styles.filterWrap}>
         <div className={styles.filterButtons}>
           <Button
-            onClick={() => setIsShowingPastEvents(false)}
-            variant="secondary"
-            color="orange"
-            fill={!isShowingPastEvents}
-          >
-            Future Events
-          </Button>
-          <Button
             onClick={() => setIsShowingPastEvents(true)}
             variant="secondary"
             color="orange"
             fill={isShowingPastEvents}
           >
             Past Events
+          </Button>
+          <Button
+            onClick={() => setIsShowingPastEvents(false)}
+            variant="secondary"
+            color="orange"
+            fill={!isShowingPastEvents}
+          >
+            Future Events
           </Button>
         </div>
       </div>
