@@ -1,38 +1,45 @@
 @use "@/styles/vars" as *;
 
 .eventWrap {
-  min-width: calc((100% - 2rem) / 3);
-  max-width: calc((100% - 2rem) / 3);
-
-  @include lap-smaller {
-    min-width: calc((100% - 1rem) / 2);
-    max-width: calc((100% - 1rem) / 2);
-  }
-
-  &.secondary {
-    min-width: 100%;
-    max-width: 100%;
+  
+  &.slider {
+    min-width: calc((100% - 2rem) / 3);
+    max-width: calc((100% - 2rem) / 3);
+  
+    @include lap-smaller {
+      min-width: calc((100% - 1rem) / 2);
+      max-width: calc((100% - 1rem) / 2);
+    }
+  
+    &.secondary {
+      min-width: 100%;
+      max-width: 100%;
+    }
   }
 }
 
 .eventDate {
   @include eyebrow;
-  border: 4px solid $orange;
-  color: $forest;
-  display: inline-block;
-  font-family: $font-greed-narrow;
-  margin-bottom: -4px;
-  padding: 10px;
-  text-transform: uppercase;
-  width: auto;
+  &{ 
+    border: 4px solid $forest;
+    color: $forest;
+    display: inline-block;
+    font-family: $font-greed-narrow;
+    margin-bottom: -4px;
+    padding: 10px;
+    text-transform: uppercase;
+    width: auto;
+  }
   
   &.selfHosted {
-    border: 4px solid $forest;
+    border: 4px solid $orange;
   }
 }
 
+
+
 .eventInfo {
-  background: $orange;
+  background: $forest;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -41,17 +48,17 @@
   padding: 20px;
 
   .eventInfoInner {
-    display: flex;
-    flex-flow: column;
-    height: 100%;
-    justify-content: space-between;
-    min-height: 190px;
+    // display: flex;
+    // flex-flow: column;
+    // height: 100%;
+    // justify-content: space-between;
+    // min-height: 190px;
 
   }
 
   h3 {
     @include h3;
-    color: $forest;
+    color: $cream;
     line-height: 1;
     margin-bottom: 8px;
     margin-top: 0;
@@ -60,7 +67,7 @@
 
   p {
     @include eyebrow;
-    color: $forest;
+    color: $cream;
     line-height: 1;
     margin: 0px;
     padding: 0px;
@@ -69,14 +76,14 @@
 
   &.selfHosted {
     width: 100%;
-    background: $forest;
+    background: $orange;
 
     h3 {
-      color: $cream;
+      color: $forest;
     }
 
     p {
-      color: $orange;
+      color: $forest;
     }
   }
 
@@ -88,5 +95,14 @@
 
   @include lap-smaller {
     min-height: 200px;
+  }
+}
+
+.slider {
+  .eventInfo {
+    min-height: 290px;
+    .eventInfoInner {
+      min-height: 0;
+    }
   }
 }

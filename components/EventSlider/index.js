@@ -142,7 +142,7 @@ const EventSlider = ({ events }) => {
         </div>
         <div ref={buttonRef}>
           <Button href="/events" variant="primary" color="orange" fill={true}>
-            View All Events
+            See All Events
           </Button>
         </div>
       </div>
@@ -151,6 +151,7 @@ const EventSlider = ({ events }) => {
           <div className={styles.sliderTrack}>
             {events.map((event, index) => (
               <Event
+                isSlider={true}
                 key={`event-${index}`}
                 event={event}
                 ref={(el) => (slideRefs.current[index] = el)}

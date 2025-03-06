@@ -3,7 +3,7 @@ import Button from "@/components/Button";
 
 import { forwardRef } from "react";
 
-const Event = forwardRef(({ event, secondary, isPastEvent = false }, ref) => {
+const Event = forwardRef(({ isSlider, event, secondary, isPastEvent = false }, ref) => {
   const renderDate = () => {
     const dateOptions = {
       month: "short",
@@ -34,7 +34,7 @@ const Event = forwardRef(({ event, secondary, isPastEvent = false }, ref) => {
 
   return (
     <div
-      className={`${styles.eventWrap} ${secondary ? styles.secondary : ""}`}
+      className={`${styles.eventWrap} ${secondary ? styles.secondary : ""}${isSlider && styles.slider}`}
       ref={ref}
     >
       <div
@@ -53,7 +53,7 @@ const Event = forwardRef(({ event, secondary, isPastEvent = false }, ref) => {
           <Button
             href={`${event.link}`}
             variant="primary"
-            color={selfHosted ? "orange" : "forest"}
+            color={selfHosted ? "forest" : "orange"}
             fill={false}
           >
             See More

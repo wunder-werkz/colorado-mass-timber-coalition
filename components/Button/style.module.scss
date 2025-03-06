@@ -96,6 +96,7 @@
 
       .circle {
         --circle-bg: #{$forest};
+        svg path { fill: $orange; }
       }
 
       svg path {
