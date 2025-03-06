@@ -47,15 +47,6 @@
   min-height: 190px;
   padding: 20px;
 
-  .eventInfoInner {
-    // display: flex;
-    // flex-flow: column;
-    // height: 100%;
-    // justify-content: space-between;
-    // min-height: 190px;
-
-  }
-
   h3 {
     @include h3;
     color: $cream;
@@ -67,7 +58,7 @@
 
   p {
     @include eyebrow;
-    color: $cream;
+    color: $orange;
     line-height: 1;
     margin: 0px;
     padding: 0px;
