@@ -73,7 +73,7 @@ const Hero = () => {
         {
           clipPath:
             isMobile || tabletView
-              ? "circle(25vh at 50% 60%)"
+              ? "circle(25% at 50% 60%)"
               : "circle(33vh at 50% 100%)",
           opacity: 1,
           y: 50,
