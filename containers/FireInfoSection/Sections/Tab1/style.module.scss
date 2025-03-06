@@ -25,6 +25,7 @@
 .sectionTitle {
   h2 {
     @include eyebrow;
+   
     margin: 0;
     padding-bottom: 10px;
   }
@@ -33,6 +34,7 @@
 .title {
   @include h1;
   height: auto;
+   line-height: 1.1;
   margin: 0;
   position: relative;
   text-align: left;

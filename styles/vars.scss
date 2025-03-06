@@ -127,7 +127,7 @@ $font-greed-standard: var(--font-greed-standard), sans-serif;
 
 @mixin h1 {
   font-size: 64px;
-  line-height: 100%;
+  line-height: 1;
   font-family: $font-greed-standard;
   font-weight: 400;
   @include tablet-and-lower {
@@ -140,7 +140,7 @@ $font-greed-standard: var(--font-greed-standard), sans-serif;
 
 @mixin h2 {
   font-size: 40px;
-  line-height: 100%;
+  line-height: 1.1;
   font-family: $font-greed-standard;
   font-weight: 400;
   @include tablet-and-lower {
@@ -153,7 +153,7 @@ $font-greed-standard: var(--font-greed-standard), sans-serif;
 
 @mixin h3 {
   font-size: 28px;
-  line-height: 100%;
+  line-height: 1;
   font-family: $font-greed-standard;
   font-weight: 400;
   @include tablet-and-lower {
@@ -166,7 +166,7 @@ $font-greed-standard: var(--font-greed-standard), sans-serif;
 
 @mixin eyebrow {
   font-size: 24px;
-  line-height: 100%;
+  line-height: 1;
   font-family: $font-greed-narrow;
   font-weight: 400;
   @include tablet-and-lower {
@@ -179,7 +179,7 @@ $font-greed-standard: var(--font-greed-standard), sans-serif;
 
 @mixin body1 {
   font-size: 18px;
-  line-height: 100%;
+  line-height: 1;
   font-family: $font-greed-standard;
   font-weight: 400;
   @include tablet-and-lower {
@@ -192,7 +192,7 @@ $font-greed-standard: var(--font-greed-standard), sans-serif;
 
 @mixin body2 {
   font-size: 20px;
-  line-height: 100%;
+  line-height: 1;
   font-family: $font-greed-narrow;
   font-weight: 400;
   @include tablet-and-lower {

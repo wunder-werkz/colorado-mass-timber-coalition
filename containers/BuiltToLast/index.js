@@ -104,7 +104,7 @@ export default function BuiltToLast() {
             tween={{
               start: 60,
               end: 70,
-              to: { width: "100%", xPercent: smScreen ? 0 : -20 },
+              to: { width: "100%", xPercent: smScreen ? 0 : -25 },
             }}
           >
             <div className={`${styles.column} ${styles.column2}`}>
