@@ -8,6 +8,12 @@
   margin-bottom: 100px;
 }
 
+.hideSm {
+  @include x-small {
+    display: none;
+  }
+}
+
 .topWrap {
   width: $eight-twelfths;
   position: relative;
@@ -28,7 +34,7 @@
 }
 
 .eventsTitle {
-  @include h2;
+  @include h1;
 }
 
 .eventDesc {
@@ -49,7 +55,6 @@
   @include lap-smaller {
     margin-top: 0px;
     gap: 10px;
-    flex-direction: column;
   }
 }
 

@@ -40,9 +40,10 @@
   }
 
   @include phone {
+    border-width: 2px;
     font-size: 20px;
-    height: 30px;
-    padding: 0px 30px 0px 15px;
+    height: 33px;
+    padding: 0px 50px 0px 15px;
   }
 }
 
@@ -76,8 +77,8 @@
     }
 
     @include phone {
-      width: 26px;
-      height: 26px;
+      width: 30px;
+      height: 30px;
       svg {
         width: 15px;
         height: 15px;

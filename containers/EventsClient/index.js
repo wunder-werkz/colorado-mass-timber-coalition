@@ -74,7 +74,7 @@ export default function EventsClient({ pastEvents, upcomingEvents }) {
             color="orange"
             fill={isShowingPastEvents}
           >
-            Past Events
+            Past <span className={styles.hideSm}>Events</span>
           </Button>
           <Button
             onClick={() => setIsShowingPastEvents(false)}
@@ -82,7 +82,7 @@ export default function EventsClient({ pastEvents, upcomingEvents }) {
             color="orange"
             fill={!isShowingPastEvents}
           >
-            Future Events
+            Future  <span className={styles.hideSm}>Events</span>
           </Button>
         </div>
       </div>
