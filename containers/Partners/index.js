@@ -3,10 +3,12 @@
 import { useRef, useCallback } from "react";
 import * as ST from "@bsmnt/scrollytelling";
 import SplitTextBg from "@/components/SplitTextBg";
+import { PortableText } from "@portabletext/react";
 import styles from "./styles.module.scss";
 
-export default function Partners({ partners }) {
+export default function Partners({ partners, partnersText }) {
   const splitTextRef = useRef(null);
+  const splitTextCopyRef = useRef(null);
 
   // Memoized callbacks for animations
   const handleSplitTextStart = useCallback(() => {
@@ -17,6 +19,15 @@ export default function Partners({ partners }) {
     splitTextRef.current?.reverse();
   }, []);
 
+  const handleSplitTextCopyStart = useCallback(() => {
+    splitTextCopyRef.current?.restart();
+  }, []);
+
+  const handleSplitTextCopyReverse = useCallback(() => {
+    splitTextCopyRef.current?.reverse();
+  }, []);
+
+
   return (
     <ST.Root scrub={true} start="top center" end="bottom bottom">
       <div className={styles.container}>
@@ -25,11 +36,23 @@ export default function Partners({ partners }) {
           onCall={handleSplitTextStart}
           onReverseCall={handleSplitTextReverse}
         />
+        <ST.Waypoint
+          at={1}
+          onCall={handleSplitTextCopyStart}
+          onReverseCall={handleSplitTextCopyReverse}
+        />
 
         <div className={styles.titleWrapper}>
           <SplitTextBg ref={splitTextRef} color="orange" inline>
             <h2>Our Partners</h2>
           </SplitTextBg>
+          {partnersText &&
+            <SplitTextBg ref={splitTextCopyRef} color="cream" inline>
+              <div className={styles.body}>
+                <PortableText value={partnersText} />
+              </div>
+            </SplitTextBg>
+          }
         </div>
 
         <div className={styles.partnersList}>

@@ -16,7 +16,7 @@ export default defineConfig({
           .items([
             S.documentTypeListItem("general"),
             S.documentTypeListItem("event"),
-            S.documentTypeListItem("partner"),
+            S.documentTypeListItem("homePage"),
           ]),
     }),
   ],

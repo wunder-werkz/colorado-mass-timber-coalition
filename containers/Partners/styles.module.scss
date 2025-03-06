@@ -11,13 +11,32 @@
 }
 
 .titleWrapper {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 4rem;
+  @include x-small {
+    flex-flow: column;
+    align-items: flex-start;
+  }
   h2 {
     @include h1;
   }
 
   @include lap-smaller {
     margin-bottom: 1rem;
+  }
+  .body {
+    @include body1;
+    margin-right: $one-twelfth;
+    width: $five-twelfths;
+    @include x-small {
+      width: $eleven-twelfths;
+      p {
+        padding-left: 0;
+        padding-top: 0; 
+      }
+    }
   }
 }
 

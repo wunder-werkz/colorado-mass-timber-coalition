@@ -17,4 +17,12 @@ export const EVENTS_QUERY = defineQuery(
   `*[_type == "event"] | order(startDate desc)`
 );
 
-export const PARTNERS_QUERY = defineQuery(`*[_type == "partner"]`);
+export const HOME_QUERY = defineQuery(`*[_type == "homePage"]{
+  pageTitle,
+  pageMetadata,
+  partnersText,
+  partners[]-> {
+     name, 
+     link
+  }
+}`);
