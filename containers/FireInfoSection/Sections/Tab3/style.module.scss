@@ -104,7 +104,7 @@
 }
 
 .copy {
-  @include body2;
+  @include body1;
   width: 70%;
   height: auto;
   margin-bottom: -5px;
@@ -119,8 +119,8 @@
     padding: 10px;
   }
   @include x-small {
-    top: 30px;
-    width: 90%;
+    top: 0px;
+    width: 100%;
     div {
       background-color: $cream !important;
     }

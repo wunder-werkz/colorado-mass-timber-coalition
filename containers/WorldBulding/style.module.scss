@@ -247,7 +247,9 @@
     left: 20px;
   }
   @include x-small {
+    bottom: 60px;
     left: 10px;
+    width: $nine-twelfths;
   }
 }
 
