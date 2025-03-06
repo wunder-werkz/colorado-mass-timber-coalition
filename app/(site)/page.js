@@ -26,7 +26,7 @@ export default async function Home() {
       {(events && events.length > 0) &&
         <EventSlider events={events} />
       }
-      {(homepage[0].partners && homepage[0].partners.length > 0) &&
+      {(homepage && homepage[0] && homepage[0].partners && homepage[0].partners.length > 0) &&
         <Partners partners={homepage[0].partners} partnersText={homepage[0].partnersText} />
       }
       <CitationsModal />
