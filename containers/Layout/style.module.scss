@@ -131,6 +131,9 @@
   justify-content: flex-start;
   padding-left: 60px;
   width: 50%;
+  @include lap-smaller {
+    width: $seven-twelfths;
+  }
 }
 
 .stumpWrap {
@@ -151,6 +154,9 @@
     padding: 10px;
     width: $two-twelfths;
   }
+  @include lap-smaller {
+    width: $three-twelfths;
+  }
 
 }
 
@@ -162,6 +168,9 @@
   height: 100%;
   justify-content: center;
   width: 50%;
+  @include lap-smaller {
+    width: $five-twelfths;
+  }
   @include tablet-and-lower {
     align-items: center;
     gap: 30px;
