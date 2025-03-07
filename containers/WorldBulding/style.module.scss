@@ -301,6 +301,10 @@
   @include lap-smaller {
     width: 80px;
   }
+  [data-type="eyes-wrap"] {
+    left: 16%;
+    width: 40%;
+  }
 }
 
 .stumpyText {

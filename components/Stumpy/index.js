@@ -6,7 +6,7 @@ const Stump = ({ color = "cream" }) => {
   return (
     <div className={styles.stump}>
       <StumpySVG color={color} />
-      <div className={styles.eyes}>
+      <div className={styles.eyes} data-type="eyes-wrap">
         <Eyeballs color={"forest"} />
       </div>
     </div>
@@ -17,7 +17,8 @@ const Plank = ({ color = "cream" }) => {
   return (
     <div className={styles.plank}>
       <PlankSVG color={color} />
-      <div className={styles.eyes}>
+      <div className={styles.eyes}
+          data-type="eyes-wrap">
         <Eyeballs color={"forest"} />
       </div>
     </div>
@@ -28,7 +29,8 @@ const Tree = ({ color = "cream" }) => {
   return (
     <div className={styles.tree}>
       <TreeSVG color={color} />
-      <div className={styles.eyes}>
+      <div className={styles.eyes}
+           data-type="eyes-wrap">
         <Eyeballs color={"forest"} />
       </div>
     </div>

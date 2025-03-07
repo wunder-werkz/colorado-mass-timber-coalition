@@ -110,12 +110,22 @@
 }
 
 .stumpyWrapper {
-  height: 150px;
-  width: 110px;
+  height: 250px;
+  max-width: 110px;
   svg {
     height: 100%;
     width: auto;
+    
+    &[data-type="eyes"] {
+      height: auto;
+      width: 100%;
+    }
   }
+  [data-type="eyes-wrap"] {
+    left: 16%;
+    width: 40%;
+  }
+ 
 
   @include tablet-and-lower{
     height: auto;

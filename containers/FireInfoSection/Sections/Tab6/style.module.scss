@@ -164,6 +164,10 @@
 .stumpy {
   width: 100px;
   height: auto;
+  [data-type="eyes-wrap"] {
+    left: 16%;
+    width: 40%;
+  }
 }
 
 .stumpyText {
