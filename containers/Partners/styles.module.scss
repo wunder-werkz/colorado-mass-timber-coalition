@@ -27,9 +27,11 @@
     margin-bottom: 1rem;
   }
   .body {
-    @include body1;
-    margin-right: $one-twelfth;
-    width: $five-twelfths;
+    @include body2;
+    & {
+      margin-right: $one-twelfth;
+      width: $five-twelfths;
+    }
     @include x-small {
       width: $eleven-twelfths;
       p {

@@ -124,13 +124,13 @@
 }
 
 .stumpyWrap {
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-
-  width: 50%;
+  display: flex;
+  flex-direction: row;
   height: 100%;
+  justify-content: flex-start;
+  padding-left: 60px;
+  width: 50%;
 }
 
 .stumpWrap {
@@ -140,15 +140,18 @@
 
 .titleWrap {
   @include h2;
-  align-items: center;
-  background: $cream;
-  display: flex;
-  height: auto;
-  justify-content: center;
-  margin-bottom: 20px;
-  max-width: 433px;
-  padding: 10px;
-  width: $four-twelfths;
+  & {
+    align-items: center;
+    background: $cream;
+    display: flex;
+    height: auto;
+    justify-content: center;
+    margin: -150px 20px 20px 0px;
+    max-width: 433px;
+    padding: 10px;
+    width: $two-twelfths;
+  }
+
 }
 
 .buttonWrap {
