@@ -129,10 +129,8 @@
     height: 300px;
   }
  
-
   @include tablet-and-lower{
-    height: auto;
-    width: 60px;
+    height: 200px;
   }
 }
 

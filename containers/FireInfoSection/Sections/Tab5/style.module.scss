@@ -55,7 +55,10 @@
     position: absolute;
     width: 40%;
   }
-  @include phone {
+  @include tablet-and-lower {
+    top: 0;
+  }
+  @include x-small {
     left: 0;
     padding: 10px;
     position: absolute;
@@ -94,7 +97,12 @@
     top: 25%;
     width: $five-twelfths;
   }
-  @include phone {
+  @include tablet-and-lower {
+    left: 5%;
+    right: unset;
+    top: 40%;
+  }
+  @include x-small {
     left: 0;
     top: 50%;
     padding: 10px;

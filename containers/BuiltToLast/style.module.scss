@@ -117,6 +117,9 @@
     max-width: 300px;
     text-transform: uppercase;
     @include body2;
+    @include tablet-and-lower {
+      max-width: 200px;
+    }
   }
 }
 
@@ -131,6 +134,9 @@
     top: 60%;
     left: 15%;
   }
+  @include tablet-and-lower {
+    left: 10%;
+  }
 }
 
 .stumpyWrapper-1 {
@@ -144,9 +150,15 @@
     @include lap-smaller {
       transform: translate(50%, -200%);
     }
+    @include tablet-and-lower {
+      transform: translate(70%, -200%);
+    }
   }
   @include lap-smaller {
     top: 13%;
+  }
+  @include tablet-and-lower {
+    top: 10%;
   }
 }
 
@@ -156,8 +168,10 @@
   transform: translateX(50%);
 
   .stumpyText {
-    max-width: 300px;
     transform: translate(-100%, -80%);
+    @include tablet-and-lower {
+      transform: translate(-90%, -80%);
+    }
   }
   [data-type="eyes-wrap"] {
     left: 26%;
@@ -167,6 +181,9 @@
   @include lap-smaller {
     bottom: 15%;
     right: 15%;
+  }
+  @include tablet-and-lower {
+    right: 10%;
   }
 }
 
@@ -186,7 +203,13 @@
 
   @include lap-smaller {
     top: 50%;
-
+  }
+  @include tablet-and-lower {
+    top: 47%;
+    p {
+      font-size: 32px;
+    }
+    
   }
 }
 
@@ -209,6 +232,7 @@
     @include lap-smaller {
       left: 5%;
     }
+    
   }
 
   .stumpyWrapper-1 {

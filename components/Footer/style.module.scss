@@ -82,6 +82,7 @@
     display: flex;
     height: 250px;
     justify-content: center;
+   
   }
   svg {
     width: 100%;
@@ -90,9 +91,15 @@
   [data-type="eyes-wrap"] {
     left: 16%;
     width: 40%;
+    @include tablet-and-lower {
+      left: 19%;
+      width: 14%;
+    }
   }
 
   @include tablet-and-lower {
+    display: block;
+    height: 150px;
     @include six-twelfths;
     svg {
       width: 50%;

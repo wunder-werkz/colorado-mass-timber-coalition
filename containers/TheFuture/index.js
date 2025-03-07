@@ -82,7 +82,7 @@ export default function TheFuture() {
             />
             <div className={`${styles.eyebrow}`}>
               <SplitTextBg ref={eyebrowRef} color="cream" inline>
-                {CONTENT.eyebrow}
+                <p>{CONTENT.eyebrow}</p>
               </SplitTextBg>
             </div>
 
