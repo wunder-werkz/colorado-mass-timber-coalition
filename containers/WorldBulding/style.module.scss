@@ -233,12 +233,14 @@
 }
 
 .copy {
-  @include body1;
-  bottom: 100px;
-  height: auto;
-  left: 0px;
-  position: absolute;
-  width: $two-twelfths;
+  @include body2;
+  & {
+    bottom: 100px;
+    height: auto;
+    left: 0px;
+    position: absolute;
+    width: $three-twelfths;
+  }
   @include lap-smaller {
     width: $six-twelfths;
   }
@@ -254,14 +256,14 @@
 }
 
 .endCopy {
-  @include h3;
-  bottom: 50px;
-  font-size: 20px;
-  height: auto;
-  left: 20px;
-  position: absolute;
-  width: $four-twelfths;
-
+  @include body2;
+  & {
+    bottom: 50px;
+    height: auto;
+    left: 20px;
+    position: absolute;
+    width: $four-twelfths;
+  }
   @include lap-smaller {
     bottom: 200px;
   }

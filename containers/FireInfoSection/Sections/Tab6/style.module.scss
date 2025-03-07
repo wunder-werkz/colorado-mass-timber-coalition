@@ -103,7 +103,7 @@
 }
 
 .copy {
-  @include body1;
+  @include body2;
   width: $three-twelfths;
   height: auto;
   @media (max-width: 1200px) {

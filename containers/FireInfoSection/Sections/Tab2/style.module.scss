@@ -154,8 +154,12 @@
 
 .acresBurnedText {
   @include h3;
-  text-transform: uppercase;
-  margin-bottom: 10px;
+  & {
+    font-family: $font-greed-narrow;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
   @include x-small {
     font-size: 12px;
   }

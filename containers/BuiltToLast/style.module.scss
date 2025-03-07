@@ -62,13 +62,14 @@
 
 .eyebrow {
   @include eyebrow;
-  color: $forest;
-  font-size: 18px;
-  height: auto;
-  overflow: hidden;
-  text-transform: uppercase;
-  width: 100%;
-
+  & {
+    color: $forest;
+    height: auto;
+    overflow: hidden;
+    padding-left: 15px;
+    text-transform: uppercase;
+    width: 100%;
+  }
 }
 
 .headline {
@@ -80,30 +81,31 @@
 }
 
 .copy {
-  @include body1;
-  height: auto;
-  padding-top: 30px;
-  width: $three-twelfths;
+  @include body2;
+  & {  
+    height: auto;
+    padding-top: 30px;
+    width: $three-twelfths;
+  }
   @include lap-smaller {
     width: $five-twelfths;
   }
   @include x-small {
     width: $ten-twelfths;
   }
- 
 }
 
 .svgCircle {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
   position: relative;
   width: 100%;
-  height: 90%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 
   svg {
-    width: 70%;
     height: auto;
+    width: $four-twelfths;
     g {
       opacity: 0;
     }
@@ -111,10 +113,12 @@
 }
 
 .stumpyWrapper {
+  height: 200px;
+  max-width: 400px;
   position: absolute;
   width: auto;
-  max-width: 400px;
-  height: 200px;
+
+
 
   .stumpy {
     height: 200px;
@@ -122,20 +126,12 @@
     max-height: 200px;
     transform: scale(0.2);
     opacity: 0;
-    width: auto;
-    // svg:not([data-type='eyes']) {
-    //   height: 200px;
-    //   width: auto;
-    // }
-    
-   
+    width: auto;   
   }
 
   .stumpyText {
-    flex: 1;
-    max-width: 200px;
-    @include body1;
     text-transform: uppercase;
+    @include body2;
   }
 }
 
@@ -160,13 +156,12 @@
 }
 
 .stumpyWrapper-1 {
-  top: 0;
-  left: 80%;
-  width: 600px;
-  transform: translateX(-50%);
-
+  top: -3%;
+  left: 50%;
+  width: 300px;
+ 
   .stumpyText {
-    transform: translate(50%, -110%);
+    transform: translate(40%, -110%);
     @include lap-smaller {
       transform: translate(50%, -200%);
     }
@@ -193,8 +188,8 @@
     }
   }
   [data-type="eyes-wrap"] {
-    left: 16%;
-    width: 40%;
+    left: 22%;
+    width: 33%;
   }
 
   @include lap-smaller {
@@ -230,7 +225,6 @@
 
   .stumpyWrapper-1 {
     top: 0%;
-    // transform: translateX(1%);
 
     @include lap-smaller {
       top: 12%;

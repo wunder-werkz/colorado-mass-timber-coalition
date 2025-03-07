@@ -33,7 +33,7 @@ export default function Footer({ contactEmail }) {
         </div>
 
         <div className={styles.stumpyWrap}>
-          <Stumpy type="stump" color="orange" />
+          <Stumpy type="plank" color="orange" />
         </div>
         <div className={styles.socialWrap}>
           {SOCIAL_LINKS.map((link) => (

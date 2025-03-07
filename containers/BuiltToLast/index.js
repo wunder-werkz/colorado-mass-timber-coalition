@@ -70,7 +70,7 @@ export default function BuiltToLast() {
 
                 <div className={`${styles.eyebrow}`}>
                   <SplitTextBg ref={eyebrowRef} color="orange" inline>
-                    <h3>{CONTENT.eyebrow}</h3>
+                    <p>{CONTENT.eyebrow}</p>
                   </SplitTextBg>
                 </div>
 

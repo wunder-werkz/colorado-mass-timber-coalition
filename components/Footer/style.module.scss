@@ -73,12 +73,19 @@
 
 .stumpyWrap {
   @include two-twelfths;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  & {
+    align-items: center;
+    display: flex;
+    height: 250px;
+    justify-content: center;
+  }
   svg {
     width: 100%;
     height: auto;
+  }
+  [data-type="eyes-wrap"] {
+    left: 16%;
+    width: 40%;
   }
 
   @include tablet-and-lower {

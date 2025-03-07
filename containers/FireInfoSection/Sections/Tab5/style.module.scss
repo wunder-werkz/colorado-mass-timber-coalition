@@ -8,17 +8,10 @@
 }
 
 .headlineWrap {
-  position: relative;
-  width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
-
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 60%;
-  height: auto;
+  position: relative;
+  width: $four-twelfths;
 
   @include phone {
     width: 100%;
@@ -28,9 +21,11 @@
 .sectionTitle {
   h2 {
     @include eyebrow;
-    margin: 0;
-    padding: 10px;
-    padding-bottom: 0px;
+    & { 
+      margin: 0;
+      padding: 10px;
+      padding-bottom: 0px;
+    }
   }
 }
 
@@ -50,19 +45,20 @@
 }
 
 .copy {
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  width: 40%;
-  height: auto;
-  @include body1;
-
-  @include phone {
+  @include body2;
+  & {
+    bottom: -5px;
+    height: auto;
+    left: 0;
     position: absolute;
-    width: 100%;
-    top: 0;
+    width: 40%;
+  }
+  @include phone {
     left: 0;
     padding: 10px;
+    position: absolute;
+    top: 0;
+    width: 100%;
   }
 }
 
@@ -83,22 +79,22 @@
 }
 
 .stumpyWrap {
-  position: absolute;
-  top: 70%;
-  right: 10%;
-  width: 40%;
-  height: auto;
+  align-items: flex-start;
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
   gap: 20px;
-
+  height: auto;
+  position: absolute;
+  top: 10%;
+  right: 2%;
+  width: 30%;
+ 
   @include phone {
+    left: 0;
+    top: 50%;
+    padding: 10px;
     position: absolute;
     width: 100%;
-    top: 50%;
-    left: 0;
-    padding: 10px;
   }
 }
 
@@ -109,7 +105,7 @@
 
 .stumpyText {
   width: calc(100% - 100px);
-  @include body2;
+  @include body1;
 
   @include phone {
     width: 100%;

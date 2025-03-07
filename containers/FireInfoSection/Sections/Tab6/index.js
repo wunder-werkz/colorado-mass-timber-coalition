@@ -111,7 +111,7 @@ export default function Tab6({ index }) {
           onReverseCall={handleCopyReverse}
         />
         <div className={`${styles.copy}`}>
-          <SplitTextBg ref={copyT6Ref} color="forest">
+          <SplitTextBg ref={copyT6Ref} color="forest" body={true}>
             <p>{CONTENT.copy} </p>
           </SplitTextBg>
         </div>

@@ -175,12 +175,12 @@ const WorldBuildingSection = () => {
                   onReverseCall={handleCopyStartAlt}
                 />
                 <div className={`${styles.copy}`}>
-                  <SplitTextBg ref={copyRef} color="cream" inline>
-                    <h3>
+                  <SplitTextBg ref={copyRef} color="cream" body={true}>
+                    <p>
                       From 2025 to 2050, the world is expected to add about 1.7
                       trillion square feet of new floor area to the global
                       building stock.<sup>11</sup>
-                    </h3>
+                    </p>
                   </SplitTextBg>
                 </div>
 
@@ -290,7 +290,7 @@ const WorldBuildingSection = () => {
                   onReverseCall={handleEndCopyReverse}
                 />
                 <div className={`${styles.endCopy}`}>
-                  <SplitTextBg ref={endCopyRef} color="cream" inline>
+                  <SplitTextBg ref={endCopyRef} color="cream" body={true}>
                     <p>
                       Less than a fraction of one percent of all buildings are
                       built with mass timber<sup>12</sup> and future demand can

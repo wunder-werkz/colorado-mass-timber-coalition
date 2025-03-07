@@ -57,7 +57,7 @@
 }
 
 .copy {
-  @include body1;
+  @include body2;
   bottom: -5px;
   height: auto;
   left: 0;
@@ -122,11 +122,11 @@
   height: auto;
   opacity: 0;
   transform: scale(0);
-  width: 100px;
+  width: 120px;
 }
 
 .stumpyText {
-  @include body2;
+  @include body1;
   width: calc(100% - 100px);
 
   @include phone {

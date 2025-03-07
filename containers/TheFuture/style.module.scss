@@ -99,14 +99,15 @@
     }
   }
 }
+.cltText, .nltText, .gluText, .dltText  {
+  position: absolute;
+  width: 100%;
+  @include body2;
+}
 
 .cltText {
-  @include body1;
-  position: absolute;
   bottom: 160px;
   right: -60px;
-  width: 100%;
-
   @include lap-smaller {
     bottom: 100px;
   }
@@ -160,11 +161,8 @@
 }
 
 .nltText {
-  @include body1;
-  position: absolute;
   bottom: 10%;
   right: 30%;
-  width: 100%;
   @include lap-smaller {
     right: 0;
   }
@@ -206,8 +204,7 @@
 }
 
 .gluText {
-  @include body1;
-  position: absolute;
+
   top: 30px;
   right: calc(-1 * (100% + 140px));
   width: auto;
@@ -256,11 +253,8 @@
 }
 
 .dltText {
-  @include body1;
   bottom: -30px;
   left: 30px;
-  position: absolute;
-  width: 100%;
   @include x-small {
     bottom: -30px;
     display: flex;
@@ -271,12 +265,14 @@
 
 .eyebrow {
   @include eyebrow;
-  color: $forest;
-  font-size: 18px;
-  height: auto;
-  margin-left: 0px;
-  margin-bottom: 0px;
-  text-transform: uppercase;  
+  & {
+    color: $forest;
+    height: auto;
+    margin-left: 0px;
+    margin-bottom: 15px;
+    text-transform: uppercase; 
+  }
+ 
   div, span {
     padding-left: 0 !important;
   }
@@ -305,7 +301,7 @@
 }
 
 .copy {
-  @include body1;
+  @include body2;
   height: auto;
   width: $three-twelfths;
 
