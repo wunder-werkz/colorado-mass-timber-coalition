@@ -153,13 +153,10 @@
   flex-direction: row;
   align-items: flex-start;
   gap: 20px;
-
-  @media (max-width: 1200px) {
-    width: 50%;
-    left: calc(100% - 40%);
-    top: 50%;
+  @include lap-smaller {
+    left: 50%;
+    width: 60%;
   }
-
   @include phone {
     width: 60%;
     height: 100%;
@@ -178,8 +175,8 @@
   width: 120px;
   height: auto;
 
-  @include phone {
-    width: 150px;
+  @include lap-smaller {
+    width: 140px;
   }
 }
 
@@ -187,9 +184,7 @@
   width: calc(100% - 300px);
   @include body1;
 
-  @media (max-width: 1200px) {
-    width: 100%;
-  }
+
   @include x-small {
     p {
       padding: 7px 10px;

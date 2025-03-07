@@ -96,6 +96,9 @@
     g {
       opacity: 0;
     }
+    @include lap-smaller {
+      width: $seven-twelfths;
+    }
   }
 }
 
@@ -123,14 +126,10 @@
   .stumpyText {
     top: 45%;
     transform: translateY(25%);
-    @include lap-smaller {
-      top: 0;
-      transform: translateY(-50%);
-    }
   }
   @include lap-smaller {
     top: 60%;
-    left: 5%;
+    left: 15%;
   }
 }
 
@@ -147,24 +146,18 @@
     }
   }
   @include lap-smaller {
-    top: 10%;
+    top: 13%;
   }
 }
 
 .stumpyWrapper-2 {
   bottom: 7%;
   right: 0%;
-
   transform: translateX(50%);
 
   .stumpyText {
     max-width: 300px;
     transform: translate(-100%, -80%);
-
-    @include lap-smaller {
-      max-width: 190px;
-      transform: translate(-60%, 80%);
-    }
   }
   [data-type="eyes-wrap"] {
     left: 26%;
@@ -172,8 +165,8 @@
   }
 
   @include lap-smaller {
-    right: 5%;
-    transform: translate(50%, -25%);
+    bottom: 15%;
+    right: 15%;
   }
 }
 
@@ -192,23 +185,38 @@
   }
 
   @include lap-smaller {
-    width: 80%;
-    left: 50%;
-    transform: translate(-50%, -70%);
+    top: 50%;
+
   }
 }
 
 .secondStumpWrapper {
+  .stumpy {
+    height: 250px;
+    max-width: 130px;
+    [data-type="stump"] {
+      height: 100%;
+      max-width: 100%;
+      width: auto;
+    }
+  }
   .stumpyWrapper-0 {
+    .stumpy {
+      height: 300px;
+      max-width: 150px;
+    }
     left: -5%;
+    @include lap-smaller {
+      left: 5%;
+    }
   }
 
   .stumpyWrapper-1 {
     top: 0%;
     left: 78%;
     @include lap-smaller {
-      top: 12%;
-      transform: translateX(-50%);
+      top: 8%;
+      left: 75%;
     }
   }
 
@@ -220,8 +228,8 @@
       width: 38%;
     }
     @include lap-smaller {
-      right: 0;
-      transform: translate(-20%, -5%);
+      bottom: 15%;
+      right: 20%;
     }
   }
 }

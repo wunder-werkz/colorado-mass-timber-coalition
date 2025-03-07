@@ -4,7 +4,7 @@ import styles from "./style.module.scss";
 
 const Stump = ({ color = "cream" }) => {
   return (
-    <div className={styles.stump}>
+    <div className={styles.stump} data-type="stump">
       <StumpySVG color={color} />
       <div className={styles.eyes} data-type="eyes-wrap">
         <Eyeballs color={"forest"} />
@@ -27,7 +27,7 @@ const Plank = ({ color = "cream" }) => {
 
 const Tree = ({ color = "cream" }) => {
   return (
-    <div className={styles.tree}>
+    <div className={styles.tree} data-type="stump">
       <TreeSVG color={color} />
       <div className={styles.eyes}
            data-type="eyes-wrap">

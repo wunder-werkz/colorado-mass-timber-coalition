@@ -168,6 +168,9 @@
     left: 16%;
     width: 40%;
   }
+  @include lap-smaller {
+    width: 140px;
+  }
 }
 
 .stumpyText {

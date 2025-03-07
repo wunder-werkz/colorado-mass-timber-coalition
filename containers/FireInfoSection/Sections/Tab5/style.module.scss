@@ -12,7 +12,9 @@
   flex-direction: column;
   position: relative;
   width: $four-twelfths;
-
+  @include lap-smaller {
+    width: $six-twelfths;
+  }
   @include phone {
     width: 100%;
   }
@@ -88,7 +90,10 @@
   top: 10%;
   right: 2%;
   width: 30%;
- 
+  @include lap-smaller {
+    top: 25%;
+    width: $five-twelfths;
+  }
   @include phone {
     left: 0;
     top: 50%;
@@ -101,13 +106,16 @@
 .stumpy {
   width: 100px;
   height: 500px;
+  @include lap-smaller {
+    width: 180px;
+  }
 }
 
 .stumpyText {
   width: calc(100% - 100px);
   @include body1;
 
-  @include phone {
+  @include lap-smaller {
     width: 100%;
     padding: 10px;
   }

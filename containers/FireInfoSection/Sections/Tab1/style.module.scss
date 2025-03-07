@@ -67,9 +67,8 @@
   top: 10%;
   width: 40%;
   @include lap-smaller {
-    left: 60%;
+    left: 57%;
     top: 35%;
-
   }
   @include phone {
     left: 55%;
@@ -84,8 +83,8 @@
 .stumpy {
   height: auto;
   width: 120px;
-  @include phone {
-    width: 150px;
+  @include lap-smaller {
+    width: 180px;
   }
   @include x-small {
     width: 100px;
