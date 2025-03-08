@@ -303,6 +303,9 @@
   @include lap-smaller {
     width: 140px;
   }
+  @include x-small {
+    width: 60px;
+  }
   [data-type="eyes-wrap"] {
     left: 16%;
     width: 40%;

@@ -134,6 +134,10 @@
   @include lap-smaller {
     width: $seven-twelfths;
   }
+  @include tablet-and-lower {
+    padding-left: 0;
+    margin-left: -20%;
+  }
 }
 
 .stumpWrap {
