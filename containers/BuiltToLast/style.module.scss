@@ -34,6 +34,14 @@
         text-transform: uppercase;
         width: 100%;
       }
+      @include x-small {
+        p {
+          padding: 0 !important;
+          span {
+            padding: 0 !important;
+          }
+        }
+      }
     }
     
     .headline {
@@ -112,6 +120,13 @@
     transform: scale(0.2);
     opacity: 0;
     width: auto;   
+    @include x-small {
+      height: 150px;
+      max-width: 70px;
+    }
+  }
+  @include x-small {
+    max-width: 300px;
   }
   .stumpyText {
     max-width: 300px;
@@ -129,6 +144,11 @@
   .stumpyText {
     top: 45%;
     transform: translateY(25%);
+    @include x-small {
+      top: 70%;
+      position: absolute;
+
+    }
   }
   @include lap-smaller {
     top: 60%;
@@ -137,6 +157,10 @@
   @include tablet-and-lower {
     left: 10%;
   }
+  @include x-small {
+    left: 5%;
+    top: 50%;
+  };
 }
 
 .stumpyWrapper-1 {
@@ -153,6 +177,9 @@
     @include tablet-and-lower {
       transform: translate(70%, -200%);
     }
+    @include x-small {
+      transform: translate(40%, -200%);
+    }
   }
   @include lap-smaller {
     top: 13%;
@@ -160,18 +187,25 @@
   @include tablet-and-lower {
     top: 10%;
   }
+  @include x-small {
+    left: 15%;
+    top: 15%;
+  }
 }
 
 .stumpyWrapper-2 {
   bottom: 7%;
   right: 0%;
   transform: translateX(50%);
-
+  
   .stumpyText {
     transform: translate(-100%, -80%);
     @include tablet-and-lower {
       transform: translate(-90%, -80%);
     }
+    @include x-small {
+      transform: translate(-53%, -21%);
+    };
   }
   [data-type="eyes-wrap"] {
     left: 26%;
@@ -184,6 +218,10 @@
   }
   @include tablet-and-lower {
     right: 10%;
+  }
+  @include x-small {
+    right: 0%;
+    transform: translateX(60%);
   }
 }
 
@@ -211,6 +249,14 @@
     }
     
   }
+  @include x-small {
+    top: 52%;
+
+    width: $seven-twelfths;
+    p {
+      font-size: 20px;
+    }
+  }
 }
 
 .secondStumpWrapper {
@@ -222,15 +268,27 @@
       max-width: 100%;
       width: auto;
     }
+    @include x-small {
+      height: 150px;
+      max-width: 70px;
+    }
   }
   .stumpyWrapper-0 {
     .stumpy {
       height: 300px;
       max-width: 150px;
+      @include x-small {
+        height: 150px;
+        max-width: 80px;
+      }
     }
+    
     left: -5%;
     @include lap-smaller {
       left: 5%;
+    }
+    @include x-small {
+      top: 65%;
     }
     
   }
@@ -241,6 +299,10 @@
     @include lap-smaller {
       top: 8%;
       left: 75%;
+    }
+    @include x-small {
+      left: 43%;
+      top: 5%;
     }
   }
 

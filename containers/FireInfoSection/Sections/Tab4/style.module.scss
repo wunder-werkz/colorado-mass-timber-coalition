@@ -127,6 +127,9 @@
   @include lap-smaller {
     width: 180px;
   }
+  @include x-small {
+    width: 150px;
+  }
 }
 
 .stumpyText {

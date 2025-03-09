@@ -107,6 +107,9 @@
     margin-bottom: 10%;
     margin-right: -50%;
   }
+  @include x-small {
+    right: 10px;
+  }
 }
 
 .stumpyWrapper {
@@ -131,6 +134,9 @@
  
   @include tablet-and-lower{
     height: 200px;
+  }
+  @include x-small {
+    height: 150px;
   }
 }
 
