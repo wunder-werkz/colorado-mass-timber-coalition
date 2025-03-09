@@ -33,6 +33,7 @@
       width: $five-twelfths;
     }
     @include x-small {
+      margin-top: 10px;
       width: $eleven-twelfths;
       p {
         padding-left: 0;
@@ -60,7 +61,6 @@
   text-decoration: none;
   color: inherit;
   transition: opacity 0.65s ease;
-
   position: relative;
 
   &::after {

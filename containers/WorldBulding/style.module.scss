@@ -49,6 +49,8 @@
     width: 100px;
   }
   @include x-small {
+    height: calc(100% - 40px);
+    margin-top: 25px;
     padding: 0.5rem;
     width: 20px;
   }

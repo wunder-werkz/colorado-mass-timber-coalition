@@ -138,11 +138,21 @@
     padding-left: 0;
     margin-left: -20%;
   }
+  @include x-small {
+    flex-flow: column;
+    margin-left: 0;
+    width: $ten-twelfths;
+
+  }
+ 
 }
 
 .stumpWrap {
   width: 40%;
   height: auto;
+  @include x-small {
+    width: 46%;
+  }
 }
 
 .titleWrap {
@@ -160,6 +170,10 @@
   }
   @include lap-smaller {
     width: $three-twelfths;
+  }
+  @include x-small {
+    margin: 90px 0 20px 0;
+    width: $ten-twelfths;
   }
 
 }

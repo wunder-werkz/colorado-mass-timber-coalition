@@ -34,6 +34,7 @@
   }
   @include x-small {
     align-items: center;
+    flex-flow: column;
     margin-bottom: 40px;
   }
 }
@@ -52,6 +53,9 @@
 
 .eventsTitle {
   @include h1;
+  @include x-small {
+    margin-bottom: 30px;
+  }
 }
 
 .sliderWrapper {

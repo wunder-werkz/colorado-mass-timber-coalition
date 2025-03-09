@@ -20,6 +20,8 @@
     width: 100px;
   }
   @include x-small {
+    height: calc(100% - 20px);
+    margin-top: 5px;
     padding: 0.5rem;
     width: 20px;
   }
