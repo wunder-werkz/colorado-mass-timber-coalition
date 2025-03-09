@@ -20,6 +20,8 @@
     width: 100px;
   }
   @include x-small {
+    height: calc(100% - 20px);
+    margin-top: 5px;
     padding: 0.5rem;
     width: 20px;
   }
@@ -154,8 +156,12 @@
 
 .acresBurnedText {
   @include h3;
-  text-transform: uppercase;
-  margin-bottom: 10px;
+  & {
+    font-family: $font-greed-narrow;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
   @include x-small {
     font-size: 12px;
   }

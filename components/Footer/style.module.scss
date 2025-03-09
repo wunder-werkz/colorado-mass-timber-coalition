@@ -13,12 +13,16 @@
 }
 
 .content {
-  margin: 0 auto;
-
   border-top: 4px solid $orange;
-
-  @include grid-wrap;
+  margin: 0 auto;
   padding-top: 40px;
+  @include grid-wrap;
+  @include lap-smaller {
+    padding: 60px 20px 20px 20px;
+  }
+  @include x-small {
+    padding-top: 0;
+  }
 }
 
 .newsletter {
@@ -69,19 +73,40 @@
     height: auto;
   }
   @include grid-wrap;
+  @include lap-smaller {
+    padding: 0 20px;
+  }
 }
 
 .stumpyWrap {
   @include two-twelfths;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  & {
+    align-items: center;
+    display: flex;
+    height: 250px;
+    justify-content: center;
+   
+  }
   svg {
     width: 100%;
     height: auto;
   }
+  [data-type="eyes-wrap"] {
+    left: 16%;
+    width: 40%;
+    @include tablet-and-lower {
+      left: 19%;
+      width: 14%;
+    }
+    @include x-small {
+      left: 11%;
+      width: 34%;
+    }
+  }
 
   @include tablet-and-lower {
+    display: block;
+    height: 150px;
     @include six-twelfths;
     svg {
       width: 50%;

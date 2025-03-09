@@ -134,7 +134,7 @@ $font-greed-standard: var(--font-greed-standard), sans-serif;
     font-size: 40px;
   }
   @include x-small() {
-    font-size: 35px;
+    font-size: 30px;
   }
 }
 
@@ -160,7 +160,10 @@ $font-greed-standard: var(--font-greed-standard), sans-serif;
     font-size: 24px;
   }
   @include phone {
-    font-size: 28px;
+    font-size: 25px;
+  }
+  @include x-small {
+    font-size: 18px;
   }
 }
 

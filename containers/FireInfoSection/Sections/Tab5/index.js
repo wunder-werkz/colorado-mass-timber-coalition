@@ -128,8 +128,8 @@ export default function Tab5({ index }) {
         onCall={handleCopyStart}
         onReverseCall={handleCopyReverse}
       />
-      <div className={`${styles.copy}`}>
-        <SplitTextBg ref={copyRef} color="orange">
+      <div className={styles.copy}>
+        <SplitTextBg ref={copyRef} color="orange" body={true}>
           <p>
             In addition to climate change, centuries of fire suppression
             activity have led to unhealthy and unbalanced forests.<sup>8</sup>{" "}

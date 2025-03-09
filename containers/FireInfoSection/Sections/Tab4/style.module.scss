@@ -57,7 +57,7 @@
 }
 
 .copy {
-  @include body1;
+  @include body2;
   bottom: -5px;
   height: auto;
   left: 0;
@@ -104,6 +104,7 @@
   top: 60%;
   width: $three-twelfths;
   @include lap-smaller {
+    right: 2%;
     width: $four-twelfths;
   }
   @include tablet-and-lower {
@@ -122,11 +123,17 @@
   height: auto;
   opacity: 0;
   transform: scale(0);
-  width: 100px;
+  width: 120px;
+  @include lap-smaller {
+    width: 180px;
+  }
+  @include x-small {
+    width: 150px;
+  }
 }
 
 .stumpyText {
-  @include body2;
+  @include body1;
   width: calc(100% - 100px);
 
   @include phone {

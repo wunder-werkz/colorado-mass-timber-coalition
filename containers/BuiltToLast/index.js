@@ -50,7 +50,7 @@ export default function BuiltToLast() {
       <ST.Pin
         childHeight={smScreen ? "150vh" : "100vh"}
         pinSpacerHeight={smScreen ? `600vh`:`400vh`}
-        top={smScreen ? "-50%" : 0}
+        top={smScreen ? "-50%" : "80px"}
       >
         <div className={`${styles.tabPanel}`}>
           <ST.Animation
@@ -70,7 +70,7 @@ export default function BuiltToLast() {
 
                 <div className={`${styles.eyebrow}`}>
                   <SplitTextBg ref={eyebrowRef} color="orange" inline>
-                    <h3>{CONTENT.eyebrow}</h3>
+                    <p>{CONTENT.eyebrow}</p>
                   </SplitTextBg>
                 </div>
 
@@ -128,7 +128,10 @@ export default function BuiltToLast() {
                   {
                     start: 60,
                     end: 100,
-                    to: { rotate: 540, transformOrigin: "center" },
+              
+                    to: { rotate: 540, 
+                    scale: 1.6,
+                    top: "-5%", transformOrigin: "center" },
                   },
                 ]}
               >
@@ -224,7 +227,7 @@ export default function BuiltToLast() {
               />
 
               <div className={styles.finalCopy}>
-                <SplitTextBg ref={finalCopyRef} color="orange" inline>
+                <SplitTextBg ref={finalCopyRef} color="orange" body={true}>
                   <p>{CONTENT.finalCopy}</p>
                 </SplitTextBg>
               </div>

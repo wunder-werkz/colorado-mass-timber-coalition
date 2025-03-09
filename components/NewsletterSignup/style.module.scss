@@ -14,7 +14,7 @@
   }
 
   p {
-    @include body1;
+    @include body2;
   }
 }
 
@@ -51,10 +51,20 @@
   .form {
     display: flex;
     gap: 5px;
-
+    @include x-small {
+      align-items: flex-end;
+      flex-flow: column;
+      input {
+        width: 100%;
+      }
+    }
     button {
       background: transparent !important;
       color: $cream !important;
+      @include x-small {
+        max-width: 150px;
+        margin-top: 10px;
+      }
     }
   }
 }

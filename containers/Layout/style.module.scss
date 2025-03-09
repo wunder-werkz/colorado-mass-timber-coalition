@@ -124,31 +124,58 @@
 }
 
 .stumpyWrap {
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-
-  width: 50%;
+  display: flex;
+  flex-direction: row;
   height: 100%;
+  justify-content: flex-start;
+  padding-left: 60px;
+  width: 50%;
+  @include lap-smaller {
+    width: $seven-twelfths;
+  }
+  @include tablet-and-lower {
+    padding-left: 0;
+    margin-left: -20%;
+  }
+  @include x-small {
+    flex-flow: column;
+    margin-left: 0;
+    width: $ten-twelfths;
+
+  }
+ 
 }
 
 .stumpWrap {
   width: 40%;
   height: auto;
+  @include x-small {
+    width: 46%;
+  }
 }
 
 .titleWrap {
   @include h2;
-  align-items: center;
-  background: $cream;
-  display: flex;
-  height: auto;
-  justify-content: center;
-  margin-bottom: 20px;
-  max-width: 433px;
-  padding: 10px;
-  width: $four-twelfths;
+  & {
+    align-items: center;
+    background: $cream;
+    display: flex;
+    height: auto;
+    justify-content: center;
+    margin: -150px 20px 20px 0px;
+    max-width: 433px;
+    padding: 10px;
+    width: $two-twelfths;
+  }
+  @include lap-smaller {
+    width: $three-twelfths;
+  }
+  @include x-small {
+    margin: 90px 0 20px 0;
+    width: $ten-twelfths;
+  }
+
 }
 
 .buttonWrap {
@@ -159,6 +186,9 @@
   height: 100%;
   justify-content: center;
   width: 50%;
+  @include lap-smaller {
+    width: $five-twelfths;
+  }
   @include tablet-and-lower {
     align-items: center;
     gap: 30px;

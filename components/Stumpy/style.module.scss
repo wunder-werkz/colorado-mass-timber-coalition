@@ -19,14 +19,16 @@
 }
 
 .plank {
+  height: 100%;
   max-height: 100%;
+  width: auto;
   svg {
     max-height: 100%;
   }
   .eyes {
-    top: 25%;
-    left: 15%;
-    width: 42%;
+    top: 29%;
+    left: 24%;
+    width: 32%;
     transform: rotate(-3deg);
   }
 }

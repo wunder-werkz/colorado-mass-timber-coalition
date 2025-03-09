@@ -104,7 +104,7 @@
 }
 
 .copy {
-  @include body1;
+  @include body2;
   width: 70%;
   height: auto;
   margin-bottom: -5px;
@@ -145,21 +145,18 @@
 
 .stumpyWrap {
   position: absolute;
-  top: 40%;
-  left: 20%;
+  top: 5%;
+  left: 50%;
   width: 80%;
   height: auto;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   gap: 20px;
-
-  @media (max-width: 1200px) {
-    width: 50%;
-    left: calc(100% - 40%);
-    top: 50%;
+  @include lap-smaller {
+    left: 50%;
+    width: 60%;
   }
-
   @include phone {
     width: 60%;
     height: 100%;
@@ -175,11 +172,14 @@
 }
 
 .stumpy {
-  width: 100px;
+  width: 120px;
   height: auto;
 
-  @include phone {
-    width: 150px;
+  @include lap-smaller {
+    width: 140px;
+  }
+  @include x-small {
+    width: 90px;
   }
 }
 
@@ -187,9 +187,7 @@
   width: calc(100% - 300px);
   @include body1;
 
-  @media (max-width: 1200px) {
-    width: 100%;
-  }
+
   @include x-small {
     p {
       padding: 7px 10px;

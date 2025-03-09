@@ -140,7 +140,7 @@ const Header = ({ contactEmail }) => {
         >
           <div className={styles.titleWrap}>What can I help you find?</div>
           <div className={styles.stumpWrap}>
-            <Stumpy color="cream" type="stump" />
+            <Stumpy color="cream" type="tree" />
           </div>
         </div>
         <div

@@ -112,7 +112,7 @@ export default function Benefits() {
     <div ref={containerRef} className={styles.container}>
       <div className={styles.eyebrow}>
         <SplitTextBg color="cream" inline ref={eyebrowRef}>
-          <h2>{CONTENT.eyebrow}</h2>
+          <p>{CONTENT.eyebrow}</p>
         </SplitTextBg>
       </div>
 

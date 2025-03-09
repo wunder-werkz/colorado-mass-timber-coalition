@@ -27,10 +27,13 @@
     margin-bottom: 1rem;
   }
   .body {
-    @include body1;
-    margin-right: $one-twelfth;
-    width: $five-twelfths;
+    @include body2;
+    & {
+      margin-right: $one-twelfth;
+      width: $five-twelfths;
+    }
     @include x-small {
+      margin-top: 10px;
       width: $eleven-twelfths;
       p {
         padding-left: 0;
@@ -58,7 +61,6 @@
   text-decoration: none;
   color: inherit;
   transition: opacity 0.65s ease;
-
   position: relative;
 
   &::after {
