@@ -181,10 +181,11 @@ const Hero = () => {
                 end: 75,
                 to: {
                   y: 0,
-                  clipPath:
-                    isMobile || tabletView
+                  clipPath: () => {
+                    return isMobile || tabletView
                       ? "circle(190% at 50% 100%)"
-                      : "circle(120% at 50% 100%)",
+                      : "circle(120% at 50% 100%)";
+                  },
                 },
               },
             ]}
