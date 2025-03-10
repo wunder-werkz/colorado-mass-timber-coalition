@@ -45,6 +45,19 @@
 
   @include lap-smaller {
     max-width: 100%;
+    margin-bottom: 60px;
+  }
+  .key {
+    align-items: center;
+    display: flex;
+    flex-flow: row;
+    text-transform: uppercase;
+    .circle {
+      background-color: $orange;
+      height: 30px;
+      margin-right: 10px;
+      width: 50px;
+    }
   }
 }
 

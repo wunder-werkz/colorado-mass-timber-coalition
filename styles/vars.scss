@@ -185,9 +185,7 @@ $font-greed-standard: var(--font-greed-standard), sans-serif;
   @include tablet-and-lower {
     font-size: 16px;
   }
-  @include phone {
-    font-size: 14px;
-  }
+ 
   @include x-small {
     font-size: 18px;
   }

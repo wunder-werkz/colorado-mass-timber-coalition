@@ -60,11 +60,17 @@ export default function EventsClient({ pastEvents, upcomingEvents }) {
             <h1 className={styles.eventsTitle}>Events</h1>
           </SplitTextBg>
         </div>
-        <p className={styles.eventDesc}>
-          Join us at one of our upcoming events or browse through our past
-          gatherings. From workshops to community meetups, there&apos;s always
-          something exciting happening.
-        </p>
+
+        <div className={styles.eventDesc}>
+          <p>
+            Join us at one of our upcoming events or browse through our past
+            gatherings. From workshops to community meetups, there&apos;s always
+            something exciting happening.
+          </p>
+          <div className={styles.key}>
+            <div className={styles.circle}></div><p> CMTC Sponsored events </p>
+          </div>
+        </div>
       </div>
       <div className={styles.filterWrap}>
         <div className={styles.filterButtons}>
