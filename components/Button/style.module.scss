@@ -47,8 +47,6 @@
   }
 }
 
-
-
 // Primary styles
 .primary {
   justify-content: flex-start;
@@ -98,7 +96,9 @@
 
       .circle {
         --circle-bg: #{$forest};
-        svg path { fill: $orange; }
+        svg path {
+          fill: $orange;
+        }
       }
 
       svg path {
@@ -244,6 +244,7 @@
 
   &.orange {
     &:not(.fill) {
+      background-color: $cream;
       border-color: $orange;
       color: $forest;
     }
