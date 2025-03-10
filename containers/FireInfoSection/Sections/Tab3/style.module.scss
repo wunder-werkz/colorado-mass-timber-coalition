@@ -167,7 +167,7 @@
   @include x-small {
     left: 7%;
     top: -10%;
-    width: 80%;
+    width: 90%;
   }
 }
 
@@ -179,7 +179,8 @@
     width: 140px;
   }
   @include x-small {
-    width: 90px;
+    height: 150px;
+    width: auto;
   }
   [data-type="eyes-wrap"] {
     left: 30%;
@@ -187,8 +188,9 @@
     transform: translate(0%);
     width: 20%;
     @include x-small {
-      left: 50%;
-      width: 26%;
+      left: 38%;
+      top: 40%;
+      width: 22%;
     }
   }
   
@@ -197,9 +199,8 @@
 .stumpyText {
   width: calc(100% - 300px);
   @include body1;
-
-
   @include x-small {
+    width: 50%;
     p {
       padding: 7px 10px;
     }
