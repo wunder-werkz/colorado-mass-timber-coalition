@@ -31,17 +31,19 @@ export default function Footer({ contactEmail }) {
         <div className={styles.newsletter}>
           <NewsletterSignup />
         </div>
-
-        <div className={styles.stumpyWrap}>
-          <Stumpy type="plank" color="orange" />
+        <div className={styles.socials}>
+          <div className={styles.stumpyWrap}>
+            <Stumpy type="plank" color="orange" />
+          </div>
+          <div className={styles.socialWrap}>
+            {SOCIAL_LINKS.map((link) => (
+              <a href={link.url} key={link.url} className={styles.url}>
+                {link.icon}
+              </a>
+            ))}
+          </div>
         </div>
-        <div className={styles.socialWrap}>
-          {SOCIAL_LINKS.map((link) => (
-            <a href={link.url} key={link.url} className={styles.url}>
-              {link.icon}
-            </a>
-          ))}
-        </div>
+       
       </div>
       <div className={styles.logo}>
         <FooterLogo />
