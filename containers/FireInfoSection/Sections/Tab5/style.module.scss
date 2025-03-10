@@ -88,7 +88,7 @@
   display: flex;
   flex-direction: row;
   gap: 20px;
-  height: auto;
+  height: 150px;
   position: absolute;
   top: 10%;
   right: 2%;
@@ -111,16 +111,7 @@
   }
 }
 
-.stumpy {
-  width: 100px;
-  height: 500px;
-  @include lap-smaller {
-    width: 180px;
-  }
-  @include x-small {
-    width: 100px;
-  }
-}
+
 
 .stumpyText {
   width: calc(100% - 100px);

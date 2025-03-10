@@ -181,6 +181,17 @@
   @include x-small {
     width: 90px;
   }
+  [data-type="eyes-wrap"] {
+    left: 30%;
+    top: 45%;
+    transform: translate(0%);
+    width: 20%;
+    @include x-small {
+      left: 50%;
+      width: 26%;
+    }
+  }
+  
 }
 
 .stumpyText {
