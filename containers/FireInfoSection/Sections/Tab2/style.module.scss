@@ -127,8 +127,9 @@
   }
   @include x-small {
     height: 60px;
-    left: 10px;
+    left: unset;
     right: 0;
+    width: $eight-twelfths;
   }
 }
 

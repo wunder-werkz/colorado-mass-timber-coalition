@@ -215,11 +215,15 @@
 
 .headline {
   @include h1;
-  height: auto;
-  left: 0px;
-  position: absolute;
-  top: 110px;
-  width: 800px;
+  &{
+    height: auto;
+    left: 0px;
+    position: absolute;
+    top:60px;
+    width: 800px;
+
+  }
+  
   @include lap-smaller {
     width: 90%;
     top: 60px;
@@ -229,7 +233,7 @@
     top: 100px;
   }
   @include x-small {
-    left: 15px;
+   
     top: 60px;
   }
 }
@@ -244,7 +248,9 @@
     width: $three-twelfths;
   }
   @include lap-smaller {
+    left: 20px;
     width: $six-twelfths;
+    
   }
   @include tablet-and-lower {
     bottom: 210px;
@@ -252,7 +258,6 @@
   }
   @include x-small {
     bottom: 60px;
-    left: 10px;
     width: $nine-twelfths;
   }
 }
@@ -262,19 +267,19 @@
   & {
     bottom: 50px;
     height: auto;
-    left: 20px;
+    left: 0px;
     position: absolute;
-    width: $four-twelfths;
+    width: $five-twelfths;
   }
   @include lap-smaller {
     bottom: 200px;
+    left: 20px;
   }
   @include tablet-and-lower {
     width: $seven-twelfths;
   }
   @include x-small {
-    left: 0;
-    bottom: 30px;
+    bottom: 60px;
     width: $nine-twelfths;
   }
 }
