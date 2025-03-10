@@ -1,46 +1,49 @@
 @use "@/styles/vars" as *;
 
 .wrap {
+  color: $cream;
   display: flex;
   flex-direction: column;
   gap: 5px;
-
-  color: $cream;
-
   h3 {
     @include h1;
-    margin: 0;
-    padding: 0;
+    & {
+      margin: 0;
+      padding: 0;
+    }
+   
   }
-
   p {
+    margin-top: 10px;
     @include body2;
+
   }
 }
 
 .newsletter {
   width: 100%;
-
   p {
     color: $cream;
-    @include body1;
   }
-
-  input {
-    color: $forest;
+  label {
     width: 70%;
-    &::placeholder {
-      color: $forest;
+    @include x-small {
+      width: 100%;
     }
-
+  }
+  input {
     border: none;
     background: $orange;
     color: $forest;
     display: block;
-
+    margin-top: 5px;
+    padding: 7px 20px;
+    width: 100%;
+    &::placeholder {
+      color: $forest;
+    }
     @include h3;
-    padding: 10px 20px;
-
+  
     @include mobile() {
       max-width: 100%;
       font-size: 20px;
@@ -49,6 +52,7 @@
   }
 
   .form {
+    align-items: flex-end;
     display: flex;
     gap: 5px;
     @include x-small {

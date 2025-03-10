@@ -18,11 +18,13 @@ const NewsletterSignup = () => {
           render={({ subscribe, status, message }) => (
             <div className={`${styles.newsletter}`}>
               <div className={`${styles.form}`}>
-                <input
-                  type="email"
-                  ref={emailRef}
-                  placeholder="Your Email Here"
-                />
+                <label>Email
+                  <input
+                    type="email"
+                    ref={emailRef}
+                    placeholder="Your Email Here"
+                  />
+                </label>
                 <Button
                   onClick={() => subscribe({ EMAIL: emailRef.current.value })}
                   variant="primary"
