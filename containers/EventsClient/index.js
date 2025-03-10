@@ -11,8 +11,11 @@ export default function EventsClient({ pastEvents, upcomingEvents }) {
   const eventsRef = useRef([]);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
+    if (typeof window !== "undefined") {
+      window.scrollTo(0, 0);
+    }
 
+    const ctx = gsap.context(() => {
       gsap.from(eventsRef.current, {
         scrollTrigger: {
           trigger: containerRef.current,
@@ -31,7 +34,7 @@ export default function EventsClient({ pastEvents, upcomingEvents }) {
     });
 
     return () => ctx.revert();
-  });
+  }, []);
 
   return (
     <div className={styles.eventsPageWrap} ref={containerRef}>
@@ -47,7 +50,8 @@ export default function EventsClient({ pastEvents, upcomingEvents }) {
             something exciting happening.
           </p>
           <div className={styles.key}>
-            <div className={styles.circle}></div><p> CMTC Sponsored events </p>
+            <div className={styles.circle}></div>
+            <p> CMTC Sponsored events </p>
           </div>
         </div>
       </div>
@@ -67,7 +71,7 @@ export default function EventsClient({ pastEvents, upcomingEvents }) {
             color="orange"
             fill={!isShowingPastEvents}
           >
-            Future  <span className={styles.hideSm}>Events</span>
+            Future <span className={styles.hideSm}>Events</span>
           </Button>
         </div>
       </div>
