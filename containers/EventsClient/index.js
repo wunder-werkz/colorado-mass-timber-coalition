@@ -1,36 +1,17 @@
 "use client";
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect } from "react";
 import { gsap } from "@/lib/gsapConfig";
 import styles from "./style.module.scss";
-import SplitTextBg from "@/components/SplitTextBg";
 import Event from "@/components/Event";
 import Button from "@/components/Button";
 
 export default function EventsClient({ pastEvents, upcomingEvents }) {
   const [isShowingPastEvents, setIsShowingPastEvents] = useState(false);
   const containerRef = useRef(null);
-  const splitTextAnimationRef = useRef(null);
   const eventsRef = useRef([]);
-
-  // Memoized callbacks for animations
-  const handleSplitTextStart = useCallback(() => {
-    splitTextAnimationRef.current?.restart();
-  }, []);
-
-  const handleSplitTextReverse = useCallback(() => {
-    splitTextAnimationRef.current?.reverse();
-  }, []);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from(containerRef.current, {
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 75%",
-          onEnter: handleSplitTextStart,
-          onLeaveBack: handleSplitTextReverse,
-        },
-      });
 
       gsap.from(eventsRef.current, {
         scrollTrigger: {
@@ -50,15 +31,13 @@ export default function EventsClient({ pastEvents, upcomingEvents }) {
     });
 
     return () => ctx.revert();
-  }, [handleSplitTextStart, handleSplitTextReverse]);
+  });
 
   return (
     <div className={styles.eventsPageWrap} ref={containerRef}>
       <div className={styles.topWrap}>
         <div className="events-title-container">
-          <SplitTextBg ref={splitTextAnimationRef} color="orange">
-            <h1 className={styles.eventsTitle}>Events</h1>
-          </SplitTextBg>
+          <h1 className={styles.eventsTitle}>Events</h1>
         </div>
 
         <div className={styles.eventDesc}>

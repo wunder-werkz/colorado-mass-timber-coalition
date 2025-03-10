@@ -7,6 +7,7 @@ import Arrow from "@/components/SVG/Arrow";
 import SplitTextBg from "@/components/SplitTextBg";
 import Event from "@/components/Event";
 
+
 const EventSlider = ({ events }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const sliderRef = useRef(null);

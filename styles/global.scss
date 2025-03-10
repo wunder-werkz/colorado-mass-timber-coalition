@@ -1,5 +1,9 @@
 @use "./vars" as *;
 
+html {
+  height: 100%;
+}
+
 html,
 body {
   position: relative;
