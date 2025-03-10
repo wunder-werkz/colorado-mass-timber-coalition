@@ -87,7 +87,8 @@
     width: 180px;
   }
   @include x-small {
-    width: 100px;
+    height: 150px;
+    width: auto;
   }
 }
 
