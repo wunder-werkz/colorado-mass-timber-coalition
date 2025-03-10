@@ -3,9 +3,11 @@
 .stump,
 .plank,
 .tree {
+  height: 100%;
   position: relative;
+  width: auto;
   svg {
-    width: 100%;
+    width: auto;
     height: 100%;
   }
 
