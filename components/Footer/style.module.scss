@@ -7,10 +7,10 @@
   background: $forest;
   padding: 80px 60px;
   @include lap-smaller {
-    padding: 80px 20px;
+    padding: 60px 20px;
   }
   @include tablet-and-lower {
-    padding: 40px 10px;
+    padding: 30px 10px;
   }
 
 }
@@ -22,10 +22,10 @@
   padding-top: 40px;
   @include tablet-and-lower {
     flex-flow: column;
-    padding: 60px 20px 20px 20px;
+    padding: 30px 20px 20px 20px;
   }
   @include x-small {
-    padding-top: 0;
+    padding: 0;
   }
 }
 
