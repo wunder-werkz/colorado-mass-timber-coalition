@@ -1,8 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
 
-import { ScrollTrigger, gsap } from "@/lib/gsapConfig";
-
 // Default to desktop size during SSR to show desktop layouts initially
 // This ensures server rendering matches initial client render
 const DEFAULT_SSR_WIDTH = 1920;
@@ -24,8 +22,6 @@ const useWindowSize = () => {
         width: window.innerWidth,
         height: window.innerHeight,
       });
-      ScrollTrigger.refresh();
-      gsap.to(window, { duration: 0.5, scrollTo: "top" });
     };
 
     handleResize();

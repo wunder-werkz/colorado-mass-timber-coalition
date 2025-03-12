@@ -2,8 +2,7 @@
 
 import { useRef, useState } from "react";
 import Link from "next/link";
-import useIsomorphicLayoutEffect from "@/hooks/useIsomorphicLayoutEffect";
-import { gsap, ScrollTrigger } from "@/lib/gsapConfig";
+import { gsap } from "@/lib/gsapConfig";
 import styles from "./style.module.scss";
 import LogoSm from "@/components/SVG/LogoSm";
 import { usePathname, useRouter } from "next/navigation";
@@ -20,32 +19,6 @@ const Header = ({ contactEmail }) => {
   const menuItemsRef = useRef([]);
   const pathname = usePathname();
   const router = useRouter();
-  const isHomePage = pathname === "/" || pathname === "/home";
-
-  useIsomorphicLayoutEffect(() => {
-    if (!logoRef.current) return;
-
-    const logoAnim = gsap.to(logoRef.current, {
-      y: 0,
-      duration: 0.6,
-      ease: "power2.out",
-      paused: isHomePage,
-    });
-
-    if (isHomePage) {
-      ScrollTrigger.create({
-        trigger: "#hero-section",
-        start: "top+=180% top",
-        end: "+=1",
-        onEnter: () => logoAnim.play(),
-        onLeaveBack: () => logoAnim.reverse(),
-      });
-    }
-
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
-  }, [isHomePage]);
 
   const toggleMenu = () => {
     const body = document.body;
@@ -70,13 +43,11 @@ const Header = ({ contactEmail }) => {
       timeline.current.play();
       body.style.overflow = "hidden";
       body.style.height = "100%";
-
     } else {
       body.style.overflow = "unset";
       body.style.height = "auto";
       window._smoothScroll?.paused(false);
       timeline.current.reverse();
- 
     }
 
     setIsMenuOpen(!isMenuOpen);
@@ -108,9 +79,7 @@ const Header = ({ contactEmail }) => {
   ];
 
   return (
-    <header
-      className={`${styles.header} ${isMenuOpen ? styles.open : ""}`}
-    >
+    <header className={`${styles.header} ${isMenuOpen ? styles.open : ""}`}>
       <div className={styles.logo} ref={logoRef}>
         <Link
           href="/"
