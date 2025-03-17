@@ -199,7 +199,7 @@ const CONTENT = {
     },
     {
       text: "Has a natural mechanism of resistance to fire: a protective char layer<sup>18</sup>",
-      image: "/img/benefits/CMTC_Section4_3.jpg",
+      image: "/img/benefits/CMTC_Section4_3.png",
     },
     {
       text: "Creates spaces that connect people with nature which has been scientifically proven to increase health – also known as biophilia<sup>19</sup>",
