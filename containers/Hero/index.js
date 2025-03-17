@@ -167,7 +167,7 @@ const Hero = () => {
                 <SplitTextBg ref={splitTextAnimationRef} color="orange" inline>
                   <p>
                     Supporting healthy, resilient forests through a vibrant
-                    forest-products economy including mass timber across the Rocky Mountain Region
+                    forest-products economy including mass timber
                   </p>
                 </SplitTextBg>
               </div>
