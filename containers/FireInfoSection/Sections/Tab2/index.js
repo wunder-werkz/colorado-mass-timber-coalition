@@ -137,7 +137,7 @@ export default function Tab2({ index }) {
                 ))}
               </div>
             </ST.Animation>
-            <p className={styles.acresBurnedText}>acres burned</p>
+            <p className={styles.acresBurnedText}>cumulative <br/> acres burned</p>
           </div>
         </ST.Animation>
 
@@ -167,35 +167,31 @@ const CONTENT = {
   acresBurned: [
     {
       year: "Today",
-      acres: "910k",
+      acres: "4,073k",
     },
     {
       year: 2020,
-      acres: "820k",
+      acres: "3,176k",
     },
     {
       year: 2015,
-      acres: "530k",
+      acres: "2,395k",
     },
     {
       year: 2010,
-      acres: "478k",
+      acres: "1,464k",
     },
     {
       year: 2005,
-      acres: "130k",
+      acres: "957k",
     },
     {
       year: 2000,
-      acres: "450k",
+      acres: "137k",
     },
     {
       year: 1995,
       acres: "27k",
-    },
-    {
-      year: 1990,
-      acres: "37k",
     },
   ],
   text: "Colorado's top three largest wildfires all occurred in 2020. The next one is not a matter of if, it's a matter of when",

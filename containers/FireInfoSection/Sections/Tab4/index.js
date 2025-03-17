@@ -181,5 +181,5 @@ const CONTENT = {
     alt: "East Troublesome Fire burn scar, © Jason Houston",
   },
   stumpText:
-    "The Colorado River provides water to 40 million people across 30 tribes and seven states in the west",
+    "The Colorado River provides water to 40 million people across 30 tribes and seven states in the West",
 };

@@ -182,18 +182,18 @@ const CONTENT = {
   eyebrow: "Benefits of Mass Timber",
   sections: [
     {
-      text: "Lower embodied carbon – making wood products, especially locally, uses less energy than other building materials<sup>15</sup>",
+      text: "Lower embodied carbon – making wood products, especially locally, uses less energy and emits less carbon than other building materials<sup>15</sup>",
      
     },
     {
-      text: "Stored carbon - dry wood is 50% biogenic carbon that is encapsulated for the life of the building!",
+      text: "Stored carbon - dry wood is 50% biogenic carbon that is encapsulated for the life of the building and even longer if salvaged and reused!",
       image: "/img/benefits/CMTC_Section4_1.jpg",
      
     },
 
     {
       text: "Prefabrication leads to fast,<sup>16</sup> quiet, and clean construction requiring fewer workers<sup>17</sup> with less waste",
-      image: "/img/benefits/CMTC_Section4_2.jpg",
+      image: "/img/benefits/TimberAge.jpg",
       stumpy: true,
       stumpyText: "Half of me is carbon!",
     },
@@ -208,7 +208,7 @@ const CONTENT = {
     },
     {
       text: "Provides aesthetics that differentiate from other buildings on the market ",
-      image: "/img/benefits/CMTC_Section4_4.jpg",
+      image: "/img/benefits/Provides Aesthetics.jpg",
     },
     {
       text: "Supports a solution to affordable housing and alleviating the housing crisis<sup>20</sup>",

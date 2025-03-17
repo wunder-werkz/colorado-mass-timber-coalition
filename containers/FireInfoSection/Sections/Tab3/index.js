@@ -115,7 +115,7 @@ export default function Tab3({ index }) {
             <p>
               Over 22% of the standing trees in Colorado forests are dead and as
               a tree decomposes, it releases carbon instead of storing it.
-              <sup>1</sup> Estimates suggest that since 1990 suggest that our
+              <sup>1</sup> Estimates suggest that since 1990 our
               forest ecosystems have been acting as a net source of carbon
               rather than a net sink.<sup>2,3</sup> Climate change and previous
               forest management practices, or lack thereof, are amplifying these
@@ -181,7 +181,7 @@ export default function Tab3({ index }) {
 const CONTENT = {
   sectionTitle: "Why This Is Happening?",
   headline:
-    "These conditions have been driven by disease, insect infestation and uncharacteristic, mega wildfires",
+    "These conditions have been driven by disease, insect infestation, prolonged drought and uncharacteristic, mega wildfires",
   image: {
     src: wolfCreekImage,
     alt: "Wolf Creek Pass",

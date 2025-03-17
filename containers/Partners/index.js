@@ -44,7 +44,7 @@ export default function Partners({ partners, partnersText }) {
 
         <div className={styles.titleWrapper}>
           <SplitTextBg ref={splitTextRef} color="orange" inline>
-            <h2>Our Partners</h2>
+            <h2>Our Financial Partners</h2>
           </SplitTextBg>
           {partnersText &&
             <SplitTextBg ref={splitTextCopyRef} color="cream" inline>

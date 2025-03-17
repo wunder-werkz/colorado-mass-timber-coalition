@@ -118,5 +118,5 @@ const CONTENT = {
     alt: "Pine Gulch Fire, Kyle Miller Photography",
   },
   stumpText:
-    "Colorado Forests are Carbon sources. They emit more carbon than they sequester.",
+    "Colorado Forests are carbon sources. They emit more carbon than they sequester",
 };

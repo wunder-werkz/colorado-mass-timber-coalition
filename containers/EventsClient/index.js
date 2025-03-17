@@ -45,13 +45,11 @@ export default function EventsClient({ pastEvents, upcomingEvents }) {
 
         <div className={styles.eventDesc}>
           <p>
-            Join us at one of our upcoming events or browse through our past
-            gatherings. From workshops to community meetups, there&apos;s always
-            something exciting happening.
+          Join us at one of our upcoming events or browse through our past gatherings. From workshops to our community building 	&ldquo;Mass Timber Mixers&rdquo;, there&apos;s always something exciting happening
           </p>
           <div className={styles.key}>
             <div className={styles.circle}></div>
-            <p> CMTC Sponsored events </p>
+            <p> CMTC Sponsored or co-sponsored events </p>
           </div>
         </div>
       </div>

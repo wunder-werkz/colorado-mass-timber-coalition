@@ -131,7 +131,7 @@ export default function Tab5({ index }) {
       <div className={styles.copy}>
         <SplitTextBg ref={copyRef} color="orange" body={true}>
           <p>
-            In addition to climate change, centuries of fire suppression
+            In addition to climate change, a history of of fire suppression
             activity have led to unhealthy and unbalanced forests.<sup>8</sup>{" "}
             Active stewardship will help our forests endure naturally occurring
             wildfires, be less susceptible to disease and insect infestation,
@@ -180,5 +180,5 @@ const CONTENT = {
     alt: "Monarch Pass, Arkansas River Watershed Collaborative and Miller Timber Services",
   },
   stumpText:
-    "The health of certain forests could improve through management practices like prescribed burns or mechanical thinning (shown here).",
+    "The health of certain forests could improve through management practices like prescribed burns or mechanical thinning, or salvage harvesting (shown here).",
 };
