@@ -17,6 +17,9 @@
   overflow: hidden;
   overflow: clip;
   overflow-clip-margin: 2px;
+  &:focus-visible {
+    outline: none;
+  }
   &::before {
     content: "";
     position: absolute;
