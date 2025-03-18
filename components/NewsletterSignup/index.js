@@ -1,12 +1,12 @@
 import MailchimpSubscribe from "react-mailchimp-subscribe";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Button from "@/components/Button";
 
 import * as styles from "./style.module.scss";
 
 const NewsletterSignup = () => {
   const MAILCHIMP_URL = process.env.NEXT_PUBLIC_MAILCHIMP_URL;
-  const emailRef = useRef();
+  const [email, setEmail] = useState("");
 
   return (
     <div className={`${styles.wrap}`}>
@@ -18,15 +18,17 @@ const NewsletterSignup = () => {
           render={({ subscribe, status, message }) => (
             <div className={`${styles.newsletter}`}>
               <div className={`${styles.form}`}>
-                <label>Email
+                <label>
+                  Email
                   <input
                     type="email"
-                    ref={emailRef}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     placeholder="Your Email Here"
                   />
                 </label>
                 <Button
-                  onClick={() => subscribe({ EMAIL: emailRef.current.value })}
+                  onClick={() => subscribe({ EMAIL: email })}
                   variant="primary"
                   color="orange"
                   fill={false}
@@ -35,7 +37,9 @@ const NewsletterSignup = () => {
                 </Button>
               </div>
               {status === "sending" && <p>Sending...</p>}
-              {status === "error" && <p>Error: Unable to subsribe {message.error}</p>}
+              {status === "error" && (
+                <p>Error: Unable to subsribe {message.error}</p>
+              )}
               {status === "success" && <p>Subscribed successfully!</p>}
             </div>
           )}
