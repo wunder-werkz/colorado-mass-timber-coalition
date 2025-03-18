@@ -17,11 +17,11 @@ export default function Footer({ contactEmail }) {
     },
     {
       icon: <LinkedIn />,
-      url: "https://www.linkedin.com/company/colorado-mass-timber-coalition/",
+      url: "https://www.linkedin.com/company/comtc/",
     },
     {
       icon: <Instagram />,
-      url: "https://www.instagram.com/coloradomass.timber/",
+      url: "https://www.instagram.com/ColoradoMassTimberCoalition/",
     },
   ];
 

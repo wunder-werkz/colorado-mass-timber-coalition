@@ -35,7 +35,7 @@ const NewsletterSignup = () => {
                 </Button>
               </div>
               {status === "sending" && <p>Sending...</p>}
-              {status === "error" && <p>Error: {message}</p>}
+              {status === "error" && <p>Error: Unable to subsribe {message.error}</p>}
               {status === "success" && <p>Subscribed successfully!</p>}
             </div>
           )}
