@@ -10,7 +10,7 @@
 .hero {
   @include grid-wrap;
 
-  &{
+  & {
     height: 100vh;
     padding-top: 80px;
     position: relative;
@@ -93,9 +93,8 @@
   width: calc(100% - 100px);
   height: calc(100% - 110px);
   z-index: 1;
-  clippath: circle(0% at 50% 100%);
-  opacity: 0;
-  @extend .will-change-transform;
+  clip-path: circle(0% at 50% 100%);
+  -webkit-clip-path: circle(0% at 50% 100%);
 
   @include tablet-and-lower {
     width: calc(100% - 50px);
@@ -122,13 +121,18 @@
 }
 
 .mediaWCaption {
-  height: 100%;
+  height: 60%;
   object-fit: cover;
   object-position: center;
   position: absolute;
   right: 0;
-  bottom: 0;
+  bottom: -30px;
   width: 100%;
+  opacity: 0;
+
+  @include phone {
+    height: 80%;
+  }
 }
 
 .eyeballs {

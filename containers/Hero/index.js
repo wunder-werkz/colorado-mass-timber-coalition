@@ -24,7 +24,7 @@ const Hero = () => {
   const maskContainerRef = useRef(null);
   const fireTrimRef = useRef(null);
   const heroSectionRef = useRef(null);
-
+  const mediaWCaptionRef = useRef(null);
   const { width, height } = useWindowSize();
   const isMobile = width < 768;
   const tabletView = height > width;
@@ -50,12 +50,14 @@ const Hero = () => {
     const duration = isMobile ? 0.4 : 0.55;
 
     gsap.set(".animate-refs", { y: -100, opacity: 0 });
-    gsap.set(".mask-container", {
-      clipPath: "circle(0% at 50% 100%)",
-      opacity: 0,
+    gsap.set(maskContainerRef.current, {
       y: 50,
+      clipPath:
+        isMobile || tabletView
+          ? "circle(25% at 50% 60%)"
+          : "circle(33vh at 50% 100%)",
+      opacity: 1,
     });
-    gsap.set(fireTrimRef.current, { opacity: 0 });
 
     const initialAnimations = gsap.timeline({ delay: 0.5 });
 
@@ -69,19 +71,17 @@ const Hero = () => {
         clearProps: "transform",
       })
       .to(
-        ".mask-container",
+        maskContainerRef.current,
         {
-          clipPath:
-            isMobile || tabletView
-              ? "circle(25% at 50% 60%)"
-              : "circle(33vh at 50% 100%)",
-          opacity: 1,
           y: 50,
           duration: duration * 0.7,
           ease: "power2.inOut",
         },
         "-=0.2"
-      );
+      )
+      .to(mediaWCaptionRef.current, {
+        opacity: 1,
+      });
 
     return () => {
       initialAnimations.kill();
@@ -191,18 +191,22 @@ const Hero = () => {
             ]}
           >
             <div
-              className={`${styles.maskContainer} mask-container will-change-transform`}
+              className={`${styles.maskContainer} mask-container`}
               ref={maskContainerRef}
             >
               <div className={styles.mask}>
                 <ST.Animation
                   tween={{
                     start: 25.5,
-                    end: 60,
-                    to: { y: 0, scale: 1 },
+                    end: 50,
+                    to: {
+                      y: 0,
+                      bottom: 0,
+                      height: "100%",
+                    },
                   }}
                 >
-                  <div className={styles.mediaWCaption}>
+                  <div className={styles.mediaWCaption} ref={mediaWCaptionRef}>
                     <MediaWCaption
                       url={heroImage}
                       priority={true}
