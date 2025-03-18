@@ -189,7 +189,7 @@
 
 .eyebrow {
   height: auto;
-  left: -15px;
+  left: 15px;
   position: absolute;
   top: 50px;
   width: 800px;
@@ -218,7 +218,7 @@
   @include h1;
   & {
     height: auto;
-    left: 0px;
+    left: 30px;
     position: absolute;
     top: 90px;
     width: 800px;
@@ -265,7 +265,7 @@
   & {
     bottom: 50px;
     height: auto;
-    left: 0px;
+    left: 30px;
     position: absolute;
     width: $five-twelfths;
   }
@@ -323,5 +323,18 @@
 
   @include lap-smaller {
     width: calc(100% - 80px);
+  }
+}
+
+.showImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+
+  * {
+    z-index: 2;
   }
 }

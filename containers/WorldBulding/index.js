@@ -115,6 +115,56 @@ const WorldBuildingSection = () => {
                 <div className={styles.mediaWCaptionInner}></div>
               </ST.Animation>
             </div>
+
+            <ST.Animation
+              tween={{
+                start: 80,
+                end: 85,
+                fromTo: [
+                  { display: "none", opacity: 0 },
+                  { display: "block", opacity: 1 },
+                ],
+                ease: "power2.out",
+              }}
+            >
+              <div className={styles.showImage}>
+                <MediaWCaption
+                  url={CONTENT.image2.src}
+                  caption={CONTENT.image2.alt}
+                />
+                <ST.Waypoint
+                  at={85}
+                  onCall={handleEndCopyHeadlineStart}
+                  onReverseCall={handleEndCopyHeadlineReverse}
+                >
+                  <div className={styles.headline}>
+                    <SplitTextBg ref={endCopyHeadlineRef} color="cream" inline>
+                      <h3>
+                        Mass timber is an immediate solution to help solve our
+                        climate crisis
+                      </h3>
+                    </SplitTextBg>
+                  </div>
+                </ST.Waypoint>
+                <ST.Waypoint
+                  at={85}
+                  onCall={handleEndCopyStart}
+                  onReverseCall={handleEndCopyReverse}
+                />
+                <div className={`${styles.endCopy}`}>
+                  <SplitTextBg ref={endCopyRef} color="cream" body={true}>
+                    <p>
+                      Less than a fraction of one percent of all buildings are
+                      built with mass timber<sup>12</sup> and future demand can
+                      be met sustainably.<sup>13 </sup>Building materials, like
+                      concrete and steel, contribute 11% of total global
+                      greenhouse gas emissions. <sup>14 </sup>
+                    </p>
+                  </SplitTextBg>
+                </div>
+              </div>
+            </ST.Animation>
+
             <div ref={panelRef} className={`${styles.tabPanel}`}>
               <div className={styles.chartContainer}>
                 {CONTENT.sqFt.map((item, i) => (
@@ -270,36 +320,6 @@ const WorldBuildingSection = () => {
                     </SplitTextBg>
                   </div>
                 </div>
-                <ST.Waypoint
-                  at={85}
-                  onCall={handleEndCopyHeadlineStart}
-                  onReverseCall={handleEndCopyHeadlineReverse}
-                >
-                  <div className={styles.headline}>
-                    <SplitTextBg ref={endCopyHeadlineRef} color="cream" inline>
-                      <h3>
-                        Mass timber is an immediate solution to help solve our
-                        climate crisis
-                      </h3>
-                    </SplitTextBg>
-                  </div>
-                </ST.Waypoint>
-                <ST.Waypoint
-                  at={85}
-                  onCall={handleEndCopyStart}
-                  onReverseCall={handleEndCopyReverse}
-                />
-                <div className={`${styles.endCopy}`}>
-                  <SplitTextBg ref={endCopyRef} color="cream" body={true}>
-                    <p>
-                      Less than a fraction of one percent of all buildings are
-                      built with mass timber<sup>12</sup> and future demand can
-                      be met sustainably.<sup>13 </sup>Building materials, like
-                      concrete and steel, contribute 11% of total global
-                      greenhouse gas emissions. <sup>14 </sup>
-                    </p>
-                  </SplitTextBg>
-                </div>
               </div>
             </div>
           </div>
@@ -315,6 +335,10 @@ const CONTENT = {
   image: {
     src: "/img/worldbuilding/world-building.jpg",
     alt: "Mile High Stadium",
+  },
+  image2: {
+    src: "/img/worldbuilding/world-building2.jpg",
+    alt: "Platte Fifteen - OZ Architecture",
   },
   sqFt: [
     {
