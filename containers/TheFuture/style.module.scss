@@ -28,7 +28,7 @@
     justify-content: space-between;
     position: relative;
     width: $five-twelfths;
-  
+
     @include lap-smaller {
       justify-content: flex-start;
       width: 100%;
@@ -99,7 +99,10 @@
     }
   }
 }
-.cltText, .nltText, .gluText, .dltText  {
+.cltText,
+.nltText,
+.gluText,
+.dltText {
   position: absolute;
   width: 100%;
   @include body2;
@@ -204,7 +207,6 @@
 }
 
 .gluText {
-
   top: 30px;
   right: calc(-1 * (100% + 140px));
   width: auto;
@@ -218,8 +220,6 @@
     top: 0px;
   }
 }
-
-
 
 .dltWrap {
   grid-column: 2 / 3;
@@ -265,16 +265,20 @@
 
 .eyebrow {
   @include eyebrow;
-  &{
+  & {
     color: $forest;
     height: auto;
     margin-left: 0px;
     margin-bottom: 15px;
-    text-transform: uppercase; 
+    text-transform: uppercase;
   }
- 
-  div, span {
+
+  div,
+  span {
     padding-left: 0 !important;
+  }
+  @include phone {
+    margin-left: -15px;
   }
   @include x-small {
     font-size: 12px;
@@ -302,11 +306,10 @@
 
 .copy {
   @include body2;
-  &{  
+  & {
     height: auto;
     width: $three-twelfths;
   }
-
 
   @include lap-smaller {
     margin-top: 60px;

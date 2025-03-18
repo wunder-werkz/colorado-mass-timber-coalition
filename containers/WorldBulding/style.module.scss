@@ -125,7 +125,7 @@
 
 .sqFtContainer {
   @include h3;
-  &{
+  & {
     align-items: flex-end;
     background: $cream;
     bottom: 20%;
@@ -189,7 +189,7 @@
 
 .eyebrow {
   height: auto;
-  left: 0px;
+  left: -15px;
   position: absolute;
   top: 50px;
   width: 800px;
@@ -207,7 +207,7 @@
   }
   h2 {
     @include eyebrow;
-    &{
+    & {
       color: $cream;
       text-transform: uppercase;
     }
@@ -216,14 +216,14 @@
 
 .headline {
   @include h1;
-  &{
+  & {
     height: auto;
     left: 0px;
     position: absolute;
-    top:60px;
+    top: 90px;
     width: 800px;
   }
-  
+
   @include lap-smaller {
     width: 90%;
     top: 60px;
@@ -239,7 +239,7 @@
 
 .copy {
   @include body2;
-  &{
+  & {
     bottom: 100px;
     height: auto;
     left: 0px;
@@ -249,7 +249,6 @@
   @include lap-smaller {
     left: 20px;
     width: $six-twelfths;
-    
   }
   @include tablet-and-lower {
     bottom: 210px;
@@ -263,7 +262,7 @@
 
 .endCopy {
   @include body2;
-  &{
+  & {
     bottom: 50px;
     height: auto;
     left: 0px;

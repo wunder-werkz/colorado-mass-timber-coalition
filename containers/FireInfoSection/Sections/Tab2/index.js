@@ -125,7 +125,7 @@ export default function Tab2({ index }) {
                 end: mapToGlobalProgress(index, 65),
                 ease: "power2.out",
                 to: {
-                  yPercent: -700,
+                  yPercent: -600,
                 },
               }}
             >
@@ -137,7 +137,9 @@ export default function Tab2({ index }) {
                 ))}
               </div>
             </ST.Animation>
-            <p className={styles.acresBurnedText}>cumulative <br/> acres burned</p>
+            <p className={styles.acresBurnedText}>
+              cumulative <br /> acres burned
+            </p>
           </div>
         </ST.Animation>
 

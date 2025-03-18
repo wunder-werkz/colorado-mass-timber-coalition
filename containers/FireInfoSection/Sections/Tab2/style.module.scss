@@ -108,7 +108,7 @@
 
 .acresContainer {
   @include h3;
-  &{
+  & {
     align-items: flex-end;
     background: $cream;
     color: $black;
@@ -149,7 +149,7 @@
   width: 370px;
   @include phone {
     font-size: 60px;
-    line-height: 80px;
+    line-height: 60px;
     width: 80%;
   }
   @include x-small {
