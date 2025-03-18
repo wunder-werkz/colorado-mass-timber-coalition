@@ -55,7 +55,7 @@ export default async function RootLayout({ children }) {
         <link rel="icon" type="image/png" href={favicon96.src} sizes="96x96" />
         <link rel="icon" type="image/svg+xml" href={favicon.src} />
         <link rel="shortcut icon" href={faviconIco.src} />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
         <meta name="apple-mobile-web-app-title" content="CMTC" />
         <link rel="manifest" href={manifest.src} />
       </Head>
