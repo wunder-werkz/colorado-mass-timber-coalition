@@ -24,16 +24,18 @@ export default function Benefits() {
         const parallaxDistance = index % 2 === 0 ? 100 : -100;
         const parallaxSpeed = 0.5 + index * 0.1;
 
-        gsap.to(imageRef, {
-          scrollTrigger: {
-            trigger: textRef,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: parallaxSpeed,
-          },
-          y: parallaxDistance,
-          ease: "none",
-        });
+        if (imageRef) {
+          gsap.to(imageRef, {
+            scrollTrigger: {
+              trigger: textRef,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: parallaxSpeed,
+            },
+            y: parallaxDistance,
+            ease: "none",
+          });
+        }
 
         ScrollTrigger.create({
           trigger: textRef,

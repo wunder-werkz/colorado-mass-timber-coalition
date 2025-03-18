@@ -26,14 +26,12 @@ export const MediaWCaption = memo(
 
     // Determine quality based on device performance
     const imageQuality = isGif
-      ? // Lower quality for GIFs
-        width < 768
+      ? width < 768
         ? 40
         : 50
-      : // Regular images get higher quality
-        width < 768
-        ? 75
-        : 85;
+      : width < 768
+        ? 85
+        : 95;
 
     return (
       <div className={styles.mediaWCaption}>
@@ -63,7 +61,7 @@ export const MediaWCaption = memo(
             loading={priority ? "eager" : "lazy"}
             quality={imageQuality}
             unoptimized={isGif}
-            onLoadingComplete={() => setIsLoaded(true)}
+            onLoad={() => setIsLoaded(true)}
             {...(!isRemoteUrl && { placeholder: "blur" })}
             {...(isGif && { placeholder: "blur", blurDataURL })}
           />
