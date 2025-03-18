@@ -130,7 +130,10 @@ export default function Benefits() {
                 }
               >
                 <div className={styles.imageBlock}>
-                  <MediaWCaption url={section.image} />
+                  <MediaWCaption
+                    url={section.image.url}
+                    caption={section.image.caption}
+                  />
                 </div>
               </div>
             )}
@@ -186,18 +189,27 @@ const CONTENT = {
     },
     {
       text: "Stored carbon - dry wood is 50% biogenic carbon that is encapsulated for the life of the building and even longer if salvaged and reused!",
-      image: "/img/benefits/CMTC_Section4_1.jpg",
+      image: {
+        url: "/img/benefits/CMTC_Section4_1.jpg",
+        caption: "Platte Fifteen - OZ Architecture",
+      },
     },
 
     {
       text: "Prefabrication leads to fast,<sup>16</sup> quiet, and clean construction requiring fewer workers<sup>17</sup> with less waste",
-      image: "/img/benefits/TimberAge.jpg",
+      image: {
+        url: "/img/benefits/TimberAge.jpg",
+        caption: "Timber Age Systems",
+      },
       stumpy: true,
       stumpyText: "Half of me is carbon!",
     },
     {
       text: "Has a natural mechanism of resistance to fire: a protective char layer<sup>18</sup>",
-      image: "/img/benefits/CMTC_Section4_3.png",
+      image: {
+        url: "/img/benefits/CMTC_Section4_3.png",
+        caption: "Timber Lab",
+      },
     },
     {
       text: "Creates spaces that connect people with nature which has been scientifically proven to increase health – also known as biophilia<sup>19</sup>",
@@ -206,7 +218,10 @@ const CONTENT = {
     },
     {
       text: "Provides aesthetics that differentiate from other buildings on the market ",
-      image: "/img/benefits/Provides Aesthetics.jpg",
+      image: {
+        url: "/img/benefits/Provides Aesthetics.jpg",
+        caption: "The Loading Dock - OZ Architecture",
+      },
     },
     {
       text: "Supports a solution to affordable housing and alleviating the housing crisis<sup>20</sup>",
