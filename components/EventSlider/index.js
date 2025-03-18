@@ -167,6 +167,7 @@ const EventSlider = ({ events }) => {
           disabled={currentIndex === 0}
           className={styles.navButton}
           ref={prevButtonRef}
+          aria-label="Next"
         >
           <Arrow />
         </button>
@@ -176,6 +177,7 @@ const EventSlider = ({ events }) => {
           disabled={currentIndex >= events.length - 3}
           className={styles.navButton}
           ref={nextButtonRef}
+          aria-label="Previous"
         >
           <Arrow />
         </button>

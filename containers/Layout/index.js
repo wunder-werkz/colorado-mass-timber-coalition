@@ -71,10 +71,12 @@ const Header = ({ contactEmail }) => {
     {
       icon: <LinkedIn />,
       url: "https://www.linkedin.com/company/colorado-mass-timber-coalition/",
+      ariaLabel: "Linked In",
     },
     {
       icon: <Instagram />,
       url: "https://www.instagram.com/coloradomass.timber/",
+      ariaLabel: "Instagram",
     },
   ];
 
@@ -82,6 +84,7 @@ const Header = ({ contactEmail }) => {
     <header className={`${styles.header} ${isMenuOpen ? styles.open : ""}`}>
       <div className={styles.logo} ref={logoRef}>
         <Link
+          aria-label="Home"
           href="/"
           onClick={(e) => {
             e.preventDefault();
@@ -98,6 +101,7 @@ const Header = ({ contactEmail }) => {
       <button
         className={`${styles.hamburger} ${isMenuOpen ? styles.open : ""}`}
         onClick={toggleMenu}
+        aria-label="hamburger menu"
       >
         <span></span>
       </button>
@@ -137,7 +141,7 @@ const Header = ({ contactEmail }) => {
             ref={(el) => (menuItemsRef.current[2] = el)}
           >
             {SOCIAL_LINKS.map((link) => (
-              <a href={link.url} key={link.url} className={styles.url}>
+              <a href={link.url} key={link.url} className={styles.url} aria-label={link.ariaLabel} title={link.ariaLabel}>
                 {link.icon}
               </a>
             ))}

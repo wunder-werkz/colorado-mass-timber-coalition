@@ -14,14 +14,17 @@ export default function Footer({ contactEmail }) {
     {
       icon: <Email />,
       url: `mailto:${contactEmail}`,
+      ariaLabel: "Email",
     },
     {
       icon: <LinkedIn />,
       url: "https://www.linkedin.com/company/comtc/",
+      ariaLabel: "Linked In",
     },
     {
       icon: <Instagram />,
       url: "https://www.instagram.com/ColoradoMassTimberCoalition/",
+      ariaLabel: "Instagram",
     },
   ];
 
@@ -37,7 +40,7 @@ export default function Footer({ contactEmail }) {
           </div>
           <div className={styles.socialWrap}>
             {SOCIAL_LINKS.map((link) => (
-              <a href={link.url} key={link.url} className={styles.url}>
+              <a href={link.url} key={link.url} className={styles.url} arai-label={link.ariaLabel} title={link.ariaLabel}>
                 {link.icon}
               </a>
             ))}
