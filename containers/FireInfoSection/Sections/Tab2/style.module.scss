@@ -113,14 +113,14 @@
   height: 130px;
   justify-content: flex-start;
   overflow: hidden;
-  padding: 0 4rem 0 1rem;
+  padding: 0 1rem;
   position: absolute;
   right: 40px;
   top: 40%;
   width: auto;
 
   @include phone {
-    height: 80px;
+    height: 100px;
     padding: 0 10px;
     right: 10px;
     top: 60%;
@@ -129,7 +129,7 @@
     height: 60px;
     left: unset;
     right: 0;
-    width: $eight-twelfths;
+    width: $nine-twelfths;
   }
 }
 
@@ -143,7 +143,7 @@
   height: 100%;
   padding-right: 30px;
   position: relative;
-  width: 280px;
+  width: 370px;
   @include phone {
     font-size: 60px;
     line-height: 80px;
@@ -151,7 +151,7 @@
   }
   @include x-small {
     padding-right: 15px;
-    width: 60%;
+    width: 90%;
   }
 }
 
