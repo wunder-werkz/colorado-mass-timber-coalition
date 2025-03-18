@@ -23,6 +23,7 @@
   position: absolute;
   right: 0;
   text-transform: uppercase;
+  max-width: 60%;
   @include x-small {
     font-size: 11px;
     padding: 7px;
