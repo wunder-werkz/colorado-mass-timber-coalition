@@ -49,7 +49,7 @@ export default function BuiltToLast() {
     >
       <ST.Pin
         childHeight={smScreen ? "150vh" : "100vh"}
-        pinSpacerHeight={smScreen ? `600vh`:`400vh`}
+        pinSpacerHeight={smScreen ? `600vh` : `400vh`}
         top={smScreen ? "-50%" : "80px"}
       >
         <div className={`${styles.tabPanel}`}>
@@ -128,10 +128,13 @@ export default function BuiltToLast() {
                   {
                     start: 60,
                     end: 100,
-              
-                    to: { rotate: 540, 
-                    scale: 1.6,
-                    top: "-5%", transformOrigin: "center" },
+
+                    to: {
+                      rotate: 540,
+                      scale: 1.6,
+                      top: "-5%",
+                      transformOrigin: "center",
+                    },
                   },
                 ]}
               >
@@ -191,7 +194,7 @@ export default function BuiltToLast() {
                         type={
                           index === 0 ? "tree" : index === 1 ? "stump" : "plank"
                         }
-                        color="forest"
+                        color="cream"
                       />
                     </div>
                   </ST.Animation>

@@ -154,7 +154,7 @@ export default function Tab5({ index }) {
           }}
         >
           <div className={styles.stumpy}>
-            <Stumpy type="stump" />
+            <Stumpy type="stump" color="cream" />
           </div>
         </ST.Animation>
         <ST.Waypoint

@@ -247,7 +247,7 @@ const WorldBuildingSection = () => {
                     ]}
                   >
                     <div className={styles.stumpy}>
-                      <Stumpy type="plank" color="forest" />
+                      <Stumpy type="plank" color="creamGreen" />
                     </div>
                   </ST.Animation>
                   <ST.Waypoint
