@@ -23,12 +23,16 @@ export default async function Home() {
       <TheFuture />
       <Benefits />
       <BuiltToLast />
-      {(events && events.length > 0) &&
-        <EventSlider events={events} />
-      }
-      {(homepage && homepage[0] && homepage[0].partners && homepage[0].partners.length > 0) &&
-        <Partners partners={homepage[0].partners} partnersText={homepage[0].partnersText} />
-      }
+      {events && events.length > 0 && <EventSlider events={events} />}
+      {homepage &&
+        homepage[0] &&
+        homepage[0].partners &&
+        homepage[0].partners.length > 0 && (
+          <Partners
+            partners={homepage[0].partners}
+            partnersText={homepage[0].partnersText}
+          />
+        )}
       <CitationsModal />
     </>
   );
