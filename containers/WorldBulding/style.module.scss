@@ -193,13 +193,6 @@
   position: absolute;
   top: 50px;
   width: 800px;
-
-  h2 {
-    @include eyebrow;
-    color: $cream;
-    text-transform: uppercase;
-  }
-
   @include lap-smaller {
     left: 0;
     width: 100%;
@@ -212,6 +205,13 @@
   @include x-small {
     top: 30px;
   }
+  h2 {
+    @include eyebrow;
+    &{
+      color: $cream;
+      text-transform: uppercase;
+    }
+  }
 }
 
 .headline {
@@ -222,7 +222,6 @@
     position: absolute;
     top:60px;
     width: 800px;
-
   }
   
   @include lap-smaller {
@@ -234,14 +233,13 @@
     top: 100px;
   }
   @include x-small {
-   
     top: 60px;
   }
 }
 
 .copy {
   @include body2;
-  & {
+  &{
     bottom: 100px;
     height: auto;
     left: 0px;
@@ -265,7 +263,7 @@
 
 .endCopy {
   @include body2;
-  & {
+  &{
     bottom: 50px;
     height: auto;
     left: 0px;

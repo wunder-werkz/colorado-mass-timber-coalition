@@ -265,7 +265,7 @@
 
 .eyebrow {
   @include eyebrow;
-  & {
+  &{
     color: $forest;
     height: auto;
     margin-left: 0px;
@@ -283,9 +283,6 @@
 }
 
 .headline {
-  h3 {
-    @include h1;
-  }
   font-size: 30px;
   height: auto;
   margin: 0;
@@ -298,12 +295,18 @@
   @include x-small {
     width: 100%;
   }
+  h3 {
+    @include h1;
+  }
 }
 
 .copy {
   @include body2;
-  height: auto;
-  width: $three-twelfths;
+  &{  
+    height: auto;
+    width: $three-twelfths;
+  }
+
 
   @include lap-smaller {
     margin-top: 60px;

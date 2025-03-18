@@ -1,11 +1,10 @@
 @use "@/styles/vars" as *;
 
 .tabPanel {
-  width: 100%;
+  display: flex;
   height: 100%;
   position: relative;
-  display: flex;
-
+  width: 100%;
   @include lap-smaller {
     flex-direction: column;
   }
@@ -43,8 +42,10 @@
 
     .headline {
       @include h2;
-      text-align: left;
-      width: 100%;
+      &{
+        text-align: left;
+        width: 100%;
+      }
     }
 
     .copy {
@@ -156,8 +157,8 @@
 }
 
 .stumpyWrapper-0 {
-  top: 45%;
   left: 5%;
+  top: 45%;
   .stumpy {
     height: 150px;
   }
@@ -177,8 +178,8 @@
     transform: translateY(25%);
   }
   @include lap-smaller {
-    top: 60%;
     left: 15%;
+    top: 60%;
   }
   @include tablet-and-lower {
     left: 10%;
@@ -186,8 +187,8 @@
 }
 
 .stumpyWrapper-1 {
-  top: 2%;
   left: 45%;
+  top: 2%;
   width: auto;
   [data-type="eyes-wrap"] {
     left: 28%;
@@ -256,13 +257,15 @@
 }
 
 .finalCopy {
-  width: 60%;
+  width: 80%;
   height: auto;
+  left: 50%;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -80%);
   text-align: center;
+  width: 80%;
   .container {
     width: 100%;
   }
@@ -315,8 +318,8 @@
   }
 
   .stumpyWrapper-1 {
-    top: 0%;
     left: 78%;
+    top: 0%;
     .stumpy {
       height: 150px;
     }
@@ -331,8 +334,8 @@
       }
     }
     @include lap-smaller {
-      top: 8%;
       left: 45%;
+      top: 8%;
     }
     @include x-small {
       left: 43%;

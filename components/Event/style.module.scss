@@ -52,20 +52,24 @@
 
   h3 {
     @include h3;
-    color: $cream;
-    line-height: 1;
-    margin-bottom: 8px;
-    margin-top: 0;
-    padding-bottom: 0px;
+    &{
+      color: $cream;
+      line-height: 1;
+      margin-bottom: 8px;
+      margin-top: 0;
+      padding-bottom: 0px;
+    }
   }
 
   p {
     @include eyebrow;
-    color: $orange;
-    line-height: 1;
-    margin: 0px;
-    padding: 0px;
-    text-transform: uppercase;
+    & {
+      color: $orange;
+      line-height: 1;
+      margin: 0px;
+      padding: 0px;
+      text-transform: uppercase;
+    }
   }
 
   &.selfHosted {

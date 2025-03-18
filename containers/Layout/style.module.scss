@@ -158,7 +158,7 @@
 
 .titleWrap {
   @include h2;
-  & {
+  &{
     align-items: center;
     background: $cream;
     display: flex;
@@ -197,9 +197,9 @@
     height: auto;
     border-radius: 50px;
     span {
-      @include h1;
       width: 100%;
-
+      @include h1;
+    
       &.circle {
         width: 70px !important;
         height: 70px !important;

@@ -2,11 +2,13 @@
 
 .container {
   @include grid-wrap;
-  background: $forest;
-  height: 100%;
-  position: relative;
-  padding: 0;
-  width: 100%;
+  &{
+    background: $forest;
+    height: 100%;
+    position: relative;
+    padding: 0;
+    width: 100%;
+  }
   @include phone {
     display: grid;
     grid-template-rows: 1fr 2fr;
@@ -21,13 +23,15 @@
 .column {
   &:first-of-type {
     @include six-twelfths;
-    height: 100%;
-    position: relative;
-    background: $forest;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
+    &{
+      height: 100%;
+      position: relative;
+      background: $forest;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
     @include widescreen {
       @include five-twelfths;
     }
@@ -43,10 +47,12 @@
 
     @include phone {
       @include full;
-      grid-row: 1;
-      height: auto;
-      min-height: 0;
-      width: calc(100% - 60px);
+      &{
+        grid-row: 1;
+        height: auto;
+        min-height: 0;
+        width: calc(100% - 60px);
+      }
     }
     @include x-small {
       width: 100%;
@@ -55,10 +61,11 @@
 
   &:last-of-type {
     @include six-twelfths;
-    height: 100%;
-    position: relative;
-    padding-left: 20px;
-
+    &{
+      height: 100%;
+      position: relative;
+      padding-left: 20px;
+    }
     @include widescreen {
       @include seven-twelfths;
     }
@@ -68,11 +75,14 @@
     }
 
     @include phone {
-      padding: 0px;
       @include full;
-      height: auto;
-      grid-row: 2;
-      min-height: 0;
+      &{
+        height: auto;
+        grid-row: 2;
+        min-height: 0;
+        padding: 0px;
+      }
+  
     }
   }
 }
@@ -80,20 +90,22 @@
 .sectionTitle {
   h2 {
     @include eyebrow;
-    margin: 0;
-    padding: 10px;
-    padding-bottom: 0px;
+    &{
+      margin: 0;
+      padding: 10px;
+      padding-bottom: 0px;
+    }
+
   }
 }
 
 .headline {
-  h2 {
-    @include h1;
-  }
-
   margin: 0;
   text-align: left;
   padding: 10px;
+  h2 {
+    @include h1;
+  }
 
   sup {
     font-size: 20px;
@@ -104,9 +116,11 @@
 
 .copy {
   @include body2;
-  margin-right: 20px;
-  width: 100%;
-  height: auto;
+  &{
+    margin-right: 20px;
+    width: 100%;
+    height: auto;
+  }
   @media (max-width: 1200px) {
     width: $four-twelfths;
   }
@@ -163,8 +177,9 @@
 }
 
 .stumpy {
-  width: 100px;
   height: auto;
+  width: 100px;
+ 
   [data-type="eyes-wrap"] {
     left: 16%;
     width: 40%;

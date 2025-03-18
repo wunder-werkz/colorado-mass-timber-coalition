@@ -8,12 +8,15 @@
 }
 
 .hero {
-  position: relative;
-  height: 100vh;
-  width: 100%;
   @include grid-wrap;
-  @include full;
-  padding-top: 80px;
+
+  &{
+    height: 100vh;
+    padding-top: 80px;
+    position: relative;
+    width: 100%;
+    @include full;
+  }
 
   @include phone {
     padding-top: 100px;
@@ -115,7 +118,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
   overflow: hidden;
 }
 
@@ -141,7 +143,9 @@
   width: $six-twelfths;
   p {
     @include h1;
-    line-height: inherit;
+    & {
+      line-height: inherit;
+    }
   }
   @include lap-small {
     width: $nine-twelfths;

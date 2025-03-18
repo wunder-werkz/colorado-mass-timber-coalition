@@ -34,12 +34,15 @@
 
 .title {
   @include h1;
-  height: auto;
-   line-height: 1.1;
-  margin: 0;
-  position: relative;
-  text-align: left;
-  z-index: 1;
+  &{
+    height: auto;
+    line-height: 1.1;
+    margin: 0;
+    position: relative;
+    text-align: left;
+    z-index: 1;
+  }
+
   @include lap-smaller {
     position: relative;
     @include full;
@@ -94,8 +97,10 @@
 
 .stumpyText {
   @include body1;
-  margin-top: 30px;
-  width: calc(100% - 300px);
+  &{
+    margin-top: 30px;
+    width: calc(100% - 300px);
+  }
   @include lap-smaller {
     width: 100%;
   }

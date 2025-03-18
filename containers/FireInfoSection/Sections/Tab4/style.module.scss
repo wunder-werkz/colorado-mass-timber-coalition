@@ -27,9 +27,12 @@
 .sectionTitle {
   h2 {
     @include eyebrow;
-    margin: 0;
-    padding: 10px;
-    padding-bottom: 0px;
+    &{
+      margin: 0;
+      padding: 10px;
+      padding-bottom: 0px;
+    }
+
     @include tablet-and-lower {
       margin-top: 10px;
       padding: 0 0 10px 0;
@@ -38,14 +41,15 @@
 }
 
 .headline {
-  h2 {
-    @include h1;
-    line-height: 1.1;
-  }
   margin: 0;
   text-align: left;
   padding: 10px;
-
+  h2 {
+    @include h1;
+    &{    
+      line-height: 1.1;
+    }
+  }
   sup {
     font-size: 20px;
     padding: 0px !important;
@@ -58,12 +62,13 @@
 
 .copy {
   @include body2;
-  bottom: -5px;
-  height: auto;
-  left: 0;
-  position: absolute;
-  width: $three-twelfths;
-
+  &{  
+    bottom: -5px;
+    height: auto;
+    left: 0;
+    position: absolute;
+    width: $three-twelfths;
+  }
   @include lap-smaller {
     width: $five-twelfths;
   }
@@ -134,9 +139,8 @@
 }
 
 .stumpyText {
-  @include body1;
   width: calc(100% - 100px);
-
+  @include body1;
   @include phone {
     width: 100%;
     padding: 10px;

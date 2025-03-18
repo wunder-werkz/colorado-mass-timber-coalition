@@ -32,13 +32,12 @@
 }
 
 .headline {
-  h2 {
-    @include h1;
-  }
   margin: 0;
   text-align: left;
   padding: 10px;
-
+  h2 {
+    @include h1;
+  }
   sup {
     font-size: 20px;
     padding: 0px !important;
@@ -48,7 +47,7 @@
 
 .copy {
   @include body2;
-  & {
+  &{
     bottom: -5px;
     height: auto;
     left: 0;

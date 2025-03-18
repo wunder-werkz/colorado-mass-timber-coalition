@@ -47,9 +47,11 @@
   height: 100%;
   h2 {
     @include eyebrow;
-    margin: 0;
-    padding: 10px;
-    padding-bottom: 0px;
+    & {
+      margin: 0;
+      padding: 10px;
+      padding-bottom: 0px;
+    }
   }
 }
 
@@ -106,19 +108,20 @@
 
 .acresContainer {
   @include h3;
-  align-items: flex-end;
-  background: $cream;
-  color: $black;
-  display: flex;
-  height: 130px;
-  justify-content: flex-start;
-  overflow: hidden;
-  padding: 0 1rem;
-  position: absolute;
-  right: 40px;
-  top: 40%;
-  width: auto;
-
+  &{
+    align-items: flex-end;
+    background: $cream;
+    color: $black;
+    display: flex;
+    height: 130px;
+    justify-content: flex-start;
+    overflow: hidden;
+    padding: 0 1rem;
+    position: absolute;
+    right: 40px;
+    top: 40%;
+    width: auto;
+  }
   @include phone {
     height: 100px;
     padding: 0 10px;
@@ -175,8 +178,8 @@
   width: 70%;
   height: auto;
   h2 {
-    @include h1;
     line-height: 1.1;
+    @include h1;
   }
   @include lap-smaller {
     width: calc(100% - 60px);

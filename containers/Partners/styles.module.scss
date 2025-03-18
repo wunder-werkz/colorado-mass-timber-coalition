@@ -19,16 +19,15 @@
     flex-flow: column;
     align-items: flex-start;
   }
-  h2 {
-    @include h1;
-  }
-
   @include lap-smaller {
     margin-bottom: 1rem;
   }
+  h2 {
+    @include h1;
+  }
   .body {
     @include body2;
-    & {
+    &{
       margin-right: $one-twelfth;
       width: $five-twelfths;
     }
@@ -56,12 +55,15 @@
 
 .partnerItem {
   @include h3;
-  padding: 1rem 0;
-  border-bottom: 1px solid rgba($forest, 0.2);
-  text-decoration: none;
-  color: inherit;
-  transition: opacity 0.65s ease;
-  position: relative;
+  &{  
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba($forest, 0.2);
+    text-decoration: none;
+    color: inherit;
+    transition: opacity 0.65s ease;
+    position: relative;
+  }
+
 
   &::after {
     content: "";

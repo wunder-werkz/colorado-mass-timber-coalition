@@ -1,24 +1,26 @@
 @use "@/styles/vars" as *;
 
 .container {
-  position: relative;
   min-height: 100vh;
-  padding: 80px 60px;
-  overflow: hidden;
   margin-top: 150px;
+  overflow: hidden;
+  position: relative;
+  padding: 80px 60px;
 
   @include lap-smaller {
-    padding: 10px 20px 80px 20px;
     margin-top: 10px;
+    padding: 10px 20px 80px 20px;
   }
 }
 
 .eyebrow {
   @include eyebrow;
-  color: $forest;
-  margin-bottom: 4rem;
-  text-transform: uppercase;
-  p {
+  &{
+    color: $forest;
+    margin-bottom: 4rem;
+    text-transform: uppercase;
+  }
+   p {
     padding-left: 0;
   }
   span {
@@ -31,10 +33,10 @@
 }
 
 .section {
-  position: relative;
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  position: relative;
 
   &:nth-child(odd) {
     .imageWrapper {
@@ -50,15 +52,15 @@
 }
 
 .textBlock {
+  margin: 80px auto;
   position: relative;
   width: 60%;
   z-index: 1;
-  margin: 80px auto;
   @include h1;
 
   @include lap-smaller {
-    width: 90%;
     margin: 0px 0px 40px 0px;
+    width: 90%;
   }
   @include x-small {
     width: 100%;
@@ -89,16 +91,15 @@
 }
 
 .imageWrapper {
+  height: 100%;
+  overflow: hidden;
   position: absolute;
   width: 40%;
-  height: 100%;
   z-index: 0;
-  overflow: hidden;
-
   @include lap-smaller {
-    width: 60vw;
     height: 50vw;
     margin-top: 10%;
+    width: 60vw;
   }
   @include x-small {
     margin-top: 0%;
@@ -106,13 +107,12 @@
 }
 
 .imageBlock {
-  width: 100%;
   height: 100%;
-
+  width: 100%;
   img {
-    width: 100%;
     height: 100%;
     object-fit: cover;
+    width: 100%;
   }
 }
 
@@ -127,11 +127,11 @@
   width: 30%;
   z-index: 100;
   @include lap-smaller {
-    width: 50%;
     height: auto;
-    position: relative;
     margin-bottom: 10%;
     margin-right: -50%;
+    position: relative;
+    width: 50%;
   }
   @include x-small {
     right: 10px;
@@ -170,7 +170,7 @@
   @include body1;
   display: flex;
   justify-content: flex-end;
-
+  
   width: calc(100% - 150px);
   @include tablet-and-lower {
     width: calc(100% - 50px);
@@ -178,26 +178,24 @@
 }
 
 .mediaWCaption {
-  width: 100%;
   height: auto;
-
+  width: 100%;
   img {
-    width: 100%;
     height: auto;
     object-fit: cover;
+    width: 100%;
   }
 }
 
 .stumpyContainer {
+  margin-top: 4rem;
   position: relative;
   z-index: 2;
-  margin-top: 4rem;
 }
 
 .stumpyWrap {
-  margin-bottom: 4rem;
-
   height: 150px;
+  margin-bottom: 4rem;
   width: 110px;
 
   &:last-child {
@@ -206,7 +204,7 @@
 }
 
 .stumpyContent {
-  display: flex;
   align-items: center;
+  display: flex;
   gap: 10px;
 }
