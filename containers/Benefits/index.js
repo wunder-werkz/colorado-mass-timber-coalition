@@ -111,7 +111,7 @@ export default function Benefits() {
   return (
     <div ref={containerRef} className={styles.container}>
       <div className={styles.eyebrow}>
-        <SplitTextBg color="cream" inline ref={eyebrowRef}>
+        <SplitTextBg color="cream" ref={eyebrowRef}>
           <p>{CONTENT.eyebrow}</p>
         </SplitTextBg>
       </div>
@@ -183,12 +183,10 @@ const CONTENT = {
   sections: [
     {
       text: "Lower embodied carbon – making wood products, especially locally, uses less energy and emits less carbon than other building materials<sup>15</sup>",
-     
     },
     {
       text: "Stored carbon - dry wood is 50% biogenic carbon that is encapsulated for the life of the building and even longer if salvaged and reused!",
       image: "/img/benefits/CMTC_Section4_1.jpg",
-     
     },
 
     {
