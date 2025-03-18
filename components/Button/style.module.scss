@@ -14,16 +14,21 @@
   text-decoration: none;
   transition: all 0.3s ease;
   text-transform: uppercase;
-  overflow: hidden;
-  overflow: clip;
-  overflow-clip-margin: 2px;
-  &:focus-visible {
-    outline: none;
-  }
-  &::before {
+  clip-path: inset(0 0 0 0 round 30px);
+
+  &::after {
     content: "";
     position: absolute;
     inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border-radius: inherit;
     background-color: var(--hover-bg-color, transparent);
     transform: scaleX(0);
     transform-origin: right;
@@ -56,11 +61,11 @@
 
   .circle {
     position: absolute;
-    right: -1px;
+    right: -4px;
     top: 50%;
     transform: translateY(-50%);
-    width: 46px;
-    height: 46px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -69,8 +74,9 @@
     transition: background-color 0.3s ease;
 
     @include tablet-and-lower {
-      width: 36px;
-      height: 36px;
+      right: -4px;
+      width: 48px;
+      height: 48px;
       svg {
         width: 20px;
         height: 20px;
@@ -78,8 +84,9 @@
     }
 
     @include phone {
-      width: 30px;
-      height: 30px;
+      right: -2px;
+      width: 37px;
+      height: 37px;
       svg {
         width: 15px;
         height: 15px;
@@ -171,13 +178,15 @@
 
 .large {
   border-radius: 62px;
+  clip-path: inset(0 0 0 0 round 62px);
   font-size: 93px;
   height: 130px;
   padding: 10px 160px 10px 30px;
   .circle {
-    height: 130px;
-    right: -2px;
-    width: 130px;
+    right: -4px;
+    height: 138px;
+    width: 138px;
+    border-radius: 50%;
     svg {
       width: 52px;
       height: 52px;
@@ -189,7 +198,7 @@
     padding-right: 130px;
     .circle {
       height: 100px;
-      right: -2px;
+      right: -3px;
       width: 100px;
       svg {
         width: 46px;
@@ -203,7 +212,7 @@
     padding-right: 90px;
     .circle {
       height: 80px;
-      right: -2px;
+      right: -3px;
       width: 80px;
       svg {
         width: 36px;
@@ -217,7 +226,7 @@
     padding-right: 90px;
     .circle {
       height: 60px;
-      right: -2px;
+      right: -3px;
       width: 60px;
       svg {
         width: 26px;
