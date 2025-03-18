@@ -136,7 +136,7 @@ export default function Benefits() {
             )}
 
             <div
-              className={styles.textBlock}
+              className={section.image ? styles.textHasImage : styles.textBlock}
               ref={(el) =>
                 (contentRefs.current[index] = {
                   ...contentRefs.current[index],

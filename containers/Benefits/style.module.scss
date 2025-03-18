@@ -18,12 +18,12 @@
   color: $forest;
   margin-bottom: 4rem;
   text-transform: uppercase;
-   p {
+  p {
     padding-left: 0;
-   }
-   span { 
+  }
+  span {
     padding-left: 0;
-   }
+  }
 }
 
 .content {
@@ -62,9 +62,29 @@
   }
   @include x-small {
     width: 100%;
-     p {
+    p {
       padding: 0;
-     }
+    }
+  }
+}
+
+.textHasImage {
+  position: relative;
+  width: 60%;
+  z-index: 1;
+  margin: 80px auto;
+  @include h1;
+
+  @include lap-smaller {
+    width: 90%;
+    margin: 0px 0px 40px 0px;
+  }
+  @include x-small {
+    margin: 200px 0px 40px 0px;
+    width: 100%;
+    p {
+      padding: 0;
+    }
   }
 }
 
@@ -124,7 +144,7 @@
   svg {
     height: 100%;
     width: auto;
-    
+
     &[data-type="eyes"] {
       height: auto;
       width: 100%;
@@ -137,8 +157,8 @@
   @include lap-smaller {
     height: 300px;
   }
- 
-  @include tablet-and-lower{
+
+  @include tablet-and-lower {
     height: 200px;
   }
   @include x-small {
@@ -150,7 +170,7 @@
   @include body1;
   display: flex;
   justify-content: flex-end;
-  
+
   width: calc(100% - 150px);
   @include tablet-and-lower {
     width: calc(100% - 50px);
