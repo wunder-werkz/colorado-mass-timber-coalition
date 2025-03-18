@@ -124,7 +124,7 @@ export default function BuiltToLast() {
                     to: {
                       rotate: 540,
                       scale: smScreen ? 1.4 : 1.6,
-                      top: "-5%",
+                      top: smScreen ? "0%" : "-5%",
                       transformOrigin: "center center",
                     },
                   },

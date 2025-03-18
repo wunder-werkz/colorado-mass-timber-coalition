@@ -42,7 +42,7 @@
 
     .headline {
       @include h2;
-      &{
+      & {
         text-align: left;
         width: 100%;
       }
@@ -123,6 +123,7 @@
       opacity: 0;
     }
     @include lap-smaller {
+      transform: translate(-5px, -5px);
       width: $seven-twelfths;
     }
   }
@@ -277,6 +278,7 @@
   @include lap-smaller {
     top: 50%;
     width: 50%;
+    transform: translate(-50%, -50%);
   }
   @include tablet-and-lower {
     top: 52%;
