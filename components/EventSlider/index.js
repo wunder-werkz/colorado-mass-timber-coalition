@@ -1,12 +1,12 @@
 "use client";
 import { useEffect, useRef, useState, useCallback } from "react";
 import { gsap } from "@/lib/gsapConfig";
+import * as ST from "@bsmnt/scrollytelling";
 import styles from "./style.module.scss";
 import Button from "@/components/Button";
 import Arrow from "@/components/SVG/Arrow";
 import SplitTextBg from "@/components/SplitTextBg";
 import Event from "@/components/Event";
-
 
 const EventSlider = ({ events }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -43,15 +43,11 @@ const EventSlider = ({ events }) => {
   useEffect(() => {
     const calculateSlideOffset = () => {
       if (slideRefs.current.length === 0) return 0;
-
       const slideElement = slideRefs.current[0];
       if (!slideElement) return 0;
-
       const slideWidth = slideElement.getBoundingClientRect().width;
-
       const computedStyle = getComputedStyle(document.documentElement);
       const gap = parseFloat(computedStyle.fontSize);
-
       return slideWidth + gap;
     };
 
@@ -64,125 +60,128 @@ const EventSlider = ({ events }) => {
     });
   }, [currentIndex]);
 
-  useEffect(() => {
-    gsap.set([prevButtonRef.current, nextButtonRef.current], {
-      opacity: 0,
-    });
-    gsap.set(navDividerRef.current, {
-      scaleX: 0,
-      opacity: 0,
-    });
-
-    const ctx = gsap.context(() => {
-      gsap.from(containerRef.current, {
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 75%",
-          onEnter: handleSplitTextStart,
-          onLeaveBack: handleSplitTextReverse,
-        },
-      });
-
-      gsap.from(buttonRef.current, {
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 80%",
-          toggleActions: "play reverse play reverse",
-        },
-        opacity: 0,
-        y: 50,
-        duration: 0.35,
-        delay: 0.7,
-      });
-
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 80%",
-          end: "bottom bottom",
-          toggleActions: "play reverse play reverse",
-          scrub: true,
-        },
-      });
-
-      tl.from(slideRefs.current, {
-        opacity: 0,
-        y: 100,
-        duration: 0.4,
-        stagger: {
-          each: 0.2,
-          ease: "power2.out",
-        },
-        delay: 0.3,
-      });
-
-      tl.to(navDividerRef.current, {
-        scaleX: 1,
-        opacity: 1,
-        duration: 0.4,
-        ease: "power2.out",
-      });
-      tl.to([prevButtonRef.current, nextButtonRef.current], {
-        opacity: 1,
-        duration: 0.4,
-        ease: "back.out(1.7)",
-        stagger: 0.1,
-      });
-    });
-
-    return () => ctx.revert();
-  }, [handleSplitTextStart, handleSplitTextReverse]);
-
   return (
-    <div className={styles.eventsHomeWrap} ref={containerRef}>
-      <div className={styles.topWrap}>
-        <div className="events-title-container">
-          <SplitTextBg ref={splitTextAnimationRef} color="orange">
-            <h2 className={styles.eventsTitle}>Events</h2>
-          </SplitTextBg>
+    <ST.Root start="top 80%" end="bottom bottom">
+      <div className={styles.eventsHomeWrap} ref={containerRef}>
+        <div className={styles.topWrap}>
+          <div className="events-title-container">
+            <ST.Waypoint
+              at={1}
+              onCall={handleSplitTextStart}
+              onReverseCall={handleSplitTextReverse}
+            >
+              <SplitTextBg ref={splitTextAnimationRef} color="orange">
+                <h2 className={styles.eventsTitle}>Events</h2>
+              </SplitTextBg>
+            </ST.Waypoint>
+          </div>
+
+          <ST.Animation
+            tween={{
+              start: 5,
+              end: 10,
+              fromTo: [
+                { opacity: 0, y: 50 },
+                { opacity: 1, y: 0 },
+              ],
+              ease: "power2.out",
+            }}
+          >
+            <div ref={buttonRef}>
+              <Button
+                href="/events"
+                variant="primary"
+                color="orange"
+                fill={true}
+              >
+                See All Events
+              </Button>
+            </div>
+          </ST.Animation>
         </div>
-        <div ref={buttonRef}>
-          <Button href="/events" variant="primary" color="orange" fill={true}>
-            See All Events
-          </Button>
-        </div>
-      </div>
-      <div className={styles.sliderContainer}>
-        <div className={styles.sliderWrapper} ref={sliderRef}>
-          <div className={styles.sliderTrack}>
-            {events.map((event, index) => (
-              <Event
-                isSlider={true}
-                key={`event-${index}`}
-                event={event}
-                ref={(el) => (slideRefs.current[index] = el)}
-              />
-            ))}
+
+        <div className={styles.sliderContainer}>
+          <div className={styles.sliderWrapper} ref={sliderRef}>
+            <ST.Animation
+              tween={{
+                start: 30,
+                end: 60,
+                fromTo: [
+                  { opacity: 0, y: 100 },
+                  { opacity: 1, y: 0 },
+                ],
+                ease: "power2.out",
+              }}
+            >
+              <div className={styles.sliderTrack}>
+                {events.map((event, index) => (
+                  <Event
+                    isSlider={true}
+                    key={`event-${index}`}
+                    event={event}
+                    ref={(el) => (slideRefs.current[index] = el)}
+                  />
+                ))}
+              </div>
+            </ST.Animation>
           </div>
         </div>
+
+        <div className={styles.navWrap}>
+          <ST.Animation
+            tween={{
+              start: 80,
+              end: 95,
+              fromTo: [{ opacity: 0 }, { opacity: 1 }],
+              stagger: 0.1,
+              ease: "back.out(1.7)",
+            }}
+          >
+            <button
+              onClick={prevSlide}
+              disabled={currentIndex === 0}
+              className={styles.navButton}
+              ref={prevButtonRef}
+              aria-label="Previous"
+            >
+              <Arrow />
+            </button>
+          </ST.Animation>
+          <ST.Animation
+            tween={{
+              start: 80,
+              end: 95,
+              fromTo: [
+                { opacity: 0, scaleX: 0 },
+                { opacity: 1, scaleX: 1 },
+              ],
+              ease: "power2.out",
+            }}
+          >
+            <div className={styles.navDivider} ref={navDividerRef}></div>
+          </ST.Animation>
+          <ST.Animation
+            tween={{
+              start: 85,
+              end: 95,
+              fromTo: [{ opacity: 0 }, { opacity: 1 }],
+              stagger: 0.1,
+              ease: "back.out(1.7)",
+            }}
+          >
+            <button
+              onClick={nextSlide}
+              disabled={currentIndex >= events.length - 3}
+              className={styles.navButton}
+              ref={nextButtonRef}
+              aria-label="Next"
+            >
+              <Arrow />
+            </button>
+          </ST.Animation>
+        </div>
       </div>
-      <div className={styles.navWrap}>
-        <button
-          onClick={prevSlide}
-          disabled={currentIndex === 0}
-          className={styles.navButton}
-          ref={prevButtonRef}
-          aria-label="Next"
-        >
-          <Arrow />
-        </button>
-        <div className={styles.navDivider} ref={navDividerRef}></div>
-        <button
-          onClick={nextSlide}
-          disabled={currentIndex >= events.length - 3}
-          className={styles.navButton}
-          ref={nextButtonRef}
-          aria-label="Previous"
-        >
-          <Arrow />
-        </button>
-      </div>
-    </div>
+    </ST.Root>
   );
 };
 
