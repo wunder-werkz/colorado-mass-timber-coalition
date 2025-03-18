@@ -168,10 +168,11 @@
 
 .stumpyText {
   @include body1;
-  display: flex;
-  justify-content: flex-end;
-  
-  width: calc(100% - 150px);
+  & {
+    display: flex;
+    justify-content: flex-end;
+    width: calc(100% - 150px);
+  }
   @include tablet-and-lower {
     width: calc(100% - 50px);
   }
