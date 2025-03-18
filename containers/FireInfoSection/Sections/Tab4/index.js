@@ -135,7 +135,12 @@ export default function Tab4({ index }) {
         onReverseCall={handleCopyReverse}
       />
       <div className={`${styles.copy}`}>
-        <SplitTextBg ref={copyT4Ref} color="orange" key={`copy-${index}`} body={true}>
+        <SplitTextBg
+          ref={copyT4Ref}
+          color="orange"
+          key={`copy-${index}`}
+          body={true}
+        >
           <p>
             As snow melts our forests help remove pollutants and sediment,
             regulate streamflow, reduce flood damage, and replenish groundwater.
@@ -155,7 +160,7 @@ export default function Tab4({ index }) {
           }}
         >
           <div className={styles.stumpy}>
-            <Stumpy type="tree" />
+            <Stumpy type="tree" color="cream" />
           </div>
         </ST.Animation>
         <ST.Waypoint

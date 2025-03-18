@@ -1,12 +1,11 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
-import { gsap } from "@/lib/gsapConfig";
+import { gsap, ScrollTrigger } from "@/lib/gsapConfig";
 import styles from "./style.module.scss";
 import LogoSm from "@/components/SVG/LogoSm";
 import { usePathname, useRouter } from "next/navigation";
-
 import Stumpy from "@/components/Stumpy";
 import Button from "@/components/Button";
 import { LinkedIn, Instagram } from "@/components/SVG/Social";
@@ -19,6 +18,32 @@ const Header = ({ contactEmail }) => {
   const menuItemsRef = useRef([]);
   const pathname = usePathname();
   const router = useRouter();
+  const isHomePage = pathname === "/" || pathname === "/home";
+
+  useEffect(() => {
+    if (!logoRef.current) return;
+
+    const logoAnim = gsap.to(logoRef.current, {
+      y: 0,
+      duration: 0.6,
+      ease: "power2.out",
+      paused: isHomePage,
+    });
+
+    if (isHomePage) {
+      ScrollTrigger.create({
+        trigger: "#hero-section",
+        start: "top+=180% top",
+        end: "+=1",
+        onEnter: () => logoAnim.play(),
+        onLeaveBack: () => logoAnim.reverse(),
+      });
+    }
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, [isHomePage]);
 
   const toggleMenu = () => {
     const body = document.body;
@@ -113,7 +138,7 @@ const Header = ({ contactEmail }) => {
         >
           <div className={styles.titleWrap}>What can I help you find?</div>
           <div className={styles.stumpWrap}>
-            <Stumpy color="cream" type="tree" />
+            <Stumpy color="cream" type="treeEyes" />
           </div>
         </div>
         <div

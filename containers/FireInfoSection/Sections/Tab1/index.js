@@ -91,7 +91,7 @@ export default function Tab1({ index }) {
           }}
         >
           <div className={styles.stumpy}>
-            <Stumpy type="tree" color="orange" />
+            <Stumpy type="tree" color="orangegreen" />
           </div>
         </ST.Animation>
         <ST.Waypoint

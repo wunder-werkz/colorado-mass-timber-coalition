@@ -40,16 +40,16 @@
         }
       }
     }
-    
+
     .headline {
       @include h2;
       text-align: left;
       width: 100%;
     }
-    
+
     .copy {
       @include body2;
-      & {  
+      & {
         height: auto;
         padding-top: 30px;
         width: $three-twelfths;
@@ -62,8 +62,6 @@
       }
     }
   }
-  
-  
 }
 .column2 {
   background-color: $cream;
@@ -107,6 +105,28 @@
   }
 }
 
+.svgCircleInner {
+  position: absolute;
+  transform: translate(16px, 24px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    height: auto;
+    width: $four-twelfths;
+    #sustain,
+    #benefit,
+    #environment {
+      opacity: 0;
+    }
+    @include lap-smaller {
+      width: $seven-twelfths;
+    }
+  }
+}
+
 .stumpyWrapper {
   max-width: 400px;
   position: absolute;
@@ -116,7 +136,7 @@
     max-width: 120px;
     transform: scale(0.2);
     opacity: 0;
-    width: auto;   
+    width: auto;
     @include x-small {
       height: 100px;
       max-width: 70px;
@@ -163,7 +183,6 @@
   @include tablet-and-lower {
     left: 10%;
   }
-
 }
 
 .stumpyWrapper-1 {
@@ -237,12 +256,12 @@
 }
 
 .finalCopy {
-  width: 80%;
+  width: 60%;
   height: auto;
   position: absolute;
-  top: 52%;
+  top: 50%;
   left: 50%;
-  transform: translate(-50%, -63%);
+  transform: translate(-50%, -80%);
   text-align: center;
   .container {
     width: 100%;
@@ -254,14 +273,13 @@
 
   @include lap-smaller {
     top: 50%;
-    width: 60%;
+    width: 50%;
   }
   @include tablet-and-lower {
     top: 52%;
     p {
       font-size: 32px;
     }
-    
   }
   @include x-small {
     top: 47%;
@@ -289,12 +307,11 @@
     .stumpy {
       height: 200px;
     }
-    
+
     @include lap-smaller {
       left: 5%;
       top: 68%;
     }
-    
   }
 
   .stumpyWrapper-1 {

@@ -49,7 +49,7 @@ export default function BuiltToLast() {
     >
       <ST.Pin
         childHeight={smScreen ? "150vh" : "100vh"}
-        pinSpacerHeight={smScreen ? `600vh`:`400vh`}
+        pinSpacerHeight={smScreen ? `600vh` : `400vh`}
         top={smScreen ? "-50%" : "80px"}
       >
         <div className={`${styles.tabPanel}`}>
@@ -112,56 +112,53 @@ export default function BuiltToLast() {
                 tween={[
                   {
                     start: 16.666,
-                    end: 33.332,
-                    to: { rotate: 120, transformOrigin: "center" },
-                  },
-                  {
-                    start: 33.332,
-                    end: 50,
-                    to: { rotate: 240, transformOrigin: "center" },
-                  },
-                  {
-                    start: 50,
                     end: 60,
-                    to: { rotate: 360, transformOrigin: "center" },
+                    to: {
+                      rotate: 360,
+                      transformOrigin: "center center",
+                    },
                   },
                   {
                     start: 60,
                     end: 100,
-              
-                    to: { rotate: 540, 
-                    scale: 1.6,
-                    top: "-5%", transformOrigin: "center" },
+                    to: {
+                      rotate: 540,
+                      scale: smScreen ? 1.4 : 1.6,
+                      top: "-5%",
+                      transformOrigin: "center center",
+                    },
                   },
                 ]}
               >
                 <div className={styles.svgCircle}>
-                  <ST.Waypoint
-                    at={16.666}
-                    tween={{
-                      target: ["#sustain"],
-                      to: { opacity: 1 },
-                      duration: 0.35,
-                    }}
-                  />
-                  <ST.Waypoint
-                    at={33.332}
-                    tween={{
-                      target: ["#benefit"],
-                      to: { opacity: 1 },
-                      duration: 0.35,
-                    }}
-                  />
-                  <ST.Waypoint
-                    at={50}
-                    tween={{
-                      target: ["#environment"],
-                      to: { opacity: 1 },
-                      duration: 0.35,
-                    }}
-                  />
+                  <div className={styles.svgCircleInner}>
+                    <ST.Waypoint
+                      at={16.666}
+                      tween={{
+                        target: ["#sustain"],
+                        to: { opacity: 1 },
+                        duration: 0.35,
+                      }}
+                    />
+                    <ST.Waypoint
+                      at={33.332}
+                      tween={{
+                        target: ["#benefit"],
+                        to: { opacity: 1 },
+                        duration: 0.35,
+                      }}
+                    />
+                    <ST.Waypoint
+                      at={50}
+                      tween={{
+                        target: ["#environment"],
+                        to: { opacity: 1 },
+                        duration: 0.35,
+                      }}
+                    />
 
-                  <FullSvg />
+                    <FullSvg />
+                  </div>
                 </div>
               </ST.Animation>
               {CONTENT.svgText.map((content, index) => (
@@ -191,7 +188,7 @@ export default function BuiltToLast() {
                         type={
                           index === 0 ? "tree" : index === 1 ? "stump" : "plank"
                         }
-                        color="forest"
+                        color="cream"
                       />
                     </div>
                   </ST.Animation>
