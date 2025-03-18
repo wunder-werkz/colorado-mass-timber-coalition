@@ -121,7 +121,7 @@
 }
 
 .mediaWCaption {
-  height: 60%;
+  height: 80%;
   object-fit: cover;
   object-position: center;
   position: absolute;
@@ -129,10 +129,6 @@
   bottom: -30px;
   width: 100%;
   opacity: 0;
-
-  @include phone {
-    height: 80%;
-  }
 }
 
 .eyeballs {
