@@ -10,7 +10,7 @@ import Stumpy from "@/components/Stumpy";
 import Button from "@/components/Button";
 import { LinkedIn, Instagram } from "@/components/SVG/Social";
 
-const Header = ({ contactEmail }) => {
+const Header = ({ contactEmail, hasEvents }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const logoRef = useRef(null);
   const menuRef = useRef(null);
@@ -51,7 +51,7 @@ const Header = ({ contactEmail }) => {
       timeline.current = gsap
         .timeline({ paused: true })
         .to(menuRef.current, {
-          height: "100vh",
+          height: "100%",
           duration: 0.5,
           ease: "power2.inOut",
         })
@@ -145,14 +145,16 @@ const Header = ({ contactEmail }) => {
           className={styles.buttonWrap}
           ref={(el) => (menuItemsRef.current[1] = el)}
         >
-          <Button
-            variant="primary"
-            color="forest"
-            className="large"
-            onClick={() => handleLinkClick("/events")}
-          >
-            Events
-          </Button>
+          {hasEvents && (
+            <Button
+              variant="primary"
+              color="forest"
+              className="large"
+              onClick={() => handleLinkClick("/events")}
+            >
+              Events
+            </Button>
+          )}
           <Button
             variant="primary"
             color="forest"
@@ -166,7 +168,13 @@ const Header = ({ contactEmail }) => {
             ref={(el) => (menuItemsRef.current[2] = el)}
           >
             {SOCIAL_LINKS.map((link) => (
-              <a href={link.url} key={link.url} className={styles.url} aria-label={link.ariaLabel} title={link.ariaLabel}>
+              <a
+                href={link.url}
+                key={link.url}
+                className={styles.url}
+                aria-label={link.ariaLabel}
+                title={link.ariaLabel}
+              >
                 {link.icon}
               </a>
             ))}

@@ -1,6 +1,6 @@
 import localFont from "next/font/local";
 
-import { GENERAL_QUERY } from "@/sanity/lib/queries";
+import { GENERAL_QUERY, UPCOMING_EVENTS_QUERY } from "@/sanity/lib/queries";
 import Layout from "@/containers/Layout";
 import { ModalProvider } from "@/context/ModalContext";
 import Footer from "@/components/Footer";
@@ -30,24 +30,36 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   const general = await client.fetch(GENERAL_QUERY);
-  const { contactEmail } = general ? general[0] : {contactEmail: "wlepry@nationalforests.org"} ;
+  const events = await client.fetch(UPCOMING_EVENTS_QUERY);
+  const { contactEmail } = general
+    ? general[0]
+    : { contactEmail: "wlepry@nationalforests.org" };
 
   return (
     <html lang="en">
       <Head>
-      <title>Colorado Mass Timber Coalition</title>
-        <meta name="description" content="Supporting healthy, resilient forests through a vibrant forest-products economy including mass timber in the Rocky Mountain Region" />
+        <title>Colorado Mass Timber Coalition</title>
+        <meta
+          name="description"
+          content="Supporting healthy, resilient forests through a vibrant forest-products economy including mass timber in the Rocky Mountain Region"
+        />
         <meta property="og:image" content="/og-image.jpg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="628" />
         <meta property="og:title" content="Colorado Mass Timber Coalition" />
-        <meta property="og:site_name" content="Colorado Mass Timber Coalition" />
+        <meta
+          property="og:site_name"
+          content="Colorado Mass Timber Coalition"
+        />
         <meta
           property="og:description"
           content="Colorado Mass Timber Coalition supports healthy, resilient forests through a vibrant forest-products
           economy including mass timber throughout the Rocky Moutain Region"
         />
-        <meta property="og:url" content="https://www.colorado-mass-timber-coalition.com/" />
+        <meta
+          property="og:url"
+          content="https://www.colorado-mass-timber-coalition.com/"
+        />
         <meta
           name="viewport"
           content="width=device-width, height=device-height, initial-scale=1, minimum-scale=1, viewport-fit=cover"
@@ -55,13 +67,20 @@ export default async function RootLayout({ children }) {
         <link rel="icon" type="image/png" href={favicon96.src} sizes="96x96" />
         <link rel="icon" type="image/svg+xml" href={favicon.src} />
         <link rel="shortcut icon" href={faviconIco.src} />
-        <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/favicon/apple-touch-icon.png"
+        />
         <meta name="apple-mobile-web-app-title" content="CMTC" />
         <link rel="manifest" href={manifest.src} />
       </Head>
       <body className={`${greedNarrow.variable} ${greedStandard.variable}`}>
         <ModalProvider>
-          <Layout contactEmail={contactEmail} />
+          <Layout
+            contactEmail={contactEmail}
+            hasEvents={events && events.length > 0}
+          />
           <main>
             {children}
             <Footer contactEmail={contactEmail} />
