@@ -4,9 +4,11 @@
   display: flex;
   height: 100%;
   position: relative;
-  padding: 0;
   width: 100%;
   @include grid-wrap;
+  & {
+    padding: 0;
+  }
   @include phone {
     display: grid;
     grid-template-rows: 1fr 1fr;
@@ -18,7 +20,7 @@
 .column {
   &:first-of-type {
     @include six-twelfths;
-    &{    
+    & {
       align-items: flex-start;
       display: flex;
       flex-direction: column;
@@ -37,7 +39,7 @@
 
     @include phone {
       @include full;
-      &{
+      & {
         grid-row: 1;
         height: auto;
         min-height: 0;
@@ -51,12 +53,11 @@
 
   &:last-of-type {
     @include six-twelfths;
-    &{
+    & {
       height: 100%;
       position: relative;
       padding-left: 20px;
     }
-
 
     @media (max-width: 1200px) {
       @include full;
@@ -75,7 +76,7 @@
 .sectionTitle {
   h2 {
     @include eyebrow;
-    &{
+    & {
       margin: 0;
       padding: 10px;
       padding-bottom: 0px;
@@ -111,7 +112,7 @@
 
 .copy {
   @include body2;
-  &{
+  & {
     width: 100%;
     height: auto;
     margin-bottom: -5px;
@@ -199,7 +200,6 @@
       width: 22%;
     }
   }
-  
 }
 
 .stumpyText {
