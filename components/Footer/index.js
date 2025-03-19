@@ -1,6 +1,7 @@
 "use client";
-import { useRef } from "react";
-import * as ST from "@bsmnt/scrollytelling";
+import { useRef, useEffect } from "react";
+
+import { gsap, ScrollTrigger } from "@/lib/gsapConfig";
 import FooterLogo from "../SVG/FooterLogo";
 
 import NewsletterSignup from "@/components/NewsletterSignup";
@@ -29,89 +30,108 @@ export default function Footer({ contactEmail }) {
     },
   ];
 
+  // Create refs for animated elements
+  const newsletterRef = useRef(null);
+  const stumpyRef = useRef(null);
+  const socialLinksRef = useRef([]);
+  const logoRef = useRef(null);
+
+  // useEffect(() => {
+  //   const tl = gsap.timeline({
+  //     scrollTrigger: {
+  //       trigger: newsletterRef.current,
+  //       start: "top 80%",
+  //       end: "bottom bottom",
+  //       debug: true,
+  //     },
+  //   });
+
+  //   // Newsletter animation
+  //   tl.fromTo(
+  //     newsletterRef.current,
+  //     { opacity: 0, y: 30 },
+  //     { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }
+  //   );
+
+  //   // Stumpy animation
+  //   tl.fromTo(
+  //     stumpyRef.current,
+  //     { opacity: 0, scale: 0.8 },
+  //     { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.7)" },
+  //     ">0.2" // Delay after previous animation
+  //   );
+
+  //   // Social links animation
+  //   socialLinksRef.current.forEach((link, index) => {
+  //     tl.fromTo(
+  //       link,
+  //       { opacity: 0, y: 20 },
+  //       { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" },
+  //       ">-0.2" // Slight overlap with previous animation
+  //     );
+  //   });
+
+  //   // Logo animation
+  //   tl.fromTo(
+  //     logoRef.current,
+  //     { opacity: 0, y: 20 },
+  //     { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" },
+  //     ">0.2"
+  //   );
+
+  //   // Cleanup
+  //   return () => {
+  //     if (tl) {
+  //       tl.kill();
+  //       tl.scrollTrigger?.kill();
+  //     }
+  //     // Refresh ScrollTrigger on cleanup
+  //     ScrollTrigger.refresh();
+  //   };
+  // }, []);
+
+  // // Add a second useEffect to handle route changes
+  // useEffect(() => {
+  //   // Refresh ScrollTrigger after a short delay to ensure DOM is ready
+  //   const refreshTimeout = setTimeout(() => {
+  //     ScrollTrigger.refresh();
+  //   }, 100);
+
+  //   return () => clearTimeout(refreshTimeout);
+  // }, []);
+
   return (
-    <ST.Root start="top 80%" end="bottom bottom">
-      <footer className={styles.footer}>
-        <div className={styles.content}>
-          <ST.Animation
-            tween={{
-              start: 0,
-              end: 10,
-              fromTo: [
-                { opacity: 0, y: 30 },
-                { opacity: 1, y: 0 },
-              ],
-              duration: 0.6,
-              ease: "power2.out",
-            }}
-          >
-            <div className={styles.newsletter}>
-              <NewsletterSignup />
-            </div>
-          </ST.Animation>
-
-          <div className={styles.socials}>
-            <ST.Animation
-              tween={{
-                start: 20,
-                end: 30,
-                fromTo: [
-                  { opacity: 0, scale: 0.8 },
-                  { opacity: 1, scale: 1 },
-                ],
-                duration: 0.4,
-                ease: "back.out(1.7)",
-              }}
-            >
-              <div className={styles.stumpyWrap}>
-                <Stumpy type="plank" color="orange" />
-              </div>
-            </ST.Animation>
-
-            <div className={styles.socialWrap}>
-              {SOCIAL_LINKS.map((link, index) => (
-                <ST.Animation
-                  key={link.url}
-                  tween={{
-                    start: 30 + index * 0.2,
-                    end: 40 + index * 0.2 + 0.1,
-                    fromTo: [
-                      { opacity: 0, y: 20 },
-                      { opacity: 1, y: 0 },
-                    ],
-                    ease: "power2.out",
-                  }}
-                >
-                  <a
-                    href={link.url}
-                    className={styles.url}
-                    aria-label={link.ariaLabel}
-                    title={link.ariaLabel}
-                  >
-                    {link.icon}
-                  </a>
-                </ST.Animation>
-              ))}
-            </div>
-          </div>
+    <footer className={styles.footer}>
+      <div className={styles.content}>
+        <div className={styles.newsletter} ref={newsletterRef}>
+          <NewsletterSignup />
         </div>
 
-        <ST.Animation
-          tween={{
-            start: 80,
-            end: 90,
-            fromTo: [
-              { opacity: 0, y: 20 },
-              { opacity: 1, y: 0 },
-            ],
-            ease: "power2.out",
-          }}
-        >
-          <div className={styles.logo}>
-            <FooterLogo />
+        <div className={styles.socials}>
+          <div className={styles.stumpyWrap} ref={stumpyRef}>
+            <Stumpy type="plank" color="orange" />
           </div>
-        </ST.Animation>
-      </footer>
-    </ST.Root>
+
+          <div className={styles.socialWrap}>
+            {SOCIAL_LINKS.map((link, index) => (
+              <a
+                key={link.url}
+                ref={(el) => (socialLinksRef.current[index] = el)}
+                href={link.url}
+                className={styles.url}
+                aria-label={link.ariaLabel}
+                title={link.ariaLabel}
+              >
+                {link.icon}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className={styles.logo} ref={logoRef}>
+        <FooterLogo />
+      </div>
+    </footer>
   );
 }

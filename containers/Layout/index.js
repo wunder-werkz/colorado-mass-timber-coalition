@@ -38,7 +38,18 @@ const Header = ({ contactEmail, hasEvents }) => {
         onEnter: () => logoAnim.play(),
         onLeaveBack: () => logoAnim.reverse(),
       });
+    } else {
+      gsap.to(logoRef.current, {
+        y: 0,
+        duration: 0.6,
+        ease: "power2.out",
+        paused: isHomePage,
+      });
     }
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
   }, [isHomePage]);
 
   const toggleMenu = () => {
@@ -75,6 +86,10 @@ const Header = ({ contactEmail, hasEvents }) => {
   const handleLinkClick = (href, isExternal = false) => {
     timeline.current.reverse();
     setIsMenuOpen(false);
+    const body = document.body;
+    body.style.overflow = "unset";
+    body.style.height = "auto";
+    ScrollTrigger.refresh();
 
     setTimeout(() => {
       if (isExternal) {
@@ -82,7 +97,7 @@ const Header = ({ contactEmail, hasEvents }) => {
       } else {
         router.push(href);
       }
-    }, 500);
+    }, 100);
   };
 
   const SOCIAL_LINKS = [
