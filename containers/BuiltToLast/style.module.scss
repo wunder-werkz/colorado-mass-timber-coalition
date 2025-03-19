@@ -24,6 +24,7 @@
       width: 100%;
       padding: 50px 20px;
     }
+
     .eyebrow {
       @include eyebrow;
       & {
@@ -32,6 +33,9 @@
         overflow: hidden;
         text-transform: uppercase;
         width: 100%;
+      }
+      @include lap-smaller {
+        margin-left: -15px;
       }
       @include x-small {
         p {
@@ -45,6 +49,9 @@
       & {
         text-align: left;
         width: 100%;
+      }
+      @include lap-smaller {
+        margin-left: -15px;
       }
     }
 
@@ -60,6 +67,7 @@
       }
       @include x-small {
         width: $ten-twelfths;
+        margin-left: -20px;
       }
     }
   }
