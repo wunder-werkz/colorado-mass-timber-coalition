@@ -182,6 +182,7 @@
     width: 120px;
   }
   @include x-small {
+    line-height: 60px;
     padding-right: 15px;
     width: 40%;
   }
