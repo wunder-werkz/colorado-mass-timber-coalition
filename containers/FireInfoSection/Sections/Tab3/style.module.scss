@@ -121,9 +121,14 @@
 .copy {
   @include body2;
   & {
-    width: 150%;
+    width: 100%;
     height: auto;
     margin-bottom: -5px;
+  }
+
+  @media (min-width: 900px) and (max-height: 800px) {
+    width: 150%;
+    z-index: 100;
   }
   @media (max-width: 1200px) {
     width: 50%;

@@ -109,7 +109,7 @@ export default function Footer({ contactEmail }) {
 
         <div className={styles.socials}>
           <div className={styles.stumpyWrap} ref={stumpyRef}>
-            <Stumpy type="plank" color="orange" />
+            <Stumpy type="plank" color="orangeOrange" />
           </div>
 
           <div className={styles.socialWrap}>
