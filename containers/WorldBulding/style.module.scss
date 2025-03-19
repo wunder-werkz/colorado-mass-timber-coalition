@@ -193,6 +193,11 @@
   position: absolute;
   top: 50px;
   width: 800px;
+
+  @media (min-width: 900px) and (max-height: 800px) {
+    top: 20px;
+  }
+
   @include lap-smaller {
     left: 0;
     width: 100%;
@@ -222,6 +227,10 @@
     position: absolute;
     top: 90px;
     width: 800px;
+  }
+
+  @media (min-width: 900px) and (max-height: 800px) {
+    top: 60px;
   }
   @include lap-smaller {
     width: 90%;
@@ -272,6 +281,11 @@
     position: absolute;
     width: $three-twelfths;
   }
+
+  @media (min-width: 900px) and (max-height: 800px) {
+    bottom: 20px;
+  }
+
   @include lap-smaller {
     left: 20px;
     width: $six-twelfths;

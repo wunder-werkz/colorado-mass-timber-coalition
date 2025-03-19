@@ -149,10 +149,11 @@
   width: 370px;
   @include phone {
     font-size: 60px;
-    line-height: 60px;
+    line-height: 100px;
     width: 80%;
   }
   @include x-small {
+    line-height: 60px;
     padding-right: 15px;
     width: 90%;
   }
