@@ -159,7 +159,7 @@ export default function Tab6({ index }) {
             }}
           >
             <div className={styles.stumpy}>
-              <Stumpy type="plank" color="cream" />
+              <Stumpy type="plank" color="creamGreen" />
             </div>
           </ST.Animation>
           <ST.Waypoint
