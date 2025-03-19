@@ -45,8 +45,8 @@
   background: $forest;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   gap: 10px;
+  justify-content: space-between;
   min-height: 190px;
   padding: 20px;
 
@@ -73,22 +73,20 @@
   }
 
   &.selfHosted {
-    width: 100%;
     background: $orange;
-
+    width: 100%;
     h3 {
       color: $forest;
     }
-
     p {
       color: $forest;
     }
   }
 
   a {
-    width: fit-content; // Changed from 'auto' to 'fit-content'
-    display: inline-flex;
     align-self: flex-start;
+    display: inline-flex;
+    width: fit-content; // Changed from 'auto' to 'fit-content'
   }
 
   @include lap-smaller {
