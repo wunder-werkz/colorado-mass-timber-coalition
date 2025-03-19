@@ -137,7 +137,7 @@ const WorldBuildingSection = () => {
                   onCall={handleEndCopyHeadlineStart}
                   onReverseCall={handleEndCopyHeadlineReverse}
                 >
-                  <div className={styles.headline}>
+                  <div className={styles.headline2}>
                     <SplitTextBg ref={endCopyHeadlineRef} color="cream" inline>
                       <h3>
                         Mass timber is an immediate solution to help solve our
