@@ -4,9 +4,11 @@
   display: flex;
   height: 100%;
   position: relative;
-  padding: 0;
   width: 100%;
   @include grid-wrap;
+  & {
+    padding: 0;
+  }
   @include phone {
     display: grid;
     grid-template-rows: 1fr 1fr;
@@ -18,13 +20,18 @@
 .column {
   &:first-of-type {
     @include six-twelfths;
-    &{    
+    z-index: 1;
+    & {
       align-items: flex-start;
       display: flex;
       flex-direction: column;
       height: 100%;
       justify-content: space-between;
       position: relative;
+    }
+
+    @media (min-width: 900px) and (max-height: 800px) {
+      background: transparent;
     }
     @media (max-width: 1200px) {
       height: 100%;
@@ -37,7 +44,7 @@
 
     @include phone {
       @include full;
-      &{
+      & {
         grid-row: 1;
         height: auto;
         min-height: 0;
@@ -51,12 +58,20 @@
 
   &:last-of-type {
     @include six-twelfths;
-    &{
+    z-index: 0;
+    & {
       height: 100%;
       position: relative;
       padding-left: 20px;
     }
 
+    @media (min-width: 900px) and (max-height: 800px) {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
 
     @media (max-width: 1200px) {
       @include full;
@@ -75,7 +90,7 @@
 .sectionTitle {
   h2 {
     @include eyebrow;
-    &{
+    & {
       margin: 0;
       padding: 10px;
       padding-bottom: 0px;
@@ -100,6 +115,12 @@
     padding: 0px !important;
     margin: 0px !important;
   }
+
+  @media (min-width: 900px) and (max-height: 800px) {
+    width: 150%;
+    z-index: 100;
+  }
+
   @include x-small {
     position: relative;
     z-index: 100;
@@ -111,10 +132,15 @@
 
 .copy {
   @include body2;
-  &{
+  & {
     width: 100%;
     height: auto;
     margin-bottom: -5px;
+  }
+
+  @media (min-width: 900px) and (max-height: 800px) {
+    width: 150%;
+    z-index: 100;
   }
   @media (max-width: 1200px) {
     width: 50%;
@@ -138,7 +164,7 @@
 .scaleWrap {
   position: absolute;
   top: 0;
-  left: 0;
+  right: 0;
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -161,6 +187,14 @@
   flex-direction: row;
   align-items: flex-start;
   gap: 20px;
+
+  @media (min-width: 900px) and (max-height: 800px) {
+    position: absolute;
+    width: 50%;
+    top: 10%;
+    left: 70%;
+  }
+
   @include lap-smaller {
     left: 50%;
   }
@@ -199,7 +233,6 @@
       width: 22%;
     }
   }
-  
 }
 
 .stumpyText {

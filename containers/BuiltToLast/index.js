@@ -257,7 +257,7 @@ export default function BuiltToLast() {
                                 ? "stump"
                                 : "plank"
                           }
-                          color="orange"
+                          color={index === 2 ? "orangeOrange" : "orange"}
                         />
                       </div>
                     </ST.Animation>

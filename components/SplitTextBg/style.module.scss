@@ -108,20 +108,20 @@
   padding: 0px 10px;
 }
 
-// .text {
-//   .lineWrapper {
-//     &:first-child {
-//       .line {
-//         padding-top: 7px;
-//       }
-//     }
-//     &:last-child {
-//       .line {
-//         padding-bottom: 7px;
-//       }
-//     }
-//   }
-// }
+.text {
+  .lineWrapper:not(.inline) {
+    &:first-child {
+      .line {
+        padding-top: 7px;
+      }
+    }
+    &:last-child {
+      .line {
+        padding-bottom: 7px;
+      }
+    }
+  }
+}
 
 .text.stumpy {
   .lineWrapper {

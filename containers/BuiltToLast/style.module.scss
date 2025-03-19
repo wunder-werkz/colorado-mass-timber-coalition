@@ -24,6 +24,7 @@
       width: 100%;
       padding: 50px 20px;
     }
+
     .eyebrow {
       @include eyebrow;
       & {
@@ -32,6 +33,9 @@
         overflow: hidden;
         text-transform: uppercase;
         width: 100%;
+      }
+      @include lap-smaller {
+        margin-left: -15px;
       }
       @include x-small {
         p {
@@ -45,6 +49,9 @@
       & {
         text-align: left;
         width: 100%;
+      }
+      @include lap-smaller {
+        margin-left: -15px;
       }
     }
 
@@ -60,6 +67,7 @@
       }
       @include x-small {
         width: $ten-twelfths;
+        margin-left: -20px;
       }
     }
   }
@@ -160,23 +168,14 @@
 .stumpyWrapper-0 {
   left: 5%;
   top: 45%;
+
   .stumpy {
-    height: 150px;
-  }
-  [data-type="eyes-wrap"] {
-    left: 25%;
-    top: 45%;
-    transform: translate(0%);
-    width: 20%;
-    @include x-small {
-      left: 50%;
-      top: 40%;
-      width: 22%;
-    }
+    height: 80px;
   }
   .stumpyText {
     top: 45%;
     transform: translateY(25%);
+    width: 150px;
   }
   @include lap-smaller {
     left: 15%;
@@ -188,27 +187,28 @@
 }
 
 .stumpyWrapper-1 {
-  left: 45%;
-  top: 2%;
+  left: 40%;
+  top: 25%;
   width: auto;
-  [data-type="eyes-wrap"] {
-    left: 28%;
-    top: 35%;
-    transform: translate(0%, 0%);
-    width: 24%;
-    @include x-small {
-      left: 38%;
-      width: 34%;
-    }
+
+  .stumpy {
+    height: 60px;
   }
   .stumpyText {
-    width: 300px;
+    width: 250px;
+    transform: translate(35%, -90%);
+    @include tablet-and-lower {
+      transform: translate(40%, -90%);
+    }
+    @include x-small {
+      transform: translate(-70px, 0px);
+    }
   }
   @include lap-smaller {
-    top: 13%;
+    top: 25%;
   }
   @include tablet-and-lower {
-    top: 10%;
+    top: 25%;
   }
   @include x-small {
     top: 15%;
@@ -216,29 +216,22 @@
 }
 
 .stumpyWrapper-2 {
-  bottom: 7%;
-  right: 0%;
+  bottom: 20%;
+  right: 10%;
   transform: translateX(50%);
+
   .stumpy {
-    height: 180px;
+    height: 80px;
   }
+
   .stumpyText {
-    transform: translate(-100%, -80%);
+    width: 230px;
+    transform: translate(-50%, -0%);
     @include tablet-and-lower {
       transform: translate(-100px, 0px);
     }
     @include x-small {
-      transform: translate(-70px, 0px);
-    }
-  }
-  [data-type="eyes-wrap"] {
-    left: 8%;
-    width: 24%;
-    top: 27%;
-    transform: translate(0%, 0%);
-    @include x-small {
-      left: 13%;
-      width: 35%;
+      transform: translate(-50%, 0px);
     }
   }
 
@@ -250,10 +243,8 @@
     right: 10%;
   }
   @include x-small {
+    bottom: 20%;
     right: 0%;
-    .stumpy {
-      height: 150px;
-    }
   }
 }
 
@@ -300,22 +291,17 @@
     height: 200px;
   }
   .stumpyWrapper-0 {
-    left: -5%;
-    [data-type="eyes-wrap"] {
-      left: 36%;
-      width: 22%;
-      @include x-small {
-        left: 66%;
-        width: 30%;
-      }
-    }
+    left: -15%;
     .stumpy {
       height: 200px;
     }
 
     @include lap-smaller {
       left: 5%;
-      top: 68%;
+      top: 60%;
+      .stumpy {
+        height: 220px;
+      }
     }
   }
 
@@ -324,16 +310,6 @@
     top: 0%;
     .stumpy {
       height: 150px;
-    }
-    [data-type="eyes-wrap"] {
-      left: 44%;
-      width: 34%;
-      top: 37%;
-      transform: translate(0%, 0%);
-      @include x-small {
-        left: 57%;
-        width: 50%;
-      }
     }
     @include lap-smaller {
       left: 45%;
@@ -347,17 +323,12 @@
   .stumpyWrapper-2 {
     bottom: 15%;
     right: 5%;
-    [data-type="eyes-wrap"] {
-      left: 16%;
-      width: 38%;
-      @include x-small {
-        left: 18%;
-        width: 43%;
-      }
-    }
     @include lap-smaller {
-      bottom: 10%;
+      bottom: 15%;
       right: 20%;
+      .stumpy {
+        height: 120px;
+      }
     }
   }
 }
