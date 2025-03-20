@@ -280,8 +280,8 @@ const WorldBuildingSection = () => {
                   <ST.Animation
                     tween={[
                       {
-                        start: 45,
-                        end: 50,
+                        start: 65,
+                        end: 70,
                         fromTo: [
                           { opacity: 0, scale: 0 },
                           { opacity: 1, scale: 1 },
@@ -289,8 +289,8 @@ const WorldBuildingSection = () => {
                         ease: "power2.out",
                       },
                       {
-                        start: 70,
-                        end: 80,
+                        start: 80,
+                        end: 85,
                         to: { opacity: 0, scale: 0 },
                         ease: "power2.out",
                       },
@@ -301,12 +301,12 @@ const WorldBuildingSection = () => {
                     </div>
                   </ST.Animation>
                   <ST.Waypoint
-                    at={50}
+                    at={65}
                     onCall={handleStumpTextStart}
                     onReverseCall={handleStumpTextReverse}
                   />
                   <ST.Waypoint
-                    at={72}
+                    at={80}
                     onCall={handleStumpTextReverseAlt}
                     onReverseCall={handleStumpTextStartAlt}
                   />

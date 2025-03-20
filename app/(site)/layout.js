@@ -10,6 +10,7 @@ import faviconIco from "../../public/favicon/favicon.ico";
 import favicon from "../../public/favicon/favicon.svg";
 import favicon96 from "../../public/favicon/favicon-96x96.png";
 import manifest from "../../public/static/webmanifest.json";
+import SmoothScroll from "@/components/SmoothScroll";
 
 import "@/styles/global.scss";
 
@@ -76,16 +77,18 @@ export default async function RootLayout({ children }) {
         <link rel="manifest" href={manifest.src} />
       </Head>
       <body className={`${greedNarrow.variable} ${greedStandard.variable}`}>
-        <ModalProvider>
-          <Layout
-            contactEmail={contactEmail}
-            hasEvents={events && events.length > 0}
-          />
-          <main>
-            {children}
-            <Footer contactEmail={contactEmail} />
-          </main>
-        </ModalProvider>
+        <SmoothScroll>
+          <ModalProvider>
+            <Layout
+              contactEmail={contactEmail}
+              hasEvents={events && events.length > 0}
+            />
+            <main>
+              {children}
+              <Footer contactEmail={contactEmail} />
+            </main>
+          </ModalProvider>
+        </SmoothScroll>
       </body>
     </html>
   );
