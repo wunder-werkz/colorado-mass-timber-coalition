@@ -210,7 +210,7 @@ const CONTENT = {
       text: "Has a natural mechanism of resistance to fire: a protective char layer<sup>18</sup>",
       image: {
         url: "/img/benefits/CMTC_Section4_3.png",
-        caption: "Timber Lab",
+        caption: "Timberlab",
       },
     },
     {

@@ -103,12 +103,12 @@ const Header = ({ contactEmail, hasEvents }) => {
   const SOCIAL_LINKS = [
     {
       icon: <LinkedIn />,
-      url: "https://www.linkedin.com/company/colorado-mass-timber-coalition/",
+      url: "https://www.linkedin.com/company/comtc/",
       ariaLabel: "Linked In",
     },
     {
       icon: <Instagram />,
-      url: "https://www.instagram.com/coloradomass.timber/",
+      url: "https://www.instagram.com/ColoradoMassTimberCoalition/",
       ariaLabel: "Instagram",
     },
   ];
