@@ -337,7 +337,7 @@ const CONTENT = {
     alt: "Mile High Stadium",
   },
   image2: {
-    src: "/img/worldbuilding/world-building2.jpg",
+    src: "/img/worldbuilding/world-building_2.jpg",
     alt: "Platte Fifteen - OZ Architecture",
   },
   sqFt: [
