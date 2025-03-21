@@ -3,66 +3,74 @@ import Button from "@/components/Button";
 
 import { forwardRef } from "react";
 
-const Event = forwardRef(({ isSlider, event, secondary, isPastEvent = false }, ref) => {
-  const renderDate = () => {
-    const dateOptions = {
-      month: "short",
-      day: "numeric",
-      ...(isPastEvent && { year: "numeric" }),
+const Event = forwardRef(
+  ({ isSlider, event, secondary, isPastEvent = false }, ref) => {
+    const renderDate = () => {
+      const dateOptions = {
+        month: "short",
+        day: "numeric",
+        timeZone: "UTC",
+        ...(isPastEvent && { year: "numeric" }),
+      };
+
+      if (!event.endDate) {
+        return new Date(event.startDate).toLocaleDateString(
+          "en-US",
+          dateOptions
+        );
+      }
+
+      if (event.startDate && event.endDate) {
+        const startDate = new Date(event.startDate).toLocaleDateString(
+          "en-US",
+          dateOptions
+        );
+        const endDate = new Date(event.endDate).toLocaleDateString(
+          "en-US",
+          dateOptions
+        );
+        return `${startDate} - ${endDate}`;
+      }
+
+      return "";
     };
 
-    if (!event.endDate) {
-      return new Date(event.startDate).toLocaleDateString("en-US", dateOptions);
-    }
+    const selfHosted = event?.selfHosted;
 
-    if (event.startDate && event.endDate) {
-      const startDate = new Date(event.startDate).toLocaleDateString(
-        "en-US",
-        dateOptions
-      );
-      const endDate = new Date(event.endDate).toLocaleDateString(
-        "en-US",
-        dateOptions
-      );
-      return `${startDate} - ${endDate}`;
-    }
+    console.log(event);
 
-    return "";
-  };
-
-  const selfHosted = event?.selfHosted;
-
-  return (
-    <div
-      className={`${styles.eventWrap} ${secondary ? styles.secondary : ""}${isSlider && styles.slider}`}
-      ref={ref}
-    >
+    return (
       <div
-        className={`${styles.eventDate} ${selfHosted ? styles.selfHosted : ""}`}
+        className={`${styles.eventWrap} ${secondary ? styles.secondary : ""}${isSlider && styles.slider}`}
+        ref={ref}
       >
-        {renderDate()}
-      </div>
-      <div
-        className={`${styles.eventInfo} ${selfHosted ? styles.selfHosted : ""}`}
-      >
-        <div className={styles.eventInfoInner}>
-          <h3>{event.name}</h3>
-          <p>{event.location}</p>
+        <div
+          className={`${styles.eventDate} ${selfHosted ? styles.selfHosted : ""}`}
+        >
+          {renderDate()}
         </div>
-        {event.link && (
-          <Button
-            href={`${event.link}`}
-            variant="primary"
-            color={selfHosted ? "forest" : "orange"}
-            fill={false}
-          >
-            See More
-          </Button>
-        )}
+        <div
+          className={`${styles.eventInfo} ${selfHosted ? styles.selfHosted : ""}`}
+        >
+          <div className={styles.eventInfoInner}>
+            <h3>{event.name}</h3>
+            <p>{event.location}</p>
+          </div>
+          {event.link && (
+            <Button
+              href={`${event.link}`}
+              variant="primary"
+              color={selfHosted ? "forest" : "orange"}
+              fill={false}
+            >
+              See More
+            </Button>
+          )}
+        </div>
       </div>
-    </div>
-  );
-});
+    );
+  }
+);
 
 Event.displayName = "Event";
 
