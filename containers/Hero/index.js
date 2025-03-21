@@ -224,7 +224,7 @@ const Hero = () => {
                     color="orange"
                     inline
                   >
-                    <p>Building better starts with creating healthy forests</p>
+                    <p>Building better starts with suporting healthy forests</p>
                   </SplitTextBg>
                 </div>
               </div>

@@ -10,7 +10,7 @@ import Stumpy from "@/components/Stumpy";
 
 import useWindowSize from "@/hooks/useWindowSize";
 
-import timberageImage from "@/public/img/tabs/Section06_TAS_2.jpg";
+import timberageImage from "@/public/img/tabs/TA_2_Flipped.png";
 
 import { mapToGlobalProgress } from "../../utils";
 
