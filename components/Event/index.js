@@ -6,20 +6,15 @@ import { forwardRef } from "react";
 const Event = forwardRef(({ isSlider, event, secondary, isPastEvent = false }, ref) => {
   const renderDate = () => {
     const dateOptions = {
-      month: "short",
-      day: "numeric",
-      ...(isPastEvent && { year: "numeric" }),
+      timeZone: 'UTC', month: "short", day: "numeric",  ...(isPastEvent && { year: "numeric" })
     };
 
     if (!event.endDate) {
-      return new Date(event.startDate).toLocaleDateString("en-US", dateOptions);
+      return new Date(event.startDate).toLocaleDateString('en-US', {dateOptions});
     }
 
     if (event.startDate && event.endDate) {
-      const startDate = new Date(event.startDate).toLocaleDateString(
-        "en-US",
-        dateOptions
-      );
+      const startDate = new Date(event.startDate).toLocaleDateString('en-US', dateOptions);
       const endDate = new Date(event.endDate).toLocaleDateString(
         "en-US",
         dateOptions
