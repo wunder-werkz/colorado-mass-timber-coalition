@@ -32,6 +32,7 @@ const Event = forwardRef(
         return `${startDate} - ${endDate}`;
       }
 
+
       return "";
     };
 
