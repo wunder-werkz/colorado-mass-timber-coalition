@@ -119,7 +119,7 @@ export default function Tab6({ index }) {
               can be used to help address our housing crisis, extend the carbon
               storage life of a tree, and reduce the environmental impact of new
               construction. 90% of the wood products Coloradans purchase and use
-              everyday are imported.<sup> 2 </sup>
+              everyday are imported.
             </p>
           </SplitTextBg>
         </div>
