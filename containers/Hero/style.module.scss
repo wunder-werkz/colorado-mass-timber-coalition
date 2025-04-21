@@ -141,12 +141,6 @@
   max-width: 890px;
   text-align: left;
   width: $six-twelfths;
-  p {
-    @include h1;
-    & {
-      line-height: inherit;
-    }
-  }
   @include lap-small {
     width: $nine-twelfths;
   }
@@ -154,6 +148,13 @@
     max-width: 90%;
     width: 90%;
   }
+  p {
+    @include h1;
+    & {
+      line-height: inherit;
+    }
+  }
+ 
 }
 .eyeball {
   opacity: 0;
