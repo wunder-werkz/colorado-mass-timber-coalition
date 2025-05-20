@@ -240,7 +240,12 @@
 .secondary {
   justify-content: center;
   padding: 0px 30px;
-
+  &.small {
+    border-width: 3px;
+    font-size: 20px;
+    height: 35px;
+    padding: 0 15px;
+  }
   &.forest {
     &:not(.fill) {
       border-color: $forest;
@@ -259,6 +264,9 @@
       background-color: $cream;
       border-color: $orange;
       color: $forest;
+      &::before {
+        background-color: $orange;
+      }
     }
 
     &.fill {

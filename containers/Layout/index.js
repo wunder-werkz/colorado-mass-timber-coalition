@@ -130,16 +130,64 @@ const Header = ({ contactEmail, hasEvents }) => {
           <LogoSm />
         </Link>
       </div>
-
-      <button
-        className={`${styles.hamburger} ${isMenuOpen ? styles.open : ""}`}
-        onClick={toggleMenu}
-        aria-label="hamburger menu"
-      >
-        <span></span>
-      </button>
-
-      <nav className={styles.menu} ref={menuRef}>
+      <div className={styles.mobileNav}>
+        <button
+          className={`${styles.hamburger} ${isMenuOpen ? styles.open : ""}`}
+          onClick={toggleMenu}
+          aria-label="hamburger menu"
+        >
+          <span></span>
+        </button>
+      </div>
+      <nav className={styles.mainNav}>
+        <ul>
+          <li> 
+            <Button
+                href={"/about"}
+                variant="secondary"
+                large={false}
+                color={"orange"}
+                fill={false}
+              >
+              Our Story
+            </Button>
+          </li>
+          <li>
+            <Button
+                href="/events"
+                variant="secondary"
+                color="orange"
+                large={false}
+                fill={false}
+              >
+                Events
+            </Button>
+          </li>
+          <li>
+            <Button
+                href="/action"
+                variant="secondary"
+                color="orange"
+                large={false}
+                fill={false}
+              >
+                Take Action
+            </Button>
+          </li>
+          <li>
+            <Button
+                href="mailto:wlepry@nationalforests.org"
+                variant="secondary"
+                color="orange"
+                large={false}
+                fill={false}
+              >
+                contact
+            </Button>
+          </li>
+        </ul>
+      </nav>
+      <nav className={`${styles.menu} ${styles.mobileNav}`} ref={menuRef}>
         <div
           className={styles.stumpyWrap}
           ref={(el) => (menuItemsRef.current[0] = el)}

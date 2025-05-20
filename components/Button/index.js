@@ -21,6 +21,7 @@ export default function Button({
     styles[color],
     styles[className],
     fill ? styles.fill : "",
+    large ? styles.large : styles.small,
     className,
   ]
     .filter(Boolean)

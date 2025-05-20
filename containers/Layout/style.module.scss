@@ -36,7 +36,29 @@
     }
   }
 }
-
+.mainNav {
+  display: inline;
+  @include tablet-and-lower {
+    display: none;
+  }
+  ul {
+    display: inline;
+    list-style: none;
+    li {
+      display: inline;
+      margin-right: 10px;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}
+.mobileNav {
+  display: none;
+  @include tablet-and-lower {
+    display: block;
+  }
+}
 .hamburger {
   border: none;
   background: $orange;
