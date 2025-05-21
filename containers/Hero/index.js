@@ -97,7 +97,7 @@ const Hero = () => {
         },
       }}
     >
-      <ST.Pin childHeight={"100vh"} pinSpacerHeight={"300vh"} top={0}>
+      <ST.Pin childHeight={"100vh"} pinSpacerHeight={"250vh"} top={0}>
         <section className={styles.hero} id="hero-section" ref={heroSectionRef}>
           <div
             className={`${styles.maskContainer} mask-container`}
@@ -172,7 +172,7 @@ const Hero = () => {
           </div>
           <ST.Animation
             tween={{
-              start: 65,
+              start: 25,
               end: 80,
               to: { y: 0, opacity: 1, ease: "power2.inOut" },
             }}
