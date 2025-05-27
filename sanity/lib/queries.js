@@ -40,7 +40,7 @@ export const ACTION_QUERY = defineQuery(`*[_type == "takeAction"]{
       link,
      },
   },
-  subheadline,
+  subHeadline,
   subcommittees[]-> {
     name,
     description

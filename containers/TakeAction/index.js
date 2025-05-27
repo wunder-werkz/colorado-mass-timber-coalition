@@ -19,6 +19,7 @@ export default function TakeAction({ content }) {
     const headlineRef = useRef();
     const orgSectionRef = useRef();
     const orgTextRef = useRef();
+    const subContainerRef = useRef();
     const subTextRef = useRef();
     const stumpTextRef = useRef();
     const { width } = useWindowSize();
@@ -53,6 +54,18 @@ export default function TakeAction({ content }) {
                     start: "top 50%",
                     onEnter: () => {
                         orgTextRef.current?.restart();
+                    }
+                }
+            })
+        }
+
+        if (subTextRef.current) {
+            gsap.to(subTextRef.current, {
+                scrollTrigger: {
+                    trigger: subContainerRef.current, 
+                    start: "top 50%", 
+                    onEnter: () => {
+                        subTextRef.current?.restart();
                     }
                 }
             })
@@ -145,7 +158,7 @@ export default function TakeAction({ content }) {
                                             )
                                         } else {
                                             return (
-                                                <li className={styles.orgItem}> {name} </li>
+                                                <li className={styles.orgItem} key={`org-list-item-${i}`}> {name} </li>
                                             )
                                             
                                         }
@@ -158,11 +171,11 @@ export default function TakeAction({ content }) {
             </div>
         </div>
       }
-      <div className={styles.subcommitteeSection}>
+      <div className={styles.subcommitteeSection} ref={subContainerRef}>
         {subHeadline && 
             <div className={styles.subHead}>
                 <SplitTextBg ref={subTextRef} color="orange" inline>
-                    <h2>{subHead}</h2>
+                    <h2>{subHeadline}</h2>
                 </SplitTextBg>
             </div>
         }
