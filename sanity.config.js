@@ -17,6 +17,7 @@ export default defineConfig({
             S.documentTypeListItem("general"),
             S.documentTypeListItem("event"),
             S.documentTypeListItem("homePage"),
+            S.documentTypeListItem("takeAction"),
           ]),
     }),
   ],

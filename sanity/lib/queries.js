@@ -26,3 +26,31 @@ export const HOME_QUERY = defineQuery(`*[_type == "homePage"]{
      link
   }
 }`);
+
+
+export const ACTION_QUERY = defineQuery(`*[_type == "takeAction"]{
+  pageTitle,
+  pageMetadata,
+  headline,
+  orgHeadline,
+  orgGroups[]-> {
+     groupTitle,
+     organizations[]-> {
+      name,
+      link,
+     },
+  },
+  subheadline,
+  subcommittees[]-> {
+    name,
+    description
+  },
+  stumpyText,
+  stumpyLink[]-> {
+    linkTitle,
+    url,
+    newWindow,
+    downloadPdf,
+    "downloadUrl": downloadPdf.asset->url,
+  },
+}`);
