@@ -62,7 +62,7 @@
         border-bottom: 2px solid $black;
         display: flex;
         justify-content: space-between;
-        padding: 10px 0;
+        padding: 10px 5px;
         transition: background-color 0.25s ease-in-out;
         width: 100%;
         .title {
@@ -86,7 +86,7 @@
             display: inline-block;
             padding: 6px;
             margin-top: -3px;
-            transition: transform 0.25s ease-in-out;
+            transition: all 0.25s ease-in-out;
             transform: rotate(45deg);
             -webkit-transform: rotate(45deg);
           }
@@ -101,10 +101,41 @@
         &.active {
           .arrowContainer {
             .arrow {
+              margin-top: 3px;
               transform: rotate(-135deg);
               -webkit-transform: rotate(-135deg);
             }
           }
+        }
+      }
+      .organizations {
+        .orgList {
+          display: flex;
+          flex-flow: column;
+          list-style: none;
+          max-height: 0;
+          margin: 0;
+          overflow: hidden;
+          padding: 0;
+          transition: all .5s ease-in-out;
+          .orgItem {
+            font-size: 17pt;
+            padding: 10px 0;
+            &:first-of-type {
+              padding-top: 20px;
+            }
+            a {
+              border-bottom: 1px solid $black;
+            }
+          }
+        }
+        &.active {
+          .orgList {
+            height: auto;
+            max-height: 1500px;
+            opacity: 1;
+          }
+         
         }
       }
     }

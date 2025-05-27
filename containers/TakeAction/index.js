@@ -114,9 +114,9 @@ export default function TakeAction({ content }) {
                     const isActive = groupTitle == activeOrgGroup;
                     return (
                         <div className={styles.orgDrawerItem} key={`org-drawer-${i}`}>
-                            <div className={styles.titleContainer}>
-                                <div className={`${styles.title} ${isActive && styles.active}`}
-                                onClick={() => updateActive(i)}> 
+                            <div className={`${styles.titleContainer} ${isActive && styles.active}`} onClick={() => updateActive(groupTitle)}>
+                                <div className={styles.title}
+                                > 
                                     {groupTitle} 
                                 </div> 
                                 <div className={styles.arrowContainer}>
@@ -124,12 +124,14 @@ export default function TakeAction({ content }) {
                                     </div>
 
                                 </div>
-                                <div className={`${styles.organizations} ${isActive && styles.active}`}>
-                                    <ul className={styles.orgList}>
-                                        {organizations.map((org, i) => {
-                                            const {name, link} = org;
+                            </div>
+                            <div className={`${styles.organizations} ${isActive && styles.active}`}>
+                                <ul className={styles.orgList}>
+                                    {organizations.map((org, i) => {
+                                        const {name, link} = org;
 
-                                            if (link) {
+                                        if (link) {
+                                            return ( 
                                                 <li className={styles.orgItem} key={`org-list-item-${i}`}>
                                                     <a
                                                         key={i}
@@ -139,13 +141,16 @@ export default function TakeAction({ content }) {
                                                         >
                                                     {name}
                                                 </a>
-                                              </li>
-                                            } else {
+                                            </li>
+                                            )
+                                        } else {
+                                            return (
                                                 <li className={styles.orgItem}> {name} </li>
-                                            }
-                                        })}
-                                    </ul>
-                                </div>
+                                            )
+                                            
+                                        }
+                                    })}
+                                </ul>
                             </div>
                         </div>
                     )
