@@ -25,6 +25,16 @@
 
 .logo {
   transform: translateY(-100px);
+  svg path {
+    transition: fill 0.25s ease-in-out;
+  }
+  &:hover {
+    svg {
+      path {
+        fill: $orange;
+      }
+    }
+  }
   @include lap-smaller {
     svg {
       width: 150px;
