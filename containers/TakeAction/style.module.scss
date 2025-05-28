@@ -48,7 +48,7 @@
     padding: 60px 0;
     h2 {
       width: 70%;
-      @include h2;
+      @include h1;
     }
   }
   .orgDrawer {
@@ -151,7 +151,44 @@
     }
     h2 {
       width: 70%;
-      @include h2;
+      @include h1;
+    }
+    .subList {
+      align-items: flex-start;
+      column-gap: $one-twelfth;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: flex-start;
+
+      .subItem {
+        padding-bottom: 30px;
+        width: $four-twelfths;
+        .subTitle {
+          border-bottom: 2px solid $black;
+          padding-bottom: 10px;
+          @include h3;
+        }
+        .description {
+          font-size: 16pt;
+        }
+      }
+    }
+  }
+  .stumpyWrap {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 60px 0;
+    width: $eight-twelfths;
+   
+  }
+  .stumpyText {
+    max-width: 300px;
+    width: $five-twelfths;
+    padding-left: 20px;
+    span {
+      display: block;
+      padding: 5px 0 5px 0;
     }
   }
 }
