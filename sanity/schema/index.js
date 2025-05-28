@@ -1,4 +1,5 @@
 import event from "./event";
+import footer from "./footer";
 import general from "./general";
 import homepage from "./homepage";
 import link from "./link";
@@ -10,6 +11,7 @@ import takeAction from "./takeAction";
 
 export const schemaTypes = [
     event, 
+    footer,
     general, 
     homepage, 
     link,

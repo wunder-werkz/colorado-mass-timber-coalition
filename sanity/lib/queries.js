@@ -27,6 +27,21 @@ export const HOME_QUERY = defineQuery(`*[_type == "homePage"]{
   }
 }`);
 
+export const FOOTER_QUERY = defineQuery(`*[_type == "footer"]{
+  instaLink,
+  email,
+  linkedInUrl,
+  emailSignupHeadline,
+  emailSignupCopy,
+  emailSignupLink[]-> {
+    linkTitle,
+    url,
+    newWindow,
+    downloadPdf,
+    "downloadUrl": downloadPdf.asset->url,
+  }
+}`);
+
 
 export const ACTION_QUERY = defineQuery(`*[_type == "takeAction"]{
   pageTitle,
