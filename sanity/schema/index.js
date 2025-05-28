@@ -7,6 +7,7 @@ import organization from "./organization";
 import orgGroup from "./orgGroup";
 import partner from "./partner";
 import subcommittee from "./subcommittee";
+import sliderImage from "./sliderImage";
 import takeAction from "./takeAction";
 
 export const schemaTypes = [
@@ -18,6 +19,7 @@ export const schemaTypes = [
     organization,
     orgGroup,
     partner,
+    sliderImage,
     subcommittee,
     takeAction
 ];

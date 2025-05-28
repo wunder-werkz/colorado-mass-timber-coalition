@@ -22,16 +22,17 @@ const homepage = {
           { 
             type: "reference",
             to: [
-              {type: "sliderImage"},
+              {
+                type: "sliderImage"
+              },
             ],
           },
         ],
-        validation: (Rule) => Rule.max(5).warning("5 slides max"),
       }, 
       {
         name: "mission",
         type: "string",
-        title: "Mission Statment"
+        title: "Mission Statment",
       },
       { name: "takeActionHeadline",
         type: "string",
