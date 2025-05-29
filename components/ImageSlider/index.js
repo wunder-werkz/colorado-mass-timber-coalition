@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
+"use client";
+import { useEffect, useRef, useState } from "react";
 
 import ImageRender from "../ImageRender";
 
@@ -6,14 +7,9 @@ import { DotSvg, NextSvg, PrevSvg } from "./Svg";
 
 import styles from "./style.module.scss";
 
-import { gsap, ScrollTrigger } from "~/lib/gsapConfig";
+import { gsap, ScrollTrigger } from "@/lib/gsapConfig";
 
-const ImageSliderSection = ({ section }) => {
-  const {
-    images,
-  } = section;
-
-  
+const ImageSliderSection = ({ images }) => {  
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const sliderRef = useRef(null);
@@ -27,7 +23,7 @@ const ImageSliderSection = ({ section }) => {
         if (slides) {
           gsap.set(slides, {
             visibility: "hidden",
-            scale: 0.8,
+            scale: 0.5,
             opacity: 0,
             zIndex: 0,
           });
@@ -35,7 +31,7 @@ const ImageSliderSection = ({ section }) => {
         if (slides[images.length - 1]) {
           gsap.set(slides[images.length - 1], {
             visibility: "visible",
-            scale: 0.8,
+            scale: 0.5,
             opacity: 1,
             x: "-100%",
             zIndex: 0,
@@ -53,7 +49,7 @@ const ImageSliderSection = ({ section }) => {
         if (slides[1]) {
           gsap.set(slides[1], {
             visibility: "visible",
-            scale: 0.8,
+            scale: 0.5,
             opacity: 1,
             x: "100%",
             zIndex: 0,
@@ -133,7 +129,7 @@ const ImageSliderSection = ({ section }) => {
                 scale: 0,
                 opacity: 0,
                 zIndex: 0,
-                duration: 0.4,
+                duration: 0.5,
                 ease: "power2.inOut",
               },
               0,
@@ -141,9 +137,9 @@ const ImageSliderSection = ({ section }) => {
             .to(
               slides[tempIndex.current],
               {
-                scale: 0.8,
+                scale: 0.5,
                 x: "-100%",
-                duration: 0.4,
+                duration: 0.5,
                 zIndex: 1,
                 ease: "power2.inOut",
               },
@@ -155,7 +151,7 @@ const ImageSliderSection = ({ section }) => {
                 scale: 1,
                 x: "0%",
                 zIndex: 3,
-                duration: 0.4,
+                duration: 0.5,
                 ease: "power2.inOut",
               },
               0.1,
@@ -163,11 +159,11 @@ const ImageSliderSection = ({ section }) => {
             .to(
               slides[nextIndex],
               {
-                scale: 0.8,
+                scale: 0.5,
                 opacity: 1,
                 zIndex: 1,
                 x: "100%",
-                duration: 0.4,
+                duration: 0.5,
                 ease: "power2.inOut",
               },
               0.1,
@@ -198,7 +194,7 @@ const ImageSliderSection = ({ section }) => {
                 scale: 0,
                 opacity: 0,
                 zIndex: 0,
-                duration: 0.4,
+                duration: 0.5,
                 ease: "power2.inOut",
               },
               0,
@@ -206,10 +202,10 @@ const ImageSliderSection = ({ section }) => {
             .to(
               slides[tempIndex.current],
               {
-                scale: 0.8,
+                scale: 0.5,
                 x: "100%",
                 zIndex: 1,
-                duration: 0.4,
+                duration: 0.5,
                 ease: "power2.inOut",
               },
               0,
@@ -220,7 +216,7 @@ const ImageSliderSection = ({ section }) => {
                 scale: 1,
                 x: "0%",
                 zIndex: 3,
-                duration: 0.4,
+                duration: 0.5,
                 ease: "power2.inOut",
               },
               0.1,
@@ -228,11 +224,11 @@ const ImageSliderSection = ({ section }) => {
             .to(
               slides[prevIndex],
               {
-                scale: 0.8,
+                scale: 0.5,
                 opacity: 1,
                 zIndex: 2,
                 x: "-100%",
-                duration: 0.4,
+                duration: 0.5,
                 ease: "power2.inOut",
               },
               0.1,
@@ -277,19 +273,32 @@ const ImageSliderSection = ({ section }) => {
               <PrevSvg />
             </button>
             <div className={styles.sliderWrapper} ref={sliderRef}>
-              {images.map((image, i) => (
-                <div className={styles.slideItem} key={`slide-${i}`}>
+              {images.map((slide, i) => {
+                const {image, headline, link} = slide;
+                return (
+                  <div className={styles.slideItem} key={`slide-${i}`}>
+                 
                   <div
                     className={styles.imageContainer}
                   >
+                     {(headline || link) && 
+                    <div className={styles.textContainer}>
+                      {headline && <div className={styles.headline}> 
+                        <span>
+                          {headline}
+                        </span>
+                      </div>}
+                    </div>
+                  }
                     <ImageRender
-                      image={image.image}
+                      image={image}
                       size="medium"
                       priority="lazy"
                     />
                   </div>
                 </div>
-              ))}
+                )
+              })}
             </div>
             <button
               className={`${styles.nextButton} ${styles.button}`}

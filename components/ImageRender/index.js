@@ -1,10 +1,8 @@
 import { useMemo } from "react";
 import Image from "next/image";
-import { useNextSanityImage } from "next-sanity-image";
+// import { useNextSanityImage } from "next-sanity-image";
+import { client } from '../../sanity/lib/client'
 
-import styles from "./style.module.scss";
-
-import { getClient } from "~/lib/sanity.client";
 const imageSizes = {
   small: 400,
   medium: 800,
@@ -12,12 +10,15 @@ const imageSizes = {
 };
 
 export default function ImageRender({
+  imageUrl,
   image,
-  size = "medium",
+  title, 
+  size,
+  height, 
+  width, 
   priority = false,
-  position = "relative",
 }) {
-  const client = getClient();
+
   const imageBuilder = useMemo(
     () => (imageUrlBuilder, options) => {
       return imageUrlBuilder
@@ -27,20 +28,47 @@ export default function ImageRender({
     },
     [size],
   );
-
-  const imageProps = useNextSanityImage(client, image);
+  const imageProps = {src: `${image.asset.url}?q=75&fit=clip&auto=format`, width: image.asset.metadata.dimensions.width, height: image.asset.metadata.dimensions.height};
+  if (image) {
   if (!imageProps) return null;
+  const blurDataUrl = image?.asset?.metadata?.lqip;
+  if (blurDataUrl) {
+      return (
+        <Image
+          {...imageProps}
+          sizes={`(max-width: ${imageSizes[size]}px) 100vw, ${imageSizes[size]}px`}
+          placeholder="blur"
+          blurDataURL={blurDataUrl}
+          priority={priority}
+          loading={priority ? "eager" : "lazy"}
+          alt={title ? title : image?.alt ? image?.alt : ""}
+        />
+      );
+    } else {
+      return (
+        <Image
+          {...imageProps}
+          sizes={`(max-width: ${imageSizes[size]}px) 100vw, ${imageSizes[size]}px`}
+          priority={priority}
+          loading={priority ? "eager" : "lazy"}
+          alt={title ? title : image?.alt ? image?.alt : ""}
+        />
+      );
+    }
+   
+  } else if (imageUrl) {
+      const imageSize = size ? size : "medium";
+      return (
+        <Image
+          alt={title}
+          src={imageUrl}
+          width={size ? imageSizes[imageSize] : height ? height : 900}
+          height={size ? imageSizes[imageSize] : width ? width : 900}
+          loading={priority ? "eager" : "lazy"}
+          priority={priority}
+        />
+      );
 
-  return (
-    <Image
-      {...imageProps}
-      className={position == "absolute" ? styles.absolute : styles.relative}
-      sizes={`(max-width: ${imageSizes[size]}px) 100vw, ${imageSizes[size]}px`}
-      placeholder="blur"
-      blurDataURL={image?.asset?.metadata?.lqip}
-      priority={priority}
-      loading={priority ? "eager" : "lazy"}
-      alt={image?.alt || ""}
-    />
-  );
+  } else return;
+  
 }

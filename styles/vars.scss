@@ -29,6 +29,12 @@ $white: #F0F5EA;
   }
 }
 
+  
+@mixin small() {
+  @media only screen and (max-width: 1079px) {
+    @content;
+  }
+}
 
 @mixin medium() {
   @media only screen and (max-width: 1439px) {

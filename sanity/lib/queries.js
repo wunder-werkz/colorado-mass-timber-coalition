@@ -21,6 +21,32 @@ export const HOME_QUERY = defineQuery(`*[_type == "homePage"]{
   pageTitle,
   pageMetadata,
   partnersText,
+  heroSlider[]-> {
+     image{
+        asset->,
+        alt,
+        hotspot,
+        crop
+    },     
+    headline,
+    link[]-> {
+      linkTitle,
+      url,
+      newWindow,
+      downloadPdf,
+      "downloadUrl": downloadPdf.asset->url,
+    },
+  },
+  mission,
+  takeActionHeadline,
+  takeActionCopy,
+  takeActionLink[]-> {
+    linkTitle,
+    url,
+    newWindow,
+    downloadPdf,
+    "downloadUrl": downloadPdf.asset->url,
+  },
   partners[]-> {
      name, 
      link
