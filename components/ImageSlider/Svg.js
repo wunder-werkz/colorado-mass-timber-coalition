@@ -38,18 +38,6 @@ export function NextSvg() {
 
 export function DotSvg() {
   return (
-    <svg
-      width="39"
-      height="39"
-      viewBox="0 0 39 39"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M19.5 0L24.1483 8.27163L33.286 5.70942L30.7284 14.8472L39 19.5L30.7284 24.1483L33.286 33.286L24.1483 30.7284L19.5 39L14.8472 30.7284L5.70942 33.286L8.27163 24.1483L0 19.5L8.27163 14.8472L5.70942 5.70942L14.8472 8.27163L19.5 0Z"
-        fill="#383419"
-        fillOpacity="0.5"
-      />
-    </svg>
+   <div className={styles.dotInner}></div>
   );
 }

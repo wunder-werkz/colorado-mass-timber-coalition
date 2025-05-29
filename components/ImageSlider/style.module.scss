@@ -25,7 +25,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    opacity: 0;
     position: absolute;
+    transition: opacity 0.25s ease-in-out;
     bottom: 0;
     top: 0;
     left: 60px;
@@ -70,7 +72,13 @@
   justify-content: center;
   align-items: center;
   visibility: visible;
-
+  &.active {
+    .imageContainer {
+      .textContainer {
+        opacity: 1;
+      }
+    }
+  }
   img {
     width: 100%;
     height: 100%;
@@ -82,7 +90,7 @@
 .button {
   z-index: 10;
   position: absolute;
-  top: 50%;
+  top: 80%;
   border: none;
   background: none;
 
@@ -105,16 +113,18 @@
   }
 }
 
+
+
 .prevButton {
-  height: 50px;
-  width: 50px;
-  left: 0px;
+  height: 70px;
+  width: 70px;
+  left: 30px;
 }
 
 .nextButton {
-  height: 50px;
-  width: 50px;
-  right: 0px;
+  height: 70px;
+  width: 70px;
+  right: 30px;
 }
 
 .maskedImage {
@@ -179,21 +189,23 @@
   left: 50%;
   transform: translateX(-50%);
   .active {
-    svg path {
-      fill-opacity: 1;
+    .dotInner {
+      opacity: 1;
     }
   }
 
-  svg {
+  .dotInner {
+    background-color: $orange;
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    opacity: 0.5;
     transition: all 0.3s linear;
-    path {
-      fill: $orange;
-    }
   }
 
   @include small {
     bottom: 30px;
-    svg {
+    .dotInner {
       margin-top: 25px;
       width: 24px;
       height: 24px;

@@ -275,8 +275,9 @@ const ImageSliderSection = ({ images }) => {
             <div className={styles.sliderWrapper} ref={sliderRef}>
               {images.map((slide, i) => {
                 const {image, headline, link} = slide;
+                const isActive = currentIndex == i;
                 return (
-                  <div className={styles.slideItem} key={`slide-${i}`}>
+                  <div className={`${styles.slideItem} ${isActive && styles.active}`} key={`slide-${i}`}>
                  
                   <div
                     className={styles.imageContainer}
