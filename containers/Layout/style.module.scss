@@ -219,7 +219,7 @@
   justify-content: center;
   width: 50%;
   @include lap-smaller {
-    width: $five-twelfths;
+    width: $ten-twelfths;
   }
   @include tablet-and-lower {
     align-items: center;
@@ -238,6 +238,18 @@
         border-radius: 50%;
         background: $forest;
       }
+    }
+  }
+  span {
+    height: auto;
+    width: 100%;
+    @include h1;
+  
+    &.circle {
+      width: 70px !important;
+      height: 70px !important;
+      border-radius: 50%;
+      background: $forest;
     }
   }
 }

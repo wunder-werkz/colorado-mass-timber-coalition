@@ -200,20 +200,38 @@ const Header = ({ contactEmail, hasEvents }) => {
           className={styles.buttonWrap}
           ref={(el) => (menuItemsRef.current[1] = el)}
         >
+           <Button
+                href={"/about"}
+                variant="primary"
+                color="forest"
+                large={true}
+              >
+              Our Story
+            </Button>
           {hasEvents && (
             <Button
               variant="primary"
               color="forest"
-              className="large"
-              onClick={() => handleLinkClick("/events")}
+              href={"/events"}
+              large={true}
             >
               Events
             </Button>
           )}
+           <li>
+            <Button
+                href="/action"
+                variant="primary"
+                color="forest"
+                large={true}
+              >
+                Take Action
+            </Button>
+          </li>
           <Button
             variant="primary"
             color="forest"
-            className="large"
+            large={true}
             onClick={() => handleLinkClick(`mailto:${contactEmail}`, true)}
           >
             Contact

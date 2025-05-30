@@ -200,48 +200,42 @@
   @include x-small {
     height: 40px;
   }
-  // @include medium {
-  //   font-size: 73px;
-  //   height: 100px;
-  //   padding-right: 130px;
-  //   .circle {
-  //     height: 100px;
-  //     right: -3px;
-  //     width: 100px;
-  //     svg {
-  //       width: 46px;
-  //       height: 46px;
-  //     }
-  //   }
-  // }
-  // @include lap-small {
-  //   font-size: 53px;
-  //   height: 80px;
-  //   padding-right: 90px;
-  //   .circle {
-  //     height: 80px;
-  //     right: -3px;
-  //     width: 80px;
-  //     svg {
-  //       width: 36px;
-  //       height: 36px;
-  //     }
-  //   }
-  // }
-  // @include tablet-and-lower {
-  //   font-size: 33px;
-  //   height: 60px;
-  //   padding-right: 90px;
-  //   .circle {
-  //     height: 60px;
-  //     right: -3px;
-  //     width: 60px;
-  //     svg {
-  //       width: 26px;
-  //       height: 26px;
-  //     }
-  //   }
-  // }
+  @include medium {
+    padding-right: 130px;
+    .circle {
+      height: 100px;
+      right: -3px;
+      width: 100px;
+      svg {
+        width: 46px;
+        height: 46px;
+      }
+    }
+  }
+  @include lap-small {
+    padding-right: 90px;
+    .circle {
+      height: 80px;
+      right: -3px;
+      width: 80px;
+      svg {
+        width: 36px;
+        height: 36px;
+      }
+    }
+  }
+  @include tablet-and-lower {
+    padding-right: 90px;
+    .circle {
+      height: 60px;
+      right: -3px;
+      width: 60px;
+      svg {
+        width: 26px;
+        height: 26px;
+      }
+    }
+  }
 }
 
 // Secondary styles
