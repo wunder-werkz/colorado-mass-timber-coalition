@@ -82,7 +82,18 @@ const ImageSliderSection = ({ images }) => {
       ScrollTrigger.refresh();
     };
     const timeoutId = setTimeout(setupScrollTrigger, 250);
-
+    function durationSlider() {
+      var listItems = images.length;
+      var count = 0;
+      setInterval(function() {
+        count += 1;
+        if (count >= listItems) {
+          count = 0
+        }
+        animateSlider("next");
+      }, 5000)
+    }
+    durationSlider()
     return () => clearTimeout(timeoutId);
   }, [images]);
 
@@ -308,6 +319,7 @@ const ImageSliderSection = ({ images }) => {
                       }
                     </div>
                   }
+                  {<div className={`${styles.imageOverlay} ${isActive && styles.isActive}`}></div>}
                     <ImageRender
                       image={image}
                       size="medium"
