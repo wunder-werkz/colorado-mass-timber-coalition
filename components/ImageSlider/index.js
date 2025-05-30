@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import ImageRender from "../ImageRender";
 
 import { DotSvg, NextSvg, PrevSvg } from "./Svg";
-
+import Button from "../Button";
 import styles from "./style.module.scss";
 
 import { gsap, ScrollTrigger } from "@/lib/gsapConfig";
@@ -276,6 +276,7 @@ const ImageSliderSection = ({ images }) => {
               {images.map((slide, i) => {
                 const {image, headline, link} = slide;
                 const isActive = currentIndex == i;
+  
                 return (
                   <div className={`${styles.slideItem} ${isActive && styles.active}`} key={`slide-${i}`}>
                  
@@ -289,6 +290,22 @@ const ImageSliderSection = ({ images }) => {
                           {headline}
                         </span>
                       </div>}
+                      {(link && link[0]) && 
+                        <div className={styles.buttonContainer}>
+                          <Button
+                          href={link[0].url}
+                          newWindow={link[0].newWindow}
+                          downloadPdf={link[0].downloadPdf}
+                          downloadUrl={link[0].downloadUrl}
+                          variant="secondary"
+                          color="orange"
+                          fill={true}
+                          large={true}
+                        >
+                          {link[0].linkTitle ? link[0].linkTitle : "Learn More"}
+                        </Button>
+                        </div>
+                      }
                     </div>
                   }
                     <ImageRender

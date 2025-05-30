@@ -179,8 +179,8 @@
 .large {
   border-radius: 62px;
   clip-path: inset(0 0 0 0 round 62px);
-  font-size: 93px;
-  height: 130px;
+  font-size: 30px;
+  height: 60px;
   padding: 10px 160px 10px 30px;
   .circle {
     right: -4px;
@@ -273,6 +273,16 @@
       background-color: $orange;
       border-color: $orange;
       color: $forest;
+      &::before {
+       
+        background-color: $forest;
+
+      }
+      &:hover {
+        .text {
+          color: $cream;
+        }
+      }
     }
   }
 }
