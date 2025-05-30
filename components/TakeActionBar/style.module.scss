@@ -20,6 +20,12 @@
     @include phone {
       padding: 20px 10px;
     }
+    @include x-small {
+        flex-flow: column;
+        h1 {
+            margin: 0;
+        }
+    }
     .headline {
         width: $six-twelfths;
     }

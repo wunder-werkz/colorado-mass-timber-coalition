@@ -27,7 +27,7 @@ const Mission = ({ mission }) => {
 
     return (
         <div className={styles.missionContainer} ref={missionContainerRef}>
-            <SplitTextBg ref={missionRef} color="orange">
+            <SplitTextBg ref={missionRef} color="orange" inline>
                 <h1>{mission} </h1>
             </SplitTextBg>
         </div>

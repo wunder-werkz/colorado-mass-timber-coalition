@@ -90,7 +90,7 @@ const ImageSliderSection = ({ images }) => {
         if (count >= listItems) {
           count = 0
         }
-        animateSlider("next");
+        // animateSlider("next");
       }, 5000)
     }
     durationSlider()
@@ -287,7 +287,7 @@ const ImageSliderSection = ({ images }) => {
               {images.map((slide, i) => {
                 const {image, headline, link} = slide;
                 const isActive = currentIndex == i;
-  
+                const hasLink = link && link[0];
                 return (
                   <div className={`${styles.slideItem} ${isActive && styles.active}`} key={`slide-${i}`}>
                  
@@ -295,13 +295,13 @@ const ImageSliderSection = ({ images }) => {
                     className={styles.imageContainer}
                   >
                      {(headline || link) && 
-                    <div className={styles.textContainer}>
+                    <div className={`${styles.textContainer} ${hasLink && styles.hasLink}`}>
                       {headline && <div className={styles.headline}> 
                         <span>
                           {headline}
                         </span>
                       </div>}
-                      {(link && link[0]) && 
+                      {hasLink && 
                         <div className={styles.buttonContainer}>
                           <Button
                           href={link[0].url}

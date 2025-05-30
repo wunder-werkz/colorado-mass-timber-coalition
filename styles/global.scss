@@ -31,9 +31,8 @@ body {
       fill: $black;
     }
   }
-
-  @include lap-smaller {
-    padding: 0 20px;
+  @include x-small {
+    margin-top: 80px;
   }
 }
 

@@ -5,10 +5,11 @@
   width: 100%;
   .imageContainer {
     width: 100%;
+  
   }
   padding: 60px 0 0;
   @include small {
-    padding: 50px 10px 0;
+    padding: 50px 0px 0;
   }
 }
 
@@ -18,9 +19,7 @@
   position: relative;
   margin: 0 auto;
   min-height: 100%;
-  @include small {
-    padding-bottom: 90px;
-  }
+  
   .textContainer {
     display: flex;
     justify-content: center;
@@ -35,6 +34,22 @@
     right: 60px;
     z-index: 100;
     @include h1();
+    &.hasLink {
+      top: 60px;
+    }
+    @include small {
+      font-size: 35pt;
+    }
+    @include tablet-and-lower {
+      font-size: 30pt;
+      left: 30px;
+      right: 30px;
+    }
+    @include x-small {
+      font-size: 20pt;
+      left: 10px;
+      right: 10px;
+    }
     .headline {
       color: $black;
       span {
@@ -44,6 +59,16 @@
         display: inline;
         line-height: 5.5rem;
         padding: 10px 20px 5px!important;
+        @include small {
+          line-height: 3.5rem;
+          padding: 5px 10px 5px!important;
+        }
+        @include tablet-and-lower {
+          line-height: 3rem;
+        }
+        @include x-small {
+          line-height: 2.5rem;
+        }
       }
     }
     .buttonContainer {
@@ -62,21 +87,34 @@
   overflow: hidden;
   padding: 0 15px;
   padding-bottom: 56.25%;
+  @include tablet-and-lower {
+    min-height: 70vw;
+  }
+  @include x-small {
+    min-height: 90vw;
+  }
 }
 
 .slideItem {
-  border-radius: 50%;
   position: absolute;
   top: 0;
   width: 50vw;
   height: 50vw;
   display: flex;
-  overflow: hidden;
   opacity: 0;
   justify-content: center;
   align-items: center;
   visibility: visible;
+  @include tablet-and-lower {
+    width: 60vw;
+    height: 60vw;
+  }
+  @include x-small {
+    width: 80vw;
+    height: 80vw;
+  }
   .imageOverlay {
+    border-radius: 50%;
     background-color: #ff752a;
     mix-blend-mode: multiply;
     width: 100%;
@@ -85,6 +123,7 @@
     z-index: 100;
   }
   img {
+    border-radius: 50%;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -116,7 +155,6 @@
   top: 85%;
   border: none;
   background: none;
-
   transition: opacity 0.3s ease-in-out;
   cursor: pointer;
   &:hover {
@@ -126,14 +164,7 @@
     opacity: 0.5;
   }
 
-  @include small {
-    top: auto;
-    bottom: 33px;
-    svg {
-      width: auto;
-      height: 25px;
-    }
-  }
+  
 }
 
 
@@ -142,12 +173,30 @@
   height: 70px;
   width: 70px;
   left: 30px;
+  @include small {
+    height: 60px;
+    width: 60px;
+  }
+  @include x-small {
+    left: 10px;
+    height: 50px;
+    width: 50px;
+  }
 }
 
 .nextButton {
   height: 70px;
   width: 70px;
   right: 30px;
+  @include small {
+    height: 60px;
+    width: 60px;
+  }
+  @include x-small {
+    right: 10px;
+    height: 50px;
+    width: 50px;
+  }
 }
 
 .controls {
@@ -176,12 +225,8 @@
   }
 
   @include small {
-    bottom: 30px;
-    .dotInner {
-      margin-top: 25px;
-      width: 24px;
-      height: 24px;
-    }
+    bottom: 10px;
+   
   }
 }
 
