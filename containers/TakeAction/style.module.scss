@@ -66,10 +66,10 @@
         transition: background-color 0.25s ease-in-out;
         width: 100%;
         .title {
-          @include body2;
           font-size: 20pt;
           line-height: 1;
           width: calc(100% - 60px);
+          @include body2;
         }
         .arrowContainer {
           align-items: center;
