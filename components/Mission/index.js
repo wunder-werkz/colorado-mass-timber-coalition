@@ -14,7 +14,7 @@ const Mission = ({ mission }) => {
                 {
                     scrollTrigger: {
                         trigger: missionContainerRef.current,
-                        start: "top 80px",
+                        start: "top 80%",
                         onEnter: () => {
                             missionRef.current?.restart();
                         }, 
