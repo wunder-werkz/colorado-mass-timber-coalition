@@ -6,6 +6,7 @@ import Partners from "@/containers/Partners";
 import ImageSliderSection from "@/components/ImageSlider";
 import Mission from "@/components/Mission";
 import TakeActionBar from "@/components/TakeActionBar";
+import FooterLogo from "@/components/SVG/FooterLogo";
 
 export default async function Home() {
   const events = await client.fetch(UPCOMING_EVENTS_QUERY);
@@ -13,6 +14,9 @@ export default async function Home() {
 
   return (
     <>
+    <div className="intro-logo">
+        <FooterLogo />
+    </div>
     {homepage && homepage[0].heroSlider && homepage[0].heroSlider.length > 0 && (
       <ImageSliderSection images={homepage[0].heroSlider}/>
     )}

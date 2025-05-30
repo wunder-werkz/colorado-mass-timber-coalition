@@ -20,6 +20,24 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.intro-logo {
+  margin-top: 120px;
+  @include grid-wrap;
+  svg {
+    @include full;
+    width: 100%;
+    height: auto;
+    path {
+      fill: $black;
+    }
+  }
+
+  @include lap-smaller {
+    padding: 0 20px;
+  }
+}
+
+
 main {
   position: relative;
   width: 100%;

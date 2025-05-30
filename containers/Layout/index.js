@@ -18,7 +18,7 @@ const Header = ({ contactEmail, hasEvents }) => {
   const menuItemsRef = useRef([]);
   const pathname = usePathname();
   const router = useRouter();
-  const isHomePage = pathname === "/" || pathname === "/home";
+  const isHomePage = pathname === "/about";
 
   useEffect(() => {
     if (!logoRef.current) return;
@@ -26,8 +26,7 @@ const Header = ({ contactEmail, hasEvents }) => {
     const logoAnim = gsap.to(logoRef.current, {
       y: 0,
       duration: 0.6,
-      ease: "power2.out",
-      paused: isHomePage,
+      ease: "power2.out"
     });
 
     if (isHomePage) {

@@ -6,7 +6,7 @@
   .imageContainer {
     width: 100%;
   }
-  padding: 160px 0 0;
+  padding: 60px 0 0;
   @include small {
     padding: 50px 10px 0;
   }
@@ -72,6 +72,7 @@
   height: 50vw;
   display: flex;
   overflow: hidden;
+  opacity: 0;
   justify-content: center;
   align-items: center;
   visibility: visible;
