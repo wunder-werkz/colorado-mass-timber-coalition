@@ -5,6 +5,7 @@ import EventSlider from "@/components/EventSlider";
 import Partners from "@/containers/Partners";
 import ImageSliderSection from "@/components/ImageSlider";
 import Mission from "@/components/Mission";
+import TakeActionBar from "@/components/TakeActionBar";
 
 export default async function Home() {
   const events = await client.fetch(UPCOMING_EVENTS_QUERY);
@@ -16,6 +17,8 @@ export default async function Home() {
       <ImageSliderSection images={homepage[0].heroSlider}/>
     )}
     {homepage && homepage[0].mission && <Mission mission={homepage[0].mission}/>}
+    {homepage && homepage[0].takeActionHeadline && 
+    <TakeActionBar headline={homepage[0].takeActionHeadline} copy={homepage[0].takeActionCopy} link={homepage[0].takeActionLink} />}
       {homepage &&
         homepage[0] &&
         homepage[0].partners &&
