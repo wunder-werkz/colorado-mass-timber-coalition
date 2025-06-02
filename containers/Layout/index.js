@@ -83,7 +83,6 @@ const Header = ({ contactEmail, hasEvents }) => {
   };
 
   const handleLinkClick = (href, isExternal = false) => {
-    debugger;
     timeline.current.reverse();
     setIsMenuOpen(false);
     const body = document.body;
