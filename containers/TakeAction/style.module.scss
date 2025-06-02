@@ -14,7 +14,11 @@
       left: 0;
       mix-blend-mode: multiply;
       position: absolute;
-      width: 100%;
+      width: 100%;  
+    }
+    img {
+      -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+      filter: grayscale(100%);
     }
     .headline {
       align-items: center;

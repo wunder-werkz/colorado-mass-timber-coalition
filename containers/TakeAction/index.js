@@ -4,7 +4,7 @@ import { gsap } from "@/lib/gsapConfig";
 import styles from "./style.module.scss";
 import SplitTextBg from "@/components/SplitTextBg";
 import { MediaWCaption } from "@/components/MediaWCaption";
-import fieldPeterson from "@/public/img/action/Field-Peterson,-Colorado-State-Forest-Service.jpg";
+import fieldPeterson from "@/public/img/action/Y-100-4.jpg";
 import Stumpy from "@/components/Stumpy";
 import SubList from "./subList";
 import OrgDrawer from "./orgDrawer";
@@ -109,7 +109,7 @@ export default function TakeAction({ content }) {
         <div className={styles.topContainer}>
             <MediaWCaption
                 url={fieldPeterson}
-                caption={"Field Peterson"}
+                caption={"Colorado Forest"}
                 imagePosition="center bottom"
             />
             <div className={styles.mediaWCaptionInner}></div>
