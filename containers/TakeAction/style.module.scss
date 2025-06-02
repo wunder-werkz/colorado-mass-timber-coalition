@@ -7,7 +7,7 @@
     grid-column-end: 13;
     min-height: 100vh;
     position: relative;
-    @include tablet-and-lower {
+    @include small {
       min-height: 70vh;
     }
     .mediaWCaptionInner {
@@ -40,6 +40,9 @@
       }
       @include lap-smaller {
         width: calc(100% - 60px);
+        h1 {
+          width: 80%;
+        }
       }
       @include tablet-and-lower {
         h1 {
@@ -177,7 +180,7 @@
     h2 {
       width: 70%;
       @include h1;
-      @include tablet-and-lower {
+      @include small {
         width: 100%;
       }
     }
