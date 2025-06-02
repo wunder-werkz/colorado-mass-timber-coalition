@@ -7,6 +7,9 @@
     grid-column-end: 13;
     min-height: 100vh;
     position: relative;
+    @include tablet-and-lower {
+      min-height: 70vh;
+    }
     .mediaWCaptionInner {
       bottom: 0;
       background-color: #ff752a;
@@ -38,6 +41,12 @@
       @include lap-smaller {
         width: calc(100% - 60px);
       }
+      @include tablet-and-lower {
+        h1 {
+          width: 100%;
+        }
+       
+      }
       @include x-small {
         left: 10px;
         width: calc(100% - 20px);
@@ -53,12 +62,18 @@
     h2 {
       width: 70%;
       @include h1;
+      @include tablet-and-lower {
+        width: 100%;
+      }
     }
   }
   .orgDrawer {
     margin: 0 auto;
     padding: 60px 0;
     width: $ten-twelfths;
+    @include tablet-and-lower {
+      width: calc(100vw - 30px);
+    }
     .orgDrawerItem {
       font-size: 20pt;
       .titleContainer {
@@ -70,10 +85,13 @@
         transition: background-color 0.25s ease-in-out;
         width: 100%;
         .title {
-          font-size: 20pt;
+          
           line-height: 1;
           width: calc(100% - 60px);
           @include body2;
+          &{
+            font-size: 20pt;
+          }
         }
         .arrowContainer {
           align-items: center;
@@ -152,10 +170,16 @@
     padding: 60px 0;
     .subHead {
       padding: 0 0 90px 0;
+      @include tablet-and-lower {
+        padding-bottom: 60px;
+      }
     }
     h2 {
       width: 70%;
       @include h1;
+      @include tablet-and-lower {
+        width: 100%;
+      }
     }
     .subList {
       align-items: flex-start;
@@ -164,13 +188,23 @@
       flex-flow: row wrap;
       justify-content: flex-start;
 
+      @include tablet-and-lower {
+        flex-flow: column;
+      }
       .subItem {
         padding-bottom: 30px;
         width: $four-twelfths;
+        @include tablet-and-lower {
+          width: $ten-twelfths;
+          margin: 0 auto;
+        }
         .subTitle {
           border-bottom: 2px solid $black;
           padding-bottom: 10px;
           @include h3;
+          &{
+            font-size: 20pt;
+          }
         }
         .description {
           font-size: 16pt;
@@ -184,12 +218,21 @@
     margin: 0 auto;
     padding: 60px 0;
     width: $eight-twelfths;
+    @include tablet-and-lower {
+      width: $ten-twelfths;
+    }
+    @include x-small {
+      width: calc(100% - 30px);
+    }
    
   }
   .stumpyText {
     max-width: 300px;
     width: $five-twelfths;
     padding-left: 20px;
+    @include tablet-and-lower {
+      width: $seven-twelfths;
+    }
     span {
       display: block;
       padding: 5px 0 5px 0;

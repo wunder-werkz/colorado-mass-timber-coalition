@@ -198,7 +198,7 @@
     padding: 10px 160px 10px 30px;
   }
   @include x-small {
-    height: 40px;
+    height: auto;
   }
   @include medium {
     padding-right: 130px;

@@ -65,6 +65,7 @@
 }
 .mobileNav {
   display: none;
+  z-index: 10000;
   @include tablet-and-lower {
     display: block;
   }
