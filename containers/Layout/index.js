@@ -83,6 +83,7 @@ const Header = ({ contactEmail, hasEvents }) => {
   };
 
   const handleLinkClick = (href, isExternal = false) => {
+    debugger;
     timeline.current.reverse();
     setIsMenuOpen(false);
     const body = document.body;
@@ -201,7 +202,7 @@ const Header = ({ contactEmail, hasEvents }) => {
           ref={(el) => (menuItemsRef.current[1] = el)}
         >
            <Button
-                href={"/about"}
+                onClick={() => handleLinkClick(`/about`, false)}
                 variant="primary"
                 color="forest"
                 large={true}
@@ -212,7 +213,7 @@ const Header = ({ contactEmail, hasEvents }) => {
             <Button
               variant="primary"
               color="forest"
-              href={"/events"}
+              onClick={() => handleLinkClick(`/events`, false)}
               large={true}
             >
               Events
@@ -220,7 +221,7 @@ const Header = ({ contactEmail, hasEvents }) => {
           )}
            <li>
             <Button
-                href="/action"
+                 onClick={() => handleLinkClick(`/action`, false)}
                 variant="primary"
                 color="forest"
                 large={true}
@@ -231,8 +232,8 @@ const Header = ({ contactEmail, hasEvents }) => {
           <Button
             variant="primary"
             color="forest"
-            large={true}
             onClick={() => handleLinkClick(`mailto:${contactEmail}`, true)}
+            large={true}
           >
             Contact
           </Button>

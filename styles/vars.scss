@@ -184,12 +184,12 @@ $font-greed-standard: var(--font-greed-standard), sans-serif;
 }
 
 @mixin body1 {
-  font-size: 18px;
+  font-size: 22px;
   font-family: $font-greed-standard;
   font-weight: 400;
-  line-height: 1;
+  line-height: 1.1;
   @include tablet-and-lower {
-    font-size: 16px;
+    font-size: 20px;
   }
  
   @include x-small {
