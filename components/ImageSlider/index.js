@@ -90,7 +90,7 @@ const ImageSliderSection = ({ images }) => {
         if (count >= listItems) {
           count = 0
         }
-        // animateSlider("next");
+        animateSlider("next");
       }, 5000)
     }
     durationSlider()
