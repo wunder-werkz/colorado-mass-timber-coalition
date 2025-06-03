@@ -81,6 +81,7 @@ const ImageSliderSection = ({ images }) => {
       }
       ScrollTrigger.refresh();
     };
+    
     const timeoutId = setTimeout(setupScrollTrigger, 250);
     function durationSlider() {
       var listItems = images.length;
@@ -90,163 +91,172 @@ const ImageSliderSection = ({ images }) => {
         if (count >= listItems) {
           count = 0
         }
-        animateSlider("next");
+        if (sliderRef.current) {
+          animateSlider("next");
+        }
       }, 5000)
     }
     durationSlider()
-    return () => clearTimeout(timeoutId);
+    return () => {
+      clearTimeout(timeoutId)
+      clearInterval(durationSlider)
+
+    };
   }, [images]);
 
   const animateSlider = (direction) => {
-    return new Promise((resolve) => {
-      setIsAnimating(true);
-      const slides = sliderRef.current.children;
-      const totalSlides = images.length;
-
-      const timeline = gsap.timeline({
-        onComplete: () => {
-          setIsAnimating(false);
-          tempIndex.current =
-            direction === "next"
-              ? (tempIndex.current + 1) % totalSlides
-              : (tempIndex.current - 1 + totalSlides) % totalSlides;
-
-          setCurrentIndex(tempIndex.current);
-          resolve();
-        },
+    if (sliderRef.current) {
+      return new Promise((resolve) => {
+        setIsAnimating(true);
+        const slides = sliderRef.current.children;
+        const totalSlides = images.length;
+  
+        const timeline = gsap.timeline({
+          onComplete: () => {
+            setIsAnimating(false);
+            tempIndex.current =
+              direction === "next"
+                ? (tempIndex.current + 1) % totalSlides
+                : (tempIndex.current - 1 + totalSlides) % totalSlides;
+  
+            setCurrentIndex(tempIndex.current);
+            resolve();
+          },
+        });
+  
+        if (direction === "next") {
+          const nextIndex = (tempIndex.current + 2) % totalSlides;
+          if (slides[nextIndex]) {
+            gsap.set(slides[nextIndex], {
+              visibility: "visible",
+              scale: 0,
+              opacity: 0,
+              zIndex: 1,
+              x: "100%",
+            });
+          }
+          if (
+            slides[(tempIndex.current - 1 + totalSlides) % totalSlides] &&
+            slides[tempIndex.current] &&
+            slides[(tempIndex.current + 1) % totalSlides] &&
+            slides[nextIndex]
+          ) {
+            timeline
+              .to(
+                slides[(tempIndex.current - 1 + totalSlides) % totalSlides],
+                {
+                  scale: 0,
+                  opacity: 0,
+                  zIndex: 0,
+                  duration: 0.5,
+                  ease: "power2.inOut",
+                },
+                0,
+              )
+              .to(
+                slides[tempIndex.current],
+                {
+                  scale: 0.5,
+                  x: "-100%",
+                  duration: 0.5,
+                  zIndex: 1,
+                  ease: "power2.inOut",
+                },
+                0,
+              )
+              .to(
+                slides[(tempIndex.current + 1) % totalSlides],
+                {
+                  scale: 1,
+                  x: "0%",
+                  zIndex: 3,
+                  duration: 0.5,
+                  ease: "power2.inOut",
+                },
+                0.1,
+              )
+              .to(
+                slides[nextIndex],
+                {
+                  scale: 0.5,
+                  opacity: 1,
+                  zIndex: 1,
+                  x: "100%",
+                  duration: 0.5,
+                  ease: "power2.inOut",
+                },
+                0.1,
+              );
+          }
+        } else {
+          const prevIndex = (tempIndex.current - 2 + totalSlides) % totalSlides;
+          if (slides[prevIndex]) {
+            gsap.set(slides[prevIndex], {
+              visibility: "visible",
+              scale: 0,
+              opacity: 0,
+              zIndex: 1,
+              x: "-100%",
+              zIndex: 1,
+            });
+          }
+          if (
+            slides[(tempIndex.current + 1) % totalSlides] &&
+            slides[tempIndex.current] &&
+            slides[(tempIndex.current - 1 + totalSlides) % totalSlides] &&
+            slides[prevIndex]
+          ) {
+            timeline
+              .to(
+                slides[(tempIndex.current + 1) % totalSlides],
+                {
+                  scale: 0,
+                  opacity: 0,
+                  zIndex: 0,
+                  duration: 0.5,
+                  ease: "power2.inOut",
+                },
+                0,
+              )
+              .to(
+                slides[tempIndex.current],
+                {
+                  scale: 0.5,
+                  x: "100%",
+                  zIndex: 1,
+                  duration: 0.5,
+                  ease: "power2.inOut",
+                },
+                0,
+              )
+              .to(
+                slides[(tempIndex.current - 1 + totalSlides) % totalSlides],
+                {
+                  scale: 1,
+                  x: "0%",
+                  zIndex: 3,
+                  duration: 0.5,
+                  ease: "power2.inOut",
+                },
+                0.1,
+              )
+              .to(
+                slides[prevIndex],
+                {
+                  scale: 0.5,
+                  opacity: 1,
+                  zIndex: 2,
+                  x: "-100%",
+                  duration: 0.5,
+                  ease: "power2.inOut",
+                },
+                0.1,
+              );
+          }
+        }
       });
-
-      if (direction === "next") {
-        const nextIndex = (tempIndex.current + 2) % totalSlides;
-        if (slides[nextIndex]) {
-          gsap.set(slides[nextIndex], {
-            visibility: "visible",
-            scale: 0,
-            opacity: 0,
-            zIndex: 1,
-            x: "100%",
-          });
-        }
-        if (
-          slides[(tempIndex.current - 1 + totalSlides) % totalSlides] &&
-          slides[tempIndex.current] &&
-          slides[(tempIndex.current + 1) % totalSlides] &&
-          slides[nextIndex]
-        ) {
-          timeline
-            .to(
-              slides[(tempIndex.current - 1 + totalSlides) % totalSlides],
-              {
-                scale: 0,
-                opacity: 0,
-                zIndex: 0,
-                duration: 0.5,
-                ease: "power2.inOut",
-              },
-              0,
-            )
-            .to(
-              slides[tempIndex.current],
-              {
-                scale: 0.5,
-                x: "-100%",
-                duration: 0.5,
-                zIndex: 1,
-                ease: "power2.inOut",
-              },
-              0,
-            )
-            .to(
-              slides[(tempIndex.current + 1) % totalSlides],
-              {
-                scale: 1,
-                x: "0%",
-                zIndex: 3,
-                duration: 0.5,
-                ease: "power2.inOut",
-              },
-              0.1,
-            )
-            .to(
-              slides[nextIndex],
-              {
-                scale: 0.5,
-                opacity: 1,
-                zIndex: 1,
-                x: "100%",
-                duration: 0.5,
-                ease: "power2.inOut",
-              },
-              0.1,
-            );
-        }
-      } else {
-        const prevIndex = (tempIndex.current - 2 + totalSlides) % totalSlides;
-        if (slides[prevIndex]) {
-          gsap.set(slides[prevIndex], {
-            visibility: "visible",
-            scale: 0,
-            opacity: 0,
-            zIndex: 1,
-            x: "-100%",
-            zIndex: 1,
-          });
-        }
-        if (
-          slides[(tempIndex.current + 1) % totalSlides] &&
-          slides[tempIndex.current] &&
-          slides[(tempIndex.current - 1 + totalSlides) % totalSlides] &&
-          slides[prevIndex]
-        ) {
-          timeline
-            .to(
-              slides[(tempIndex.current + 1) % totalSlides],
-              {
-                scale: 0,
-                opacity: 0,
-                zIndex: 0,
-                duration: 0.5,
-                ease: "power2.inOut",
-              },
-              0,
-            )
-            .to(
-              slides[tempIndex.current],
-              {
-                scale: 0.5,
-                x: "100%",
-                zIndex: 1,
-                duration: 0.5,
-                ease: "power2.inOut",
-              },
-              0,
-            )
-            .to(
-              slides[(tempIndex.current - 1 + totalSlides) % totalSlides],
-              {
-                scale: 1,
-                x: "0%",
-                zIndex: 3,
-                duration: 0.5,
-                ease: "power2.inOut",
-              },
-              0.1,
-            )
-            .to(
-              slides[prevIndex],
-              {
-                scale: 0.5,
-                opacity: 1,
-                zIndex: 2,
-                x: "-100%",
-                duration: 0.5,
-                ease: "power2.inOut",
-              },
-              0.1,
-            );
-        }
-      }
-    });
+    }
+    
   };
 
   const animateToIndex = async (targetIndex) => {
@@ -262,7 +272,10 @@ const ImageSliderSection = ({ images }) => {
     const steps = Math.min(forwardSteps, backwardSteps);
 
     for (let i = 0; i < steps; i++) {
-      await animateSlider(direction);
+      if (sliderRef.current) {
+        await animateSlider(direction);
+      }
+    
     }
   };
 

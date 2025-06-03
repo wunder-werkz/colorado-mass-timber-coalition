@@ -1,6 +1,6 @@
 "use client";
-import {useRef, useEffect } from "react";
-import { gsap } from "@/lib/gsapConfig";
+import {useRef, useEffect, useState, useCallback } from "react";
+import { gsap,ScrollTrigger } from "@/lib/gsapConfig";
 import styles from "./style.module.scss";
 import SplitTextBg from "@/components/SplitTextBg";
 import { MediaWCaption } from "@/components/MediaWCaption";
@@ -22,26 +22,27 @@ export default function TakeAction({ content }) {
     const stumpTextRef = useRef();
     const stumpyRef = useRef();
     const stumpSection = useRef();
+    const splitHeadline = useRef();
+    const splitRef = useRef(null)
+    const [deviceWidth, setDeviceWidth] = useState(0)
+
+    const handleSplitTextAnimation = useCallback(() => {
+        headlineRef.current?.restart();
+      }, []);
+
     useEffect(() => {
         if (typeof window !== "undefined") {
         window.scrollTo(0, 0);
         }
-
+  
         const ctx = gsap.context(() => {
-        if (headlineRef.current) {
-            gsap.to(headlineRef.current, 
-                {
-                    scrollTrigger: {
-                        trigger: headlineContainer.current,
-                        start: "top 80px",
-                        onEnter: () => {
-                            headlineRef.current?.restart();
-                        }, 
-                    },
-                    
-                }
-            )
-        }
+
+            const initialAnimations = gsap.timeline({ delay: 0.5, onComplete: () => handleSplitTextAnimation() });
+
+            initialAnimations.to(headlineContainer.current, {opacity: 1});
+            return () => {
+                initialAnimations.kill();
+              };
 
         if (orgTextRef.current) {
             gsap.to(orgTextRef.current, {
@@ -98,11 +99,31 @@ export default function TakeAction({ content }) {
                 }
             }
         })
-    
+        
     });
 
     return () => ctx.revert();
-  }, []);
+ 
+  }, [headlineRef, stumpTextRef, orgTextRef, window]);
+
+  const createSplitText = () => {
+    if (headlineRef.current) {
+      if (splitRef.current) {
+        splitRef.current.revert()
+      }
+
+      const newSplit = new SplitText(headlineRef.current, {
+        linesClass: 'textLine',
+        type: 'lines',
+        lineThreshold: 0.75,
+      })
+
+      splitRef.current = newSplit
+      setDeviceWidth(window.innerWidth)
+      return newSplit
+    }
+    return null
+  }
 
   return (
     <div className={styles.takeActionPageWrap} ref={containerRef}>

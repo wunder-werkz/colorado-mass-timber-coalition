@@ -39,7 +39,9 @@ const SplitTextBg = forwardRef(
     }));
 
     useEffect(() => {
-      if (!textRef.current) return;
+      if (!textRef.current) {
+        return 
+      };
 
       if (animationTl.current) {
         animationTl.current.kill();
@@ -82,6 +84,7 @@ const SplitTextBg = forwardRef(
           );
         } else {
           if (splitTextInstanceRef.current) {
+            
             splitTextInstanceRef.current.revert();
             backgroundsRef.current = [];
             linesRef.current = [];
@@ -130,6 +133,7 @@ const SplitTextBg = forwardRef(
           animationTl.current = gsap.timeline({
             paused: true,
             onComplete: () => {
+              
               backgroundsRef.current.forEach((bg) => {
                 if (bg) bg.style.willChange = "auto";
               });
@@ -182,6 +186,7 @@ const SplitTextBg = forwardRef(
         } else {
           animationTl.current.reverse();
           animationTl.current.eventCallback("onReverseComplete", () => {
+            
             if (textRef.current) {
               gsap.set(textRef.current, { opacity: 0 });
             }
