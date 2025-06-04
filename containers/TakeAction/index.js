@@ -40,9 +40,7 @@ export default function TakeAction({ content }) {
             const initialAnimations = gsap.timeline({ delay: 0.5, onComplete: () => handleSplitTextAnimation() });
 
             initialAnimations.to(headlineContainer.current, {opacity: 1});
-            return () => {
-                initialAnimations.kill();
-              };
+            
 
         if (orgTextRef.current) {
             gsap.to(orgTextRef.current, {
@@ -102,7 +100,10 @@ export default function TakeAction({ content }) {
         
     });
 
-    return () => ctx.revert();
+    return () => {
+        ctx.revert();
+        initialAnimations.kill();
+    };
  
   }, [headlineRef, stumpTextRef, orgTextRef, window]);
 
