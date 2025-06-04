@@ -20,7 +20,7 @@ const TextLink = ({ linkTitle, link, linkUrl,  handleClose, button }) => {
     return openNewWindow ? (
       <a
         href={href}
-        className={styles.textLink}
+        className={`${styles.textLink} ${button && styles.noline}`}
         target="_blank"
         rel="noreferrer"
         title={titleButton}
@@ -39,7 +39,7 @@ const TextLink = ({ linkTitle, link, linkUrl,  handleClose, button }) => {
     ) : (
       <Link
         href={href}
-        className={styles.textLink}
+        className={`${styles.textLink} ${button && styles.noline}`}
         title={titleButton}
         aria-label={titleButton}
         onClick={(e) => { 
@@ -60,7 +60,7 @@ const TextLink = ({ linkTitle, link, linkUrl,  handleClose, button }) => {
       <a
         href={download}
         download
-        className={styles.textLink}
+        className={`${styles.textLink} ${button && styles.noline}`}
         target="_blank"
         rel="noreferrer"
         title={titleButton}

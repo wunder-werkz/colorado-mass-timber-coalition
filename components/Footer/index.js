@@ -46,7 +46,7 @@ export default function Footer({ footer }) {
               <a
                 key={link.url}
                 href={link.url}
-                className={styles.url}
+                className={`${styles.url} no-line`}
                 aria-label={link.ariaLabel}
                 title={link.ariaLabel}
               >
