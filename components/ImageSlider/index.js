@@ -94,7 +94,7 @@ const ImageSliderSection = ({ images }) => {
         if (sliderRef.current) {
           animateSlider("next");
         }
-      }, 5000)
+      }, 10000)
     }
     durationSlider()
     return () => {
