@@ -73,6 +73,9 @@
     }
     .buttonContainer {
       margin-top: 30px;
+      @include x-small {
+        margin-top: 20px;
+      }
     }
   }
 }
@@ -98,13 +101,44 @@
 .slideItem {
   position: absolute;
   top: 0;
-  width: 50vw;
-  height: 50vw;
+  width: 47vw;
+  height: 47vw;
   display: flex;
   opacity: 0;
   justify-content: center;
   align-items: center;
   visibility: visible;
+  .stumpyContainer {
+    bottom: 0px;
+    position: absolute;
+    height: auto;
+    width: $three-twelfths;
+    max-width: 200px;
+    z-index: 1000;
+    right: 0;
+    svg {
+      height: auto;
+      max-height: 300px;
+      width: 100%;
+    }
+    @include small {
+        max-width: 150px;
+        svg {
+          max-height: 200px;
+        }
+    }
+    @include tablet-and-lower {
+      svg {
+        max-height: 150px;
+      }
+    }
+    @include x-small {
+      svg {
+        max-height: 100px;
+      }
+    }
+  }
+  
   @include tablet-and-lower {
     width: 60vw;
     height: 60vw;
@@ -155,7 +189,7 @@
 .button {
   z-index: 10;
   position: absolute;
-  top: 85%;
+  top: 80%;
   border: none;
   background: none;
   transition: opacity 0.3s ease-in-out;
@@ -209,9 +243,12 @@
   align-items: center;
   gap: 16px;
   position: absolute;
-  bottom: 20px;
+  bottom: 70px;
   left: 50%;
   transform: translateX(-50%);
+  @include x-small {
+    bottom: 20px;
+  }
   .active {
     .dotInner {
       opacity: 1;
@@ -225,6 +262,10 @@
     width: 20px;
     opacity: 0.5;
     transition: all 0.3s linear;
+    @include x-small {
+      height: 10px;
+      width: 10px;
+    }
   }
 
   @include small {

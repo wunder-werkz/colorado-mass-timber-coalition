@@ -242,6 +242,9 @@
 .secondary {
   justify-content: center;
   padding: 0px 30px;
+  @include x-small {
+    padding: 5px 15px;
+  }
   &.small {
     border-width: 3px;
     font-size: 20px;

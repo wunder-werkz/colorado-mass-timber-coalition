@@ -6,7 +6,7 @@ import ImageRender from "../ImageRender";
 import { DotSvg, NextSvg, PrevSvg } from "./Svg";
 import Button from "../Button";
 import styles from "./style.module.scss";
-
+import Stumpy from "../Stumpy";
 import { gsap, ScrollTrigger } from "@/lib/gsapConfig";
 
 const ImageSliderSection = ({ images }) => {  
@@ -91,9 +91,9 @@ const ImageSliderSection = ({ images }) => {
         if (count >= listItems) {
           count = 0
         }
-        if (sliderRef.current) {
-          animateSlider("next");
-        }
+        // if (sliderRef.current) {
+        //   animateSlider("next");
+        // }
       }, 10000)
     }
     durationSlider()
@@ -279,6 +279,18 @@ const ImageSliderSection = ({ images }) => {
     }
   };
 
+  const renderStumpy = (i) => {
+    if (i == 0) {
+      return <div className={styles.stumpyContainer}>
+        <Stumpy type="tree" color="cream" />
+      </div>
+    } else if (i == 1) {
+      return <div className={styles.stumpyContainer}><Stumpy type="stump" color="cream" /></div>
+    } else if (i == 2) {
+      return <div className={styles.stumpyContainer}><Stumpy type="plank" color="creamGreen" /></div>
+    } else return;
+  }
+
   if (images && images.length >= 4) {
     return (
       <section
@@ -301,9 +313,10 @@ const ImageSliderSection = ({ images }) => {
                 const {image, headline, link} = slide;
                 const isActive = currentIndex == i;
                 const hasLink = link && link[0];
+
                 return (
                   <div className={`${styles.slideItem} ${isActive && styles.active}`} key={`slide-${i}`}>
-                 
+                    {renderStumpy(i)}
                   <div
                     className={styles.imageContainer}
                   >

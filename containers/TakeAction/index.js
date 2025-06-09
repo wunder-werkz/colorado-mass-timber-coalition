@@ -35,7 +35,7 @@ export default function TakeAction({ content }) {
         window.scrollTo(0, 0);
         }
   
-        const ctx = gsap.context(() => {
+    const ctx = gsap.context(() => {
 
             const initialAnimations = gsap.timeline({ delay: 0.5, onComplete: () => handleSplitTextAnimation() });
 
@@ -102,10 +102,11 @@ export default function TakeAction({ content }) {
 
     return () => {
         ctx.revert();
-        initialAnimations.kill();
+        if (initialAnimations) {
+            initialAnimations.kill(); }
     };
  
-  }, [headlineRef, stumpTextRef, orgTextRef, window]);
+  }, [headlineRef, stumpTextRef, orgTextRef]);
 
   const createSplitText = () => {
     if (headlineRef.current) {
@@ -131,7 +132,7 @@ export default function TakeAction({ content }) {
         <div className={styles.topContainer}>
             <MediaWCaption
                 url={fieldPeterson}
-                caption={"Colorado Forest"}
+                caption={"Durango, Colorado"}
                 imagePosition="center bottom"
             />
             <div className={styles.mediaWCaptionInner}></div>
