@@ -179,8 +179,8 @@
 .large {
   border-radius: 62px;
   clip-path: inset(0 0 0 0 round 62px);
-  font-size: 93px;
-  height: 130px;
+  font-size: 30px;
+  height: 60px;
   padding: 10px 160px 10px 30px;
   .circle {
     right: -4px;
@@ -192,9 +192,15 @@
       height: 52px;
     }
   }
+  @include small {
+    font-size: 20px;
+    height: 50px;
+    padding: 10px 160px 10px 30px;
+  }
+  @include x-small {
+    height: auto;
+  }
   @include medium {
-    font-size: 73px;
-    height: 100px;
     padding-right: 130px;
     .circle {
       height: 100px;
@@ -207,8 +213,6 @@
     }
   }
   @include lap-small {
-    font-size: 53px;
-    height: 80px;
     padding-right: 90px;
     .circle {
       height: 80px;
@@ -221,8 +225,6 @@
     }
   }
   @include tablet-and-lower {
-    font-size: 33px;
-    height: 60px;
     padding-right: 90px;
     .circle {
       height: 60px;
@@ -240,7 +242,15 @@
 .secondary {
   justify-content: center;
   padding: 0px 30px;
-
+  @include x-small {
+    padding: 5px 15px;
+  }
+  &.small {
+    border-width: 3px;
+    font-size: 20px;
+    height: 35px;
+    padding: 0 15px;
+  }
   &.forest {
     &:not(.fill) {
       border-color: $forest;
@@ -259,12 +269,25 @@
       background-color: $cream;
       border-color: $orange;
       color: $forest;
+      &::before {
+        background-color: $orange;
+      }
     }
 
     &.fill {
       background-color: $orange;
       border-color: $orange;
       color: $forest;
+      &::before {
+       
+        background-color: $forest;
+
+      }
+      &:hover {
+        .text {
+          color: $cream;
+        }
+      }
     }
   }
 }

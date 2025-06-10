@@ -1,0 +1,10 @@
+@use "../../styles/vars" as *;
+
+.textLink {
+    border-bottom: 1px solid $orange;
+    color: $orange;
+    text-decoration: none;
+    &.noline {
+        border-bottom: none;
+    }
+}

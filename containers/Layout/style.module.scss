@@ -25,6 +25,16 @@
 
 .logo {
   transform: translateY(-100px);
+  svg path {
+    transition: fill 0.25s ease-in-out;
+  }
+  &:hover {
+    svg {
+      path {
+        fill: $orange;
+      }
+    }
+  }
   @include lap-smaller {
     svg {
       width: 150px;
@@ -36,7 +46,30 @@
     }
   }
 }
-
+.mainNav {
+  display: inline;
+  @include tablet-and-lower {
+    display: none;
+  }
+  ul {
+    display: inline;
+    list-style: none;
+    li {
+      display: inline;
+      margin-right: 10px;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}
+.mobileNav {
+  display: none;
+  z-index: 10000;
+  @include tablet-and-lower {
+    display: block;
+  }
+}
 .hamburger {
   border: none;
   background: $orange;
@@ -187,7 +220,7 @@
   justify-content: center;
   width: 50%;
   @include lap-smaller {
-    width: $five-twelfths;
+    width: $ten-twelfths;
   }
   @include tablet-and-lower {
     align-items: center;
@@ -206,6 +239,18 @@
         border-radius: 50%;
         background: $forest;
       }
+    }
+  }
+  span {
+    height: auto;
+    width: 100%;
+    @include h1;
+  
+    &.circle {
+      width: 70px !important;
+      height: 70px !important;
+      border-radius: 50%;
+      background: $forest;
     }
   }
 }

@@ -64,7 +64,7 @@ const EventSlider = ({ events }) => {
     <ST.Root start="top 80%" end="bottom bottom">
       <div className={styles.eventsHomeWrap} ref={containerRef}>
         <div className={styles.topWrap}>
-          <div className="events-title-container">
+          <div className={styles.eventsTitle}>
             <ST.Waypoint
               at={1}
               onCall={handleSplitTextStart}

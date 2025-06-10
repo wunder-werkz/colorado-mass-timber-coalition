@@ -11,6 +11,9 @@ export default function Button({
   fill = true,
   large,
   href,
+  newWindow,
+  downloadPdf,
+  downloadUrl,
   onClick,
   className,
   ...props
@@ -21,6 +24,7 @@ export default function Button({
     styles[color],
     styles[className],
     fill ? styles.fill : "",
+    large ? styles.large : styles.small,
     className,
   ]
     .filter(Boolean)
@@ -45,12 +49,24 @@ export default function Button({
     );
   }
 
-  if (href?.startsWith("http")) {
+  if (downloadUrl) { 
+      <a
+      className={buttonClasses}
+      href={href}
+      download
+      target={newWindow ? "_blank" : ""}
+      rel="noopener noreferrer"
+      {...props}
+    >
+      {content}
+    </a>
+
+  } else if (href?.startsWith("http")) {
     return (
       <a
         className={buttonClasses}
         href={href}
-        target="_blank"
+        target={newWindow ? "_blank" : ""}
         rel="noopener noreferrer"
         {...props}
       >

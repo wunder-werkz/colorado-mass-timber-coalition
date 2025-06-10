@@ -1,0 +1,22 @@
+@use "@/styles/vars" as *;
+
+.missionContainer {
+    padding: 100px 60px;
+  @include lap-smaller {
+    padding: 100px 20px;
+  }
+  @include phone {
+    padding: 100px 10px;
+  }
+  h1 {
+    width: $ten-twelfths;
+    
+    @include h1();
+    & {
+        line-height: 1.05;
+    }
+    @include x-small {
+        width: 100%;
+    }
+  }
+}

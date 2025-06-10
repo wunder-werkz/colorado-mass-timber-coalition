@@ -18,7 +18,7 @@ const Header = ({ contactEmail, hasEvents }) => {
   const menuItemsRef = useRef([]);
   const pathname = usePathname();
   const router = useRouter();
-  const isHomePage = pathname === "/" || pathname === "/home";
+  const isHomePage = pathname === "/about";
 
   useEffect(() => {
     if (!logoRef.current) return;
@@ -26,8 +26,7 @@ const Header = ({ contactEmail, hasEvents }) => {
     const logoAnim = gsap.to(logoRef.current, {
       y: 0,
       duration: 0.6,
-      ease: "power2.out",
-      paused: isHomePage,
+      ease: "power2.out"
     });
 
     if (isHomePage) {
@@ -130,16 +129,64 @@ const Header = ({ contactEmail, hasEvents }) => {
           <LogoSm />
         </Link>
       </div>
-
-      <button
-        className={`${styles.hamburger} ${isMenuOpen ? styles.open : ""}`}
-        onClick={toggleMenu}
-        aria-label="hamburger menu"
-      >
-        <span></span>
-      </button>
-
-      <nav className={styles.menu} ref={menuRef}>
+      <div className={styles.mobileNav}>
+        <button
+          className={`${styles.hamburger} ${isMenuOpen ? styles.open : ""}`}
+          onClick={toggleMenu}
+          aria-label="hamburger menu"
+        >
+          <span></span>
+        </button>
+      </div>
+      <nav className={styles.mainNav}>
+        <ul>
+          <li> 
+            <Button
+                href={"/about"}
+                variant="secondary"
+                large={false}
+                color={"orange"}
+                fill={false}
+              >
+              Our Story
+            </Button>
+          </li>
+          <li>
+            <Button
+                href="/events"
+                variant="secondary"
+                color="orange"
+                large={false}
+                fill={false}
+              >
+                Events
+            </Button>
+          </li>
+          <li>
+            <Button
+                href="/action"
+                variant="secondary"
+                color="orange"
+                large={false}
+                fill={false}
+              >
+                Take Action
+            </Button>
+          </li>
+          <li>
+            <Button
+                href="mailto:wlepry@nationalforests.org"
+                variant="secondary"
+                color="orange"
+                large={false}
+                fill={false}
+              >
+                contact
+            </Button>
+          </li>
+        </ul>
+      </nav>
+      <nav className={`${styles.menu} ${styles.mobileNav}`} ref={menuRef}>
         <div
           className={styles.stumpyWrap}
           ref={(el) => (menuItemsRef.current[0] = el)}
@@ -153,21 +200,39 @@ const Header = ({ contactEmail, hasEvents }) => {
           className={styles.buttonWrap}
           ref={(el) => (menuItemsRef.current[1] = el)}
         >
+           <Button
+                onClick={() => handleLinkClick(`/about`, false)}
+                variant="primary"
+                color="forest"
+                large={true}
+              >
+              Our Story
+            </Button>
           {hasEvents && (
             <Button
               variant="primary"
               color="forest"
-              className="large"
-              onClick={() => handleLinkClick("/events")}
+              onClick={() => handleLinkClick(`/events`, false)}
+              large={true}
             >
               Events
             </Button>
           )}
+           <li>
+            <Button
+                 onClick={() => handleLinkClick(`/action`, false)}
+                variant="primary"
+                color="forest"
+                large={true}
+              >
+                Take Action
+            </Button>
+          </li>
           <Button
             variant="primary"
             color="forest"
-            className="large"
             onClick={() => handleLinkClick(`mailto:${contactEmail}`, true)}
+            large={true}
           >
             Contact
           </Button>

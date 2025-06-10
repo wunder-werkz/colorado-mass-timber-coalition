@@ -1,6 +1,6 @@
 import localFont from "next/font/local";
 
-import { GENERAL_QUERY, UPCOMING_EVENTS_QUERY } from "@/sanity/lib/queries";
+import { GENERAL_QUERY, UPCOMING_EVENTS_QUERY, FOOTER_QUERY } from "@/sanity/lib/queries";
 import Layout from "@/containers/Layout";
 import { ModalProvider } from "@/context/ModalContext";
 import Footer from "@/components/Footer";
@@ -32,9 +32,7 @@ export const metadata = {
 export default async function RootLayout({ children }) {
   const general = await client.fetch(GENERAL_QUERY);
   const events = await client.fetch(UPCOMING_EVENTS_QUERY);
-  const { contactEmail } = general
-    ? general[0]
-    : { contactEmail: "wlepry@nationalforests.org" };
+  const footer = await client.fetch(FOOTER_QUERY);
 
   return (
     <html lang="en">
@@ -80,12 +78,12 @@ export default async function RootLayout({ children }) {
         <SmoothScroll>
           <ModalProvider>
             <Layout
-              contactEmail={contactEmail}
+              contactEmail={footer[0].email}
               hasEvents={events && events.length > 0}
             />
             <main>
               {children}
-              <Footer contactEmail={contactEmail} />
+              <Footer footer={footer} />
             </main>
           </ModalProvider>
         </SmoothScroll>

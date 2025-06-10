@@ -1,15 +1,12 @@
 import { HOME_QUERY, UPCOMING_EVENTS_QUERY } from "@/sanity/lib/queries";
 import { client } from "@/sanity/lib/client";
 
-import Hero from "@/containers/Hero";
 import EventSlider from "@/components/EventSlider";
-import FireInfoSection from "@/containers/FireInfoSection";
-import WorldBuildingSection from "@/containers/WorldBulding";
-import TheFuture from "@/containers/TheFuture";
-import Benefits from "@/containers/Benefits";
-import BuiltToLast from "@/containers/BuiltToLast";
 import Partners from "@/containers/Partners";
-import CitationsModal from "@/containers/CitationsModal";
+import ImageSliderSection from "@/components/ImageSlider";
+import Mission from "@/components/Mission";
+import TakeActionBar from "@/components/TakeActionBar";
+import FooterLogo from "@/components/SVG/FooterLogo";
 
 export default async function Home() {
   const events = await client.fetch(UPCOMING_EVENTS_QUERY);
@@ -17,13 +14,15 @@ export default async function Home() {
 
   return (
     <>
-      <Hero />
-      <FireInfoSection />
-      <WorldBuildingSection />
-      <TheFuture />
-      <Benefits />
-      <BuiltToLast />
-      {events && events.length > 0 && <EventSlider events={events} />}
+    <div className="intro-logo">
+        <FooterLogo />
+    </div>
+    {homepage && homepage[0].heroSlider && homepage[0].heroSlider.length > 0 && (
+      <ImageSliderSection images={homepage[0].heroSlider}/>
+    )}
+    {homepage && homepage[0].mission && <Mission mission={homepage[0].mission}/>}
+    {homepage && homepage[0].takeActionHeadline && 
+    <TakeActionBar headline={homepage[0].takeActionHeadline} copy={homepage[0].takeActionCopy} link={homepage[0].takeActionLink} />}
       {homepage &&
         homepage[0] &&
         homepage[0].partners &&
@@ -33,7 +32,7 @@ export default async function Home() {
             partnersText={homepage[0].partnersText}
           />
         )}
-      <CitationsModal />
+      {events && events.length > 0 && <EventSlider events={events} />}
     </>
   );
 }

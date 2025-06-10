@@ -38,8 +38,6 @@ const Event = forwardRef(
 
     const selfHosted = event?.selfHosted;
 
-    console.log(event);
-
     return (
       <div
         className={`${styles.eventWrap} ${secondary ? styles.secondary : ""}${isSlider && styles.slider}`}
