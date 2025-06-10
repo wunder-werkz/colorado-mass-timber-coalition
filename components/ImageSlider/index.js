@@ -287,7 +287,7 @@ const ImageSliderSection = ({ images }) => {
     } else if (i == 1) {
       return <div className={styles.stumpyContainer}><Stumpy type="stump" color="cream" /></div>
     } else if (i == 2) {
-      return <div className={styles.stumpyContainer}><Stumpy type="plank" color="creamGreen" /></div>
+      return <div className={styles.stumpyContainer}><Stumpy type="plank" color="cream" /></div>
     } else return;
   }
 

@@ -48,7 +48,7 @@ export default function EventsClient({ pastEvents, upcomingEvents }) {
             Join us at one of our upcoming events or browse through our past
             gatherings. From workshops to our community building &ldquo;Mass
             Timber Mixers&rdquo;, there&apos;s always something exciting
-            happening
+            happening!
           </p>
           <div className={styles.key}>
             <div className={styles.circle}></div>
