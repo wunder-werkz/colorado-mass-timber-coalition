@@ -85,6 +85,26 @@
   }
 }
 
+.buttonsContainer {
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+  padding-bottom: 100px;
+  width: 100%;
+  z-index: 10000;
+  a:first-of-type {
+    margin-right: 30px;
+  }
+}
+.scrollingText {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  justify-content: center;
+  text-transform: uppercase;
+  text-align: center;
+  width: $ten-twelfths;
+}
 .maskContainer {
   position: absolute;
   transform: translate(50px, 50px);
@@ -92,7 +112,7 @@
   left: 0;
   width: calc(100% - 100px);
   height: calc(100% - 110px);
-  z-index: 1;
+  z-index: 10;
   clip-path: circle(0% at 50% 100%);
   -webkit-clip-path: circle(0% at 50% 100%);
 
@@ -109,6 +129,8 @@
 }
 
 .mask {
+  display: flex;
+  flex-flow: column;
   position: absolute;
   top: 0;
   left: 0;

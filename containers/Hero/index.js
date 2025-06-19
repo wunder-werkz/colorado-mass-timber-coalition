@@ -8,7 +8,7 @@ import fireTrimGif from "@/public/img/Fire_Trim.gif";
 import Eyeballs from "@/components/Eyeballs";
 import { MediaWCaption } from "@/components/MediaWCaption";
 import SplitTextBg from "@/components/SplitTextBg";
-
+import Button from "@/components/Button";
 import useWindowSize from "@/hooks/useWindowSize";
 import { gsap } from "@/lib/gsapConfig";
 
@@ -16,6 +16,8 @@ import styles from "./style.module.scss";
 
 const Hero = () => {
   const splitTextAnimationRef2 = useRef(null);
+  const scrollingRef = useRef(null);
+  const buttonsRef = useRef(null);
   const [isInitialized, setIsInitialized] = useState(false);
   const maskContainerRef = useRef(null);
   const fireTrimRef = useRef(null);
@@ -30,7 +32,10 @@ const Hero = () => {
   // Memoized callbacks for animations to improve performance
   const handleSplitText2Animation = useCallback(() => {
     splitTextAnimationRef2.current?.restart();
+    scrollingRef.current?.restart();
   }, []);
+
+
 
   const addToRefs = (el) => {
     if (el && !eyeballRefs.current.includes(el)) {
@@ -66,6 +71,8 @@ const Hero = () => {
       stagger: 0.2,
       opacity: 1, 
       y: 0
+    }).to(buttonsRef.current, {
+      opacity: 1
     });
 
     return () => {
@@ -99,6 +106,13 @@ const Hero = () => {
     >
       <ST.Pin childHeight={"100vh"} pinSpacerHeight={"250vh"} top={0}>
         <section className={styles.hero} id="hero-section" ref={heroSectionRef}>
+        <ST.Animation
+            tween={{
+              start: 25,
+              end: 80,
+              to: { opacity: 0, ease: "power2.inOut" },
+            }}
+          >
           <div
             className={`${styles.maskContainer} mask-container`}
             ref={maskContainerRef}
@@ -136,6 +150,31 @@ const Hero = () => {
                   <p>Building better starts with suporting healthy forests</p>
                 </SplitTextBg>
               </div>
+              <div className={styles.buttonsContainer} ref={buttonsRef}>
+                <Button
+                  href={"#forests"}
+                  variant="secondary"
+                  color="white"
+                  fill={true}
+                >
+                  See Forests
+                </Button>
+                <Button
+                  href={"#timber"}
+                  variant="secondary"
+                  color="white"
+                  fill={true}
+                >
+                  See Mass Timber
+                </Button>
+              </div>
+              <div className={styles.scrollingText}>
+              <SplitTextBg ref={scrollingRef} color="orange" body={true}>
+                <h3>
+                    Keep scrolling to read our full story. 
+                </h3>
+              </SplitTextBg>
+              </div>
             </div>
             <div className={styles.eyeballs}>
               <div
@@ -170,6 +209,7 @@ const Hero = () => {
               </div>
             </div>
           </div>
+          </ST.Animation>
           <ST.Animation
             tween={{
               start: 25,

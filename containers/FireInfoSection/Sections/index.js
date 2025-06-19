@@ -36,6 +36,7 @@ export default function TabPanel({ index }) {
 
   return (
     <div
+      id="forests"
       key={`tab-${index}`}
       ref={tabRef}
       className={`${styles.tabPanel} tab-${index}`}

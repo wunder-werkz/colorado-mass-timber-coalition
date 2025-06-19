@@ -263,7 +263,14 @@
       color: $orange;
     }
   }
-
+  &.white {
+    background-color: $white;
+    color: $forest;
+    border-color: $white;
+    &::before {
+      background-color: $orange;
+    }
+  }
   &.orange {
     &:not(.fill) {
       background-color: $cream;
