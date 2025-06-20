@@ -95,6 +95,15 @@
   a:first-of-type {
     margin-right: 30px;
   }
+  @include tablet-and-lower {
+    padding-top: 30px;
+    a:first-of-type {
+      margin-right: 10px;
+    }
+    a span {
+      font-size: 16px;
+    }
+  }
 }
 .scrollingText {
   display: flex;
@@ -292,8 +301,12 @@
 }
 
 @keyframes yoyo {
-  from {bottom: -100px}
-  to {bottom: -70px;}
+  from {
+    bottom: -100px;
+    height: 100px;}
+  to {
+    bottom: -70px;
+    height: 70px;}
 }
 
 // @include tablet-and-lower {
