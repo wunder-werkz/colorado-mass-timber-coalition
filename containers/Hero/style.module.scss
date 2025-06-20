@@ -85,6 +85,51 @@
   }
 }
 
+.buttonsContainer {
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+  padding-bottom: 100px;
+  width: 100%;
+  z-index: 10000;
+  a:first-of-type {
+    margin-right: 30px;
+  }
+  @include tablet-and-lower {
+    padding-top: 30px;
+    a:first-of-type {
+      margin-right: 10px;
+    }
+    a span {
+      font-size: 16px;
+    }
+  }
+}
+.scrollingText {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  justify-content: center;
+  text-transform: uppercase;
+  text-align: center;
+  width: $ten-twelfths;
+  position: relative;
+  .arrowWrap {
+    position: absolute;
+    bottom: -100px;
+    opacity: 0;
+    height: 100px;
+    animation-name: yoyo;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: linear;
+    svg {
+      height: 100%;
+      width: auto;
+    }
+  }
+}
 .maskContainer {
   position: absolute;
   transform: translate(50px, 50px);
@@ -92,7 +137,7 @@
   left: 0;
   width: calc(100% - 100px);
   height: calc(100% - 110px);
-  z-index: 1;
+  z-index: 10;
   clip-path: circle(0% at 50% 100%);
   -webkit-clip-path: circle(0% at 50% 100%);
 
@@ -109,6 +154,8 @@
 }
 
 .mask {
+  display: flex;
+  flex-flow: column;
   position: absolute;
   top: 0;
   left: 0;
@@ -251,6 +298,15 @@
     height: calc(100% - 100px);
     transform: translate(10px, 0);
   }
+}
+
+@keyframes yoyo {
+  from {
+    bottom: -100px;
+    height: 100px;}
+  to {
+    bottom: -70px;
+    height: 70px;}
 }
 
 // @include tablet-and-lower {

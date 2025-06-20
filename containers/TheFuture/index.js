@@ -72,7 +72,7 @@ export default function TheFuture() {
         refreshPriority: 4,
       }}
     >
-      <div className={`${styles.container}`} id="future">
+      <div className={`${styles.container}`} id="timber">
         <div className={styles.column}>
           <div>
             <ST.Waypoint
