@@ -18,6 +18,7 @@ const Hero = () => {
   const splitTextAnimationRef2 = useRef(null);
   const scrollingRef = useRef(null);
   const buttonsRef = useRef(null);
+  const arrowRef = useRef(null); 
   const [isInitialized, setIsInitialized] = useState(false);
   const maskContainerRef = useRef(null);
   const fireTrimRef = useRef(null);
@@ -72,6 +73,8 @@ const Hero = () => {
       opacity: 1, 
       y: 0
     }).to(buttonsRef.current, {
+      opacity: 1
+    }).to(arrowRef.current, {
       opacity: 1
     });
 
@@ -174,6 +177,11 @@ const Hero = () => {
                     Keep scrolling to read our full story. 
                 </h3>
               </SplitTextBg>
+              <div className={styles.arrowWrap} ref={arrowRef}>
+                <svg viewBox="0 0 16 81">
+                  <path d="M8.7071 80.7071C8.31658 81.0976 7.68341 81.0976 7.29289 80.7071L0.928929 74.3431C0.538405 73.9526 0.538405 73.3195 0.928929 72.9289C1.31945 72.5384 1.95262 72.5384 2.34314 72.9289L8 78.5858L13.6569 72.9289C14.0474 72.5384 14.6805 72.5384 15.0711 72.9289C15.4616 73.3195 15.4616 73.9526 15.0711 74.3431L8.7071 80.7071ZM8 0L9 8.48637e-08L9 80L8 80L7 80L7 -8.48634e-08L8 0Z" fill="#FF752A"/>
+                  </svg>
+                </div>
               </div>
             </div>
             <div className={styles.eyeballs}>

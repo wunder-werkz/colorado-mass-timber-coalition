@@ -104,6 +104,22 @@
   text-transform: uppercase;
   text-align: center;
   width: $ten-twelfths;
+  position: relative;
+  .arrowWrap {
+    position: absolute;
+    bottom: -100px;
+    opacity: 0;
+    height: 100px;
+    animation-name: yoyo;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: linear;
+    svg {
+      height: 100%;
+      width: auto;
+    }
+  }
 }
 .maskContainer {
   position: absolute;
@@ -273,6 +289,11 @@
     height: calc(100% - 100px);
     transform: translate(10px, 0);
   }
+}
+
+@keyframes yoyo {
+  from {bottom: -100px}
+  to {bottom: -70px;}
 }
 
 // @include tablet-and-lower {
