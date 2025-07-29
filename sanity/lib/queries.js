@@ -17,6 +17,7 @@ export const EVENTS_QUERY = defineQuery(
   `*[_type == "event"] | order(startDate desc)`
 );
 
+
 export const HOME_QUERY = defineQuery(`*[_type == "homePage"]{
   pageTitle,
   pageMetadata,
@@ -68,6 +69,19 @@ export const FOOTER_QUERY = defineQuery(`*[_type == "footer"]{
   }
 }`);
 
+export const NAVIGATION_QUERY = defineQuery(`*[_type == "navigation"]{
+ navItems[]->{
+      _type,
+      title,
+      pageTitle,
+      slug,
+      linkTitle,
+      url,
+      newWindow,
+      downloadPdf,
+      "downloadUrl": downloadPdf.asset->url
+    },
+}`);
 
 export const ACTION_QUERY = defineQuery(`*[_type == "takeAction"]{
   pageTitle,
@@ -95,3 +109,49 @@ export const ACTION_QUERY = defineQuery(`*[_type == "takeAction"]{
     "downloadUrl": downloadPdf.asset->url,
   },
 }`);
+
+export const getPageSectionsQuery = () => `
+  _type,
+  ...select(
+    _type == "generalSection" => {
+      eyebrowCopy,
+      headline,
+      image{
+        image{
+          asset->,
+          alt,
+          hotspot,
+          crop
+        }
+      }
+    },
+    _type == "ctaSection" => {
+      headline,
+      copy,
+      link[]->{
+        linkTitle,
+        url,
+        newWindow,
+        downloadPdf,
+        description,
+        "downloadUrl": downloadPdf.asset->url,
+      },
+    },
+     _type == "listSection" => {
+      headline,
+      copy,
+      listItems[]->{
+        headline,
+        copy,
+        link[]->{
+          linkTitle,
+          url,
+          newWindow,
+          downloadPdf,
+          description,
+          "downloadUrl": downloadPdf.asset->url,
+        },
+      },
+    },
+  )
+`;

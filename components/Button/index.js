@@ -43,7 +43,7 @@ export default function Button({
 
   if (onClick) {
     return (
-      <button className={buttonClasses} onClick={onClick} {...props}>
+      <button className={`${buttonClasses} ${large && "large"}`} onClick={onClick} {...props}>
         {content}
       </button>
     );
@@ -51,7 +51,7 @@ export default function Button({
 
   if (downloadUrl) { 
       <a
-      className={buttonClasses}
+      className={`${buttonClasses} ${large && "large"}`}
       href={href}
       download
       target={newWindow ? "_blank" : ""}
@@ -64,7 +64,7 @@ export default function Button({
   } else if (href?.startsWith("http")) {
     return (
       <a
-        className={buttonClasses}
+        className={`${buttonClasses} ${large && "large"}`}
         href={href}
         target={newWindow ? "_blank" : ""}
         rel="noopener noreferrer"
@@ -77,14 +77,14 @@ export default function Button({
 
   if (href) {
     return (
-      <Link className={buttonClasses} href={href} {...props}>
+      <Link className={`${buttonClasses} ${large && "large"}`} href={href} {...props}>
         {content}
       </Link>
     );
   }
 
   return (
-    <button className={buttonClasses} {...props}>
+    <button className={`${buttonClasses} ${large && "large"}`} {...props}>
       {content}
     </button>
   );

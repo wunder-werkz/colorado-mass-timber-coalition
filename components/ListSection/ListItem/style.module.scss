@@ -1,0 +1,42 @@
+@use "@/styles/vars" as *;
+
+.listItem {
+  .bar {
+    background: $orange;
+    color: $forest;
+    display: flex;
+    overflow: hidden;
+    padding: 20px 60px;
+    @include lap-smaller {
+      padding: 20px;
+    }
+    @include phone {
+      padding: 20px 30px;
+    }
+    @include x-small {
+        flex-flow: column;
+    }
+    .headline {
+        width: $six-twelfths;
+        @include x-small {
+            width: 100%;
+            h2 {
+                margin-bottom: 0;
+            }
+        }
+    }
+    .textWrap {
+        @include body1;
+        width: $six-twelfths;
+        @include x-small {
+            width: 100%;
+        }
+    }
+  }
+  &.even {
+    .bar {
+        background-color: $forest;
+        color: $orange;
+    }
+  }
+}

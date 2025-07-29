@@ -10,7 +10,7 @@ import Stumpy from "@/components/Stumpy";
 import Button from "@/components/Button";
 import { LinkedIn, Instagram } from "@/components/SVG/Social";
 
-const Header = ({ contactEmail, hasEvents }) => {
+const Header = ({ contactEmail, hasEvents,navigation }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const logoRef = useRef(null);
   const menuRef = useRef(null);
@@ -138,7 +138,7 @@ const Header = ({ contactEmail, hasEvents }) => {
           <span></span>
         </button>
       </div>
-      <nav className={styles.mainNav}>
+      {/* <nav className={styles.mainNav}>
         <ul>
           <li> 
             <Button
@@ -185,7 +185,7 @@ const Header = ({ contactEmail, hasEvents }) => {
             </Button>
           </li>
         </ul>
-      </nav>
+      </nav> */}
       <nav className={`${styles.menu} ${styles.mobileNav}`} ref={menuRef}>
         <div
           className={styles.stumpyWrap}
@@ -218,24 +218,49 @@ const Header = ({ contactEmail, hasEvents }) => {
               Events
             </Button>
           )}
-           <li>
-            <Button
-                 onClick={() => handleLinkClick(`/action`, false)}
+          <Button
+                onClick={() => handleLinkClick(`/action`, false)}
+              variant="primary"
+              color="forest"
+              large={true}
+            >
+              Take Action
+          </Button>
+          {navigation && navigation[0] && navigation[0].navItems.length > 0 && navigation[0].navItems.map((navItem, i) => {
+            if (navItem._type == "page" && navItem.slug) {
+              return (<Button
+                key={`nav-item-${i}`}
+                variant="primary"
+                color="forest"
+                onClick={() => handleLinkClick(`/${navItem.slug.current}`, false)}
+                large={true}
+              >
+                {navItem.pageTitle || navItem.slug.current}
+              </Button> )
+            } else {
+              return (<Button
+                key={`nav-item-${i}`}
+                href={navItem.url}
+                newWindow={navItem.newWindow}
+                downloadPdf={navItem.downloadPdf}
+                downloadUrl={navItem.downloadUrl}
                 variant="primary"
                 color="forest"
                 large={true}
               >
-                Take Action
-            </Button>
-          </li>
-          <Button
+                {navItem.linkTitle ? navItem.linkTitle : "Learn More"}
+              </Button>
+              )
+            }
+          })}
+          {/* <Button
             variant="primary"
             color="forest"
             onClick={() => handleLinkClick(`mailto:${contactEmail}`, true)}
             large={true}
           >
             Contact
-          </Button>
+          </Button> */}
           <div
             className={styles.socialWrap}
             ref={(el) => (menuItemsRef.current[2] = el)}

@@ -14,9 +14,11 @@ export default defineConfig({
         S.list()
           .title("Content")
           .items([
+            S.documentTypeListItem("navigation"),
             S.documentTypeListItem("general"),
             S.documentTypeListItem("event"),
             S.documentTypeListItem("homePage"),
+            S.documentTypeListItem('page'),
             S.documentTypeListItem("takeAction"),
             S.documentTypeListItem("footer"),
           ]),

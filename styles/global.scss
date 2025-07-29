@@ -76,3 +76,21 @@ a {
     text-decoration: none;
   }
 }
+
+.buttons-container {
+  padding-top: 30px;
+  a, button {
+    margin-right: 30px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+  @include x-small {
+    display: flex;
+    flex-flow: column;
+    a, button {
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+  }
+}
