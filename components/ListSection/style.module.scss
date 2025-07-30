@@ -1,0 +1,35 @@
+@use "@/styles/vars" as *;
+
+.listSection {
+    padding: 60px 0 90px 0;
+  .headlineContainer {
+    padding: 0px 60px 30px 60px;
+    @include x-small {
+        padding: 0 30px 30px 30px;
+    }
+    h1 {
+        width: $eight-twelfths;
+        @include h1();
+        & {
+            line-height: 1.05;
+        }
+        @include x-small {
+            width: 100%;
+        }
+    }
+  }
+
+  .textContent {
+    transform: translateX(100%);
+    .contentContainer {
+        display: flex();
+        flex-direction: column;
+        justify-content: flex-end;
+        color: $black;
+        @include body1;
+      .textContainer {
+        max-width: 630px;
+      }
+    }
+  }
+}

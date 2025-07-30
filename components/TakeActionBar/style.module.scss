@@ -1,7 +1,7 @@
 @use "@/styles/vars" as *;
 
 .takeActionSection {
-    padding: 100px 0px;
+    padding: 60px 0px 0 0;
   @include lap-smaller {
     padding: 50px 0px;
   }
@@ -12,13 +12,14 @@
     background: $orange;
     color: $forest;
     display: flex;
+    align-items: center;
     overflow: hidden;
-    padding: 20px 60px;
+    padding: 30px 60px;
     @include lap-smaller {
       padding: 20px;
     }
     @include phone {
-      padding: 20px 10px;
+      padding: 20px 30px;
     }
     @include x-small {
         flex-flow: column;
@@ -28,12 +29,22 @@
     }
     .headline {
         width: $six-twelfths;
+        @include x-small {
+          width: 100%;
+        }
     }
     h1 {
         @include h1();
+        margin: 0;
     }
     .textWrap {
         @include body1;
+        a {
+          border-bottom: 1px solid $forest;
+          &:hover {
+            border-bottom: none;
+          }
+        }
     }
   }
  
