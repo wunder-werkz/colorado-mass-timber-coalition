@@ -52,7 +52,7 @@ const Header = ({ contactEmail, hasEvents,navigation }) => {
   }, [isHomePage]);
 
   const toggleMenu = () => {
-    const body = document.body;
+    const body = document.querySelector("main");;
     if (!timeline.current) {
       timeline.current = gsap
         .timeline({ paused: true })
@@ -85,7 +85,7 @@ const Header = ({ contactEmail, hasEvents,navigation }) => {
   const handleLinkClick = (href, isExternal = false) => {
     timeline.current.reverse();
     setIsMenuOpen(false);
-    const body = document.body;
+    const body = document.querySelector("main");
     body.style.overflow = "unset";
     body.style.height = "auto";
     ScrollTrigger.refresh();

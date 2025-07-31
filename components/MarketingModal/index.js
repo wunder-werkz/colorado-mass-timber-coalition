@@ -65,9 +65,10 @@ const MarketingModal = ({ modal }) => {
     }, [modal]);
 
   return (
-    <div className={`${styles.modalWrap} ${modalEnter && styles.modalEnter}`}>
+    <div className={`${styles.modalWrap} ${modalEnter && styles.modalEnter}`} onClick={() => handleClose()}>
         <div
             className={`${styles.marketingModal} ${modalEnter && styles.modalEnter}`}
+            onClick={(e) => e.stopPropagation()}
             >
             <div className={styles.close} onClick={() => handleClose()}>
                 <svg viewBox="0 0 39.5 40.7">

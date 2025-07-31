@@ -47,7 +47,7 @@ const ListSection = ({ listSection }) => {
   const renderListItems = () => {
     return listItems.map((listItem, i) => {
         const even = (i+1) % 2 === 0;
-        return <ListItem listItem={listItem} even={even} />;
+        return <ListItem listItem={listItem} even={even} key={`list-item-${i}`} />;
     })
    
   };

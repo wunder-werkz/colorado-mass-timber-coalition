@@ -118,7 +118,7 @@ export default function CitationsModal() {
 
     if (isOpen) {
       // Prevent body scroll
-      document.body.style.overflow = "hidden";
+      document.querySelector("main").style.overflow = "hidden";
 
       // Animate modal in
       gsap.set(modalRef.current, { display: "block" });
@@ -139,7 +139,7 @@ export default function CitationsModal() {
         duration: 0.3,
         onComplete: () => {
           gsap.set(modalRef.current, { display: "none" });
-          document.body.style.overflow = "auto";
+          document.querySelector.style.overflow = "auto";
         },
       });
     }

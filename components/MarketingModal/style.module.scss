@@ -12,10 +12,11 @@
     bottom: 0;
     width: 100vw;
     height: 100vh;
-    z-index: 5000;
+    z-index: 0;
     opacity: 0;
     &.modalEnter {
         opacity: 1;
+        z-index: 5000;
     }
 }
 .marketingModal {
@@ -30,6 +31,12 @@
     transition: transform 0.5s ease-in-out;
     transition-delay: 0.5s;
     transform: translateY(200%);
+    @include tablet-and-lower() {
+        padding: 60px;
+    }
+    @include x-small() {
+        padding: 60px 30px 30px 30px;
+    }
     .close {
         background-color: $white;
         display: flex;
@@ -56,6 +63,10 @@
             svg {
                 transform: rotate(180deg);
             }
+        }
+        @include tablet-and-lower() {
+            height: 40px;
+            width: 40px;
         }
     }
 

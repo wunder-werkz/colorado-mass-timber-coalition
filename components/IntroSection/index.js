@@ -1,8 +1,8 @@
 'use client'
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useCallback } from "react";
 import { PortableText } from "@portabletext/react";
-import { gsap } from "gsap";
+import { gsap, ScrollTrigger } from "@/lib/gsapConfig";
 
 import Button from "../Button";
 import SplitTextBg from "@/components/SplitTextBg";
@@ -13,35 +13,24 @@ const IntroSection = ({ introSection }) => {
     const { headline, image, imageUrl, imageHeight, imageWidth, copy, links } =
     introSection;
 
-    const headlineRef = useRef();
+    const headlineRef = useRef(null);
     const headlineContainerRef = useRef();
     const contentRef = useRef();
     const contentContainerRef = useRef();
 
+    const handleIntroTextAnimation = useCallback(() => {
+        headlineRef.current?.restart();
+      
+      }, []);
+
     useEffect(() => {
-        if (headlineRef.current) {
-            gsap.to(headlineRef.current, 
-                {
-                    scrollTrigger: {
-                        trigger: headlineContainerRef.current,
-                        start: "top 80%",
-                        onEnter: () => {
-                            headlineRef.current?.restart();
-                        }, 
-                    },
-                    
-                }
-            )
-        }
+       const introAnimations = gsap.timeline({ onStart: () => handleIntroTextAnimation() });
         if (contentRef) {
-        gsap.to(contentRef.current, {
+        introAnimations.to(contentRef.current, {
             delay: 0.35,
             x: 0,
             duration: 0.35,
-        });
-        }
-        if (contentContainerRef) {
-        gsap.to(contentContainerRef.current, {
+        }).to(contentContainerRef.current, {
             delay: 0.7,
             opacity: 1,
             duration: 0.5,
