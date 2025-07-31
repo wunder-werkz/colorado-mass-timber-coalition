@@ -83,6 +83,32 @@ export const NAVIGATION_QUERY = defineQuery(`*[_type == "navigation"]{
     },
 }`);
 
+export const MODAL_QUERY = defineQuery(`*[_type == "modal"]{
+   headline,
+    shortCopy,
+    image{
+        image{
+          asset->,
+          alt,
+          hotspot,
+          crop
+        }
+      },
+    "imageUrl": image.image.asset->url,
+    "imageHeight": image.image.asset->metadata.dimensions.height,
+    "imageWidth": image.image.asset->metadata.dimensions.width,
+    isVisible,
+    emailSignup,
+    link[]->{
+      linkTitle,
+      url,
+      newWindow,
+      downloadPdf,
+      description,
+      "downloadUrl": downloadPdf.asset->url,
+    },
+  }`);
+
 export const ACTION_QUERY = defineQuery(`*[_type == "takeAction"]{
   pageTitle,
   pageMetadata,
