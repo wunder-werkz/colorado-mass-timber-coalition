@@ -25,24 +25,53 @@
     color: $black;
     max-width: 900px;
     min-width: 380px;
-    padding: $one-twelfth;
+    padding: 90px;
     width: $eight-twelfths;
     transition: transform 0.5s ease-in-out;
     transition-delay: 0.5s;
     transform: translateY(200%);
     .close {
+        background-color: $white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
         position: absolute;
         top: 10px;
         right: 15px;
+        width: 50px;
         svg {
-        height: auto;
-        width: 30px;
+            height: auto;
+            width: 30px;
+            transition: transform 0.5s ease-in-out;
+            line {
+                fill: none;
+                stroke: $forest;
+                stroke-width: 4px;
+            }
+       
         }
         &:hover {
-        cursor: pointer;
+            cursor: pointer;
+            svg {
+                transform: rotate(180deg);
+            }
         }
     }
 
+    h1 {
+        @include h1();
+        line-height: 1.2;
+        margin: .5rem 0;
+        span {
+            background-color: $white;
+            color: $black;
+            box-decoration-break: clone;
+            -webkit-box-decoration-break: clone;
+            color: $black;
+            padding: 0 5px;
+        }
+    }
     .imageContainer {
         margin-bottom: 5px;
         width: 100%;
@@ -62,7 +91,7 @@
         }
         }
         .buttonContainer {
-        margin-top: 15px;
+        margin-top: 60px;
         }
     }
     &.modalEnter {

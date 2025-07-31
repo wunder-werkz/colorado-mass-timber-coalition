@@ -14,6 +14,7 @@ const modal = {
         name: "shortCopy",
         type: "array",
         title: "Short Copy",
+        hidden: true,
         description: "Keep characters to 130 characters or less.",
         of: [
           {
@@ -26,6 +27,7 @@ const modal = {
         name: "image",
         type: "document",
         title: "Image",
+        hidden: true,
         fields: [
           {
             title: "Image Title/Alt Text",

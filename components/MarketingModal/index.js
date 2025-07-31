@@ -3,7 +3,7 @@
 // import MailchimpSubscribe from "react-mailchimp-subscribe";
 import { PortableText } from "@portabletext/react";
 
-import { useEffect, useState} from "react";
+import { useEffect, useState, useRef} from "react";
 // import NewsletterForm from "../Footer/NewsletterForm";
 
 import styles from "./style.module.scss";
@@ -11,7 +11,7 @@ import styles from "./style.module.scss";
 // import SubmitButton from "~/components/Buttons/SubmitButton";
 // import ImageRender from "~/components/ImageRender/ImageRender";
 import Button from "../Button";
-
+import SplitTextBg from "../SplitTextBg";
 
 
 const MarketingModal = ({ modal }) => {
@@ -29,11 +29,16 @@ const MarketingModal = ({ modal }) => {
   } = modal[0];
 
 //   const MAILCHIMP_URL = process.env.NEXT_PUBLIC_MAILCHIMP_URL;
-  const [showModal, setShowModal] = useState(false);
-  const [modalEnter, setModalEnter] = useState();
+    const [showModal, setShowModal] = useState(false);
+    const [modalEnter, setModalEnter] = useState();
+
 
   // Close Marketing Modal
   const handleClose = () => {
+    const body = document.querySelector("main");
+
+    body.style.overflow = "unset";
+    body.style.height = "auto";
     setModalEnter(false);
     setTimeout(() => {
       setShowModal(false);
@@ -41,18 +46,23 @@ const MarketingModal = ({ modal }) => {
     window.sessionStorage.setItem("viewedModal", "true");
   };
 
-  useEffect(() => {
-    const viewedModal = window.sessionStorage.getItem("viewedModal");
+    useEffect(() => {
+        const viewedModal = window.sessionStorage.getItem("viewedModal");
+        const body = document.querySelector("main");
 
-    if (isVisible && !viewedModal) {
-      setShowModal(true);
-      setTimeout(() => {
-        setModalEnter(true);
-      }, 3000);
-    } else {
-      setShowModal(false);
-    }
-  }, [modal]);
+        if (isVisible && !viewedModal) {
+            setShowModal(true);
+            
+        setTimeout(() => {
+            body.style.overflow = "hidden";
+            body.style.height = "100vh";
+            setModalEnter(true);
+        }, 3000);
+        } else {
+            setShowModal(false);
+        }
+
+    }, [modal]);
 
   return (
     <div className={`${styles.modalWrap} ${modalEnter && styles.modalEnter}`}>
@@ -60,14 +70,16 @@ const MarketingModal = ({ modal }) => {
             className={`${styles.marketingModal} ${modalEnter && styles.modalEnter}`}
             >
             <div className={styles.close} onClick={() => handleClose()}>
-                x
+                <svg viewBox="0 0 39.5 40.7">
+                    <line x1="5.7" y1="34.3" x2="34" y2="6"/>
+                    <line x1="5.5" y1="6.3" x2="33.8" y2="34.6"/>
+                </svg>
             </div>
-            
-            {headline && (
+            {headline && 
                 <div className={styles.headline}>
-                <h2>{headline}</h2>
+                    <h1><span> {headline} </span> </h1>
                 </div>
-            )}
+            }
             {/* {image && imageUrl && (
                 <div className={styles.imageContainer}>
                 <ImageRender
@@ -125,7 +137,6 @@ const MarketingModal = ({ modal }) => {
                 </div>
             )} */}
         </div>
-
     </div>
    
   );
