@@ -20,22 +20,24 @@ const IntroSection = ({ introSection }) => {
 
     const handleIntroTextAnimation = useCallback(() => {
         headlineRef.current?.restart();
-      
       }, []);
 
     useEffect(() => {
-       const introAnimations = gsap.timeline({ onStart: () => handleIntroTextAnimation() });
-        if (contentRef) {
-        introAnimations.to(contentRef.current, {
-            delay: 0.35,
-            x: 0,
-            duration: 0.35,
-        }).to(contentContainerRef.current, {
-            delay: 0.7,
-            opacity: 1,
-            duration: 0.5,
+        const ctx = gsap.context(() => {
+            const introAnimations = gsap.timeline({ onStart: () => { handleIntroTextAnimation()} });
+                if (contentRef) {
+                introAnimations.to(contentRef.current, {
+                    delay: 0.35,
+                    x: 0,
+                    duration: 0.35,
+                }).to(contentContainerRef.current, {
+                    delay: 0.7,
+                    opacity: 1,
+                    duration: 0.5,
+                });
+            }
         });
-        }
+        return () => ctx.revert();
     }, [contentRef, contentContainerRef]);
 
   const renderLinks = () => {

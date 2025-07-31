@@ -8,6 +8,7 @@ import Mission from "@/components/Mission";
 import TakeActionBar from "@/components/TakeActionBar";
 import FooterLogo from "@/components/SVG/FooterLogo";
 
+
 export default async function Home() {
   const events = await client.fetch(UPCOMING_EVENTS_QUERY);
   const homepage = await client.fetch(HOME_QUERY);

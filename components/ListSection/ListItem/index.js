@@ -13,7 +13,7 @@ const ListItem = ({ listItem, even }) => {
     const contentRef = useRef();
 
     useEffect(() => {
-        ScrollTrigger.refresh();
+        const ctx = gsap.context(() => {
         gsap.timeline({
             scrollTrigger: {
                 trigger: sectionRef.current, 
@@ -30,7 +30,9 @@ const ListItem = ({ listItem, even }) => {
             opacity: 0,
             y: "100px"
         });
-    }, []);
+        });
+        return () => ctx.revert();
+    }, [barRef, sectionRef, headlineRef, contentRef]);
 
     return (
         <div className={`${styles.listItem} ${even ? styles.even : styles.odd}`} ref={sectionRef}>

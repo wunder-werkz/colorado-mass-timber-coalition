@@ -1,8 +1,7 @@
 import { getPageSectionsQuery } from "@/sanity/lib/queries";
 import { client } from "@/sanity/lib/client";
-import IntroSection from "@/components/IntroSection";
-import ListSection from "@/components/ListSection";
-import TakeActionBar from "@/components/TakeActionBar";
+
+import PageClient from "@/containers/PageClient";
 
 export default async function Page({ params}) {
     const { slug } = await params;
@@ -39,27 +38,9 @@ export default async function Page({ params}) {
     }`
     );
 
-    const renderPageSections = () => {
-        return page[0].pageSections.map((pageSection, i) => {
-            if (pageSection._type == "listSection") {
-                return <ListSection 
-                key={`list-section-${i}`} listSection={pageSection} />
-            } else if (pageSection._type == "ctaSection") {
-                return <TakeActionBar color={"orange"} headline={pageSection.headline} copy={pageSection.copy} links={pageSection.links} />
-            }
-        });
-    }
-
-
     if (page && page[0]) {
-        return (
-            <>
-            {page[0]?.introSection && <IntroSection introSection={page[0].introSection} />}
-            {page[0]?.pageSections ? 
-                renderPageSections()
-            : ""}
-            </>
-        );
+        return <PageClient introSection={page[0]?.introSection} pageSections={page[0]?.pageSections} />
+
     } else return;
    
 }
