@@ -23,6 +23,7 @@ const IntroSection = ({ introSection }) => {
       }, []);
 
     useEffect(() => {
+        ScrollTrigger.refresh();
         const ctx = gsap.context(() => {
             const introAnimations = gsap.timeline({ onStart: () => { handleIntroTextAnimation()} });
                 if (contentRef) {
