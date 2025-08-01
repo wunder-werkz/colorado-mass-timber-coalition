@@ -18,7 +18,7 @@
             width: 100%;
         }
         .line {
-            display: inline;
+            display: inline !important;
             background: $orange;
             box-decoration-break: clone;
             -webkit-box-decoration-break: clone;
