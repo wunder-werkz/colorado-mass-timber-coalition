@@ -34,7 +34,7 @@ const IntroSection = ({ introSection }) => {
           
 
                 introAnimations.from(split.words, {
-                    duration: 0.75,
+                    duration: 0.25,
                     autoAlpha: 0, 
                     y: 100,
                     stagger: 0.15,

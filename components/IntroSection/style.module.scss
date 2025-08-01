@@ -8,6 +8,7 @@
   .headlineContainer {
     padding: 60px 60px 30px 60px;
     h1 {
+        overflow: hidden;
         width: $eight-twelfths;
         
         @include h1();
@@ -20,8 +21,7 @@
         .line {
             display: inline !important;
             background: $orange;
-            box-decoration-break: clone;
-            -webkit-box-decoration-break: clone;
+            overflow: hidden;
             color: $forest;
             padding: 0 5px;
         }
