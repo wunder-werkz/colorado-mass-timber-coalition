@@ -2,46 +2,26 @@
 
 import { useEffect, useRef, useCallback } from "react";
 import { PortableText } from "@portabletext/react";
-import { gsap, SplitText } from "@/lib/gsapConfig";
-
+import { gsap, ScrollTrigger } from "@/lib/gsapConfig";
 import Button from "../Button";
-
-
+import SplitTextBg from "@/components/SplitTextBg";
 import styles from "./style.module.scss";
 
 const IntroSection = ({ introSection }) => {
     const { headline, image, imageUrl, imageHeight, imageWidth, copy, links } =
     introSection;
-
-    const headlineRef = useRef(null);
+    const headlineIntroRef = useRef(null);
     const headlineContainerRef = useRef();
     const contentRef = useRef();
     const contentContainerRef = useRef();
+    const handleIntroTextAnimation = useCallback(() => {
+        headlineRef.current?.restart();
+      }, []);
 
     useEffect(() => {
+        ScrollTrigger.refresh();
         const ctx = gsap.context(() => {
-
-            const introAnimations = gsap.timeline({ });
-
-            if (headlineRef && headlineRef.current)  {
-                gsap.set(headlineRef, { autoAlpha: 0, y: 20 });
-               let split = new SplitText(headlineRef.current, {
-                    type: 'words, lines',
-                    linesClass: styles.line,
-                    reduceWhiteSpace: false,
-                    lineThreshold: 0.5,
-                 });
-          
-
-                introAnimations.from(split.words, {
-                    duration: 0.25,
-                    autoAlpha: 0, 
-                    y: 100,
-                    stagger: 0.15,
-                });
-            }
-        
-         
+            const introAnimations = gsap.timeline({ onStart: () => { handleIntroTextAnimation()} });
                 if (contentRef) {
                 introAnimations.to(contentRef.current, {
                     delay: 0.35,
@@ -56,7 +36,6 @@ const IntroSection = ({ introSection }) => {
         });
         return () => ctx.revert();
     }, [contentRef, contentContainerRef]);
-
   const renderLinks = () => {
     return (
       <div
@@ -68,7 +47,7 @@ const IntroSection = ({ introSection }) => {
                 return (
                     <Button
                         key={`intro-button-${i}`}
-                        href={link.url}
+                        href={link.downloadUrl}
                         newWindow={link.newWindow}
                         downloadPdf={link.downloadPdf}
                         downloadUrl={link.downloadUrl}
@@ -85,12 +64,13 @@ const IntroSection = ({ introSection }) => {
       </div>
     );
   };
-
   return (
     <section className={styles.introSection}>
         {headline && 
             <div className={styles.headlineContainer} ref={headlineContainerRef}>
-                <h1 > <span ref={headlineRef}>{headline}</span> </h1>
+                <SplitTextBg ref={headlineIntroRef} color="orange" inline>
+                    <h1>{headline} </h1>
+                </SplitTextBg>
             </div>
         }
       <div className={styles.textContent} ref={contentRef}>
@@ -106,5 +86,4 @@ const IntroSection = ({ introSection }) => {
     </section>
   );
 };
-
 export default IntroSection;

@@ -8,15 +8,15 @@ import ListItem from "./ListItem";
 
 const ListSection = ({ listSection }) => {  
     const {headline, copy, listItems} = listSection;
-    const headlineRef = useRef();
+    const headlineListRef = useRef();
     const headlineContainerRef = useRef();
     const contentRef = useRef();
     const contentContainerRef = useRef();
 
     useEffect(() => {
         const ctx = gsap.context(() => {
-            if (headlineRef.current) {
-                gsap.to(headlineRef.current, 
+            if (headlineListRef.current) {
+                gsap.to(headlineListRef.current, 
                     {
                         scrollTrigger: {
                             trigger: headlineContainerRef.current,
@@ -58,7 +58,7 @@ const ListSection = ({ listSection }) => {
         <section className={styles.listSection}>
         {headline && 
             <div className={styles.headlineContainer} ref={headlineContainerRef}>
-                <SplitTextBg ref={headlineRef} color="orange" inline>
+                <SplitTextBg ref={headlineListRef} color="orange" inline>
                     <h1>{headline} </h1>
                 </SplitTextBg>
             </div>
