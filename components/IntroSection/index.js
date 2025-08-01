@@ -2,10 +2,10 @@
 
 import { useEffect, useRef, useCallback } from "react";
 import { PortableText } from "@portabletext/react";
-import { gsap, ScrollTrigger } from "@/lib/gsapConfig";
+import { gsap, SplitText } from "@/lib/gsapConfig";
 
 import Button from "../Button";
-import SplitTextBg from "@/components/SplitTextBg";
+
 
 import styles from "./style.module.scss";
 
@@ -18,21 +18,30 @@ const IntroSection = ({ introSection }) => {
     const contentRef = useRef();
     const contentContainerRef = useRef();
 
-    const handleIntroTextAnimation = useCallback(() => {
-        console.log("CALLBACK");
-        headlineRef.current?.play();
-      }, []);
-
-    const handleIntroTextStopAnimation = useCallback(() => {
-        console.log("CALLBACK");
-        headlineRef.current?.reverse();
-      }, []);
-
     useEffect(() => {
         const ctx = gsap.context(() => {
 
-            const introAnimations = gsap.timeline({ onStart: () => { 
-                console.log("START");handleIntroTextAnimation()} });
+            const introAnimations = gsap.timeline({ });
+
+            if (headlineRef && headlineRef.current)  {
+                gsap.set(headlineRef, { autoAlpha: 0, y: 20 });
+               let split = new SplitText(headlineRef.current, {
+                    type: 'words, lines',
+                    linesClass: styles.line,
+                    reduceWhiteSpace: false,
+                    lineThreshold: 0.5,
+                 });
+          
+
+                introAnimations.from(split.words, {
+                    duration: 0.75,
+                    autoAlpha: 0, 
+                    y: 100,
+                    stagger: 0.15,
+                });
+            }
+        
+         
                 if (contentRef) {
                 introAnimations.to(contentRef.current, {
                     delay: 0.35,
@@ -46,7 +55,6 @@ const IntroSection = ({ introSection }) => {
             }
         });
         return () => ctx.revert();
-        handleIntroTextStopAnimation();
     }, [contentRef, contentContainerRef]);
 
   const renderLinks = () => {
@@ -82,9 +90,7 @@ const IntroSection = ({ introSection }) => {
     <section className={styles.introSection}>
         {headline && 
             <div className={styles.headlineContainer} ref={headlineContainerRef}>
-                <SplitTextBg ref={headlineRef} color="orange" inline>
-                    <h1>{headline} </h1>
-                </SplitTextBg>
+                <h1 > <span ref={headlineRef}>{headline}</span> </h1>
             </div>
         }
       <div className={styles.textContent} ref={contentRef}>

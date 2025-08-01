@@ -17,6 +17,14 @@
         @include x-small {
             width: 100%;
         }
+        .line {
+            display: inline;
+            background: $orange;
+            box-decoration-break: clone;
+            -webkit-box-decoration-break: clone;
+            color: $forest;
+            padding: 0 5px;
+        }
     }
     @include x-small {
         padding: 60px 30px 30px 30px;
