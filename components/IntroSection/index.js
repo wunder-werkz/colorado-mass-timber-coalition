@@ -19,13 +19,20 @@ const IntroSection = ({ introSection }) => {
     const contentContainerRef = useRef();
 
     const handleIntroTextAnimation = useCallback(() => {
-        headlineRef.current?.restart();
+        console.log("CALLBACK");
+        headlineRef.current?.play();
+      }, []);
+
+    const handleIntroTextStopAnimation = useCallback(() => {
+        console.log("CALLBACK");
+        headlineRef.current?.reverse();
       }, []);
 
     useEffect(() => {
-        ScrollTrigger.refresh();
         const ctx = gsap.context(() => {
-            const introAnimations = gsap.timeline({ onStart: () => { handleIntroTextAnimation()} });
+
+            const introAnimations = gsap.timeline({ onStart: () => { 
+                console.log("START");handleIntroTextAnimation()} });
                 if (contentRef) {
                 introAnimations.to(contentRef.current, {
                     delay: 0.35,
@@ -39,6 +46,7 @@ const IntroSection = ({ introSection }) => {
             }
         });
         return () => ctx.revert();
+        handleIntroTextStopAnimation();
     }, [contentRef, contentContainerRef]);
 
   const renderLinks = () => {
