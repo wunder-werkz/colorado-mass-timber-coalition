@@ -1,6 +1,6 @@
 import localFont from "next/font/local";
 
-import { GENERAL_QUERY, UPCOMING_EVENTS_QUERY, FOOTER_QUERY, NAVIGATION_QUERY } from "@/sanity/lib/queries";
+import { GENERAL_QUERY, UPCOMING_EVENTS_QUERY, FOOTER_QUERY, NAVIGATION_QUERY, MODAL_QUERY } from "@/sanity/lib/queries";
 import Layout from "@/containers/Layout";
 import { ModalProvider } from "@/context/ModalContext";
 import Footer from "@/components/Footer";
@@ -11,6 +11,7 @@ import favicon from "../../public/favicon/favicon.svg";
 import favicon96 from "../../public/favicon/favicon-96x96.png";
 import manifest from "../../public/static/webmanifest.json";
 import SmoothScroll from "@/components/SmoothScroll";
+import MarketingModal from "@/components/MarketingModal";
 
 import "@/styles/global.scss";
 
@@ -34,7 +35,9 @@ export default async function RootLayout({ children }) {
   const events = await client.fetch(UPCOMING_EVENTS_QUERY);
   const footer = await client.fetch(FOOTER_QUERY);
   const navigation = await client.fetch(NAVIGATION_QUERY);
+  const modal = await client.fetch(MODAL_QUERY);
 
+  console.log(modal);
   return (
     <html lang="en">
       <Head>
@@ -76,6 +79,10 @@ export default async function RootLayout({ children }) {
         <link rel="manifest" href={manifest.src} />
       </Head>
       <body className={`${greedNarrow.variable} ${greedStandard.variable}`}>
+        {modal && modal[0].isVisible && (
+          <MarketingModal
+            modal={modal}/>
+        )}
         <SmoothScroll>
           <ModalProvider>
             <Layout

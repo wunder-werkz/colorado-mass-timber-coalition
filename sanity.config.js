@@ -15,6 +15,7 @@ export default defineConfig({
           .title("Content")
           .items([
             S.documentTypeListItem("navigation"),
+            S.documentTypeListItem("modal"),
             S.documentTypeListItem("general"),
             S.documentTypeListItem("event"),
             S.documentTypeListItem("homePage"),

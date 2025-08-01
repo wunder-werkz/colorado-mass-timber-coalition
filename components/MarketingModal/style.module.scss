@@ -1,0 +1,111 @@
+@use "@/styles/vars" as *;
+.modalWrap {
+    background-color: rgba(255, 255, 255, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    transition: opacity 0.5s ease-in-out;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    opacity: 0;
+    &.modalEnter {
+        opacity: 1;
+        z-index: 5000;
+    }
+}
+.marketingModal {
+    display: flex;
+    flex-direction: column;
+    background-color: $orange;
+    color: $black;
+    max-width: 900px;
+    min-width: 380px;
+    padding: 90px;
+    width: $eight-twelfths;
+    transition: transform 0.5s ease-in-out;
+    transition-delay: 0.5s;
+    transform: translateY(200%);
+    @include tablet-and-lower() {
+        padding: 60px;
+    }
+    @include x-small() {
+        padding: 60px 30px 30px 30px;
+    }
+    .close {
+        background-color: $white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        width: 50px;
+        svg {
+            height: auto;
+            width: 30px;
+            transition: transform 0.5s ease-in-out;
+            line {
+                fill: none;
+                stroke: $forest;
+                stroke-width: 4px;
+            }
+       
+        }
+        &:hover {
+            cursor: pointer;
+            svg {
+                transform: rotate(180deg);
+            }
+        }
+        @include tablet-and-lower() {
+            height: 40px;
+            width: 40px;
+        }
+    }
+
+    h1 {
+        @include h1();
+        line-height: 1.2;
+        margin: .5rem 0;
+        span {
+            background-color: $white;
+            color: $black;
+            box-decoration-break: clone;
+            -webkit-box-decoration-break: clone;
+            color: $black;
+            padding: 0 5px;
+        }
+    }
+    .imageContainer {
+        margin-bottom: 5px;
+        width: 100%;
+        img {
+        height: 100%;
+        object-fit: cover;
+        width: 100%;
+        }
+    }
+    .copyButtonContainer {
+        display: flex;
+        width: 100%;
+        .textContainer {
+        padding-right: 15px;
+        p {
+            @include body1();
+        }
+        }
+        .buttonContainer {
+        margin-top: 60px;
+        }
+    }
+    &.modalEnter {
+        transform: translateY(0%);
+    }
+}

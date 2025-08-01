@@ -11,6 +11,7 @@ const TakeActionBar = ({ headline, copy, link}) => {
     const contentRef = useRef();
 
     useEffect(() => {
+        const ctx = gsap.context(() => {
         gsap.timeline({
             scrollTrigger: {
                 trigger: sectionRef.current, 
@@ -26,7 +27,9 @@ const TakeActionBar = ({ headline, copy, link}) => {
             opacity: 0,
             y: "100px"
         });
-    }, []);
+    });
+    return () => ctx.revert();
+    }, [sectionRef, barRef, headlineRef, contentRef]);
 
     return (
         <div className={styles.takeActionSection} ref={sectionRef}>

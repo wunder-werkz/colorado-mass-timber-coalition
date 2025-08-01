@@ -14,40 +14,43 @@ const ListSection = ({ listSection }) => {
     const contentContainerRef = useRef();
 
     useEffect(() => {
-        if (headlineRef.current) {
-            gsap.to(headlineRef.current, 
-                {
-                    scrollTrigger: {
-                        trigger: headlineContainerRef.current,
-                        start: "top 80%",
-                        onEnter: () => {
-                            headlineRef.current?.restart();
-                        }, 
-                    },
-                    
-                }
-            )
-        }
-        if (contentRef) {
-        gsap.to(contentRef.current, {
-            delay: 0.35,
-            x: 0,
-            duration: 0.35,
+        const ctx = gsap.context(() => {
+            if (headlineRef.current) {
+                gsap.to(headlineRef.current, 
+                    {
+                        scrollTrigger: {
+                            trigger: headlineContainerRef.current,
+                            start: "top 80%",
+                            onEnter: () => {
+                                headlineRef.current?.restart();
+                            }, 
+                        },
+                        
+                    }
+                )
+            }
+            if (contentRef) {
+            gsap.to(contentRef.current, {
+                delay: 0.35,
+                x: 0,
+                duration: 0.35,
+            });
+            }
+            if (contentContainerRef) {
+            gsap.to(contentContainerRef.current, {
+                delay: 0.7,
+                opacity: 1,
+                duration: 0.5,
+            });
+            }
         });
-        }
-        if (contentContainerRef) {
-        gsap.to(contentContainerRef.current, {
-            delay: 0.7,
-            opacity: 1,
-            duration: 0.5,
-        });
-        }
+        return () => ctx.revert();
     }, [contentRef, contentContainerRef]);
 
   const renderListItems = () => {
     return listItems.map((listItem, i) => {
         const even = (i+1) % 2 === 0;
-        return <ListItem listItem={listItem} even={even} />;
+        return <ListItem listItem={listItem} even={even} key={`list-item-${i}`} />;
     })
    
   };

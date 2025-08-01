@@ -1,11 +1,11 @@
 'use client'
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useCallback } from "react";
 import { PortableText } from "@portabletext/react";
-import { gsap } from "gsap";
+import { gsap, SplitText } from "@/lib/gsapConfig";
 
 import Button from "../Button";
-import SplitTextBg from "@/components/SplitTextBg";
+
 
 import styles from "./style.module.scss";
 
@@ -13,40 +13,48 @@ const IntroSection = ({ introSection }) => {
     const { headline, image, imageUrl, imageHeight, imageWidth, copy, links } =
     introSection;
 
-    const headlineRef = useRef();
+    const headlineRef = useRef(null);
     const headlineContainerRef = useRef();
     const contentRef = useRef();
     const contentContainerRef = useRef();
 
     useEffect(() => {
-        if (headlineRef.current) {
-            gsap.to(headlineRef.current, 
-                {
-                    scrollTrigger: {
-                        trigger: headlineContainerRef.current,
-                        start: "top 80%",
-                        onEnter: () => {
-                            headlineRef.current?.restart();
-                        }, 
-                    },
-                    
-                }
-            )
-        }
-        if (contentRef) {
-        gsap.to(contentRef.current, {
-            delay: 0.35,
-            x: 0,
-            duration: 0.35,
+        const ctx = gsap.context(() => {
+
+            const introAnimations = gsap.timeline({ });
+
+            if (headlineRef && headlineRef.current)  {
+                gsap.set(headlineRef, { autoAlpha: 0, y: 20 });
+               let split = new SplitText(headlineRef.current, {
+                    type: 'words, lines',
+                    linesClass: styles.line,
+                    reduceWhiteSpace: false,
+                    lineThreshold: 0.5,
+                 });
+          
+
+                introAnimations.from(split.words, {
+                    duration: 0.25,
+                    autoAlpha: 0, 
+                    y: 100,
+                    stagger: 0.15,
+                });
+            }
+        
+         
+                if (contentRef) {
+                introAnimations.to(contentRef.current, {
+                    delay: 0.35,
+                    x: 0,
+                    duration: 0.35,
+                }).to(contentContainerRef.current, {
+                    delay: 0.7,
+                    opacity: 1,
+                    duration: 0.5,
+                });
+            }
         });
-        }
-        if (contentContainerRef) {
-        gsap.to(contentContainerRef.current, {
-            delay: 0.7,
-            opacity: 1,
-            duration: 0.5,
-        });
-        }
+        return () => ctx.revert();
     }, [contentRef, contentContainerRef]);
 
   const renderLinks = () => {
@@ -82,9 +90,7 @@ const IntroSection = ({ introSection }) => {
     <section className={styles.introSection}>
         {headline && 
             <div className={styles.headlineContainer} ref={headlineContainerRef}>
-                <SplitTextBg ref={headlineRef} color="orange" inline>
-                    <h1>{headline} </h1>
-                </SplitTextBg>
+                <h1 > <span ref={headlineRef}>{headline}</span> </h1>
             </div>
         }
       <div className={styles.textContent} ref={contentRef}>

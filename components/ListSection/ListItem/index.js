@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef} from "react";
 import styles from "./style.module.scss";
-import { gsap } from "@/lib/gsapConfig";
+import { gsap, ScrollTrigger } from "@/lib/gsapConfig";
 import { PortableText } from '@portabletext/react';
 import Button from "../../Button";
 
@@ -13,11 +13,13 @@ const ListItem = ({ listItem, even }) => {
     const contentRef = useRef();
 
     useEffect(() => {
+        const ctx = gsap.context(() => {
         gsap.timeline({
             scrollTrigger: {
                 trigger: sectionRef.current, 
                 start: "top 70%", 
                 toggleActions: "play none none none",
+                // markers: true
             }
         }).from(barRef.current, {
             x: "-100vw"
@@ -28,7 +30,9 @@ const ListItem = ({ listItem, even }) => {
             opacity: 0,
             y: "100px"
         });
-    }, []);
+        });
+        return () => ctx.revert();
+    }, [barRef, sectionRef, headlineRef, contentRef]);
 
     return (
         <div className={`${styles.listItem} ${even ? styles.even : styles.odd}`} ref={sectionRef}>

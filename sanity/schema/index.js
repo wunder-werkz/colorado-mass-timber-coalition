@@ -7,6 +7,7 @@ import introSection from "./introSection";
 import link from "./link";
 import listItem from "./listItem";
 import listSection from "./listSection";
+import modal from "./modal";
 import navigation from "./navigation";
 import organization from "./organization";
 import orgGroup from "./orgGroup";
@@ -26,6 +27,7 @@ export const schemaTypes = [
     link,
     listItem,
     listSection,
+    modal,
     navigation,
     organization,
     orgGroup,
