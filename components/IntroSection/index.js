@@ -49,20 +49,20 @@ const IntroSection = ({ introSection }) => {
         {links &&
           links.map((link, i) => {
             if (link) {
-              return (
-                <Button
-                  key={`intro-button-${i}`}
-                  href={link.downloadUrl}
-                  newWindow={link.newWindow}
-                  downloadPdf={link.downloadPdf}
-                  downloadUrl={link.downloadUrl}
-                  variant="secondary"
-                  color="orange"
-                  fill={true}
-                >
-                  {link.linkTitle ? link.linkTitle : "Learn More"}
-                </Button>
-              );
+                return (
+                    <Button
+                        key={`intro-button-${i}`}
+                        href={link.url ? link.url : link.downloadUrl}
+                        newWindow={link.newWindow}
+                        downloadPdf={link.downloadPdf}
+                        downloadUrl={link.downloadUrl}
+                        variant="secondary"
+                        color="orange"
+                        fill={true}
+                    >
+                        {link.linkTitle ? link.linkTitle : "Learn More"}
+                  </Button>
+                );
             }
           })}
       </div>
