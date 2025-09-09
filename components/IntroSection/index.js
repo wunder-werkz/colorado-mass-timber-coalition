@@ -1,98 +1,87 @@
-'use client'
+"use client";
 
 import { useEffect, useRef, useCallback } from "react";
 import { PortableText } from "@portabletext/react";
-import { gsap, SplitText } from "@/lib/gsapConfig";
-
+import { gsap, ScrollTrigger } from "@/lib/gsapConfig";
 import Button from "../Button";
-
-
+import SplitTextBg from "@/components/SplitTextBg";
 import styles from "./style.module.scss";
 
 const IntroSection = ({ introSection }) => {
-    const { headline, image, imageUrl, imageHeight, imageWidth, copy, links } =
+  const { headline, image, imageUrl, imageHeight, imageWidth, copy, links } =
     introSection;
+  const headlineIntroRef = useRef(null);
+  const headlineContainerRef = useRef();
+  const contentRef = useRef();
+  const contentContainerRef = useRef();
 
-    const headlineRef = useRef(null);
-    const headlineContainerRef = useRef();
-    const contentRef = useRef();
-    const contentContainerRef = useRef();
+  const handleIntroTextAnimation = useCallback(() => {
+    headlineIntroRef.current?.restart();
+  }, []);
 
-    useEffect(() => {
-        const ctx = gsap.context(() => {
-
-            const introAnimations = gsap.timeline({ });
-
-            if (headlineRef && headlineRef.current)  {
-                gsap.set(headlineRef, { autoAlpha: 0, y: 20 });
-               let split = new SplitText(headlineRef.current, {
-                    type: 'words, lines',
-                    linesClass: styles.line,
-                    reduceWhiteSpace: false,
-                    lineThreshold: 0.5,
-                 });
-          
-
-                introAnimations.from(split.words, {
-                    duration: 0.25,
-                    autoAlpha: 0, 
-                    y: 100,
-                    stagger: 0.15,
-                });
-            }
-        
-         
-                if (contentRef) {
-                introAnimations.to(contentRef.current, {
-                    delay: 0.35,
-                    x: 0,
-                    duration: 0.35,
-                }).to(contentContainerRef.current, {
-                    delay: 0.7,
-                    opacity: 1,
-                    duration: 0.5,
-                });
-            }
-        });
-        return () => ctx.revert();
-    }, [contentRef, contentContainerRef]);
-
+  useEffect(() => {
+    ScrollTrigger.refresh();
+    const ctx = gsap.context(() => {
+      const introAnimations = gsap.timeline({
+        onStart: () => {
+          handleIntroTextAnimation();
+        },
+      });
+      if (contentRef) {
+        introAnimations
+          .to(contentRef.current, {
+            delay: 0.35,
+            x: 0,
+            duration: 0.35,
+          })
+          .to(contentContainerRef.current, {
+            delay: 0.7,
+            opacity: 1,
+            duration: 0.5,
+          });
+      }
+    });
+    return () => ctx.revert();
+  }, [contentRef, contentContainerRef, handleIntroTextAnimation]);
   const renderLinks = () => {
     return (
-      <div
-        className={`buttons-container ${styles.buttonsContainer}`}
-      >
+      <div className={`buttons-container ${styles.buttonsContainer}`}>
         {links &&
           links.map((link, i) => {
             if (link) {
-                return (
-                    <Button
-                        key={`intro-button-${i}`}
-                        href={link.url ? link.url : link.downloadUrl}
-                        newWindow={link.newWindow}
-                        downloadPdf={link.downloadPdf}
-                        downloadUrl={link.downloadUrl}
-                        variant="secondary"
-                        color="orange"
-                        fill={true}
-                    >
-                        {link.linkTitle ? link.linkTitle : "Learn More"}
-                  </Button>
-                );
+              return (
+                <Button
+                  key={`intro-button-${i}`}
+                  href={link.downloadUrl}
+                  newWindow={link.newWindow}
+                  downloadPdf={link.downloadPdf}
+                  downloadUrl={link.downloadUrl}
+                  variant="secondary"
+                  color="orange"
+                  fill={true}
+                >
+                  {link.linkTitle ? link.linkTitle : "Learn More"}
+                </Button>
+              );
             }
-            
           })}
       </div>
     );
   };
-
   return (
     <section className={styles.introSection}>
-        {headline && 
-            <div className={styles.headlineContainer} ref={headlineContainerRef}>
-                <h1 > <span ref={headlineRef}>{headline}</span> </h1>
-            </div>
-        }
+      {headline && (
+        <div className={styles.headlineContainer} ref={headlineContainerRef}>
+          <SplitTextBg
+            ref={headlineIntroRef}
+            color="orange"
+            inline
+            isPlaying={true}
+          >
+            <h1>{headline} </h1>
+          </SplitTextBg>
+        </div>
+      )}
       <div className={styles.textContent} ref={contentRef}>
         <div className={styles.contentContainer} ref={contentContainerRef}>
           {copy && (
@@ -106,5 +95,4 @@ const IntroSection = ({ introSection }) => {
     </section>
   );
 };
-
 export default IntroSection;

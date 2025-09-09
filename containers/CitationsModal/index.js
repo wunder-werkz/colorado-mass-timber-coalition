@@ -139,7 +139,7 @@ export default function CitationsModal() {
         duration: 0.3,
         onComplete: () => {
           gsap.set(modalRef.current, { display: "none" });
-          document.querySelector.style.overflow = "auto";
+          document.querySelector("main").style.overflow = "unset";
         },
       });
     }
