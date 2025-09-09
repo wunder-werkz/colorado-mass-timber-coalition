@@ -70,7 +70,6 @@ const MarketingModal = ({ modal }) => {
     router.push(link.url);
   };
 
-  console.log(link);
   return (
     <div
       className={`${styles.modalWrap} ${modalEnter && styles.modalEnter}`}
