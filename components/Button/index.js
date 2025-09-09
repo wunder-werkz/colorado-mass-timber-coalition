@@ -73,9 +73,7 @@ export default function Button({
         {content}
       </a>
     );
-  }
-
-  if (href) {
+  } else if (href) {
     return (
       <Link className={`${buttonClasses} ${large && "large"}`} href={href} {...props}>
         {content}
