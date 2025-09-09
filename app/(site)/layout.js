@@ -1,6 +1,12 @@
 import localFont from "next/font/local";
 
-import { GENERAL_QUERY, UPCOMING_EVENTS_QUERY, FOOTER_QUERY, NAVIGATION_QUERY, MODAL_QUERY } from "@/sanity/lib/queries";
+import {
+  GENERAL_QUERY,
+  UPCOMING_EVENTS_QUERY,
+  FOOTER_QUERY,
+  NAVIGATION_QUERY,
+  MODAL_QUERY,
+} from "@/sanity/lib/queries";
 import Layout from "@/containers/Layout";
 import { ModalProvider } from "@/context/ModalContext";
 import Footer from "@/components/Footer";
@@ -37,7 +43,6 @@ export default async function RootLayout({ children }) {
   const navigation = await client.fetch(NAVIGATION_QUERY);
   const modal = await client.fetch(MODAL_QUERY);
 
-  console.log(modal);
   return (
     <html lang="en">
       <Head>
@@ -79,10 +84,7 @@ export default async function RootLayout({ children }) {
         <link rel="manifest" href={manifest.src} />
       </Head>
       <body className={`${greedNarrow.variable} ${greedStandard.variable}`}>
-        {modal && modal[0].isVisible && (
-          <MarketingModal
-            modal={modal}/>
-        )}
+        {modal && modal[0].isVisible && <MarketingModal modal={modal} />}
         <SmoothScroll>
           <ModalProvider>
             <Layout
