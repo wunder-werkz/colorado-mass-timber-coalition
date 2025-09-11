@@ -52,7 +52,7 @@ const IntroSection = ({ introSection }) => {
               return (
                 <Button
                   key={`intro-button-${i}`}
-                  href={link.url ? link.url : link.downloadUrl ? link.downloadUrl : null}
+                  href={link.url ? link.url : null}
                   newWindow={link.newWindow}
                   downloadPdf={link.downloadPdf}
                   downloadUrl={link.downloadUrl}

@@ -29,7 +29,7 @@ export default function Button({
   ]
     .filter(Boolean)
     .join(" ");
-
+   
   const content = (
     <>
       <span className={styles.text}>{children}</span>
@@ -49,17 +49,19 @@ export default function Button({
     );
   }
 
-  if (downloadUrl) { 
-      <a
-      className={`${buttonClasses} ${large && "large"}`}
-      href={href}
-      download
-      target={newWindow ? "_blank" : ""}
-      rel="noopener noreferrer"
-      {...props}
-    >
-      {content}
-    </a>
+  if (downloadUrl || downloadPdf) { 
+    return ( 
+        <a
+        className={`${buttonClasses} ${large && "large"}`}
+        href={href ? href : downloadUrl}
+        download
+        target={newWindow ? "_blank" : ""}
+        rel="noopener noreferrer"
+        {...props}
+      >
+        {content}
+      </a>
+    )
 
   } else if (href?.startsWith("http")) {
     return (
@@ -79,11 +81,11 @@ export default function Button({
         {content}
       </Link>
     );
+  } else {
+      return (
+      <button className={`${buttonClasses} ${large && "large"}`} {...props}>
+        {content}
+      </button>
+    );
   }
-
-  return (
-    <button className={`${buttonClasses} ${large && "large"}`} {...props}>
-      {content}
-    </button>
-  );
 }
