@@ -21,6 +21,7 @@ export default defineConfig({
             S.documentTypeListItem("homePage"),
             S.documentTypeListItem('page'),
             S.documentTypeListItem("takeAction"),
+            S.documentTypeListItem("resourcesPage"),
             S.documentTypeListItem("footer"),
           ]),
     }),

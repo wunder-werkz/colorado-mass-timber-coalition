@@ -6,7 +6,7 @@ import SplitTextBg from "@/components/SplitTextBg";
 import { PortableText } from "@portabletext/react";
 import styles from "./styles.module.scss";
 
-export default function Partners({ partners, partnersText }) {
+export default function Partners({ partners, partnersText, title }) {
   const splitTextRef = useRef(null);
   const splitTextCopyRef = useRef(null);
 
@@ -44,7 +44,7 @@ export default function Partners({ partners, partnersText }) {
 
         <div className={styles.titleWrapper}>
           <SplitTextBg ref={splitTextRef} color="orange" inline>
-            <h2>Our Financial Partners</h2>
+            <h2>{title ? title : "Our Financial Partners"}</h2>
           </SplitTextBg>
           {partnersText &&
             <SplitTextBg ref={splitTextCopyRef} color="cream" inline>

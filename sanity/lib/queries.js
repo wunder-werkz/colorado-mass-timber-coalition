@@ -136,6 +136,55 @@ export const ACTION_QUERY = defineQuery(`*[_type == "takeAction"]{
   },
 }`);
 
+export const RESOURCES_QUERY = defineQuery(`*[_type == "resourcesPage"]{
+  pageTitle,
+  pageMetadata,
+  slug,
+  resourcePageSections[]->{
+    filterSectionTitle,
+    slug,
+    introSection,
+    _id,
+    filterSections[]->{
+      _id,
+      headline,
+      copy,
+      link[]->{
+        linkTitle,
+        url,
+        newWindow,
+        downloadPdf,
+        description,
+        "downloadUrl": downloadPdf.asset->url,
+      },
+      listItems[]->{
+        headline,
+        copy,
+        link[]->{
+          linkTitle,
+          url,
+          newWindow,
+          downloadPdf,
+          description,
+          "downloadUrl": downloadPdf.asset->url,
+        },
+      },
+      maps[]->{
+        title,
+        embedUrl,
+        link[]->{
+          linkTitle,
+          url,
+          newWindow,
+          downloadPdf,
+          description,
+          "downloadUrl": downloadPdf.asset->url,
+        }
+      }
+    }
+  }
+}`);
+
 export const getPageSectionsQuery = () => `
   _type,
   ...select(
@@ -151,6 +200,49 @@ export const getPageSectionsQuery = () => `
         }
       }
     },
+    _type == "filterSection" => {
+      filterSectionTitle,
+      slug,
+      introSection,
+      _id,
+      filterSections[]->{
+        _id,
+        headline,
+        copy,
+        link[]->{
+          linkTitle,
+          url,
+          newWindow,
+          downloadPdf,
+          description,
+          "downloadUrl": downloadPdf.asset->url,
+        },
+        listItems[]->{
+          headline,
+          copy,
+          link[]->{
+            linkTitle,
+            url,
+            newWindow,
+            downloadPdf,
+            description,
+            "downloadUrl": downloadPdf.asset->url,
+          },
+        },
+        maps[]->{
+          title,
+          embedUrl,
+          link[]->{
+            linkTitle,
+            url,
+            newWindow,
+            downloadPdf,
+            description,
+            "downloadUrl": downloadPdf.asset->url,
+          }
+        }
+      }
+    },
     _type == "ctaSection" => {
       headline,
       copy,
@@ -163,6 +255,14 @@ export const getPageSectionsQuery = () => `
         "downloadUrl": downloadPdf.asset->url,
       },
     },
+    _type == "partnersSection" => {
+        headline,
+        copy,
+        partners[]-> {
+          name, 
+          link
+        }
+      },
      _type == "listSection" => {
       headline,
       copy,
