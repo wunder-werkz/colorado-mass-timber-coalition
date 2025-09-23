@@ -28,7 +28,7 @@ export default function Partners({ partners, partnersText, title }) {
   }, []);
 
   return (
-    <ST.Root scrub={true} start="top center" end="bottom bottom">
+    <ST.Root scrub={true} start="top 80%" end="bottom bottom">
       <div className={styles.container}>
         <ST.Waypoint
           at={1}
@@ -60,10 +60,8 @@ export default function Partners({ partners, partnersText, title }) {
             tween={{
               start: 5,
               end: 90,
-              fromTo: [
-                { opacity: 0, y: 50 },
-                { opacity: 1, y: 0 },
-              ],
+              to: { opacity: 1, y: 0 },
+              
             }}
           >
             {partners && partners.map((partner, index) => (

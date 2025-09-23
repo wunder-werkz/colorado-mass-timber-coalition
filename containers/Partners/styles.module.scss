@@ -6,7 +6,7 @@
     padding: 60px 20px 80px 20px;
   }
   @include phone {
-    padding: 60px 10px 80px 10px;
+    padding: 60px 10px 30px 10px;
   }
 }
 
@@ -30,6 +30,9 @@
     &{
       margin-right: $one-twelfth;
       width: $five-twelfths;
+    }
+    @include lap-smaller {
+      margin-right: 0;
     }
     @include x-small {
       margin-top: 10px;
@@ -55,6 +58,8 @@
 
 .partnerItem {
   @include h3;
+  opacity: 0;
+  transform: translateY(50px);
   &{  
     padding: 1rem 0;
     border-bottom: 1px solid rgba($forest, 0.2);

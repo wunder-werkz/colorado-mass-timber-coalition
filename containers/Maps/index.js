@@ -77,7 +77,7 @@ export default function Maps({ maps, mapsText, title }) {
                             </Button>}
                         </div>
                         {embedUrl && <div className={styles.mapWrap}>
-                            <iframe src={embedUrl} width="100%" height="800px"></iframe>
+                            <iframe src={embedUrl} width="100%" height="auto"></iframe>
                         </div>
                         }
                     </div>

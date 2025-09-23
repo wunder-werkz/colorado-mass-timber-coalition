@@ -3,21 +3,35 @@
 .resourcesPage {
     margin-top: 120px;
     .title {
-        padding: 0 60px;
-        h1 {
-        display: inline-block;
-        background-color: $orange;
-        margin: 0;
-        padding: 0 15px;
-        @include h1;
+        padding: 0 60px 30px 60px;
+        @include lap-smaller {
+            padding: 0px 20px;
         }
-        padding-bottom: 30px;
+        @include phone {
+            padding: 0px 10px 30px 10px;
+        }
+        h1 {
+            display: inline-block;
+            background-color: $orange;
+            margin: 0;
+            padding: 0 15px;
+            @include h1;
+        }
     }
     .filtersContainer {
         padding: 30px 60px;
+        @include lap-smaller {
+            padding: 30px 20px;
+          }
+          @include phone {
+            padding: 0px 10px;
+          }
         .filterButtons {
             button {
                 margin-right: 20px;
+                @include x-small {
+                    margin-right: 6px;
+                }
             }
         }
     }
