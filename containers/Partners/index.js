@@ -27,7 +27,6 @@ export default function Partners({ partners, partnersText, title }) {
     splitTextCopyRef.current?.reverse();
   }, []);
 
-
   return (
     <ST.Root scrub={true} start="top center" end="bottom bottom">
       <div className={styles.container}>
@@ -67,7 +66,7 @@ export default function Partners({ partners, partnersText, title }) {
               ],
             }}
           >
-            {partners.map((partner, index) => (
+            {partners && partners.map((partner, index) => (
               <a
                 key={index}
                 href={partner.link}

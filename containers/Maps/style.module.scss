@@ -1,0 +1,61 @@
+@use "@/styles/vars" as *;
+
+.container {
+    background-color: $orange;
+    padding: 60px 60px 90px 60px;
+  @include lap-smaller {
+    padding: 60px 20px 80px 20px;
+  }
+  @include phone {
+    padding: 60px 10px 80px 10px;
+  }
+}
+
+.titleWrapper {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4rem;
+  @include x-small {
+    flex-flow: column;
+    align-items: flex-start;
+  }
+  @include lap-smaller {
+    margin-bottom: 1rem;
+  }
+  h2 {
+    @include h1;
+  }
+  .body {
+    @include body1;
+    &{
+      margin-right: $one-twelfth;
+      width: $five-twelfths;
+    }
+    @include x-small {
+      margin-top: 10px;
+      width: $eleven-twelfths;
+      p {
+        padding-left: 0;
+        padding-top: 0; 
+      }
+    }
+  }
+}
+
+.mapContainer {
+    margin: 0 auto;
+    padding-bottom: 90px;
+    width: $ten-twelfths;
+    h3 {
+        @include h2();
+    }
+    .titleRow {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+    }
+    iframe {
+        border: none;
+    }
+}

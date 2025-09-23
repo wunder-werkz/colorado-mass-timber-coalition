@@ -1,1 +1,32 @@
 @use "@/styles/vars" as *;
+
+.resourcesPage {
+    margin-top: 120px;
+    .title {
+        padding: 0 60px;
+        h1 {
+        display: inline-block;
+        background-color: $orange;
+        margin: 0;
+        padding: 0 15px;
+        @include h1;
+        }
+        padding-bottom: 30px;
+    }
+    .filtersContainer {
+        padding: 30px 60px;
+        .filterButtons {
+            button {
+                margin-right: 20px;
+            }
+        }
+    }
+    .filterSection {
+        &.hidden {
+            display: none;
+        }
+        &.active {
+            display: block;
+        }
+    }
+}

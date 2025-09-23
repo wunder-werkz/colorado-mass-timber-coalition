@@ -15,27 +15,6 @@ const resourcesPage = {
             title: "Page Metadata",
             description: "Metadata used for SEO",
           },
-        {
-            title: 'Slug',
-            name: 'slug',
-            type: 'slug',
-            options: {
-              source: 'pageTitle',
-              maxLength: 200, // will be ignored if slugify is set
-              slugify: (input) =>
-                input
-                  .toLowerCase()
-                  .replace('&', 'and')
-                  .replace('!', '')
-                  .replace('/', '')
-                  .replace("'", '')
-                  .replace(/\"/g, '')
-                  .trim()
-                  .replace(/\s+/g, '-')
-                  .slice(0, 200),
-            },
-            validation: (rule) => rule.required(),
-        },
         { 
             name: 'resourcesPageSections',
             type: 'array',

@@ -140,13 +140,14 @@ export const RESOURCES_QUERY = defineQuery(`*[_type == "resourcesPage"]{
   pageTitle,
   pageMetadata,
   slug,
-  resourcePageSections[]->{
+  resourcesPageSections[]->{
     filterSectionTitle,
     slug,
     introSection,
     _id,
     filterSections[]->{
       _id,
+      _type,
       headline,
       copy,
       link[]->{
@@ -157,22 +158,15 @@ export const RESOURCES_QUERY = defineQuery(`*[_type == "resourcesPage"]{
         description,
         "downloadUrl": downloadPdf.asset->url,
       },
-      listItems[]->{
-        headline,
-        copy,
-        link[]->{
-          linkTitle,
-          url,
-          newWindow,
-          downloadPdf,
-          description,
-          "downloadUrl": downloadPdf.asset->url,
-        },
+      partners[]->{
+        name,
+        link,
       },
       maps[]->{
         title,
         embedUrl,
         link[]->{
+          _id,
           linkTitle,
           url,
           newWindow,
