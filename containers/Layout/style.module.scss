@@ -224,7 +224,7 @@
   align-items: flex-start;
   display: flex;
   flex-direction: column;
-  gap: 60px;
+  gap: 30px;
   height: 100%;
   justify-content: center;
   width: 50%;
@@ -233,7 +233,6 @@
   }
   @include tablet-and-lower {
     align-items: center;
-    gap: 30px;
   }
   @include x-small {
     margin-top: 90px;
@@ -277,8 +276,8 @@
   display: flex;
   gap: 60px;
   justify-content: center;
-  margin-top: 50px;
-  margin-bottom: 60px;
+  margin-top: 40px;
+  margin-bottom: 20px;
   @include tablet-and-lower {
     gap: 30px;
     margin-top: 10px;
