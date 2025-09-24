@@ -13,6 +13,19 @@ const partner = {
       type: "string",
       title: "Link",
     },
+    {
+      name: "downloadPdf",
+      type: "file",
+      title: "Download PDF",
+      description: "If a file is uploaded, then the link in the link field is not needed",
+      fields: [
+        {
+          title: "Description",
+          name: "description",
+          type: "string",
+        },
+      ],
+    },
   ],
   preview: {
     select: {
