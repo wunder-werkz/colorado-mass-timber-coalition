@@ -45,7 +45,7 @@ export default function Partners({ partners, partnersText, title, animation }) {
                 href={partner.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={styles.partnerItem}
+                className={`${styles.partnerItem} ${styles.defaultOn}`}
               >
                 {partner.name}
               </a>

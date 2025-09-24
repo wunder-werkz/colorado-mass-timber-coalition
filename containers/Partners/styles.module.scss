@@ -66,6 +66,12 @@
 
 .partnerItem {
   @include h3;
+  opacity: 0;
+  transform: translateY(50px);
+  &.defaultOn {
+    opacity: 1;
+    transform: none;
+  }
   &{  
     padding: 1rem 0;
     border-bottom: 1px solid rgba($forest, 0.2);
