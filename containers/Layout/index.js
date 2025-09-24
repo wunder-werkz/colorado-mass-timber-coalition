@@ -226,6 +226,14 @@ const Header = ({ contactEmail, hasEvents,navigation }) => {
             >
               Take Action
           </Button>
+          <Button
+                onClick={() => handleLinkClick(`/resources`, false)}
+              variant="primary"
+              color="forest"
+              large={true}
+            >
+              Resources
+          </Button>
           {navigation && navigation[0] && navigation[0].navItems.length > 0 && navigation[0].navItems.map((navItem, i) => {
             if (navItem._type == "page" && navItem.slug) {
               return (<Button

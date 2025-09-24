@@ -6,7 +6,7 @@ import SplitTextBg from "@/components/SplitTextBg";
 import { PortableText } from "@portabletext/react";
 import styles from "./styles.module.scss";
 
-export default function Partners({ partners, partnersText }) {
+export default function Partners({ partners, partnersText, title, animation }) {
   const splitTextRef = useRef(null);
   const splitTextCopyRef = useRef(null);
 
@@ -27,47 +27,19 @@ export default function Partners({ partners, partnersText }) {
     splitTextCopyRef.current?.reverse();
   }, []);
 
-
-  return (
-    <ST.Root scrub={true} start="top center" end="bottom bottom">
+  if (animation === false) {
+    return (
       <div className={styles.container}>
-        <ST.Waypoint
-          at={1}
-          onCall={handleSplitTextStart}
-          onReverseCall={handleSplitTextReverse}
-        />
-        <ST.Waypoint
-          at={1}
-          onCall={handleSplitTextCopyStart}
-          onReverseCall={handleSplitTextCopyReverse}
-        />
-
         <div className={styles.titleWrapper}>
-          <SplitTextBg ref={splitTextRef} color="orange" inline>
-            <h2>Our Financial Partners</h2>
-          </SplitTextBg>
+          <h2><span className={styles.colorBar}>{title ? title : "Our Financial Partners"}</span></h2>
           {partnersText &&
-            <SplitTextBg ref={splitTextCopyRef} color="cream" inline>
-              <div className={styles.body}>
-                <PortableText value={partnersText} />
-              </div>
-            </SplitTextBg>
+            <div className={styles.body}>
+              <PortableText value={partnersText} />
+                </div>
           }
         </div>
-
         <div className={styles.partnersList}>
-          <ST.Stagger
-            overlap={0.2}
-            tween={{
-              start: 5,
-              end: 90,
-              fromTo: [
-                { opacity: 0, y: 50 },
-                { opacity: 1, y: 0 },
-              ],
-            }}
-          >
-            {partners.map((partner, index) => (
+          {partners && partners.map((partner, index) => (
               <a
                 key={index}
                 href={partner.link}
@@ -78,9 +50,63 @@ export default function Partners({ partners, partnersText }) {
                 {partner.name}
               </a>
             ))}
-          </ST.Stagger>
+          </div>
         </div>
-      </div>
-    </ST.Root>
-  );
+    );
+  } else {
+    return (
+      <ST.Root scrub={true} start="top 80%" end="bottom bottom">
+        <div className={styles.container}>
+          <ST.Waypoint
+            at={1}
+            onCall={handleSplitTextStart}
+            onReverseCall={handleSplitTextReverse}
+          />
+          <ST.Waypoint
+            at={1}
+            onCall={handleSplitTextCopyStart}
+            onReverseCall={handleSplitTextCopyReverse}
+          />
+  
+          <div className={styles.titleWrapper}>
+            <SplitTextBg ref={splitTextRef} color="orange" inline>
+              <h2>{title ? title : "Our Financial Partners"}</h2>
+            </SplitTextBg>
+            {partnersText &&
+              <SplitTextBg ref={splitTextCopyRef} color="cream" inline>
+                <div className={styles.body}>
+                  <PortableText value={partnersText} />
+                </div>
+             </SplitTextBg>
+            }
+          </div>
+  
+          <div className={styles.partnersList}>
+            <ST.Stagger
+              overlap={0.2}
+              tween={{
+                start: 5,
+                end: 90,
+                to: { opacity: 1, y: 0 },
+                
+              }}
+            >
+              {partners && partners.map((partner, index) => (
+                <a
+                  key={index}
+                  href={partner.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.partnerItem}
+                >
+                  {partner.name}
+                </a>
+              ))}
+            </ST.Stagger>
+          </div>
+        </div>
+      </ST.Root>
+    );
+  }
+
 }

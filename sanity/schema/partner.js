@@ -1,12 +1,12 @@
 const partner = {
   name: "partner",
   type: "document",
-  title: "Partners",
+  title: "List Link",
   fields: [
     {
       name: "name",
       type: "string",
-      title: "Name",
+      title: "Title",
     },
     {
       name: "link",
