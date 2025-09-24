@@ -161,6 +161,8 @@ export const RESOURCES_QUERY = defineQuery(`*[_type == "resourcesPage"]{
       partners[]->{
         name,
         link,
+        downloadPdf,
+        "downloadUrl": downloadPdf.asset->url,
       },
       maps[]->{
         title,

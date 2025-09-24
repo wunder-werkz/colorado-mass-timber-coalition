@@ -39,17 +39,31 @@ export default function Partners({ partners, partnersText, title, animation }) {
           }
         </div>
         <div className={styles.partnersList}>
-          {partners && partners.map((partner, index) => (
-              <a
+          {partners && partners.map((partner, index) => {
+            if (partner.downloadPdf) {
+              return (<a
                 key={index}
-                href={partner.link}
+                href={partner.downloadUrl}
+                download
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`${styles.partnerItem} ${styles.defaultOn}`}
               >
                 {partner.name}
-              </a>
-            ))}
+              </a>)
+            } else {
+              return(
+              <a
+              key={index}
+              href={partner.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`${styles.partnerItem} ${styles.defaultOn}`}
+            >
+              {partner.name}
+            </a>)
+            }
+          })}
           </div>
         </div>
     );
@@ -91,17 +105,30 @@ export default function Partners({ partners, partnersText, title, animation }) {
                 
               }}
             >
-              {partners && partners.map((partner, index) => (
-                <a
+              {partners && partners.map((partner, index) => {
+                 if (partner.downloadPdf) {
+                  return (<a
+                    key={index}
+                    href={partner.downloadUrl}
+                    download
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`${styles.partnerItem} ${styles.defaultOn}`}
+                  >
+                    {partner.name}
+                  </a>)
+                } else {
+                  return (<a
                   key={index}
                   href={partner.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={styles.partnerItem}
+                  className={`${styles.partnerItem} ${styles.defaultOn}`}
                 >
                   {partner.name}
-                </a>
-              ))}
+                </a>)
+                }
+              })}
             </ST.Stagger>
           </div>
         </div>
