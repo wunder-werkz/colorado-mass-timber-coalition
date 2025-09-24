@@ -24,6 +24,14 @@
   }
   h2 {
     @include h1;
+    margin: 0.5rem 0;
+    span {
+        background: $orange;
+        box-decoration-break: clone;
+        -webkit-box-decoration-break: clone;
+        color: $black;
+        padding: 0 30px;
+    }
   }
   .body {
     @include body1;
@@ -58,8 +66,6 @@
 
 .partnerItem {
   @include h3;
-  opacity: 0;
-  transform: translateY(50px);
   &{  
     padding: 1rem 0;
     border-bottom: 1px solid rgba($forest, 0.2);
@@ -68,7 +74,6 @@
     transition: opacity 0.65s ease;
     position: relative;
   }
-
 
   &::after {
     content: "";

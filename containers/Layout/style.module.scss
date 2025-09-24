@@ -181,6 +181,7 @@
     margin-left: -20%;
   }
   @include x-small {
+    display: none;
     flex-flow: column;
     margin-left: 0;
     width: $ten-twelfths;
@@ -233,6 +234,9 @@
   @include tablet-and-lower {
     align-items: center;
     gap: 30px;
+  }
+  @include x-small {
+    margin-top: 90px;
   }
 
   a {

@@ -24,6 +24,7 @@ export default function ResourcesPage({ content }) {
                 partnersText={pageSection.copy}
                 title={pageSection.headline}
                 key={`page-seciton-${pageSection._id}`}
+                animation={false}
               />
             } else if (pageSection._type == "mapSection") {
                 return  <Maps
