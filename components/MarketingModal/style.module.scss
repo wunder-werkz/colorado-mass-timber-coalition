@@ -72,8 +72,10 @@
 
     h1 {
         @include h1();
-        line-height: 1.2;
-        margin: .5rem 0;
+        & {
+            line-height: 1.2;
+            margin: .5rem 0;
+        }
         span {
             background-color: $white;
             color: $black;
