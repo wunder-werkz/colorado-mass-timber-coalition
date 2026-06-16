@@ -1,14 +1,16 @@
 "use client";
 
-import { useRef, useCallback } from "react";
+import { useRef, useCallback, useState } from "react";
 import * as ST from "@bsmnt/scrollytelling";
 import SplitTextBg from "@/components/SplitTextBg";
 import { PortableText } from "@portabletext/react";
+import GatedDownloadModal from "@/components/GatedDownloadModal";
 import styles from "./styles.module.scss";
 
 export default function Partners({ partners, partnersText, title, animation }) {
   const splitTextRef = useRef(null);
   const splitTextCopyRef = useRef(null);
+  const [gatedResource, setGatedResource] = useState(null);
 
   // Memoized callbacks for animations
   const handleSplitTextStart = useCallback(() => {
@@ -27,6 +29,66 @@ export default function Partners({ partners, partnersText, title, animation }) {
     splitTextCopyRef.current?.reverse();
   }, []);
 
+  const openGate = (partner) =>
+    setGatedResource({
+      title: partner.name,
+      label: partner.name,
+      downloadUrl: partner.downloadUrl,
+      downloadPdf: partner.downloadPdf,
+    });
+
+  // Renders a single partner. A gated PDF opens the email modal; everything
+  // else stays a plain link as before.
+  const renderPartner = (partner, index) => {
+    if (partner.infoGated && partner.downloadPdf) {
+      return (
+        <a
+          key={index}
+          role="button"
+          tabIndex={0}
+          style={{ cursor: "pointer" }}
+          className={`${styles.partnerItem} ${styles.defaultOn}`}
+          onClick={() => openGate(partner)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              openGate(partner);
+            }
+          }}
+        >
+          {partner.name}
+        </a>
+      );
+    }
+
+    if (partner.downloadPdf) {
+      return (
+        <a
+          key={index}
+          href={partner.downloadUrl}
+          download
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`${styles.partnerItem} ${styles.defaultOn}`}
+        >
+          {partner.name}
+        </a>
+      );
+    }
+
+    return (
+      <a
+        key={index}
+        href={partner.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`${styles.partnerItem} ${styles.defaultOn}`}
+      >
+        {partner.name}
+      </a>
+    );
+  };
+
   if (animation === false) {
     return (
       <div className={styles.container}>
@@ -39,32 +101,13 @@ export default function Partners({ partners, partnersText, title, animation }) {
           }
         </div>
         <div className={styles.partnersList}>
-          {partners && partners.map((partner, index) => {
-            if (partner.downloadPdf) {
-              return (<a
-                key={index}
-                href={partner.downloadUrl}
-                download
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`${styles.partnerItem} ${styles.defaultOn}`}
-              >
-                {partner.name}
-              </a>)
-            } else {
-              return(
-              <a
-              key={index}
-              href={partner.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`${styles.partnerItem} ${styles.defaultOn}`}
-            >
-              {partner.name}
-            </a>)
-            }
-          })}
+          {partners && partners.map((partner, index) => renderPartner(partner, index))}
           </div>
+        <GatedDownloadModal
+          isOpen={!!gatedResource}
+          onClose={() => setGatedResource(null)}
+          resource={gatedResource}
+        />
         </div>
     );
   } else {
@@ -105,33 +148,15 @@ export default function Partners({ partners, partnersText, title, animation }) {
                 
               }}
             >
-              {partners && partners.map((partner, index) => {
-                 if (partner.downloadPdf) {
-                  return (<a
-                    key={index}
-                    href={partner.downloadUrl}
-                    download
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`${styles.partnerItem} ${styles.defaultOn}`}
-                  >
-                    {partner.name}
-                  </a>)
-                } else {
-                  return (<a
-                  key={index}
-                  href={partner.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`${styles.partnerItem} ${styles.defaultOn}`}
-                >
-                  {partner.name}
-                </a>)
-                }
-              })}
+              {partners && partners.map((partner, index) => renderPartner(partner, index))}
             </ST.Stagger>
           </div>
         </div>
+        <GatedDownloadModal
+          isOpen={!!gatedResource}
+          onClose={() => setGatedResource(null)}
+          resource={gatedResource}
+        />
       </ST.Root>
     );
   }
