@@ -1,6 +1,6 @@
 import { sanityFetch } from "@/sanity/lib/fetch";
 
-const baseUrl = 'https://www.colorado-mass-timber-coalition.com'
+const baseUrl = 'https://www.comasstimber.org'
 
 async function getData() {
   // Update query to get all content types that use [slug].js routes

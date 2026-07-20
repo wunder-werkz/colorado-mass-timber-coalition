@@ -73,7 +73,7 @@ export default async function RootLayout({ children }) {
         />
         <meta
           property="og:url"
-          content="https://www.colorado-mass-timber-coalition.com/"
+          content="https://www.comasstimber.org/"
         />
         <meta
           name="viewport"
