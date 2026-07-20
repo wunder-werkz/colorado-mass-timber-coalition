@@ -1,5 +1,5 @@
 import { HOME_QUERY, UPCOMING_EVENTS_QUERY } from "@/sanity/lib/queries";
-import { client } from "@/sanity/lib/client";
+import { sanityFetch } from "@/sanity/lib/fetch";
 
 import EventSlider from "@/components/EventSlider";
 import Partners from "@/containers/Partners";
@@ -10,8 +10,10 @@ import FooterLogo from "@/components/SVG/FooterLogo";
 
 
 export default async function Home() {
-  const events = await client.fetch(UPCOMING_EVENTS_QUERY);
-  const homepage = await client.fetch(HOME_QUERY);
+  const [events, homepage] = await Promise.all([
+    sanityFetch(UPCOMING_EVENTS_QUERY, {}, ["event"]),
+    sanityFetch(HOME_QUERY, {}, ["homePage"]),
+  ]);
 
   return (
     <>
