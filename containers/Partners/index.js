@@ -112,52 +112,54 @@ export default function Partners({ partners, partnersText, title, animation }) {
     );
   } else {
     return (
-      <ST.Root scrub={true} start="top 80%" end="bottom bottom">
-        <div className={styles.container}>
-          <ST.Waypoint
-            at={1}
-            onCall={handleSplitTextStart}
-            onReverseCall={handleSplitTextReverse}
-          />
-          <ST.Waypoint
-            at={1}
-            onCall={handleSplitTextCopyStart}
-            onReverseCall={handleSplitTextCopyReverse}
-          />
-  
-          <div className={styles.titleWrapper}>
-            <SplitTextBg ref={splitTextRef} color="orange" inline>
-              <h2>{title ? title : "Our Financial Partners"}</h2>
-            </SplitTextBg>
-            {partnersText &&
-              <SplitTextBg ref={splitTextCopyRef} color="cream" inline>
-                <div className={styles.body}>
-                  <PortableText value={partnersText} />
-                </div>
-             </SplitTextBg>
-            }
+      <>
+        <ST.Root scrub={true} start="top 80%" end="bottom bottom">
+          <div className={styles.container}>
+            <ST.Waypoint
+              at={1}
+              onCall={handleSplitTextStart}
+              onReverseCall={handleSplitTextReverse}
+            />
+            <ST.Waypoint
+              at={1}
+              onCall={handleSplitTextCopyStart}
+              onReverseCall={handleSplitTextCopyReverse}
+            />
+
+            <div className={styles.titleWrapper}>
+              <SplitTextBg ref={splitTextRef} color="orange" inline>
+                <h2>{title ? title : "Our Financial Partners"}</h2>
+              </SplitTextBg>
+              {partnersText &&
+                <SplitTextBg ref={splitTextCopyRef} color="cream" inline>
+                  <div className={styles.body}>
+                    <PortableText value={partnersText} />
+                  </div>
+               </SplitTextBg>
+              }
+            </div>
+
+            <div className={styles.partnersList}>
+              <ST.Stagger
+                overlap={0.2}
+                tween={{
+                  start: 5,
+                  end: 90,
+                  to: { opacity: 1, y: 0 },
+
+                }}
+              >
+                {partners && partners.map((partner, index) => renderPartner(partner, index))}
+              </ST.Stagger>
+            </div>
           </div>
-  
-          <div className={styles.partnersList}>
-            <ST.Stagger
-              overlap={0.2}
-              tween={{
-                start: 5,
-                end: 90,
-                to: { opacity: 1, y: 0 },
-                
-              }}
-            >
-              {partners && partners.map((partner, index) => renderPartner(partner, index))}
-            </ST.Stagger>
-          </div>
-        </div>
+        </ST.Root>
         <GatedDownloadModal
           isOpen={!!gatedResource}
           onClose={() => setGatedResource(null)}
           resource={gatedResource}
         />
-      </ST.Root>
+      </>
     );
   }
 
