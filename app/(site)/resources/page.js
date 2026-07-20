@@ -1,10 +1,10 @@
 import { RESOURCES_QUERY } from "@/sanity/lib/queries";
-import { client } from "@/sanity/lib/client";
+import { sanityFetch } from "@/sanity/lib/fetch";
 
 import ResourcesPage from "@/containers/ResourcesPage";
 
 export default async function Resources() {
-  const resourcesPage = await client.fetch(RESOURCES_QUERY);
+  const resourcesPage = await sanityFetch(RESOURCES_QUERY, {}, ["resourcesPage"]);
 
   if (resourcesPage && resourcesPage[0]) {
     return (

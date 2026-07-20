@@ -1,6 +1,6 @@
-import { client } from "@/sanity/lib/client";
- 
-const baseUrl = 'https://www.skylark.llc' || 'http://localhost:3000'
+import { sanityFetch } from "@/sanity/lib/fetch";
+
+const baseUrl = 'https://www.comasstimber.org'
 
 async function getData() {
   // Update query to get all content types that use [slug].js routes
@@ -9,22 +9,11 @@ async function getData() {
     "updated": _updatedAt,
     "_type": _type
   }`
-  const data = await client.fetch(query)
+  const data = await sanityFetch(query, {}, ["page"])
   return data
 }
 
-const data = await getData()
-const staticPages = ['', '/about', '/work', '/contact', '/services'];
-
-const cmsPages = data.map((item) => {
-
-  return {
-    url: `${baseUrl}/${item.currentSlug}`,
-    lastmod: item.updated,
-    changefreq: 'weekly',
-    priority: 0.8,
-  }
-})
+const staticPages = ['', '/about', '/events', '/action', '/resources'];
 
 const staticRoutes = staticPages.map((page) => {
   let priority = 0.7
@@ -43,7 +32,7 @@ const staticRoutes = staticPages.map((page) => {
 })
 
 
-function generateSiteMap() {
+function generateSiteMap(cmsPages) {
   return `<?xml version="1.0" encoding="UTF-8"?>
    <urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
       ${[...staticRoutes, ...cmsPages]
@@ -62,9 +51,17 @@ function generateSiteMap() {
  `;
 }
  
-export function GET() {
+export async function GET() {
+  const data = await getData()
 
-  const body = generateSiteMap();
+  const cmsPages = data.map((item) => ({
+    url: `${baseUrl}/${item.currentSlug}`,
+    lastmod: item.updated,
+    changefreq: 'weekly',
+    priority: 0.8,
+  }))
+
+  const body = generateSiteMap(cmsPages);
  
   return new Response(body, {
     status: 200,

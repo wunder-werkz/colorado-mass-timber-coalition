@@ -1,10 +1,10 @@
 import { ACTION_QUERY } from "@/sanity/lib/queries";
-import { client } from "@/sanity/lib/client";
+import { sanityFetch } from "@/sanity/lib/fetch";
 
 import TakeAction from "@/containers/TakeAction";
 
 export default async function Action() {
-  const actionPage = await client.fetch(ACTION_QUERY);
+  const actionPage = await sanityFetch(ACTION_QUERY, {}, ["takeAction"]);
 
   if (actionPage) {
     return (

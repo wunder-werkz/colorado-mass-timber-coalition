@@ -1,11 +1,11 @@
 import { getPageSectionsQuery } from "@/sanity/lib/queries";
-import { client } from "@/sanity/lib/client";
+import { sanityFetch } from "@/sanity/lib/fetch";
 
 import PageClient from "@/containers/PageClient";
 
 export default async function Page({ params}) {
     const { slug } = await params;
-    const page = await client.fetch(`*[_type=="page" && slug.current == "${slug}"]{
+    const page = await sanityFetch(`*[_type=="page" && slug.current == $slug]{
         pageTitle,
         slug,
         pageMetadata,
@@ -35,7 +35,9 @@ export default async function Page({ params}) {
         pageSections[]->{
             ${getPageSectionsQuery()}
         }
-    }`
+    }`,
+        { slug },
+        ["page", `page:${slug}`]
     );
 
     if (page && page[0]) {
@@ -47,7 +49,7 @@ export default async function Page({ params}) {
 
 export async function generateStaticParams() {
     // Fetch all possible slugs from your data source
-    const pages = await client.fetch('*[_type=="page"]').then((res) => res);
+    const pages = await sanityFetch('*[_type=="page"]', {}, ["page"]);
 
     return pages.map((page) => ({
       slug: page.slug.current,

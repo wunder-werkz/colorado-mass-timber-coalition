@@ -10,7 +10,7 @@ import {
 import Layout from "@/containers/Layout";
 import { ModalProvider } from "@/context/ModalContext";
 import Footer from "@/components/Footer";
-import { client } from "@/sanity/lib/client";
+import { sanityFetch } from "@/sanity/lib/fetch";
 import Head from "next/head";
 import faviconIco from "../../public/favicon/favicon.ico";
 import favicon from "../../public/favicon/favicon.svg";
@@ -36,12 +36,19 @@ export const metadata = {
   description: "Colorado Mass Timber Coalition",
 };
 
+// Backstop for the UPCOMING_EVENTS_QUERY `now()` boundary: an event only moves
+// from upcoming to past when the page is regenerated, and no content edit
+// happens at that moment. Applies to every route under (site).
+export const revalidate = 3600;
+
 export default async function RootLayout({ children }) {
-  const general = await client.fetch(GENERAL_QUERY);
-  const events = await client.fetch(UPCOMING_EVENTS_QUERY);
-  const footer = await client.fetch(FOOTER_QUERY);
-  const navigation = await client.fetch(NAVIGATION_QUERY);
-  const modal = await client.fetch(MODAL_QUERY);
+  const [general, events, footer, navigation, modal] = await Promise.all([
+    sanityFetch(GENERAL_QUERY, {}, ["general"]),
+    sanityFetch(UPCOMING_EVENTS_QUERY, {}, ["event"]),
+    sanityFetch(FOOTER_QUERY, {}, ["footer"]),
+    sanityFetch(NAVIGATION_QUERY, {}, ["navigation"]),
+    sanityFetch(MODAL_QUERY, {}, ["modal"]),
+  ]);
 
   return (
     <html lang="en">
@@ -66,7 +73,7 @@ export default async function RootLayout({ children }) {
         />
         <meta
           property="og:url"
-          content="https://www.colorado-mass-timber-coalition.com/"
+          content="https://www.comasstimber.org/"
         />
         <meta
           name="viewport"
