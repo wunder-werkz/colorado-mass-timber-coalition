@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MailchimpSubscribe from "react-mailchimp-subscribe";
 
 import Button from "../Button";
@@ -39,18 +39,22 @@ function GatedForm({ status, message, resource, onSubmit }) {
     "No thanks",
   ]);
 
-  const [otherOptions] = useState([
-    "Other",
-  ]);
 
   const [occupationSelected, setOccupationSelected] = useState("");
   const [newsletterSelected, setNewsletterSelected] = useState("");
-  const [otherSelected, setOtherSelected] = useState(""); 
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (EMAIL_REGEX.test(email)) {
-      onSubmit({ EMAIL: email });
+      onSubmit({ 
+        EMAIL: email,
+        FNAME: firstName,
+        LNAME: lastName,
+        COMPANY: company,
+        POSITION: position,
+        MMERGE9: occupationSelected,
+        MMERGE8: newsletterSelected,
+       });
     }
   };
 
@@ -75,28 +79,12 @@ function GatedForm({ status, message, resource, onSubmit }) {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <h3>Fill out the form for access to the document.</h3>
-      <div id="mc_embed_signup_scroll">
-        <h2>Subscribe</h2>
-        <div className="indicates-required">
+      <h3>Please, fill out the form to download the report.</h3>
+      <div className={styles.indicatesRequired}>
           <span className="asterisk">*</span> indicates required
         </div>
-        <div className="mc-field-group">
-          <label for="mce-EMAIL">
-            Email Address 
-            <span className="asterisk">*</span>
-          </label>
-          <input 
-            type="email" 
-            name="EMAIL" 
-            required
-            className="required email" 
-            id="mce-EMAIL" 
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            />
-        </div>
-        <div className="mc-field-group">
+      <div id="mc_embed_signup_scroll" className={styles.mcForm}> 
+        <div className={styles.mcFieldGroup}>
           <label for="mce-FNAME">
             First Name <span className="asterisk">*</span>
           </label>
@@ -110,7 +98,7 @@ function GatedForm({ status, message, resource, onSubmit }) {
             onChange={(e) => setFirstName(e.target.value)}
             />
         </div>
-        <div className="mc-field-group">
+        <div className={styles.mcFieldGroup}>
           <label for="mce-LNAME">
             Last Name 
             <span className="asterisk">*</span>
@@ -125,7 +113,22 @@ function GatedForm({ status, message, resource, onSubmit }) {
             onChange={(e) => setLastName(e.target.value)}
             />
         </div>
-        <div className="mc-field-group">
+        <div className={styles.mcFieldGroup}>
+          <label for="mce-EMAIL">
+            Email Address 
+            <span className="asterisk">*</span>
+          </label>
+          <input 
+            type="email" 
+            name="EMAIL" 
+            required
+            className="required email" 
+            id="mce-EMAIL" 
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            />
+        </div>
+        <div className={styles.mcFieldGroup}>
           <label for="mce-COMPANY">
             Company/Organization
             <span className="asterisk">*</span>
@@ -140,7 +143,7 @@ function GatedForm({ status, message, resource, onSubmit }) {
             onChange={(e) => setCompany(e.target.value)}
             />
         </div>
-        <div className="mc-field-group">
+        <div className={styles.mcFieldGroup}>
           <label for="mce-POSITION">
             Role/Title 
             <span className="asterisk">*</span>
@@ -151,7 +154,7 @@ function GatedForm({ status, message, resource, onSubmit }) {
             onChange={(e) => setPosition(e.target.value)}
             />
         </div>
-        <div className="mc-field-group input-group">
+        <div className={`${styles.mcFieldGroup} ${styles.mcInputGroup}`}>
           <strong>
             Which best describes your occupation (select one)? <span className="asterisk">*</span>
           </strong>
@@ -268,7 +271,7 @@ function GatedForm({ status, message, resource, onSubmit }) {
               </li>
           </ul>
         </div>
-        <div className="mc-field-group input-group">
+        <div className={`${styles.mcFieldGroup} ${styles.mcInputGroup}`}>
           <strong>
             Are you a subscriber to the CMTC Newsletter <span className="asterisk">*</span>
           </strong>
@@ -308,7 +311,6 @@ function GatedForm({ status, message, resource, onSubmit }) {
               </li>
             </ul>
           </div>
-             
       </div>
       <Button
         type="submit"
@@ -330,11 +332,54 @@ function GatedForm({ status, message, resource, onSubmit }) {
 }
 
 export default function GatedDownloadModal({ isOpen, onClose, resource }) {
+  useEffect(() => {
+    if (!isOpen || !resource) return;
+
+    const html = document.documentElement;
+    const body = document.body;
+    const main = document.querySelector("main");
+    const lenis = window.lenis;
+
+    const previousHtmlOverflow = html.style.overflow;
+    const previousBodyOverflow = body.style.overflow;
+    const previousBodyHeight = body.style.height;
+    const previousMainOverflow = main?.style.overflow ?? "";
+    const previousMainHeight = main?.style.height ?? "";
+
+    lenis?.stop();
+
+    html.style.overflow = "hidden";
+    body.style.overflow = "hidden";
+    body.style.height = "100vh";
+
+    if (main) {
+      main.style.overflow = "hidden";
+      main.style.height = "100%";
+    }
+
+    return () => {
+      lenis?.start();
+
+      html.style.overflow = previousHtmlOverflow;
+      body.style.overflow = previousBodyOverflow;
+      body.style.height = previousBodyHeight;
+
+      if (main) {
+        main.style.overflow = previousMainOverflow;
+        main.style.height = previousMainHeight;
+      }
+    };
+  }, [isOpen, resource]);
+
   if (!isOpen || !resource) return null;
 
   return (
     <div className={styles.modalWrap} onClick={onClose}>
-      <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+      <div
+        className={styles.modal}
+        data-lenis-prevent
+        onClick={(e) => e.stopPropagation()}
+      >
         <button
           type="button"
           className={styles.close}
