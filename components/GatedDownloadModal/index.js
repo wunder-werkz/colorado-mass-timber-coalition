@@ -162,7 +162,7 @@ function GatedForm({ status, message, resource, onSubmit }) {
             <li>
               <input 
                 type="radio" 
-                name="MMERGE9" 
+                name="MMERGE90" 
                 id="mce-MMERGE90" 
                 value="Architecture"
                 checked={occupationSelected === "Architecture"}
@@ -191,6 +191,17 @@ function GatedForm({ status, message, resource, onSubmit }) {
                 onChange={(e) => setOccupationSelected(e.target.value)}
                 />
               <label for="mce-MMERGE92">Construction</label>
+            </li>
+            <li>
+              <input 
+                type="radio" 
+                name="MMERGE9" 
+                id="mce-MMERGE93" 
+                value="Development/Owner"
+                checked={occupationSelected === "Development/Owner"}
+                onChange={(e) => setOccupationSelected(e.target.value)}
+                />
+              <label for="mce-MMERGE93">Development/Owner</label>
             </li>
               <li>
                 <input 
@@ -275,6 +286,7 @@ function GatedForm({ status, message, resource, onSubmit }) {
           <strong>
             Are you a subscriber to the CMTC Newsletter <span className="asterisk">*</span>
           </strong>
+          <p>Selecting yes or add me will automatically sign you up for our email marketing. </p>
           <ul>
             <li>
               <input 
