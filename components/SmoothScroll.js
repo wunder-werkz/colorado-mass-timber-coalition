@@ -15,6 +15,8 @@ export default function SmoothScroll({ children }) {
       touchMultiplier: 2,
     });
 
+    window.lenis = lenis;
+
     lenis.on("scroll", () => {
       if (typeof window !== "undefined" && window.ScrollTrigger) {
         ScrollTrigger.update();
@@ -28,6 +30,7 @@ export default function SmoothScroll({ children }) {
     requestAnimationFrame(raf);
 
     return () => {
+      delete window.lenis;
       lenis.destroy();
     };
   }, []);

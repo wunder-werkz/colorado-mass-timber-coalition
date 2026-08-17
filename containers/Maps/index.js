@@ -5,8 +5,7 @@ import * as ST from "@bsmnt/scrollytelling";
 import SplitTextBg from "@/components/SplitTextBg";
 import { PortableText } from "@portabletext/react";
 import styles from "./style.module.scss";
-import Button
- from "@/components/Button";
+import Button from "@/components/Button";
 export default function Maps({ maps, mapsText, title }) {
   const splitTextRef = useRef(null);
   const splitTextCopyRef = useRef(null);
@@ -59,12 +58,11 @@ export default function Maps({ maps, mapsText, title }) {
             {maps && maps.map((singleMap, index) => {
                 const {embedUrl, link, title} = singleMap;
                 return (
-                    <div className={styles.mapContainer}>
+                    <div className={styles.mapContainer} key={singleMap._key || index}>
                         <div className={styles.titleRow}>
                         {title && <h3> {title} </h3>}
-                        {link &&  
+                        {link && link[0] &&
                             <Button
-                            key={`map-button-${link[0]._id}`}
                             href={link[0].url ? link[0].url : null}
                             newWindow={link[0].newWindow}
                             downloadPdf={link[0].downloadPdf}

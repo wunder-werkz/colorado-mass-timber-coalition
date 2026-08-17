@@ -26,6 +26,16 @@ const partner = {
         },
       ],
     },
+    {
+      name: "infoGated",
+      type: "boolean",
+      title: "Info Gated?",
+      description:
+        "If enabled, visitors must submit the email form before the PDF can be downloaded.",
+      initialValue: false,
+      // Only relevant for downloadable resources, so hide it for plain link partners.
+      hidden: ({ parent }) => !parent?.downloadPdf,
+    },
   ],
   preview: {
     select: {
