@@ -6,7 +6,19 @@ import MailchimpSubscribe from "react-mailchimp-subscribe";
 import Button from "../Button";
 import styles from "./style.module.scss";
 
-const MAILCHIMP_URL_INFOGATE = process.env.NEXT_PUBLIC_MAILCHIMP_URL_INFOGATE;
+// Keep the gate working when the env var is missing from a build, and when
+// a pasted Mailchimp embed URL still has HTML-encoded ampersands.
+const DEFAULT_MAILCHIMP_URL_INFOGATE =
+  "https://comasstimber.us22.list-manage.com/subscribe/post?u=7c9e75d277daa78c4376311b5&id=a68199166e&f_id=00b8c2e1f0";
+
+function mailchimpFormUrl(value) {
+  const url = (value || DEFAULT_MAILCHIMP_URL_INFOGATE).replace(/&amp;/g, "&");
+  return url.includes("/subscribe/post") ? url : DEFAULT_MAILCHIMP_URL_INFOGATE;
+}
+
+const MAILCHIMP_URL_INFOGATE = mailchimpFormUrl(
+  process.env.NEXT_PUBLIC_MAILCHIMP_URL_INFOGATE
+);
 const EMAIL_REGEX = /^\S+@\S+\.\S+$/;
 
 function GatedForm({ status, message, resource, onSubmit }) {
