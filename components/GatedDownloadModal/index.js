@@ -27,11 +27,10 @@ function GatedForm({ status, message, resource, onSubmit }) {
   const [lastName, setLastName] = useState("");
   const [company, setCompany] = useState("");
   const [position, setPosition] = useState("");
-  const [occupation, setOccupation] = useState(""); 
-  const [newsletter, setNewsletter] = useState("");
-  const [other, setOther] = useState(""); 
 
-  const [occupationOptions] = useState([
+  // Values must match the Mailchimp radio field exactly. Labels that differ
+  // are rejected and the subscribe call never succeeds.
+  const occupationOptions = [
     "Architecture",
     "Engineering",
     "Construction",
@@ -43,13 +42,7 @@ function GatedForm({ status, message, resource, onSubmit }) {
     "Academia",
     "Consulting",
     "Other",
-  ]);
-
-  const [newsletterOptions] = useState([
-    "Yes",
-    "No, but please add me",
-    "No thanks",
-  ]);
+  ];
 
 
   const [occupationSelected, setOccupationSelected] = useState("");
@@ -171,127 +164,23 @@ function GatedForm({ status, message, resource, onSubmit }) {
             Which best describes your occupation (select one)? <span className="asterisk">*</span>
           </strong>
           <ul>
-            <li>
-              <input 
-                type="radio" 
-                name="MMERGE90" 
-                id="mce-MMERGE90" 
-                value="Architecture"
-                checked={occupationSelected === "Architecture"}
-                onChange={(e) => setOccupationSelected(e.target.value)}
-                />
-              <label for="mce-MMERGE90">Architecture</label>
-            </li>
-            <li>
-              <input 
-                type="radio" 
-                name="MMERGE9" 
-                id="mce-MMERGE91" 
-                value="Engineering"
-                checked={occupationSelected === "Engineering"}
-                onChange={(e) => setOccupationSelected(e.target.value)}
-                />
-                <label for="mce-MMERGE91">Engineering</label>
-            </li>
-            <li>
-              <input 
-                type="radio" 
-                name="MMERGE9" 
-                id="mce-MMERGE92" 
-                value="Construction"
-                checked={occupationSelected === "Construction"}
-                onChange={(e) => setOccupationSelected(e.target.value)}
-                />
-              <label for="mce-MMERGE92">Construction</label>
-            </li>
-            <li>
-              <input 
-                type="radio" 
-                name="MMERGE9" 
-                id="mce-MMERGE93" 
-                value="Development/Owner"
-                checked={occupationSelected === "Development/Owner"}
-                onChange={(e) => setOccupationSelected(e.target.value)}
-                />
-              <label for="mce-MMERGE93">Development/Owner</label>
-            </li>
-              <li>
-                <input 
-                  type="radio" 
-                  name="MMERGE9" 
-                  id="mce-MMERGE94" 
-                  value="Forestry"
-                  checked={occupationSelected === "Forestry"}
-                  onChange={(e) => setOccupationSelected(e.target.value)}
+            {occupationOptions.map((option, index) => {
+              const id = `mce-MMERGE9-${index}`;
+              return (
+                <li key={option}>
+                  <input
+                    type="radio"
+                    name="MMERGE9"
+                    id={id}
+                    value={option}
+                    required
+                    checked={occupationSelected === option}
+                    onChange={(e) => setOccupationSelected(e.target.value)}
                   />
-                <label for="mce-MMERGE94">Forestry</label>
-              </li>
-              <li>
-                <input 
-                  type="radio" 
-                  name="MMERGE9" 
-                  id="mce-MMERGE95" 
-                  value="Forest Products"
-                  checked={occupationSelected === "Forest Products"}
-                  onChange={(e) => setOccupationSelected(e.target.value)}
-                  />
-                <label for="mce-MMERGE95">Forest Products</label>
-              </li>
-              <li>
-                <input 
-                  type="radio" 
-                  name="MMERGE9" 
-                  id="mce-MMERGE96" 
-                  value="Mass Timber"
-                  checked={occupationSelected === "Mass Timber"}
-                  onChange={(e) => setOccupationSelected(e.target.value)}
-                  />
-                <label for="mce-MMERGE96">Mass Timber</label>
-              </li>
-              <li>
-                <input 
-                  type="radio" 
-                  name="MMERGE9" 
-                  id="mce-MMERGE97" 
-                  value="Government"
-                  checked={occupationSelected === "Government"}
-                  onChange={(e) => setOccupationSelected(e.target.value)}
-                  />
-                <label for="mce-MMERGE97">Government</label>
-              </li>
-              <li>
-                <input 
-                  type="radio" 
-                  name="MMERGE9" 
-                  id="mce-MMERGE98" 
-                  value="Academia"
-                  checked={occupationSelected === "Academia"}
-                  onChange={(e) => setOccupationSelected(e.target.value)}
-                  />  
-                <label for="mce-MMERGE98">Academia</label>
-              </li>
-              <li>
-                <input 
-                  type="radio" 
-                  name="MMERGE9" 
-                  id="mce-MMERGE99" 
-                  value="Consulting"
-                  checked={occupationSelected === "Consulting"}
-                  onChange={(e) => setOccupationSelected(e.target.value)}
-                  />
-                <label for="mce-MMERGE99">Consulting</label>
-              </li>
-              <li>
-                <input 
-                  type="radio" 
-                  name="MMERGE9" 
-                  id="mce-MMERGE910" 
-                  value="Other"
-                  checked={occupationSelected === "Other"}
-                  onChange={(e) => setOccupationSelected(e.target.value)}
-                  />
-                <label for="mce-MMERGE910">Other</label>
-              </li>
+                  <label htmlFor={id}>{option}</label>
+                </li>
+              );
+            })}
           </ul>
         </div>
         <div className={`${styles.mcFieldGroup} ${styles.mcInputGroup}`}>
